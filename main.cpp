@@ -8,7 +8,7 @@
 - Блуждающая сортировка
 main.cpp
 23.02.2022
-ver 0.1
+ver 0.2
 */
 
 #include <iostream>
@@ -17,34 +17,90 @@ ver 0.1
 #include <ctime>
 #include <cmath>
 
-#include "methods/bubblesort.h"
-#include "methods/heapsort.h"
-#include "methods/stoogesort.h"
+#include "SortingAlgorithms.h"
 
 using namespace std;
 
-const int ExtremeLength = 75000; 
+const int ExtremeLength = 100000; 
+
+void GenerateArray_TrulyRandom(int AmountOfElements, int *ArrayX)
+{
+/*
+    (int A, int* B)->()
+    Generates array B, with length A, using true random numbers,
+    with seed equal to current time and withing range of (MIN..MAX)
+    After that writes the result into the txt file. (exodus/presort.txt)
+    Returns nothing.
+    >>GenerateArray_TrulyRandom(5, Array)
+    <<
+*/  
+    
+    int MaxElement = 10000;
+    int MinElement = -10000;
+    srand((int)time(0));
+    
+    cout<<"Input the maximum possible element in the array: ";
+    cin>>MaxElement;
+    cout<<"Input the minimum possible element in the array: ";
+    cin>>MinElement;
+    
+    ofstream file;
+    file.open("exodus/presort.txt",ios::app);
+    for (int i = 0; i < AmountOfElements; i++)
+        {   ArrayX[i]=rand()%(MaxElement-MinElement+1)+MinElement;
+            file<<ArrayX[i]<<endl;
+        }
+    file.close();
+}
+
+void GenerateArray_CustomNumbers(int AmountOfElements, int *ArrayX)
+{   
+/*
+    (int A, int* B)->()
+    Generates array B, with length A, using custom numbers.
+    After that writes the result into the txt file. (exodus/presort.txt)
+    Returns nothing.
+    >>GenerateArray_TrulyRandom(2, Array)
+    >>Input element with index 0: 6
+    >>Input element with index 1: 10
+*/    
+    int ThisNumber = 0;
+    
+    ofstream file;
+    file.open("exodus/presort.txt",ios::app);
+    for (int i = 0; i < AmountOfElements; i++)
+        {   
+            cout<<"Input element with index "<<i<<": ";
+            cin>>ThisNumber;
+            ArrayX[i]=ThisNumber;
+            file<<ArrayX[i]<<endl;
+        }
+    file.close();
+}
+
+void ClearTxts()
+{   
+/*
+    ()->()
+    Clears all the used txts.
+    Returns nothing.
+    >>ClearTxts()
+*/
+    ofstream file;
+    file.open("exodus/presort.txt");
+    file<<"";
+    Tool_ClearTxt();
+}
 
 int main() {
     int AmountOfElements = 5;
-    int MaxElement = 10000;
-    int MinElement = -10000;
     int ArrayX[ExtremeLength]; 
     srand((int)time(0));
     
     cout<<"Input amount of elements in the array: ";
     cin>>AmountOfElements;
-    cout<<"\nInput the maximum possible element in the array: ";
-    cin>>MaxElement;
-    cout<<"Input the minimum possible element in the array: ";
-    cin>>MinElement;
 
-    ifstream file;
-    for (int i = 0; i < AmountOfElements; i++)
-        {   ArrayX[i]=rand()%(MaxElement-MinElement+1)+MinElement;
-            ofstream file;
-            file.open("exodus/presort.txt",ios::app);
-            file<<ArrayX[i]<<endl;
-        }
-    file.close();
+    ClearTxts();
+    GenerateArray_TrulyRandom(AmountOfElements,ArrayX);
+    SortArray_BubbleSort(AmountOfElements,ArrayX);
 }
