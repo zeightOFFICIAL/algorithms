@@ -23,7 +23,6 @@ void SortArray_BubbleSort(int AmountOfElements, int *ArrayX)
     file.close();
 }
 
-
 void Tool_Swap(int *LeftElement, int *RightElement) 
 { 
     int temp = *LeftElement; 
@@ -37,11 +36,9 @@ void Tool_Cleartxt()
     file.open("exodus/bubblesort.txt");
     file<<"";
     file.close();
-
     file.open("exodus/heapsort.txt");
     file<<"";
     file.close();
-
     file.open("exodus/stoogesort.txt");
     file<<"";
     file.close();
