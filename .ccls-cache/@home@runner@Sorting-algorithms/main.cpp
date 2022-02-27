@@ -7,8 +7,8 @@ Sorting algorithms, comparison (time and difficulty)
 - Heap sort
 - Stooge sort
 main.cpp
-25.02.2022
-ver 0.3
+27.02.2022
+ver 0.35
 */
 
 #include <iostream>
@@ -20,7 +20,7 @@ ver 0.3
 using namespace std;
 const int ExtremeLength = 1000000; 
 
-void GenerateArray_TrulyRandom(int *ArrayX)
+void GenerateArray_TrulyRandom(int *ArrayX, int AmountOfElements)
 {
 /*
     (int* A, int B)->()
@@ -28,17 +28,13 @@ void GenerateArray_TrulyRandom(int *ArrayX)
     with seed equal to the current time and values within range of (MIN..MAX)
     After that write the result into the text file. (exodus/presort.txt)
     Returns nothing.
-    >>GenerateArray_TrulyRandom(Array)
-    >>Input amount of elements in the array: 10
+    >>GenerateArray_TrulyRandom(Array, AmountOfElements)
     <<Array with random numbers generated, results in presort.txt
 */      
     int MaxValue = 10000;
     int MinValue = -10000;
-    int AmountOfElements = 5;
     srand((int)time(0));
 
-    cout<<"Input amount of elements in the array: ";
-    cin>>AmountOfElements;
     cout<<"Input the maximum possible value of the element: ";
     cin>>MaxValue;
     cout<<"Input the minimum possible value of the element: ";
@@ -56,24 +52,19 @@ void GenerateArray_TrulyRandom(int *ArrayX)
     cout<<"Array with random numbers generated, results in presort.txt\n";
 }
 
-void GenerateArray_CustomNumbers(int *ArrayX)
+void GenerateArray_CustomNumbers(int *ArrayX, int AmountOfElements)
 {   
 /*
     (int* A, int B)->(int[])->()
     Generates array A, with length B, using custom numbers.
     After that writes the result into the txt file. (exodus/presort.txt)
     Returns nothing.
-    >>GenerateArray_TrulyRandom(Array)
-    >>Input amount of elements in the array: 10
+    >>GenerateArray_TrulyRandom(Array, AmountOfElements)
     >>Input element with index 0: 6
     >>Input element with index 1: 10
     <<All the numbers has been successfully append in the array, results in presort.txt
 */    
     int ThisNumber = 0;
-    int AmountOfElements = 5;
-
-    cout<<"Input amount of elements in the array: ";
-    cin>>AmountOfElements;
 
     Tool_ClearTxt(); 
     ofstream File;
@@ -117,17 +108,20 @@ void GenerateArray_FromFile(int *ArrayX)
 //=======================================================================
 
 int main() {
-    int ArrayX[ExtremeLength];
+    int ArrayX[ExtremeLength], AmountOfElements;
     int ArraySort1[ExtremeLength];
     int ArraySort2[ExtremeLength];
     int ArraySort3[ExtremeLength];
     cout<<"Start."<<"\n=========================================================\n";
 
-    GenerateArray_TrulyRandom(ArrayX);
+    cout<<"Input amount of elements in the array: ";
+    cin>>AmountOfElements;    
+    GenerateArray_TrulyRandom(ArrayX,AmountOfElements);
     //GenerateArray_FromFile(ArrayX);
     //GenerateArray_CustomNumbers(ArrayX);
     
     //SortArray_BubbleSort(ArraySort1);
-    SortArray_HeapSort(ArraySort2);
+    //SortArray_HeapSort(ArraySort2);
+    //SortArray_InsertionSort(ArraySort3);
     cout<<"End."<<"\n=========================================================";
 }
