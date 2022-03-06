@@ -8,14 +8,13 @@
 #include "SubstringAlgorithms.h"
 
 using namespace std;
-#define NO_OF_CHARS 7
 
 void Substring_Boyer_Moore(char* Array, int Length)
 {
     
     string PatternString;
-    int* OccurancesIndex[PatternString.length()];
-    int CountOccurances;
+    int CountOccurances = 0;
+    clock_t t;
     while (1)    {
             cout<<"Enter a pattern to find: ";
             cin>>PatternString;
@@ -24,31 +23,57 @@ void Substring_Boyer_Moore(char* Array, int Length)
             else
                 break;    
         }
-    
+    t = clock();
     int PatternLength = PatternString.length();
-    int Badchar[NO_OF_CHARS];
+    int* Badchar = new int[Length];
+    
+    Tool_Badchar(PatternString,PatternLength,Badchar);
     int s = 0;
-    Tool_BadCharHeuristic(Array,Length,Badchar);
-    while(s<=(Length-PatternLength))
-        {
-            int j = PatternLength-1;
-            while(j >= 0 && PatternString[j]==Array[s+j])
-                j--;
-            if (j<0)
-            {
-                cout<<"Pattern occurs at shift: "<<s<<endl;
-                s += (s+PatternLength<Length) ? PatternLength-Badchar[Array[s+PatternLength]] : 1;
-            }
-            else
-                s += max(1,j-Badchar[Array[s+j]]);
+    vector<int> Points;
+
+    while (s <= (Length - PatternLength))
+	{
+		int j = PatternLength - 1;
+		while (j >= 0 && PatternString[j] == Array[s + j])
+			--j;
+		if (j < 0)
+		{
+			Points.push_back(s);
+            cout<<"Detected at: "<<s<<" ["<<s<<".."<<s+PatternLength-1<<"]"<<endl;
+            CountOccurances++;
+			s += (s + PatternLength < Length) ? PatternLength - Badchar[Array[s + PatternLength]] : 1;
+		}
+		else
+		{
+			s += Tool_Max(1, j - Badchar[Array[s + j]]);
+		}
+	}
+    t = clock()-t;
+    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<endl;
+    delete[] Badchar;
+    
+    ofstream file;
+    file.open("boyermooreinfo.txt",ios::app);
+    file<<Array<<endl;
+    for (int i = 0; i < Points.size(); i++)
+        {   
+            file<<Points[i]<<endl;
         }
+    file<<"Total cases: "<<CountOccurances<<endl;
+    file<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<endl;
+    file.close();
 }
 
-void Tool_BadCharHeuristic(char* Array, int Length, int* Badchar)
+void Tool_Badchar(string Array, int PatternLength, int* Badchar)
 {
     int i;
-    for (i = 0; i < NO_OF_CHARS; i++)
-        Badchar[i] = -1;
-    for (i = 0; i < Length; i++)
-        Badchar[(int) Array[i]] = i;
+    for (i = 0; i < 100000; i++)
+		Badchar[i] = -1;
+	for (i = 0; i < PatternLength; i++)
+		Badchar[(int)Array[i]] = i;
+}
+
+int Tool_Max(int a, int b)
+{
+    return a >= b ? a : b;
 }

@@ -7,8 +7,8 @@ String-searching algorithms, comparison (time and difficulty)
  - Boyer–Moore
  - 
 main.cpp
-05.03.2022
-ver 0.1
+06.03.2022
+ver 0.2
 */
 
 #include <iostream>
@@ -63,8 +63,8 @@ int main() {
     char ArrayX[ExtremeLength];
     cout<<"Start."<<"\n=========================================================\n";
     
-    GenerateArray_RandomString(ArrayX,1000,5);
-    Substring_Boyer_Moore(ArrayX,1000);
+    GenerateArray_RandomString(ArrayX,100000,1);
+    Substring_Boyer_Moore(ArrayX,100000);
     
     cout<<"End."<<"\n=========================================================\n";    
 }
