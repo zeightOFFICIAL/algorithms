@@ -6,7 +6,7 @@ Lab 2
 String-searching algorithms, comparison (time and difficulty)  
  - Boyer–Moore
  - Rabin-Karp
- - 
+ - Naive
 main.cpp
 08.03.2022
 ver 1.0
