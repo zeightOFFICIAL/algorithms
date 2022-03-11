@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include "prim_algorithm.h"
 using namespace std;
 
 int min_Key(int key[], bool visited[], int NoVertex)  

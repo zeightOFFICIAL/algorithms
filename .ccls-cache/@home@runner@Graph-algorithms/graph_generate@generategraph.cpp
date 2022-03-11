@@ -11,7 +11,28 @@ int GenerateGraph(int** Array,int Power)
 /*
     (int** A, int B) -> (int X, int Y) -> (int C)
     Generates graph by creating matrix of adjacency
-    
+    and matrix of distances. Both matrixes a truly
+    random. Stores matrix in Array** A. And writes
+    it in the file. X is a number of Vertices, Y 
+    is a number of Edges. B decides the power of 
+    each edge. So it is random number from 1..B. 
+    Returns the number C which indicates the amount
+    of vertices in the matrix C. 
+    >>GenerateGraph(Array,9)
+    >>Enter the number of vertexes: 5
+    >>Enter the number of edges: 7
+    <<  1.1 Adjacency matrix:
+        0, 1, 0, 1, 1, 
+        1, 0, 1, 1, 1, 
+        0, 1, 0, 0, 1, 
+        1, 1, 0, 0, 0, 
+        1, 1, 1, 0, 0, 
+        1.2 Distances matrix:
+        0, 4, 0, 1, 5, 
+        4, 0, 5, 9, 9, 
+        0, 5, 0, 0, 1, 
+        1, 9, 0, 0, 0, 
+        5, 9, 1, 0, 0, 
 */
 {
     int NoVertex;
@@ -55,7 +76,6 @@ int GenerateGraph(int** Array,int Power)
         cout<<endl;
         }
 
-    
     int DistancesMatrix[500][500];
     int Summer = 5;
     srand((int)time(0));
@@ -70,8 +90,7 @@ int GenerateGraph(int** Array,int Power)
     for(int i=0; i<500; ++i) 
         Array[i]=DistancesMatrix[i];
     cout<<"=========================================================\n1.2 Distances matrix:"<<endl;
-    for (i = 0; i < NoVertex; i++)
-        {
+    for (i = 0; i < NoVertex; i++)    {
         for (j = 0; j < NoVertex; j++)
             cout<<DistancesMatrix[i][j]<<", ";
         cout<<endl;

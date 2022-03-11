@@ -11,12 +11,13 @@ minimum spanning tree and shortest route:
 - Prim's algorithm (minimal spanning tree, MST)
 - Reverse delete algorithm (minimal spanning tree, MST)
 -
--
--
+
+- Dijkstra algorithm (Shortest path on graph)
+- Floyd-Warshall's algorithm (SPG)
 -
 main.cpp
 10.03.2022
-ver 0.3
+ver 0.4
 */
 
 #include <iostream>
@@ -25,8 +26,12 @@ ver 0.3
 #include <cmath>
 
 #include "graph_generate/generategraph.h"
+
 #include "spanning_tree/prim_algorithm.h"
-#include "spanning_tree/reverse_delete_algorithm.h"
+//#include "spanning_tree/reverse_delete_algorithm.h"
+
+#include "shortest_route/dijkstra_algorithm.h"
+#include "shortest_route/floyd_warshall.h"
 
 using namespace std;
 
@@ -42,6 +47,8 @@ int main() {
 cout<<"Start."<<"\n=========================================================\n";
     NoVertex=GenerateGraph(Array,9);
     //MinCost=MST_prim(Array,NoVertex);
+    //SPG_dijkstra(Array, NoVertex);
+    SPG_floyd(Array, NoVertex);
 cout<<"End."<<"\n=========================================================\n"; 
     delete[] Array;
 }

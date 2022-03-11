@@ -1,11 +1,11 @@
 #include <iostream>
 #include <ctime>
+#include "prim_algorithm.h"
 using namespace std;
 
 int min_Key(int key[], bool visited[], int NoVertex)  
 { 
     int min = 999, min_index;
-
     for (int v = 0; v < NoVertex; v++) { 
         if (visited[v] == false && key[v] < min) { 
             min = key[v];
