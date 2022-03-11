@@ -13,11 +13,11 @@ minimum spanning tree and shortest route:
 -
 
 - Dijkstra algorithm (Shortest path on graph)
--
--
+- Floyd-Warshall's algorithm (SPG)
+- Johnson's algorithm (SPG)
 main.cpp
-10.03.2022
-ver 0.3
+11.03.2022
+ver 0.45
 */
 
 #include <iostream>
@@ -26,9 +26,13 @@ ver 0.3
 #include <cmath>
 
 #include "graph_generate/generategraph.h"
+
 #include "spanning_tree/prim_algorithm.h"
 //#include "spanning_tree/reverse_delete_algorithm.h"
-#include "shortest_route/dijkstra_algorithm.h"
+
+#include "shortest_path_on_graph/dijkstra.h"
+#include "shortest_path_on_graph/floyd_warshall.h"
+#include "shortest_path_on_graph/johnson.h"
 
 using namespace std;
 
@@ -44,7 +48,9 @@ int main() {
 cout<<"Start."<<"\n=========================================================\n";
     NoVertex=GenerateGraph(Array,9);
     //MinCost=MST_prim(Array,NoVertex);
-    SPG_dijkstra(Array, NoVertex);
+    //SPG_dijkstra(Array, NoVertex);
+    SPG_floyd(Array, NoVertex);
+    SPG_johnson(Array, NoVertex);
 cout<<"End."<<"\n=========================================================\n"; 
     delete[] Array;
 }

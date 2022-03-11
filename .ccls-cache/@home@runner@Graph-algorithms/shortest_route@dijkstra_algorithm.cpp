@@ -3,22 +3,22 @@
 #include "limits.h"
 using namespace std;
 
-int min_Dis(int key[], bool visited[], int NoVertex)  
+int SPG_minkey(int Keys[], bool Visited[], int NoVertex)  
 { 
-    int min = 999, min_index;
-    for (int v = 0; v < NoVertex; v++) { 
-        if (visited[v] == false && key[v] < min) { 
-            min = key[v];
-			min_index = v;  
-        }
-    }    
-    return min_index;  
+    int Min = INT_MAX, MinIndex;
+    for (int v = 0; v < NoVertex; v++)
+        if (Visited[v] == false && Keys[v] < Min) { 
+            Min = Keys[v];
+			MinIndex = v; }
+    return MinIndex;  
 }  
 
-int SPG_dijkstra(int** Array, int NoVertex)
+void SPG_dijkstra(int** Array, int NoVertex)
 {
     int Map[NoVertex];
     bool MapSpt[NoVertex];
+    clock_t t;
+    t = clock();
 
     for (int i = 0; i < NoVertex; i++)
         Map[i] = INT_MAX, MapSpt[i] = false;
@@ -26,7 +26,7 @@ int SPG_dijkstra(int** Array, int NoVertex)
 
     for (int count = 0; count < NoVertex - 1; count++)
         {
-            int u = min_Dis(Map,MapSpt,NoVertex);
+            int u = SPG_minkey(Map,MapSpt,NoVertex);
             MapSpt[u] = true;
             for (int v = 0; v < NoVertex; v++)
                 {
@@ -39,6 +39,4 @@ int SPG_dijkstra(int** Array, int NoVertex)
         for (int i = 1; i < NoVertex; i++) {
             cout<<i<<"\t"<<Map[i]<<endl;
         }
-    
-    return 0;
 }
