@@ -16,8 +16,8 @@ minimum spanning tree and shortest route:
 - Floyd-Warshall's algorithm (SPG)
 - Johnson's algorithm (SPG)
 main.cpp
-11.03.2022
-ver 0.45
+14.03.2022
+ver 0.55
 */
 
 #include <iostream>
@@ -25,14 +25,15 @@ ver 0.45
 #include <random>
 #include <cmath>
 
-#include "graph_generate/generategraph.h"
+#include "graph/graph.h"
+#include "tools/SortingAlgorithms.h"
 
-#include "spanning_tree/prim_algorithm.h"
-//#include "spanning_tree/reverse_delete_algorithm.h"
+//#include "minimum_spanning_tree/prim.h"
+//#include "minimum_spanning_tree/reverse_delete.h"
 
 #include "shortest_path_on_graph/dijkstra.h"
-#include "shortest_path_on_graph/floyd_warshall.h"
-#include "shortest_path_on_graph/johnson.h"
+//#include "shortest_path_on_graph/floyd_warshall.h"
+//#include "shortest_path_on_graph/johnson.h"
 
 using namespace std;
 
@@ -45,12 +46,17 @@ int main() {
     int NoVertex = 0;
     int MinCost = 0;
     
-cout<<"Start."<<"\n=========================================================\n";
-    NoVertex=GenerateGraph(Array,9);
-    //MinCost=MST_prim(Array,NoVertex);
-    //SPG_dijkstra(Array, NoVertex);
-    SPG_floyd(Array, NoVertex);
-    SPG_johnson(Array, NoVertex);
-cout<<"End."<<"\n=========================================================\n"; 
+cout<<"Start."<<"\n===================================\n";
+    Graph Graph1(7,15);
+    Graph1.GenerateGraph(1);
+    
+    //MST_prim(Graph1.DistancesMatrix,5);
+    //MST_redelete(Array,NoVertex);
+    //MST_(Array,NoVertex);
+    
+    SPG_dijkstra(Graph1.GetAdjacencyMatrix());
+    //SPG_floyd(Array, NoVertex);
+    //SPG_johnson(Array, NoVertex);
+cout<<"End."<<"\n===================================\n"; 
     delete[] Array;
 }
