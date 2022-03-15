@@ -59,6 +59,15 @@ int Graph::GenerateGraph(int Power)
     return 0;
 }
 
+vector<vector<int>> Graph::ListOfEdges()
+{
+    for (int i = 0; i < NoVertex; i++)
+        for (int j = i; j < NoVertex; j++)
+            if (DistancesMatrix[i][j]!=0)
+                EdgeList.push_back({DistancesMatrix[i][j],i,j});
+    return EdgeList;
+}
+
 int Graph::GetNoVertex() {return NoVertex;}
 int Graph::GetNoEdges()  {return NoEdges; }
 vector<vector<int>> Graph::GetAdjacencyMatrix() {return AdjacencyMatrix;}

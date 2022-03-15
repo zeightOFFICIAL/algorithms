@@ -1,1 +1,4 @@
-void SPG_floyd(int** Array, int NoVertex);
+#include <iostream>
+#include <vector>
+
+void SPG_floyd(std::vector<std::vector<int>> DistancesMatrix);

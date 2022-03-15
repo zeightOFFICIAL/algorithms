@@ -61,4 +61,5 @@ int Graph::GenerateGraph(int Power)
 
 int Graph::GetNoVertex() {return NoVertex;}
 int Graph::GetNoEdges()  {return NoEdges; }
-vector<std::vector<int>> Graph::GetAdjacencyMatrix() {return DistancesMatrix;}
+vector<vector<int>> Graph::GetAdjacencyMatrix() {return AdjacencyMatrix;}
+vector<vector<int>> Graph::GetDistancesMatrix() {return DistancesMatrix;}

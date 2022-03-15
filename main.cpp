@@ -6,18 +6,17 @@ Lab 4,5
 Graph algorithms. Algorightms of finding 
 minimum spanning tree and shortest route:
 - Graph generator (undirected graph)
-    - Adjacency matrix (write to file, console)
-    - Distances matrix (write to file, console)
+    - Adjacency matrix
+    - Distances matrix
 - Prim's algorithm (minimal spanning tree, MST)
-- Reverse delete algorithm (minimal spanning tree, MST)
--
+- Kruskal's algorithm (MST)
 
-- Dijkstra algorithm (Shortest path on graph)
+- Dijkstra algorithm (Shortest path on graph, SPG)
 - Floyd-Warshall's algorithm (SPG)
 - Johnson's algorithm (SPG)
 main.cpp
-14.03.2022
-ver 0.55
+15.03.2022
+ver 0.7
 */
 
 #include <iostream>
@@ -29,7 +28,7 @@ ver 0.55
 #include "tools/SortingAlgorithms.h"
 
 #include "minimum_spanning_tree/prim.h"
-#include "minimum_spanning_tree/reverse_delete.h"
+#include "minimum_spanning_tree/kruskal.h"
 
 #include "shortest_path_on_graph/dijkstra.h"
 #include "shortest_path_on_graph/floyd_warshall.h"
@@ -38,21 +37,13 @@ ver 0.55
 using namespace std;
 
 int main() {
-
-    int **Array;
-    Array = new int *[500];
-    for(int i = 0; i <500; i++)
-        Array[i] = new int[500];
-    int NoVertex = 0;
-    int MinCost = 0;
-    
 cout<<"Start."<<"\n===================================\n";
-    Graph Graph1(5,7);
+    Graph Graph1(10,16);
     Graph1.GenerateGraph(9);
     
     //MST_prim(Graph1.GetDistancesMatrix());
     //MST_redelete(Graph1.GetDistancesMatrix(),Graph1.GetNoEdges());
-    //MST_(Array,NoVertex);
+    //MST_kruskal(Graph1.ListOfEdges(),Graph1.GetNoVertex());
     
     //SPG_dijkstra(Graph1.GetDistancesMatrix());
     //SPG_floyd(Graph1.GetDistancesMatrix());

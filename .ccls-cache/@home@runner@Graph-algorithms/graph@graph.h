@@ -16,12 +16,14 @@ public:
     virtual ~Graph();
 
     int GenerateGraph(int Power);
+    //void PrintGraphText();
+    //void PrintGraphConsole();
     //void ClearGraph();
 
     int GetNoVertex();
     int GetNoEdges();
     std::vector<std::vector<int>> GetAdjacencyMatrix();
-    // GetDistancesMatrix();
+    std::vector<std::vector<int>> GetDistancesMatrix();
 
     //void Tool_ClearTxt();
 };

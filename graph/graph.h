@@ -11,11 +11,14 @@ private:
 protected:
     std::vector<std::vector<int>> AdjacencyMatrix;
     std::vector<std::vector<int>> DistancesMatrix;
+    std::vector<std::vector<int>> EdgeList;
 public:
     explicit Graph(int NoVertex = 5, int NoEdges = 7);
     virtual ~Graph();
 
     int GenerateGraph(int Power);
+    std::vector<std::vector<int>> ListOfEdges();
+
     //void PrintGraphText();
     //void PrintGraphConsole();
     //void ClearGraph();
