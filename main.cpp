@@ -10,13 +10,12 @@ minimum spanning tree and shortest route:
     - Distances matrix
 - Prim's algorithm (minimal spanning tree, MST)
 - Kruskal's algorithm (MST)
-
 - Dijkstra algorithm (Shortest path on graph, SPG)
 - Floyd-Warshall's algorithm (SPG)
 - Johnson's algorithm (SPG)
 main.cpp
 15.03.2022
-ver 0.7
+ver 0.85
 */
 
 #include <iostream>
@@ -25,7 +24,6 @@ ver 0.7
 #include <cmath>
 
 #include "graph/graph.h"
-#include "tools/SortingAlgorithms.h"
 
 #include "minimum_spanning_tree/prim.h"
 #include "minimum_spanning_tree/kruskal.h"
@@ -38,16 +36,14 @@ using namespace std;
 
 int main() {
 cout<<"Start."<<"\n===================================\n";
-    Graph Graph1(10,16);
+    Graph Graph1(10,17);
     Graph1.GenerateGraph(9);
     
     //MST_prim(Graph1.GetDistancesMatrix());
-    //MST_redelete(Graph1.GetDistancesMatrix(),Graph1.GetNoEdges());
     //MST_kruskal(Graph1.ListOfEdges(),Graph1.GetNoVertex());
     
     //SPG_dijkstra(Graph1.GetDistancesMatrix());
     //SPG_floyd(Graph1.GetDistancesMatrix());
     //SPG_johnson(Graph1.GetDistancesMatrix());
 cout<<"End."<<"\n===================================\n"; 
-    delete[] Array;
 }
