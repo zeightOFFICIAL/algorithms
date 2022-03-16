@@ -1,92 +1,144 @@
 /* 
 Saint Petersburg State University of Telecommunications (SPBSUT)
 IKPI-04
-Saganenko A.V, Kuksin A.A
-Lab 1
-Sorting algorithms, comparison (time and difficulty)  
+Saganenko A.V
+Lab 1 
+Sorting algorithms
 - Bubble sort
 - Heap sort
 - Insertion sort
 main.cpp
-28.02.2022
-ver 1.0
+16.03.2022
+ver 1.05
 */
 
 #include <iostream>
 #include <fstream>
 #include <random>
-#include <cmath>
-#include <ctime>
+
 #include "SortingAlgorithms.h"
 
-using namespace std;
-const int ExtremeLength = 1000000; 
+using std::cout, std::cin, std::ios, std::ofstream, std::ifstream, std::string;
+const int EXTREME_LENGTH = 1000000; 
 
-void GenerateArray_TrulyRandom(int *ArrayX, int AmountOfElements, int MaxValue, int MinValue)
-{
-/*
-    (int* A, int B, int C, int D)->()
-    Generates array A, with length B, using true random numbers,
-    with seed equal to the current time and values within range of (C..D)
-    After that write the result into the text file. (exodus/presort.txt)
-    Returns nothing.
-    >>GenerateArray_TrulyRandom(Array, AmountOfElements, MaxValue, MinValue)
-    <<Array with random numbers generated, result in presort.txt
-*/      
-    srand((int)time(0));
-    Tool_ClearTxt();    
-    ofstream File;
-    File.open("exodus/presort.txt",ios::app);
-    for (int i = 0; i < AmountOfElements; i++)
-    {   
-        ArrayX[i]=rand()%(MaxValue-MinValue+1)+MinValue;
-        File<<ArrayX[i]<<endl;
-    }
-    File.close();
-    cout<<"Array with random numbers generated, results in presort.txt\n";
-}
-
-void GenerateArray_CustomNumbers(int *ArrayX, int AmountOfElements)
-{   
-/*
-    (int* A, int B)->(int[])->()
-    Generates array A, with length B, using custom numbers.
-    After that writes the result into the txt file. (exodus/presort.txt)
-    Returns nothing.
-    >>GenerateArray_TrulyRandom(Array, AmountOfElements)
+/**
+    (int A, int B, int C)->(int*)
+    Generates the array, with the length of A, using true random
+    numbers. Seeds of the random numbers are equal to current time.
+    Each value is generated within range of B...C
+    Returns the array.
+    >>GenerateArray_TrulyRandom(Amount of elements, max value, min value)
+*/  
+int *GenerateArray_TrulyRandom(int amount_of_elements, int max_value, int min_value);
+/**
+    (int A)->(int A[])->(int*)
+    Creates the array, with the length of A, using custom (user's)
+    numbers.
+    Returns the array.
+    >>GenerateArray_TrulyRandom(Amount of elements)
     >>Input element with index 0: 6
     >>Input element with index 1: 10
-    <<All the numbers has been successfully append in the array, result in presort.txt
-*/    
-    int ThisNumber = 0;
-    
-    Tool_ClearTxt(); 
-    ofstream File;
-    File.open("exodus/presort.txt",ios::app);
-    for (int i = 0; i < AmountOfElements; i++)
-        {   
-            cout<<"Input element with index "<<i<<": ";
-            cin>>ThisNumber;
-            ArrayX[i]=ThisNumber;
-            File<<ArrayX[i]<<endl;
-        }
-    File.close();
-    cout<<"All the numbers has been successfully append in the array, \nresults in presort.txt\n";
+*/  
+int *GenerateArray_CustomNumbers(int amount_of_elements);
+/**
+    (int* A)->(int*)
+    Creates the array, taking all the numbers from the file.
+    File location is: (exodus/presort.txt) Variable A
+    is respond for amount of elements in the array.
+    Return the array.
+    >>GenerateArray_FromFile(Amount of elements)
+*/
+int *GenerateArray_FromFile(int &amount_of_elements);
+/**
+    (int* A, int B)->()
+    Prints all values of the array A with length of B
+    in console. Returns nothing.
+    >>print_array(array,Amount of elements)
+    >>-150
+    >>56
+*/ 
+void print_array(int* array, int amount_of_elements);
+/**
+    (int* A, int B)->()
+    Prints all values of the array A with length of B
+    in file (exodus/presort.txt). Returns nothing
+    Returns nothing.
+    >>write_array(array,Amount of elements)
+*/ 
+void write_array(int* array, int amount_of_elements);
+
+
+int *GenerateArray_TrulyRandom(int amount_of_elements, int max_value, int min_value)
+{    
+    static int array[EXTREME_LENGTH];
+    srand((int)time(0));   
+    for (int i = 0; i < amount_of_elements; i++)
+        array[i]=rand()%(max_value-min_value+1)+min_value;
+    return array;
 }
 
-//=======================================================================
+int *GenerateArray_CustomNumbers(int amount_of_elements)
+{     
+    static int array[EXTREME_LENGTH];
+    int this_number = 0;
+    for (auto i = 0; i < amount_of_elements; i++)  {   
+            cout<<"Input element with index "<<i<<": ";
+            cin>>this_number;
+            array[i]=this_number;
+        }
+    return array;
+}
+
+int *GenerateArray_FromFile(int &amount_of_elements)
+{
+    static int array[EXTREME_LENGTH];
+    int this_number;
+    string this_string;
+    int amount_of_elements_local = 0;
+    ifstream file("exodus/presort.txt"); 
+    while (getline (file, this_string)) {
+        this_number=stoi(this_string);
+        array[amount_of_elements_local]=this_number;
+        amount_of_elements_local++;
+    }
+    amount_of_elements = amount_of_elements_local;
+    return array;
+}
+
+void print_array(int* array, int amount_of_elements)
+{
+    for (auto i = 0; i < amount_of_elements; i++)
+        cout<<"i: "<<i<<" Value: "<<array[i]<<"\n";
+}
+
+void write_array(int* array, int amount_of_elements)
+{
+    ofstream file;
+    file.open("exodus/presort.txt",ios::trunc);
+    for (int i = 0; i < amount_of_elements; i++)
+        file<<array[i]<<"\n";
+    file.close();
+}
+
+//============================================================================
 
 int main() {
-    int ArrayX[ExtremeLength], AmountOfElements;
-    int ArrayY[ExtremeLength];
-    cout<<"Start."<<"\n=========================================================\n";
+    int amount_of_elements = 1000;
+    int min_value = -15000;
+    int max_value = 15000;
+    int *array;
+    cout<<"Start."<<"\n";
    
-    GenerateArray_TrulyRandom(ArrayX,100000,10000,-10000);
-    //GenerateArray_CustomNumbers(ArrayX,10);
+    //array=GenerateArray_TrulyRandom(amount_of_elements,max_value,min_value);
+    //array=GenerateArray_CustomNumbers(amount_of_elements);
+    array = GenerateArray_FromFile(amount_of_elements);
+
+    //write_array(array,amount_of_elements);
+    //print_array(array,amount_of_elements);
     
     //SortArray_BubbleSort(ArrayY);
     //SortArray_HeapSort(ArrayY);
     //SortArray_InsertionSort(ArrayY);
     
-    cout<<"End."<<"\n=========================================================";
+    cout<<"End."<<"\n";
 }
