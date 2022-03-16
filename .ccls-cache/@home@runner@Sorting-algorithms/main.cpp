@@ -9,7 +9,7 @@ Sorting algorithms
 - Insertion sort
 main.cpp
 16.03.2022
-ver 1.05
+ver 1.1
 */
 
 #include <iostream>
@@ -67,6 +67,7 @@ void print_array(int* array, int amount_of_elements);
 */ 
 void write_array(int* array, int amount_of_elements);
 
+//============================================================================
 
 int *GenerateArray_TrulyRandom(int amount_of_elements, int max_value, int min_value)
 {    
@@ -127,6 +128,7 @@ int main() {
     int min_value = -15000;
     int max_value = 15000;
     int *array;
+    int *array_sorted;
     cout<<"Start."<<"\n";
    
     //array=GenerateArray_TrulyRandom(amount_of_elements,max_value,min_value);
@@ -136,9 +138,10 @@ int main() {
     //write_array(array,amount_of_elements);
     //print_array(array,amount_of_elements);
     
-    //SortArray_BubbleSort(ArrayY);
-    //SortArray_HeapSort(ArrayY);
-    //SortArray_InsertionSort(ArrayY);
+    SortArray_BubbleSort(array,amount_of_elements);
+    //print_array(array_sorted,amount_of_elements);
+    SortArray_HeapSort(array,amount_of_elements);
+    SortArray_InsertionSort(array,amount_of_elements);
     
     cout<<"End."<<"\n";
 }

@@ -1,11 +1,30 @@
-// main functions =============================================
-
-//bubble sort algorithm
-void SortArray_BubbleSort(int *ArrayY1);
-//heap sort algorithm
-void SortArray_HeapSort(int *ArrayY2);
-//insertion sort algorithm
-void SortArray_InsertionSort(int *ArrayY3);
+/*
+    (int* A, int B)->(int*)
+    Takes an array A with length of B and sorts it in 
+    the ascending order, using bubble sorting. 
+    Puts all the sorted numbers in the new array 
+    and returns it.
+    >>SortArray_BubbleSort(unsorted array, amount of elements)
+*/
+int* SortArray_BubbleSort(int* array, int amount_of_elements);
+/*
+    (int* A, int B)->(int*)
+    Takes an array A with length of B and sorts it in 
+    the ascending order, using heap sorting. 
+    Puts all the sorted numbers in the new array 
+    and returns it.
+    >>SortArray_HeapSort(unsorted array, amount of elements)
+*/
+int* SortArray_HeapSort(int* array, int amount_of_elements);
+/*
+    (int* A, int B)->(int*)
+    Takes an array A with length of B and sorts it in 
+    the ascending order, using insertion sorting. 
+    Puts all the sorted numbers in the new array 
+    and returns it.
+    >>SortArray_InsertionSort(unsorted array, amount of elements)
+*/
+int* SortArray_InsertionSort(int* array, int amount_of_elements);
 
 //tools =======================================================
 

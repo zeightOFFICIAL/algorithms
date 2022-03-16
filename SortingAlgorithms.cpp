@@ -1,251 +1,116 @@
 #include <iostream>
-#include <algorithm>
+//#include <algorithm>
 #include <fstream>
 #include <ctime>
 #include <cmath>
+#include <array>
 
 #include "SortingAlgorithms.h"
 
-using namespace std;
+using std::cout, std::ios, std::ofstream, std::string;
+const int EXTREME_LENGTH = 1000000; 
 
-void SortArray_BubbleSort(int *ArrayY1)
+int* SortArray_BubbleSort(int* array, int amount_of_elements)
 {
-/*
-    (int* A)->()
-    Reads presort file, where the array is stored. After that
-    sorts all the array in ascending order and writes it
-    in array A.
-    Returns nothing.
-    >>SortArray_BubbleSort(ArrayBubbleSorted)
-    <<Array is sorted in ascending order. (Bubble sort)
-      Result in bubblesort.txt
-*/
-    int i, j, ThisNumber;
-    int StartPoint = 0;
-    int AmountOfElements = 0;
-    string ThisLine;
+    static int* array_sorted = array;    
     clock_t t;
 
-    Tool_ClearSortTxt();
-    ifstream File("exodus/presort.txt"); 
-    while (getline(File, ThisLine))
-        {
-            ThisNumber=stoi(ThisLine);
-            ArrayY1[AmountOfElements]=ThisNumber;
-            AmountOfElements++;
-        }
-
     t = clock();
-    for (i = 0; i < AmountOfElements-1; i++)           
-        for (j = 0; j < AmountOfElements-i-1; j++) 
-            if (ArrayY1[j] > ArrayY1[j+1]) 
-                Tool_Swap(&ArrayY1[j], &ArrayY1[j+1]); 
+    for (auto i = 0; i < amount_of_elements-1; i++)           
+        for (auto j = 0; j < amount_of_elements-i-1; j++) 
+            if (array_sorted[j] > array_sorted[j+1]) 
+                tool_swap_byptr(&array_sorted[j], &array_sorted[j+1]); 
     t = clock()-t;
-    ofstream file;
-    file.open("exodus/bubblesort.txt",ios::app);
-    for (int i = 0; i < AmountOfElements; i++)
-        {   
-            file<<ArrayY1[i]<<endl;
-        }
-    file<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds";
-    file.close();
-    cout<<"Array is sorted in ascending order. (Bubble sort)\nResult in bubblesort.txt\n";
+    cout<<"Bubble sort. Elements: "<<amount_of_elements<<"\n";
+    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
+    return array_sorted;
 }
 
-void SortArray_HeapSort(int *ArrayY2)
-{
-/*
-    (int* A)->()
-    Reads presort file, where the array is stored. After that
-    sorts all the array in ascending order and writes it
-    in array A.
-    Returns nothing.
-    >>SortArray_HeapSort(ArrayHeapSorted)
-    <<Array is sorted in ascending order. (Heap sort)
-      Result in heapsort.txt
-*/    
-    int AmountOfElements, i, ThisNumber;
-    string ThisLine;
+int* SortArray_HeapSort(int* array, int amount_of_elements)
+{    
+    static int* array_sorted = array;   
     clock_t t;
-    AmountOfElements = 0;
-    
-    Tool_ClearSortTxt();
-    ifstream File("exodus/presort.txt"); 
-    while (getline(File, ThisLine))
-        {
-            ThisNumber=stoi(ThisLine);
-            ArrayY2[AmountOfElements]=ThisNumber;
-            AmountOfElements++;
-        }
-    File.close();
 
     t = clock();
-    for (int i = AmountOfElements / 2 - 1; i >= 0; i--)
-        Tool_Heapify(ArrayY2, AmountOfElements, i);
-    for (int i = AmountOfElements - 1; i > 0; i--) 
+    for (auto i = amount_of_elements / 2 - 1; i >= 0; i--)
+        tool_heapify_array(array_sorted, amount_of_elements, i);
+    for (auto i = amount_of_elements - 1; i > 0; i--) 
         {
-            Tool_Swap(&ArrayY2[0], &ArrayY2[i]);
-            Tool_Heapify(ArrayY2, i, 0);
+            tool_swap_byptr(&array_sorted[0], &array_sorted[i]);
+            tool_heapify_array(array_sorted, i, 0);
         }        
     t = clock()-t;
     
-    ofstream file;
-    file.open("exodus/heapsort.txt",ios::app);
-    for (int i = 0; i < AmountOfElements; i++)
-        {   
-            file<<ArrayY2[i]<<endl;
-        }
-    file<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds";
-    file.close();
-    cout<<"Array is sorted in ascending order. (Heap sort)\nResult in heapsort.txt\n";
+    cout<<"Heap sort. Elements: "<<amount_of_elements<<"\n";
+    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
+    return array_sorted;
 }
 
-void SortArray_InsertionSort(int *ArrayY3)
+int* SortArray_InsertionSort(int* array, int amount_of_elements)
 {
-/*
-    (int* A)->()
-    Reads presort file, where the array is stored. After that
-    sorts all the array in ascending order and writes it
-    in array A.
-    Returns nothing.
-    >>SortArray_InsertionSort(ArrayHeapSorted)
-    <<Array is sorted in ascending order. (Insertion sort)
-      Result in insertionsort.txt
-*/ 
-    int i, j, ThisNumber, AmountOfElements, key;
-    string ThisLine;
+    static int* array_sorted = array; 
     clock_t t;
-    AmountOfElements = 0;
-
-    Tool_ClearSortTxt();
-    ifstream File("exodus/presort.txt"); 
-    while (getline(File, ThisLine))
-        {
-            ThisNumber=stoi(ThisLine);
-            ArrayY3[AmountOfElements]=ThisNumber;
-            AmountOfElements++;
-        }
-    File.close();
+    int key;
 
     t = clock();
-    for (i = 1; i < AmountOfElements; i++)
+    for (auto i = 1; i < amount_of_elements; i++)
         {
-            key = ArrayY3[i];
-            j = i - 1;
-            while (j >= 0 && ArrayY3[j] > key)
+            key = array_sorted[i];
+            auto j = i - 1;
+            while (j >= 0 && array[j] > key)
                 {
-                    ArrayY3[j + 1] = ArrayY3[j];
+                    array_sorted[j + 1] = array_sorted[j];
                     j = j - 1;
                 }
-            ArrayY3[j + 1] = key;
+            array_sorted[j + 1] = key;
         }
     t = clock()-t;
-    
-    ofstream file;
-    file.open("exodus/insertionsort.txt",ios::app);
-    for (int i = 0; i < AmountOfElements; i++)
-        {   
-            file<<ArrayY3[i]<<endl;
-        }
-    file<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds";
-    file.close();
-    cout<<"Array is sorted in ascending order. (Insertion sort)\nResult in insertionsort.txt\n";
+    cout<<"Insertion sort. Elements: "<<amount_of_elements<<"\n";
+    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
+    return array_sorted;
 }
 
 //=============================================================================
 
-void Tool_Swap(int *LeftElement, int *RightElement) 
+void tool_swap_byptr(int *left_element, int *right_element)
 {
-/*
-    (int* A, int* B)->()
-    Swaps element A with element B of an array, or other structure.
-    Returns nothing.
-    >>Tool_Swap(&ArrayX[K],&Array[K+1])
-    <<
-*/
-    int temp = *LeftElement; 
-    *LeftElement = *RightElement; 
-    *RightElement = temp; 
+    auto temp = *left_element; 
+    *left_element = *right_element; 
+    *right_element = temp; 
 } 
 
-void Tool_ClearTxt()
+void tool_heapify_array(int* array, int amount_of_elements, int i)
 {
-/*
-    ()->()
-    Clears all the used txts.
-    Returns nothing.
-    >>ClearTxts()
-    <<
-*/
-    ofstream file;
-    file.open("exodus/presort.txt");
-    file<<"";
-    file.close();
-    file.open("exodus/bubblesort.txt");
-    file<<"";
-    file.close();
-    file.open("exodus/heapsort.txt");
-    file<<"";
-    file.close();
-    file.open("exodus/insertionsort.txt");
-    file<<"";
-    file.close();
-}
-
-void Tool_ClearSortTxt()
-{
-/*
-    ()->()
-    Clears all the txts which stores sorted arrays.
-    Returns nothing.
-    >>ClearTxts()
-*/
-    ofstream file;
-    file.close();
-    file.open("exodus/bubblesort.txt");
-    file<<"";
-    file.close();
-    file.open("exodus/heapsort.txt");
-    file<<"";
-    file.close();
-    file.open("exodus/insertionsort.txt");
-    file<<"";
-    file.close();
-}
-
-void Tool_Heapify(int* ArrayY4, int AmountOfElements, int i)
-{
-/*
-    (int* A, int B, int I) -> ()
-    In order for heapsort to work properly, firstly we need to
-    'heapify' array meaning, to create an indexed tree of all the
-    numbers.
-
-       30(0)                 
-       /   \         
-    70(1)   50(2)
-
-    And after that to compare the parent with both children. Swap if 
-    needed and to proceed deeper into the tree, further into the
-    array.
-
-       70(0)                 
-       /   \         
-    30(1)   50(2)
-
-    Returns nothing.
-    >>Tool_Heapify(Array,AmountOfElements,Head)
-*/
     int largest = i;
     int l = 2 * i + 1; 
     int r = 2 * i + 2; 
  
-    if (l < AmountOfElements && ArrayY4[l] > ArrayY4[largest])
+    if (l < amount_of_elements && array[l] > array[largest])
         largest = l;
-    if (r < AmountOfElements && ArrayY4[r] > ArrayY4[largest])
+    if (r < amount_of_elements && array[r] > array[largest])
         largest = r;
     if (largest != i) {
-        Tool_Swap(&ArrayY4[i], &ArrayY4[largest]);
-        Tool_Heapify(ArrayY4, AmountOfElements, largest);
+        tool_swap_byptr(&array[i], &array[largest]);
+        tool_heapify_array(array, amount_of_elements, largest);
     }
+}
+
+void write_proof(int* array, int* array2, int* array3, int amount_of_elements)
+{
+    ofstream file;
+    file.open("exodus/sorted.txt",ios::trunc);
+    file<<"The only proof of the correctness of all\nthese sorting algorithms is actual exactness\nof how they've performed. The equality of\nsorted arrays proves so.\n1st method\t2nd method\t3rd method\n";
+    for (int i = 0; i < amount_of_elements; i++)
+        file<<array[i]<<"\t"<<array2[i]<<"\t"<<array3[i]<<"\n";
+    file.close();
+}
+
+void write_array(int* array, int amount_of_elements, string name)
+{
+    string path = "exodus/"+name+".txt";
+    ofstream file;
+    file.open(path,ios::trunc);
+    for (int i = 0; i < amount_of_elements; i++)
+        file<<array[i]<<"\n";
+    file.close();
 }
