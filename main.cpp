@@ -9,14 +9,14 @@ Sorting algorithms
 - Insertion sort
 main.cpp
 16.03.2022
-ver 1.1
+ver 1.11
 */
 
 #include <iostream>
 #include <fstream>
 #include <random>
 
-#include "SortingAlgorithms.h"
+#include "sortingalgorithms.h"
 
 using std::cout, std::cin, std::ios, std::ofstream, std::ifstream, std::string;
 const int EXTREME_LENGTH = 1000000; 
@@ -111,9 +111,9 @@ int main() {
     int *array, *array_sorted1, *array_sorted2, *array_sorted3;
     cout<<"Start."<<"\n";
    
-    //array = GenerateArray_TrulyRandom(amount_of_elements,max_value,min_value);
+    array = GenerateArray_TrulyRandom(amount_of_elements,max_value,min_value);
     //array = GenerateArray_CustomNumbers(amount_of_elements);
-    array = GenerateArray_FromFile(amount_of_elements);
+    //array = GenerateArray_FromFile(amount_of_elements);
 
     //write_array(array,amount_of_elements,"presort");
     //print_array(array,amount_of_elements);

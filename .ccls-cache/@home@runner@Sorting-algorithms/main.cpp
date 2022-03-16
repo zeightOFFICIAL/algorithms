@@ -9,14 +9,14 @@ Sorting algorithms
 - Insertion sort
 main.cpp
 16.03.2022
-ver 1.1
+ver 1.11
 */
 
 #include <iostream>
 #include <fstream>
 #include <random>
 
-#include "SortingAlgorithms.h"
+#include "sortingalgorithms.h"
 
 using std::cout, std::cin, std::ios, std::ofstream, std::ifstream, std::string;
 const int EXTREME_LENGTH = 1000000; 
@@ -58,14 +58,6 @@ int *GenerateArray_FromFile(int &amount_of_elements);
     >>56
 */ 
 void print_array(int* array, int amount_of_elements);
-/**
-    (int* A, int B)->()
-    Prints all values of the array A with length of B
-    in file (exodus/presort.txt). Returns nothing
-    Returns nothing.
-    >>write_array(array,Amount of elements)
-*/ 
-void write_array(int* array, int amount_of_elements);
 
 //============================================================================
 
@@ -112,36 +104,29 @@ void print_array(int* array, int amount_of_elements)
         cout<<"i: "<<i<<" Value: "<<array[i]<<"\n";
 }
 
-void write_array(int* array, int amount_of_elements)
-{
-    ofstream file;
-    file.open("exodus/presort.txt",ios::trunc);
-    for (int i = 0; i < amount_of_elements; i++)
-        file<<array[i]<<"\n";
-    file.close();
-}
-
 //============================================================================
 
 int main() {
-    int amount_of_elements = 1000;
-    int min_value = -15000;
-    int max_value = 15000;
-    int *array;
-    int *array_sorted;
+    int amount_of_elements = 15000, min_value = -15000, max_value = 15000;
+    int *array, *array_sorted1, *array_sorted2, *array_sorted3;
     cout<<"Start."<<"\n";
    
-    //array=GenerateArray_TrulyRandom(amount_of_elements,max_value,min_value);
-    //array=GenerateArray_CustomNumbers(amount_of_elements);
-    array = GenerateArray_FromFile(amount_of_elements);
+    array = GenerateArray_TrulyRandom(amount_of_elements,max_value,min_value);
+    //array = GenerateArray_CustomNumbers(amount_of_elements);
+    //array = GenerateArray_FromFile(amount_of_elements);
 
-    //write_array(array,amount_of_elements);
+    //write_array(array,amount_of_elements,"presort");
     //print_array(array,amount_of_elements);
     
-    SortArray_BubbleSort(array,amount_of_elements);
-    //print_array(array_sorted,amount_of_elements);
-    SortArray_HeapSort(array,amount_of_elements);
-    SortArray_InsertionSort(array,amount_of_elements);
+    array_sorted1 = SortArray_BubbleSort(array,amount_of_elements);
+    array_sorted2 = SortArray_HeapSort(array,amount_of_elements);
+    array_sorted3 = SortArray_InsertionSort(array,amount_of_elements);
+    
+    //write_array(array_sorted1,amount_of_elements,"bubble");
+    //write_array(array_sorted2,amount_of_elements,"heap");
+    //write_array(array_sorted3,amount_of_elements,"insertion");
+    
+    write_proof(array_sorted1,array_sorted2,array_sorted3,amount_of_elements);
     
     cout<<"End."<<"\n";
 }

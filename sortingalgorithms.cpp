@@ -1,11 +1,8 @@
 #include <iostream>
-//#include <algorithm>
 #include <fstream>
 #include <ctime>
-#include <cmath>
-#include <array>
 
-#include "SortingAlgorithms.h"
+#include "sortingalgorithms.h"
 
 using std::cout, std::ios, std::ofstream, std::string;
 const int EXTREME_LENGTH = 1000000; 
