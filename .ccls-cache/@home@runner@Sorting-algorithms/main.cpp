@@ -8,8 +8,8 @@ Sorting algorithms
 - Heap sort
 - Insertion sort
 main.cpp
-16.03.2022
-ver 1.11
+17.03.2022
+ver 1.12
 */
 
 #include <iostream>
@@ -27,28 +27,28 @@ const int EXTREME_LENGTH = 1000000;
     numbers. Seeds of the random numbers are equal to current time.
     Each value is generated within range of B...C
     Returns the array.
-    >>GenerateArray_TrulyRandom(Amount of elements, max value, min value)
+    >>generate_random_array(Amount of elements, max value, min value)
 */  
-int *GenerateArray_TrulyRandom(int amount_of_elements, int max_value, int min_value);
+int *generate_random_array(int amount_of_elements, int max_value, int min_value);
 /**
     (int A)->(int A[])->(int*)
     Creates the array, with the length of A, using custom (user's)
     numbers.
     Returns the array.
-    >>GenerateArray_TrulyRandom(Amount of elements)
+    >>generate_custom_array(Amount of elements)
     >>Input element with index 0: 6
     >>Input element with index 1: 10
 */  
-int *GenerateArray_CustomNumbers(int amount_of_elements);
+int *generate_custom_array(int amount_of_elements);
 /**
     (int* A)->(int*)
     Creates the array, taking all the numbers from the file.
     File location is: (exodus/presort.txt) Variable A
     is respond for amount of elements in the array.
     Return the array.
-    >>GenerateArray_FromFile(Amount of elements)
+    >>generate_array_from_file(Amount of elements)
 */
-int *GenerateArray_FromFile(int &amount_of_elements);
+int *generate_array_from_file(int &amount_of_elements);
 /**
     (int* A, int B)->()
     Prints all values of the array A with length of B
@@ -61,7 +61,7 @@ void print_array(int* array, int amount_of_elements);
 
 //============================================================================
 
-int *GenerateArray_TrulyRandom(int amount_of_elements, int max_value, int min_value)
+int *generate_random_array(int amount_of_elements, int max_value, int min_value)
 {    
     static int array[EXTREME_LENGTH];
     srand((int)time(0));   
@@ -70,7 +70,7 @@ int *GenerateArray_TrulyRandom(int amount_of_elements, int max_value, int min_va
     return array;
 }
 
-int *GenerateArray_CustomNumbers(int amount_of_elements)
+int *generate_custom_array(int amount_of_elements)
 {     
     static int array[EXTREME_LENGTH];
     int this_number = 0;
@@ -82,7 +82,7 @@ int *GenerateArray_CustomNumbers(int amount_of_elements)
     return array;
 }
 
-int *GenerateArray_FromFile(int &amount_of_elements)
+int *generate_array_from_file(int &amount_of_elements)
 {
     static int array[EXTREME_LENGTH];
     int this_number;
@@ -109,18 +109,19 @@ void print_array(int* array, int amount_of_elements)
 int main() {
     int amount_of_elements = 15000, min_value = -15000, max_value = 15000;
     int *array, *array_sorted1, *array_sorted2, *array_sorted3;
-    cout<<"Start."<<"\n";
-   
-    array = GenerateArray_TrulyRandom(amount_of_elements,max_value,min_value);
-    //array = GenerateArray_CustomNumbers(amount_of_elements);
-    //array = GenerateArray_FromFile(amount_of_elements);
+    
+    cout<<"Start."<<"\n"; //.................................................
+
+    array = generate_random_array(amount_of_elements,max_value,min_value);
+    //array = generate_custom_array(amount_of_elements);
+    //array = generate_array_from_file(amount_of_elements);
 
     //write_array(array,amount_of_elements,"presort");
     //print_array(array,amount_of_elements);
     
-    array_sorted1 = SortArray_BubbleSort(array,amount_of_elements);
-    array_sorted2 = SortArray_HeapSort(array,amount_of_elements);
-    array_sorted3 = SortArray_InsertionSort(array,amount_of_elements);
+    array_sorted1 = bubble_sort(array,amount_of_elements);
+    array_sorted2 = heap_sort(array,amount_of_elements);
+    array_sorted3 = insertion_sort(array,amount_of_elements);
     
     //write_array(array_sorted1,amount_of_elements,"bubble");
     //write_array(array_sorted2,amount_of_elements,"heap");
@@ -128,5 +129,5 @@ int main() {
     
     write_proof(array_sorted1,array_sorted2,array_sorted3,amount_of_elements);
     
-    cout<<"End."<<"\n";
+    cout<<"End."<<"\n";  //.................................................
 }

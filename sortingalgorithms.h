@@ -4,27 +4,27 @@
     the ascending order, using bubble sorting. 
     Puts all the sorted numbers in the new array 
     and returns it.
-    >>SortArray_BubbleSort(unsorted array, amount of elements)
+    >>bubble_sort(unsorted array, amount of elements)
 */
-int* SortArray_BubbleSort(int* array, int amount_of_elements);
+int* bubble_sort(int* array, int amount_of_elements);
 /*
     (int* A, int B)->(int*)
     Takes an array A with length of B and sorts it in 
     the ascending order, using heap sorting. 
     Puts all the sorted numbers in the new array 
     and returns it.
-    >>SortArray_HeapSort(unsorted array, amount of elements)
+    >>heap_sort(unsorted array, amount of elements)
 */
-int* SortArray_HeapSort(int* array, int amount_of_elements);
+int* heap_sort(int* array, int amount_of_elements);
 /*
     (int* A, int B)->(int*)
     Takes an array A with length of B and sorts it in 
     the ascending order, using insertion sorting. 
     Puts all the sorted numbers in the new array 
     and returns it.
-    >>SortArray_InsertionSort(unsorted array, amount of elements)
+    >>insertion_sort(unsorted array, amount of elements)
 */
-int* SortArray_InsertionSort(int* array, int amount_of_elements);
+int* insertion_sort(int* array, int amount_of_elements);
 
 //=================================================================
 
@@ -39,22 +39,11 @@ void tool_swap_byptr(int *left_element, int *right_element);
 /**
     (int* A, int B, int I) -> ()
     In order for heapsort to work properly, firstly we need to
-    'heapify' array meaning, to create an indexed tree of all the
-    numbers.
-
-       30(0)                 
-       /   \         
-    70(1)   50(2)
-
-    And after that to compare the parent with both children. Swap if 
-    needed and to proceed deeper into the tree, further into the
-    array.
-
-       70(0)                 
-       /   \         
-    30(1)   50(2)
-
-    Returns nothing.
+    build the max heap tree, with maximum value at the vertex.
+    Generally, speaking tree must be in decreasing order.
+    Process 'heapify' changes the values so that the tree, beside
+    the already sorted part is in decreasing order, technically
+    parent value of the tree is bigger than children's. 
     >>tool_heapify_array(array,amount of elements, head)
 */
 void tool_heapify_array(int* array, int amount_of_elements, int i);

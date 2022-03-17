@@ -7,7 +7,7 @@
 using std::cout, std::ios, std::ofstream, std::string;
 const int EXTREME_LENGTH = 1000000; 
 
-int* SortArray_BubbleSort(int* array, int amount_of_elements)
+int* bubble_sort(int* array, int amount_of_elements)
 {
     static int* array_sorted = array;    
     clock_t t;
@@ -18,12 +18,13 @@ int* SortArray_BubbleSort(int* array, int amount_of_elements)
             if (array_sorted[j] > array_sorted[j+1]) 
                 tool_swap_byptr(&array_sorted[j], &array_sorted[j+1]); 
     t = clock()-t;
+    
     cout<<"Bubble sort. Elements: "<<amount_of_elements<<"\n";
     cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
     return array_sorted;
 }
 
-int* SortArray_HeapSort(int* array, int amount_of_elements)
+int* heap_sort(int* array, int amount_of_elements)
 {    
     static int* array_sorted = array;   
     clock_t t;
@@ -43,7 +44,7 @@ int* SortArray_HeapSort(int* array, int amount_of_elements)
     return array_sorted;
 }
 
-int* SortArray_InsertionSort(int* array, int amount_of_elements)
+int* insertion_sort(int* array, int amount_of_elements)
 {
     static int* array_sorted = array; 
     clock_t t;
@@ -62,6 +63,7 @@ int* SortArray_InsertionSort(int* array, int amount_of_elements)
             array_sorted[j + 1] = key;
         }
     t = clock()-t;
+    
     cout<<"Insertion sort. Elements: "<<amount_of_elements<<"\n";
     cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
     return array_sorted;
