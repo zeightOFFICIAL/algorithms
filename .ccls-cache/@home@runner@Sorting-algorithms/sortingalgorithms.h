@@ -1,3 +1,5 @@
+#include <string>
+
 /*
     (int* A, int B)->(int*)
     Takes an array A with length of B and sorts it in 

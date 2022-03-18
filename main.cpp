@@ -8,8 +8,8 @@ Sorting algorithms
 - Heap sort
 - Insertion sort
 main.cpp
-17.03.2022
-ver 1.12
+18.03.2022
+ver 1.14
 */
 
 #include <iostream>
