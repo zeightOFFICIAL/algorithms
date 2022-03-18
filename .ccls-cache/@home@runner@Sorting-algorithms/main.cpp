@@ -9,7 +9,7 @@ Sorting algorithms
 - Insertion sort
 main.cpp
 18.03.2022
-ver 1.14
+ver 1.15
 */
 
 #include <iostream>
@@ -127,7 +127,8 @@ int main() {
     //write_array(array_sorted2,amount_of_elements,"heap");
     //write_array(array_sorted3,amount_of_elements,"insertion");
     
-    write_proof(array_sorted1,array_sorted2,array_sorted3,amount_of_elements);
+    //write_proof(array_sorted1,array_sorted2,array_sorted3,amount_of_elements);
     
     cout<<"End."<<"\n";  //.................................................
+    return 0;
 }
