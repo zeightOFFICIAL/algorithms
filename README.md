@@ -1,7 +1,7 @@
 # String_searching_algorithms
 Comparison of string-searching algorithms (by time and complexity)
 
-* Version 1.13
+* Version 1.14
 
 main.cpp (iostream, random, cstring, fstream)
 - Generate string (char[]) with truly random chars
