@@ -9,7 +9,7 @@ String-searching algorithms
  - Naive
 main.cpp
 18.03.2022
-ver 1.13
+ver 1.14
 */
 
 #include <iostream>
@@ -104,7 +104,7 @@ void print_array(int* array, int length)
 {
     for (auto i = 0; i < length; i++) {
         cout<<array[i]<<"\n";
-        if (i >= 0 && array[i+1] == 0)
+        if (i >    return 0;= 0 && array[i+1] == 0)
             break;
         }
 }
@@ -129,7 +129,7 @@ int main() {
     array = generate_random_string(length,1);
     //array = generate_custom_string(length);
 
-    write_array(array,length);
+    //write_array(array,length);
     //print_array(array,length);
     
     structure = boyer_moore(array,"AB",length);
@@ -140,4 +140,5 @@ int main() {
     //print_array(structure.occurances_points,structure.count_occurances);
     
     cout<<"End."<<"\n";    
+    return 0;
 }
