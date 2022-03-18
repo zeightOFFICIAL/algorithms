@@ -3,7 +3,7 @@ Comparison of string-searching algorithms (by time and complexity)
 
 * Version 1.13
 
-main.cpp (<iostream>, <random>, <cstring>,<fstream>)
+main.cpp (iostream, random, cstring, fstream)
 - Generate string (char[]) with truly random chars
 - Create custom (user) string (char[])
   
@@ -12,7 +12,7 @@ main.cpp (<iostream>, <random>, <cstring>,<fstream>)
 - Write string (char[]) in the file
 
   
-substringalgorithms.cpp (<iostream>, <fstream>, <ctime>)
+substringalgorithms.cpp (iostream, fstream, ctime)
 - Boyer-Moore
 - Rabin-Karp
 - Naive algorithm
