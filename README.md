@@ -1,7 +1,7 @@
 # Sorting_algorithms
 Comparison of sorting algorithms (by time and complexity) 
 
-* Version 1.14
+* Version 1.15
 
 main.cpp (iostream, fstream, random)
 - Generate an array with truly random numbers
