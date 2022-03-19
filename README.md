@@ -14,7 +14,7 @@ sortingalgorithms.cpp (iostream, fstream, ctime, string)
 - Bubble sort
 - Heap sort
 - Insertion sort
-- Swap values using pointers funciton
+- Swap values using pointers function
 - Heapify (max heap) function
 - Write all the sorts by side in the file. In order examine their correct work
 - Write one particular array in the file
