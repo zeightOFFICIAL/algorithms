@@ -9,7 +9,7 @@ Recursive and iterable algorithms
  - Factorial
 main.cpp
 19.03.2022
-ver 1.0
+ver 1.01
 */
 
 #include <iostream>
