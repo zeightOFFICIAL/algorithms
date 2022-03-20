@@ -7,8 +7,8 @@ Hashing algorithms
 - SHA-1 (secure hashing algorithm)
 - Custom SAGH (saganenko hashing algorithm)
 main.cpp
-19.03.2022
-ver 0.05
+20.03.2022
+ver 0.09
 */
 
 #include <iostream>
