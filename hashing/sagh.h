@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <cstdint>
+#include <bitset>
 
 class SAGH
 {
@@ -26,6 +27,11 @@ std::string bitwise_or(std::string s1, std::string s2);
 std::string bitwise_not(std::string s1);
 std::string bitwise_xor(std::string s1, std::string s2);
 
+std::string convert_bin_to_hex(std::string bin);
+
 std::string addBinary(std::string A, std::string B);
 
 std::string sagh(const std::string &message);
+
+bool fullAdder(bool b1, bool b2, bool& carry);
+std::bitset<32> bitsetAdd(std::bitset<32>& x, std::bitset<32>& y);

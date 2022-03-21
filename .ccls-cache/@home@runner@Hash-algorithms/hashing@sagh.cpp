@@ -19,6 +19,7 @@ SAGH::SAGH() {
     digest.push_back("10011000101110101101110011111110");
     digest.push_back("00010000001100100101010001110110");
     digest.push_back("11000011110100101110000111110000");
+    //cout<<digest[0];
     chunks_bin.clear();
 }
 
@@ -168,7 +169,7 @@ string bitwise_not(string s1)
             else if (s1[i]=='1')
                 res = res + '0';
         }
-    res.erase(0, res.find_first_not_of('0'));
+    //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
 
@@ -182,7 +183,7 @@ string bitwise_and(string s1, string s2)
         else
             res = res + '0';
     }
-    res.erase(0, res.find_first_not_of('0'));
+    //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
 
@@ -196,7 +197,7 @@ string bitwise_or(string s1, string s2)
         else
             res = res + '0';
         }
-    res.erase(0, res.find_first_not_of('0'));
+    //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
     
@@ -210,7 +211,7 @@ string bitwise_xor(string s1, string s2)
             else
                 res = res+"1";
         }
-    res.erase(0, res.find_first_not_of('0'));
+    //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
 
@@ -222,50 +223,25 @@ string left_rotate(string a, int n)
     //string res = a;
     res.insert(res.begin(), res[n - 1]);
     res.erase(res.end() - 1);
-    res.erase(0, res.find_first_not_of('0'));
+    //res.erase(0, res.find_first_not_of('0'));
     //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
 
-string addBinary(string A, string B)
+string addBinary(string a, string b)
 {
-    if (A.length() > B.length())
-        return addBinary(B, A);
-    int diff = B.length() - A.length();
-    string padding;
-    for (int i = 0; i < diff; i++)
-        padding.push_back('0');
-    A = padding + A;
-    string res;
-    char carry = '0';
-    for (int i = A.length() - 1; i >= 0; i--) {
-        if (A[i] == '1' && B[i] == '1') {
-            if (carry == '1')
-                res.push_back('1'), carry = '1';
-            else
-                res.push_back('0'), carry = '1';
-        }
-        else if (A[i] == '0' && B[i] == '0') {
-            if (carry == '1')
-                res.push_back('1'), carry = '0';
-            else
-                res.push_back('0'), carry = '0';
-        }
-        else if (A[i] != B[i]) {
-            if (carry == '1')
-                res.push_back('0'), carry = '1';
-            else
-                res.push_back('1'), carry = '0';
-        }
-    }
-    if (carry == '1')
-        res.push_back(carry);
-    reverse(res.begin(), res.end());
-    int index = 0;
-    while (index + 1 < res.length() && res[index] == '0')
-        index++;
-    res.erase(0, res.find_first_not_of('0'));
-    return (res.substr(index));
+   string result = "";
+   int temp = 0;
+   int size_a = a.size() - 1;
+   int size_b = b.size() - 1;
+   while (size_a >= 0 || size_b >= 0 || temp == 1){
+      temp += ((size_a >= 0)? a[size_a] - '0': 0);
+      temp += ((size_b >= 0)? b[size_b] - '0': 0);
+      result = char(temp % 2 + '0') + result;
+      temp /= 2;
+      size_a--; size_b--;
+   }
+   return result;
 }        
 
 string sagh(const string &message)  {

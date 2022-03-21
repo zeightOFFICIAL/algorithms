@@ -3,6 +3,7 @@
 #include <bitset>
 #include <vector>
 #include <cstdint>
+#include <sstream>
 
 //------------------- delete after test
 #include <iostream>
@@ -53,9 +54,9 @@ std::string SAGH::final()
     string hash = "";
     string a = digest[0];
     string b = digest[1];
-    string c = digest[3];
-    string d = digest[4];
-    string e = digest[5]; 
+    string c = digest[2];
+    string d = digest[3];
+    string e = digest[4]; 
             for (int this_rotation = 0; this_rotation < 80; this_rotation++)  {  
                 string f,k;
                     if (this_rotation < 20)  {
@@ -100,11 +101,19 @@ std::string SAGH::final()
             digest[2] = addBinary(digest[2],c).substr(0,32);
             digest[3] = addBinary(digest[3],d).substr(0,32);
             digest[4] = addBinary(digest[4],e).substr(0,32);
-    for (int h = 0; h < 5; h++)
-        cout<<digest[h]<<"\n";
-    
-    hash = digest[0]+digest[1]+digest[2]+digest[3]+digest[4];
+
+    for (int this_string = 0; this_string < 5; this_string++)
+            hash = hash + convert_bin_to_hex(digest[this_string]);
+
     return hash;
+}
+
+string convert_bin_to_hex(string bin)
+{
+    bitset<32> set(bin);
+    std::stringstream res;
+    res << std::hex << set.to_ulong();
+    return res.str();
 }
 
 string SAGH::pad(string &message_bin)
@@ -168,7 +177,7 @@ string bitwise_not(string s1)
             else if (s1[i]=='1')
                 res = res + '0';
         }
-    res.erase(0, res.find_first_not_of('0'));
+    //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
 
@@ -182,7 +191,7 @@ string bitwise_and(string s1, string s2)
         else
             res = res + '0';
     }
-    res.erase(0, res.find_first_not_of('0'));
+    //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
 
@@ -196,7 +205,7 @@ string bitwise_or(string s1, string s2)
         else
             res = res + '0';
         }
-    res.erase(0, res.find_first_not_of('0'));
+    //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
     
@@ -210,7 +219,7 @@ string bitwise_xor(string s1, string s2)
             else
                 res = res+"1";
         }
-    res.erase(0, res.find_first_not_of('0'));
+    //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
 
@@ -220,53 +229,41 @@ string left_rotate(string a, int n)
     //for (int i = a.length(); i < (a.length()+n); i++)
     //    res = res + '0';
     //string res = a;
-    res.insert(res.begin(), res[n - 1]);
-    res.erase(res.end() - 1);
-    res.erase(0, res.find_first_not_of('0'));
+    //res.insert(res.begin(), res[n-1]);
+    //res.erase(res.end() - 1);
+    //res.erase(0, res.find_first_not_of('0'));
+    std::rotate(res.begin(), res.begin() + n, res.end());
     //res.erase(0, res.find_first_not_of('0'));
     return res;
 }
 
-string addBinary(string A, string B)
+string addBinary(string a, string b)
 {
-    if (A.length() > B.length())
-        return addBinary(B, A);
-    int diff = B.length() - A.length();
-    string padding;
-    for (int i = 0; i < diff; i++)
-        padding.push_back('0');
-    A = padding + A;
-    string res;
-    char carry = '0';
-    for (int i = A.length() - 1; i >= 0; i--) {
-        if (A[i] == '1' && B[i] == '1') {
-            if (carry == '1')
-                res.push_back('1'), carry = '1';
-            else
-                res.push_back('0'), carry = '1';
-        }
-        else if (A[i] == '0' && B[i] == '0') {
-            if (carry == '1')
-                res.push_back('1'), carry = '0';
-            else
-                res.push_back('0'), carry = '0';
-        }
-        else if (A[i] != B[i]) {
-            if (carry == '1')
-                res.push_back('0'), carry = '1';
-            else
-                res.push_back('1'), carry = '0';
-        }
-    }
-    if (carry == '1')
-        res.push_back(carry);
-    reverse(res.begin(), res.end());
-    int index = 0;
-    while (index + 1 < res.length() && res[index] == '0')
-        index++;
-    res.erase(0, res.find_first_not_of('0'));
-    return (res.substr(index));
+    string res = "";
+    bitset<32> ba(a);
+    bitset<32> bb(b);
+    bitset<32> br(bitsetAdd(ba,bb));
+    res = br.to_string();
+    return res;
 }        
+
+bool fullAdder(bool b1, bool b2, bool& carry)
+{
+    bool sum = (b1 ^ b2) ^ carry;
+    carry = (b1 && b2) || (b1 && carry) || (b2 && carry);
+    return sum;
+}
+// Function to add two bitsets
+bitset<32> bitsetAdd(bitset<32>& x, bitset<32>& y)
+{
+    bool carry = false;
+    // bitset to store the sum of the two bitsets
+    bitset<32> ans;
+    for (int i = 0; i < 32; i++) {
+        ans[i] = fullAdder(x[i], y[i], carry);
+    }
+    return ans;
+}
 
 string sagh(const string &message)  {
     SAGH checksum;
