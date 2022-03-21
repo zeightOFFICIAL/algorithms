@@ -8,8 +8,8 @@ String-searching algorithms
  - Rabin-Karp
  - Naive
 main.cpp
-18.03.2022
-ver 1.14
+21.03.2022
+ver 1.15
 */
 
 #include <iostream>
@@ -104,7 +104,7 @@ void print_array(int* array, int length)
 {
     for (auto i = 0; i < length; i++) {
         cout<<array[i]<<"\n";
-        if (i >    return 0;= 0 && array[i+1] == 0)
+        if (i >= 0 && array[i+1] == 0)
             break;
         }
 }
@@ -126,7 +126,7 @@ int main() {
     
     cout<<"Start."<<"\n";
 
-    array = generate_random_string(length,1);
+    array = generate_random_string(length,2);
     //array = generate_custom_string(length);
 
     //write_array(array,length);
