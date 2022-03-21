@@ -1,33 +1,22 @@
-#pragma once
- 
-#include <iostream>
 #include <string>
- 
+#include <vector>
+
 class SHA1
 {
+private:
+    std::vector<std::string> chunks_bin;
+    std::vector<std::string> digest;
+
 public:
     SHA1();
-    void update(const std::string &s);
-    void update(std::istream &is);
+    void update(const std::string &message);
     std::string final();
 
-private:
-    typedef unsigned long int uint32;
-    typedef unsigned long long uint64;
- 
-    static const unsigned int DIGEST_INTS = 5;
-    static const unsigned int BLOCK_INTS = 16;
-    static const unsigned int BLOCK_BYTES = BLOCK_INTS * 4;
- 
-    uint32 digest[DIGEST_INTS];
-    std::string buffer;
-    uint64 transforms;
- 
-    void reset();
-    void transform(uint32 block[BLOCK_BYTES]);
- 
-    static void buffer_to_block(const std::string &buffer, uint32 block[BLOCK_BYTES]);
-    static void read(std::istream &is, std::string &s, int max);
+    std::string pad_message_bin(std::string &message_bin);
+    std::string pad_length_bin(std::string &length_bin);
+    std::vector<std::string> split_to_chunks(std::string &message_bin);
+    std::vector<std::string> extend_chunks(std::vector<std::string> &chunks_bin);
 };
- 
-std::string sha1(const std::string &string);
+
+std::string convert_bin_to_hex(std::string bin);
+std::string sha1(const std::string &message);

@@ -1,214 +1,171 @@
+#include <string>
+#include <algorithm>
+#include <bitset>
+#include <vector>
 #include <sstream>
-#include <iomanip>
-#include <fstream>
 
 #include "sha1.h"
- 
-#define SHA1_ROL(value, bits) (((value) << (bits)) | (((value) & 0xffffffff) >> (32 - (bits))))
-#define SHA1_BLK(i) (block[i&15] = SHA1_ROL(block[(i+13)&15] ^ block[(i+8)&15] ^ block[(i+2)&15] ^ block[i&15],1))
- 
-#define SHA1_R0(v,w,x,y,z,i) z += ((w&(x^y))^y)     + block[i]    + 0x5a827999 + SHA1_ROL(v,5); w=SHA1_ROL(w,30);
-#define SHA1_R1(v,w,x,y,z,i) z += ((w&(x^y))^y)     + SHA1_BLK(i) + 0x5a827999 + SHA1_ROL(v,5); w=SHA1_ROL(w,30);
-#define SHA1_R2(v,w,x,y,z,i) z += (w^x^y)           + SHA1_BLK(i) + 0x6ed9eba1 + SHA1_ROL(v,5); w=SHA1_ROL(w,30);
-#define SHA1_R3(v,w,x,y,z,i) z += (((w|x)&y)|(w&x)) + SHA1_BLK(i) + 0x8f1bbcdc + SHA1_ROL(v,5); w=SHA1_ROL(w,30);
-#define SHA1_R4(v,w,x,y,z,i) z += (w^x^y)           + SHA1_BLK(i) + 0xca62c1d6 + SHA1_ROL(v,5); w=SHA1_ROL(w,30);
- 
-SHA1::SHA1()
-{
-    reset();
+#include "../tools/bitwise_operations.h"
+
+using std::string, std::reverse, std::bitset, std::vector;
+
+SHA1::SHA1() {
+    digest.clear();
+    digest.push_back("01100111010001010010001100000001");
+    digest.push_back("11101111110011011010101110001001");
+    digest.push_back("10011000101110101101110011111110");
+    digest.push_back("00010000001100100101010001110110");
+    digest.push_back("11000011110100101110000111110000");
+    chunks_bin.clear();
 }
- 
-void SHA1::update(const std::string &s)
-{
-    std::istringstream is(s);
-    update(is);
-}
- 
-void SHA1::update(std::istream &is)
-{
-    std::string rest_of_buffer;
-    read(is, rest_of_buffer, BLOCK_BYTES - buffer.size());
-    buffer += rest_of_buffer;
- 
-    while (is)
-    {
-        uint32 block[BLOCK_INTS];
-        buffer_to_block(buffer, block);
-        transform(block);
-        read(is, buffer, BLOCK_BYTES);
+
+void SHA1::update(const string &message)  {
+    int n = message.length();
+    int message_bin_length = (n)*8;
+    string message_bin_length_bin = bitset<8>(message_bin_length).to_string();
+    string message_bin = "", length_bin = "";
+    
+    for (int i = 0; i <= n-1; i++)  {
+        int val = int(message[i]);
+        string letter_bin = "";
+        while (val > 0) {
+            (val % 2)? letter_bin.push_back('1') :
+                       letter_bin.push_back('0');
+            val /= 2;
+        }
+        reverse(letter_bin.begin(), letter_bin.end());
+        while (letter_bin.length()<8)
+            letter_bin = '0'+letter_bin;
+        message_bin = message_bin + letter_bin;
     }
+    message_bin = message_bin + '1';
+    length_bin = pad_length_bin(message_bin_length_bin);
+    message_bin = pad_message_bin(message_bin);
+    message_bin = message_bin + length_bin;
+    chunks_bin = split_to_chunks(message_bin);
 }
 
 std::string SHA1::final()
 {
-    uint64 total_bits = (transforms*BLOCK_BYTES + buffer.size()) * 8;
- 
-    buffer += 0x80;
-    unsigned int orig_size = buffer.size();
-    while (buffer.size() < BLOCK_BYTES)
-    {
-        buffer += (char)0x00;
-    }
- 
-    uint32 block[BLOCK_INTS];
-    buffer_to_block(buffer, block);
- 
-    if (orig_size > BLOCK_BYTES - 8)
-    {
-        transform(block);
-        for (unsigned int i = 0; i < BLOCK_INTS - 2; i++)
-        {
-            block[i] = 0;
-        }
-    }
+    string hash = "";
+    string a = digest[0];
+    string b = digest[1];
+    string c = digest[2];
+    string d = digest[3];
+    string e = digest[4]; 
+            for (int this_rotation = 0; this_rotation < 80; this_rotation++)  {  
+                string f,k;
+                    if (this_rotation < 20)  {
+                        const string BandC = bitwise_and(b,c);
+                        const string notB = bitwise_and(bitwise_not(b),d);
+                        f = bitwise__or(BandC, notB);
+                        k = "01011010100000100111100110011001";
+                    }
+                    else if (this_rotation < 40) {
+                        const string BxorC = bitwise_xor(b,c);
+                        f = bitwise_xor(BxorC, d);
+                        k = "01101110110110011110101110100001";
+                    }
+                    else if (this_rotation < 60) {
+                        const string BandC = bitwise_and(b,c);
+                        const string BandD = bitwise_and(b,d);
+                        const string CandD = bitwise_and(c,d);
+                        const string BandCorBandD = bitwise__or(BandC,BandD);
+                        f = bitwise__or(BandCorBandD,CandD);
+                        k = "10001111000110111011110011011100";
+                    }
+                    else  {
+                        const string BxorC = bitwise_xor(b,c);
+                        f = bitwise_xor(BxorC, d);
+                        k = "11001010011000101100000111010110";
+                    }
+                    const string chunk = chunks_bin[this_rotation];
+                    const string tempA = bitwise_add(bitwise_left_rotate(a,5),f);
+                    const string tempB = bitwise_add(tempA, e);
+                    const string tempC = bitwise_add(tempB, k);
+                    string temp = bitwise_add(tempC,chunk);
 
-    block[BLOCK_INTS - 1] = total_bits;
-    block[BLOCK_INTS - 2] = (total_bits >> 32);
-    transform(block);
- 
-    std::ostringstream result;
-    for (unsigned int i = 0; i < DIGEST_INTS; i++)
-    {
-        result << std::hex << std::setfill('0') << std::setw(8);
-        result << (digest[i] & 0xffffffff);
-    }
- 
-    reset();
- 
-    return result.str();
+                    temp = temp.substr(0,32);
+                    e = d;
+                    d = c;
+                    c = bitwise_left_rotate(b,30);
+                    b = a;
+                    a = temp;
+                }
+            digest[0] = bitwise_add(digest[0],a).substr(0,32);
+            digest[1] = bitwise_add(digest[1],b).substr(0,32);
+            digest[2] = bitwise_add(digest[2],c).substr(0,32);
+            digest[3] = bitwise_add(digest[3],d).substr(0,32);
+            digest[4] = bitwise_add(digest[4],e).substr(0,32);
+
+    for (int this_string = 0; this_string < 5; this_string++)
+            hash = hash + convert_bin_to_hex(digest[this_string]);
+
+    return hash;
 }
- 
-void SHA1::reset()
+
+string convert_bin_to_hex(string bin)
 {
-    digest[0] = 0x67452301;
-    digest[1] = 0xefcdab89;
-    digest[2] = 0x98badcfe;
-    digest[3] = 0x10325476;
-    digest[4] = 0xc3d2e1f0;
- 
-    transforms = 0;
-    buffer = "";
+    bitset<32> set(bin);
+    std::stringstream res;
+    res << std::hex << set.to_ulong();
+    return res.str();
 }
- 
-void SHA1::transform(uint32 block[BLOCK_BYTES])
+
+string SHA1::pad_message_bin(string &message_bin)
 {
-    uint32 a = digest[0];
-    uint32 b = digest[1];
-    uint32 c = digest[2];
-    uint32 d = digest[3];
-    uint32 e = digest[4];
- 
-    SHA1_R0(a,b,c,d,e, 0);
-    SHA1_R0(e,a,b,c,d, 1);
-    SHA1_R0(d,e,a,b,c, 2);
-    SHA1_R0(c,d,e,a,b, 3);
-    SHA1_R0(b,c,d,e,a, 4);
-    SHA1_R0(a,b,c,d,e, 5);
-    SHA1_R0(e,a,b,c,d, 6);
-    SHA1_R0(d,e,a,b,c, 7);
-    SHA1_R0(c,d,e,a,b, 8);
-    SHA1_R0(b,c,d,e,a, 9);
-    SHA1_R0(a,b,c,d,e,10);
-    SHA1_R0(e,a,b,c,d,11);
-    SHA1_R0(d,e,a,b,c,12);
-    SHA1_R0(c,d,e,a,b,13);
-    SHA1_R0(b,c,d,e,a,14);
-    SHA1_R0(a,b,c,d,e,15);
-    SHA1_R1(e,a,b,c,d,16);
-    SHA1_R1(d,e,a,b,c,17);
-    SHA1_R1(c,d,e,a,b,18);
-    SHA1_R1(b,c,d,e,a,19);
-    SHA1_R2(a,b,c,d,e,20);
-    SHA1_R2(e,a,b,c,d,21);
-    SHA1_R2(d,e,a,b,c,22);
-    SHA1_R2(c,d,e,a,b,23);
-    SHA1_R2(b,c,d,e,a,24);
-    SHA1_R2(a,b,c,d,e,25);
-    SHA1_R2(e,a,b,c,d,26);
-    SHA1_R2(d,e,a,b,c,27);
-    SHA1_R2(c,d,e,a,b,28);
-    SHA1_R2(b,c,d,e,a,29);
-    SHA1_R2(a,b,c,d,e,30);
-    SHA1_R2(e,a,b,c,d,31);
-    SHA1_R2(d,e,a,b,c,32);
-    SHA1_R2(c,d,e,a,b,33);
-    SHA1_R2(b,c,d,e,a,34);
-    SHA1_R2(a,b,c,d,e,35);
-    SHA1_R2(e,a,b,c,d,36);
-    SHA1_R2(d,e,a,b,c,37);
-    SHA1_R2(c,d,e,a,b,38);
-    SHA1_R2(b,c,d,e,a,39);
-    SHA1_R3(a,b,c,d,e,40);
-    SHA1_R3(e,a,b,c,d,41);
-    SHA1_R3(d,e,a,b,c,42);
-    SHA1_R3(c,d,e,a,b,43);
-    SHA1_R3(b,c,d,e,a,44);
-    SHA1_R3(a,b,c,d,e,45);
-    SHA1_R3(e,a,b,c,d,46);
-    SHA1_R3(d,e,a,b,c,47);
-    SHA1_R3(c,d,e,a,b,48);
-    SHA1_R3(b,c,d,e,a,49);
-    SHA1_R3(a,b,c,d,e,50);
-    SHA1_R3(e,a,b,c,d,51);
-    SHA1_R3(d,e,a,b,c,52);
-    SHA1_R3(c,d,e,a,b,53);
-    SHA1_R3(b,c,d,e,a,54);
-    SHA1_R3(a,b,c,d,e,55);
-    SHA1_R3(e,a,b,c,d,56);
-    SHA1_R3(d,e,a,b,c,57);
-    SHA1_R3(c,d,e,a,b,58);
-    SHA1_R3(b,c,d,e,a,59);
-    SHA1_R4(a,b,c,d,e,60);
-    SHA1_R4(e,a,b,c,d,61);
-    SHA1_R4(d,e,a,b,c,62);
-    SHA1_R4(c,d,e,a,b,63);
-    SHA1_R4(b,c,d,e,a,64);
-    SHA1_R4(a,b,c,d,e,65);
-    SHA1_R4(e,a,b,c,d,66);
-    SHA1_R4(d,e,a,b,c,67);
-    SHA1_R4(c,d,e,a,b,68);
-    SHA1_R4(b,c,d,e,a,69);
-    SHA1_R4(a,b,c,d,e,70);
-    SHA1_R4(e,a,b,c,d,71);
-    SHA1_R4(d,e,a,b,c,72);
-    SHA1_R4(c,d,e,a,b,73);
-    SHA1_R4(b,c,d,e,a,74);
-    SHA1_R4(a,b,c,d,e,75);
-    SHA1_R4(e,a,b,c,d,76);
-    SHA1_R4(d,e,a,b,c,77);
-    SHA1_R4(c,d,e,a,b,78);
-    SHA1_R4(b,c,d,e,a,79);
- 
-    digest[0] += a;
-    digest[1] += b;
-    digest[2] += c;
-    digest[3] += d;
-    digest[4] += e;
+    while (message_bin.length() % 512 != 448)
+        message_bin = message_bin + '0';
+    return message_bin;
+}
+
+string SHA1::pad_length_bin(string &length_bin)
+{
+    while (length_bin.length() != 64)
+        length_bin = '0' + length_bin;
+    return length_bin;
+}
+
+vector<string> SHA1::split_to_chunks(string &message_bin)
+{
+    vector<string> large_chunks_bin, small_chunks_bin;
+    string this_part_of_message = "";
+    int large_chunk_length = 512, small_chunk_length = 32;
     
-    transforms++;
+    for (auto letter_pos = 0; letter_pos < large_chunk_length; letter_pos++)
+        {
+            this_part_of_message = this_part_of_message + message_bin[letter_pos];
+            if ((letter_pos+1)%small_chunk_length == 0 && letter_pos+1 > 1)  {
+                small_chunks_bin.push_back(this_part_of_message);
+                this_part_of_message = "";
+            }
+        }
+    small_chunks_bin = extend_chunks(small_chunks_bin);
+    return small_chunks_bin;
 }
- 
-void SHA1::buffer_to_block(const std::string &buffer, uint32 block[BLOCK_BYTES])
+
+vector<string> SHA1::extend_chunks(vector<string> &chunks_bin)
 {
-    for (unsigned int i = 0; i < BLOCK_INTS; i++)
-    {
-        block[i] = (buffer[4*i+3] & 0xff)
-                   | (buffer[4*i+2] & 0xff)<<8
-                   | (buffer[4*i+1] & 0xff)<<16
-                   | (buffer[4*i+0] & 0xff)<<24;
-    }
+    for (auto chunk_number = 16; chunk_number < 80; chunk_number++)
+        {
+            const string wordA = chunks_bin[chunk_number-3];
+            const string wordB = chunks_bin[chunk_number-8];
+            const string wordC = chunks_bin[chunk_number-14];
+            const string wordD = chunks_bin[chunk_number-16];
+
+            const string xorA = bitwise_xor(wordA, wordB); 
+            const string xorB = bitwise_xor(xorA, wordC);
+            const string xorC = bitwise_xor(xorB, wordD);
+
+            string newchunk;
+            newchunk = bitwise_left_rotate(xorC,1);
+            chunks_bin.push_back(newchunk);
+        }
+    return chunks_bin;
 }
- 
-void SHA1::read(std::istream &is, std::string &s, int max)
-{
-    char sbuf[max];
-    is.read(sbuf, max);
-    s.assign(sbuf, is.gcount());
-}
- 
-std::string sha1(const std::string &string)
-{
+
+string sha1(const string &message)  {
     SHA1 checksum;
-    checksum.update(string);
+    checksum.update(message);
     return checksum.final();
 }
