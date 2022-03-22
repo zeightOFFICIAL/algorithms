@@ -6,9 +6,10 @@ Lab 7
 Hashing algorithms
 - sha1
 - sha256
+- ?
 main.cpp
 22.03.2022
-ver 0.6
+ver 0.7
 */
 
 #include <iostream>
@@ -24,7 +25,7 @@ int main()
 {
     cout<<"Start."<<"\n";
     
-    //cout << sha1("hello world!") << "\n";
+    cout << sha1("hello world!") << "\n";
     cout << sha256("hello world!") << "\n";
     
     cout<<"End."<<"\n";

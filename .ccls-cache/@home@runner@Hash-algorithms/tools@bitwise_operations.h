@@ -1,25 +1,25 @@
 #include <string>
 #include <bitset>
 
-/**
-    these are different bitwise operations specially transformed 
-    for the needs of sha1, in particular for operations with 
-    strings.
-*/
+//bitwise operations for strings (sha1)
+std::string BitwiseLRotate(std::string s1, int size_of_rotate);
+std::string BitwiseAnd(std::string s1, std::string s2);
+std::string BitwiseOr(std::string s1, std::string s2);
+std::string BitwiseNot(std::string s1);
+std::string BitwiseXor(std::string s1, std::string s2);
+std::string BitwiseAdd(std::string s1, std::string s2);
+bool BoolFullAdd(bool b1, bool b2, bool& carry);
+std::bitset<32> BitsetAdd(std::bitset<32>& x, std::bitset<32>& y);
 
-std::string bitwise_left_rotate(std::string s1, int size_of_rotate);
-std::string bitwise_right_rotate(std::string s1, int size_of_rotate);
-std::string bitwise_right_shift(std::string s1, int size_of_shift);
-std::string bitwise_and(std::string s1, std::string s2);
-std::string bitwise__or(std::string s1, std::string s2);
-std::string bitwise_not(std::string s1);
-std::string bitwise_xor(std::string s1, std::string s2);
-std::string bitwise_add(std::string s1, std::string s2);
+//convertation functions
+std::uint32_t ConvertStrUint(std::string str);
+std::string ConvertUintStr(std::uint32_t uint);
+std::string ConvertBinHex(std::string bin);
 
-bool bool_full_adder(bool b1, bool b2, bool& carry);
-std::bitset<32> bitset_add(std::bitset<32>& x, std::bitset<32>& y);
-
-std::bitset<32> bit_wise_sigma0(std::string ch1);
-std::bitset<32> bit_wise_sigma1(std::string ch1);
-
-std::string convert_bin_to_hex(std::string bin);
+//bitwise operations for uint32_t (sha256)
+std::uint32_t Sigma0(std::uint32_t x);
+std::uint32_t Sigma1(std::uint32_t x);
+std::uint32_t RotateRight(std::uint32_t x, std::uint32_t n);
+std::uint32_t RotateLeft(std::uint32_t x, std::uint32_t n);
+std::uint32_t Choose(std::uint32_t e, std::uint32_t f, std::uint32_t g);
+std::uint32_t Majority(std::uint32_t a, std::uint32_t b, std::uint32_t c);

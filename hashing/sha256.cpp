@@ -3,14 +3,10 @@
 #include <vector>
 #include <sstream>
 
-//delete after test -----------------
-#include <iostream>
-//-----------------------------------
-
 #include "sha256.h"
 #include "../tools/bitwise_operations.h"
 
-using std::string, std::bitset, std::cout, std::vector;
+using std::string, std::bitset, std::vector;
 
 SHA256::SHA256()
 {
@@ -35,28 +31,28 @@ void SHA256::update(const string &message)
         message_bin = message_bin + binary_letter.to_string();
     }
     message_bin = message_bin + '1';
-    message_bin = pad_message_bin(message_bin);
-    length_bin = pad_length_bin(length_bin);
+    message_bin = PadMessageBin(message_bin);
+    length_bin = PadLengthBin(length_bin);
     message_bin = message_bin + length_bin;
-    chunks_bin = split_to_chunks(message_bin);
+    chunks_bin = SplitToChunks(message_bin);
 }
 
 string SHA256::final() {
     string hash = "";
-    uint32_t a = ConvertToUint(digest[0]);
-    uint32_t b = ConvertToUint(digest[1]);
-    uint32_t c = ConvertToUint(digest[2]);
-    uint32_t d = ConvertToUint(digest[3]);
-    uint32_t e = ConvertToUint(digest[4]);
-    uint32_t f = ConvertToUint(digest[5]);
-    uint32_t g = ConvertToUint(digest[6]);
-    uint32_t h = ConvertToUint(digest[7]);
+    uint32_t a = ConvertStrUint(digest[0]);
+    uint32_t b = ConvertStrUint(digest[1]);
+    uint32_t c = ConvertStrUint(digest[2]);
+    uint32_t d = ConvertStrUint(digest[3]);
+    uint32_t e = ConvertStrUint(digest[4]);
+    uint32_t f = ConvertStrUint(digest[5]);
+    uint32_t g = ConvertStrUint(digest[6]);
+    uint32_t h = ConvertStrUint(digest[7]);
     for (int this_rotation = 0; this_rotation < 64; this_rotation++) {
-        uint32_t _majority = majority(a,b,c);
-        uint32_t xorA = rotr(a,2) ^ rotr(a,13) ^ rotr(a,22);
-        uint32_t _choose = choose(e,f,g);
-        uint32_t xorE = rotr(e,6) ^ rotr(e,11) ^ rotr(e,25);
-        uint32_t sum = ConvertToUint(chunks_bin[this_rotation])+SHA256::k[this_rotation]+h+_choose+xorE;
+        uint32_t _majority = Majority(a,b,c);
+        uint32_t xorA = RotateRight(a,2) ^ RotateRight(a,13) ^ RotateRight(a,22);
+        uint32_t _choose = Choose(e,f,g);
+        uint32_t xorE = RotateRight(e,6) ^ RotateRight(e,11) ^ RotateRight(e,25);
+        uint32_t sum = ConvertStrUint(chunks_bin[this_rotation])+SHA256::k[this_rotation]+h+_choose+xorE;
         uint32_t newA = xorA + _majority + sum;
         uint32_t newE = d + sum;
         h = g;
@@ -68,34 +64,34 @@ string SHA256::final() {
         b = a;
         a = newA;
     }
-    digest[0] = bitwise_add(digest[0],ConvertToStr(a)).substr(0,32);
-    digest[1] = bitwise_add(digest[1],ConvertToStr(b)).substr(0,32);
-    digest[2] = bitwise_add(digest[2],ConvertToStr(c)).substr(0,32);
-    digest[3] = bitwise_add(digest[3],ConvertToStr(d)).substr(0,32);
-    digest[4] = bitwise_add(digest[4],ConvertToStr(e)).substr(0,32);
-    digest[5] = bitwise_add(digest[5],ConvertToStr(f)).substr(0,32);
-    digest[6] = bitwise_add(digest[6],ConvertToStr(g)).substr(0,32);
-    digest[7] = bitwise_add(digest[7],ConvertToStr(h)).substr(0,32);
+    digest[0] = BitwiseAdd(digest[0],ConvertUintStr(a)).substr(0,32);
+    digest[1] = BitwiseAdd(digest[1],ConvertUintStr(b)).substr(0,32);
+    digest[2] = BitwiseAdd(digest[2],ConvertUintStr(c)).substr(0,32);
+    digest[3] = BitwiseAdd(digest[3],ConvertUintStr(d)).substr(0,32);
+    digest[4] = BitwiseAdd(digest[4],ConvertUintStr(e)).substr(0,32);
+    digest[5] = BitwiseAdd(digest[5],ConvertUintStr(f)).substr(0,32);
+    digest[6] = BitwiseAdd(digest[6],ConvertUintStr(g)).substr(0,32);
+    digest[7] = BitwiseAdd(digest[7],ConvertUintStr(h)).substr(0,32);
     for (int this_string = 0; this_string < 8; this_string++)
-            hash = hash + convert_bin_to_hex(digest[this_string]);    
+            hash = hash + ConvertBinHex(digest[this_string]);    
     return hash;
 }
 
-string SHA256::pad_message_bin(string &message_bin)
+string SHA256::PadMessageBin(string &message_bin)
 {
     while (message_bin.length() % 512 != 448)
         message_bin = message_bin + '0';
     return message_bin;
 }
 
-string SHA256::pad_length_bin(string &length_bin)
+string SHA256::PadLengthBin(string &length_bin)
 {
     while (length_bin.length() != 64)
         length_bin = '0' + length_bin;
     return length_bin;
 }
 
-vector<string> SHA256::split_to_chunks(string &message_bin)
+vector<string> SHA256::SplitToChunks(string &message_bin)
 {
     vector<string> small_chunks_bin;
     string this_part_of_message = "";
@@ -109,55 +105,22 @@ vector<string> SHA256::split_to_chunks(string &message_bin)
                 this_part_of_message = "";
             }
         }
-    small_chunks_bin = extend_chunks(small_chunks_bin);
+    small_chunks_bin = ExtendChunks(small_chunks_bin);
     return small_chunks_bin;
 }
 
-vector<string> SHA256::extend_chunks(vector<string> &chunks_bin)
+vector<string> SHA256::ExtendChunks(vector<string> &chunks_bin)
 {
     for (int chunk_number = 16; chunk_number < 64; chunk_number++)
         {
-            uint32_t w_15 = ConvertToUint(chunks_bin[chunk_number-15]);
-            uint32_t w_2 = ConvertToUint(chunks_bin[chunk_number-2]);
-            uint32_t w_7 = ConvertToUint(chunks_bin[chunk_number-7]);
-            uint32_t w_16 = ConvertToUint(chunks_bin[chunk_number-16]);
-            uint32_t current_w = sig1(w_2) + w_7 + sig0(w_15) + w_16;
-            chunks_bin.push_back(ConvertToStr(current_w));
+            uint32_t w_15 = ConvertStrUint(chunks_bin[chunk_number-15]);
+            uint32_t w_2 = ConvertStrUint(chunks_bin[chunk_number-2]);
+            uint32_t w_7 = ConvertStrUint(chunks_bin[chunk_number-7]);
+            uint32_t w_16 = ConvertStrUint(chunks_bin[chunk_number-16]);
+            uint32_t current_w = Sigma1(w_2) + w_7 + Sigma0(w_15) + w_16;
+            chunks_bin.push_back(ConvertUintStr(current_w));
         }
     return chunks_bin;
-}
-
-uint32_t ConvertToUint(string s)
-{
-    uint32_t res;
-    bitset<32>bitset_s(s);
-    res = bitset_s.to_ulong();
-    return res;
-}
-
-string ConvertToStr(uint32_t i) 
-{
-    return bitset<32>(i).to_string();
-}
-        
-uint32_t sig0(uint32_t x) {
-	return rotr(x, 7) ^ rotr(x, 18) ^ (x >> 3);
-}
-
-uint32_t sig1(uint32_t x) {
-	return rotr(x, 17) ^ rotr(x, 19) ^ (x >> 10);
-}
-
-uint32_t rotr(uint32_t x, uint32_t n) {
-	return (x >> n) | (x << (32 - n));
-}
-
-uint32_t choose(uint32_t e, uint32_t f, uint32_t g) {
-	return (e & f) ^ (~e & g);
-}
-
-uint32_t majority(uint32_t a, uint32_t b, uint32_t c) {
-	return (a & (b | c)) | (b & c);
 }
 
 string sha256(const string &message)  {

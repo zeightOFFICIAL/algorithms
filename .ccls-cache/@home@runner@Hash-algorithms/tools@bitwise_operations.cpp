@@ -2,12 +2,13 @@
 #include <cstdint>
 #include <bitset>
 #include <algorithm>  
+#include <sstream>
 
 #include "bitwise_operations.h"
 
 using std::string, std::bitset, std::rotate;
 
-string bitwise_not(string s1)  {
+string BitwiseNot(string s1)  {
     string res;
     
     for (int i = 0; i < s1.length();i++)  {
@@ -19,7 +20,7 @@ string bitwise_not(string s1)  {
     return res;
 }
 
-string bitwise_and(string s1, string s2)  {
+string BitwiseAnd(string s1, string s2)  {
     string res = "";
 
     for (int i = 0; i < s1.length(); i++) {
@@ -31,7 +32,7 @@ string bitwise_and(string s1, string s2)  {
     return res;
 }
 
-string bitwise__or(string s1, string s2)  {
+string BitwiseOr(string s1, string s2)  {
     string res = "";
     
     for (int i = 0 ; i < s1.length(); i++) {
@@ -43,7 +44,7 @@ string bitwise__or(string s1, string s2)  {
     return res;
 }
     
-string bitwise_xor(string s1, string s2)  {
+string BitwiseXor(string s1, string s2)  {
     string res = "";
     
     for (int i = 0; i < s1.length(); i++)
@@ -56,69 +57,75 @@ string bitwise_xor(string s1, string s2)  {
     return res;
 }
 
-string bitwise_left_rotate(string s1, int size_of_shift)
+string BitwiseLRotate(string s1, int size_of_rotate)
 {
     string res = s1;
-    rotate(res.begin(), res.begin() + size_of_shift, res.end());
+    rotate(res.begin(), res.begin() + size_of_rotate, res.end());
     return res;
 }
 
-string bitwise_right_rotate(string s1, int size_of_shift)
-{
-    string res = s1;
-    rotate(res.rbegin(), res.rbegin() + size_of_shift, res.rend());
-    return res;
-}
-
-string bitwise_right_shift(string s1, int size_of_shift)
-{
-    bitset<32>bitset_s1(s1);
-    bitset_s1 = bitset_s1 >> size_of_shift;
-    string res = bitset_s1.to_string();
-    res.erase(0, res.find_first_not_of('0'));
-    return res;
-}
-
-string bitwise_add(string a, string b)
+string BitwiseAdd(string s1, string s2)
 {
     string res = "";
-    bitset<32> bitset_a(a);
-    bitset<32> bitset_b(b);
-    bitset<32> bitset_result(bitset_add(bitset_a,bitset_b));
+    bitset<32> bitset_a(s1);
+    bitset<32> bitset_b(s2);
+    bitset<32> bitset_result(BitsetAdd(bitset_a,bitset_b));
     res = bitset_result.to_string();
     return res;
 }        
 
-bool bool_full_adder(bool b1, bool b2, bool& carry_over)
+bool BoolFullAdd(bool b1, bool b2, bool& carry_over)
 {
     bool sum = (b1 ^ b2) ^ carry_over;
     carry_over = (b1 && b2) || (b1 && carry_over) || (b2 && carry_over);
     return sum;
 }
 
-bitset<32> bitset_add(bitset<32>& bitset_x, bitset<32>& bitset_y)
+bitset<32> BitsetAdd(bitset<32>& bitset_x, bitset<32>& bitset_y)
 {
     bool carry_over = false;
     bitset<32> res;
     for (int i = 0; i < 32; i++) {
-        res[i] = bool_full_adder(bitset_x[i], bitset_y[i], carry_over);
+        res[i] = BoolFullAdd(bitset_x[i], bitset_y[i], carry_over);
     }
     return res;
 }
 
-bitset<32> bit_wise_sigma0(string ch1)
-{
-    bitset<32>bitset_ch1(bitwise_right_rotate(ch1,7)), bitset_ch2(bitwise_right_rotate(ch1,18)), bitset_ch3(ch1);
-    bitset_ch3 = bitset_ch3 >> 3;
-    bitset<32>sig0 = bitset_ch1 ^ bitset_ch2 ^ bitset_ch3;
-    return sig0;
+string ConvertBinHex(string bin)  {
+    bitset<32> set(bin);
+    std::stringstream res;
+    res << std::hex << set.to_ulong();
+    return res.str();
 }
 
-bitset<32> bit_wise_sigma1(string ch1)
-{
-    bitset<32>bitset_ch1(bitwise_right_rotate(ch1,17)), bitset_ch2(bitwise_right_rotate(ch1,19)), bitset_ch3(ch1);
-    bitset_ch3 = bitset_ch3 >> 10;
-    
-    bitset<32>sig1 = bitset_ch1 ^ bitset_ch2 ^ bitset_ch3;
-    return sig1;
+uint32_t ConvertStrUint(string str)  {
+    return bitset<32>(str).to_ulong();
 }
+
+string ConvertUintStr(uint32_t uint)  {
+    return bitset<32>(uint).to_string();
+}
+        
+uint32_t Sigma0(uint32_t x) {
+	return RotateRight(x, 7) ^ RotateRight(x, 18) ^ (x >> 3);
+}
+
+uint32_t Sigma1(uint32_t x) {
+	return RotateRight(x, 17) ^ RotateRight(x, 19) ^ (x >> 10);
+}
+
+uint32_t RotateRight(uint32_t x, uint32_t n) {
+	return (x >> n) | (x << (32 - n));
+}
+
+uint32_t RotateLeft(uint32_t x, uint32_t n) {
+	return (x << n) | (x >> (32 - n));
+}
+
+uint32_t Choose(uint32_t e, uint32_t f, uint32_t g) {
+	return (e & f) ^ (~e & g);
+}
+
+uint32_t Majority(uint32_t a, uint32_t b, uint32_t c) {
+	return (a & (b | c)) | (b & c);
+}        

@@ -31,19 +31,10 @@ public:
     void update(const std::string &message);
     std::string final();
 
-    std::string pad_message_bin(std::string &message_bin);
-    std::string pad_length_bin(std::string &length_bin);
-    std::vector<std::string> split_to_chunks(std::string &message_bin);
-    std::vector<std::string> extend_chunks(std::vector<std::string> &chunks_bin);
+    std::string PadMessageBin(std::string &message_binary);
+    std::string PadLengthBin(std::string &length_binary);
+    std::vector<std::string> SplitToChunks(std::string &message_binary);
+    std::vector<std::string> ExtendChunks(std::vector<std::string> &chunks_binary);
 };
-
-std::uint32_t ConvertToUint(std::string s);
-std::string ConvertToStr(std::uint32_t i);
-
-std::uint32_t sig0(std::uint32_t x);
-std::uint32_t sig1(std::uint32_t x);
-std::uint32_t rotr(std::uint32_t x, std::uint32_t n);
-std::uint32_t choose(std::uint32_t e, std::uint32_t f, std::uint32_t g);
-std::uint32_t majority(std::uint32_t a, std::uint32_t b, std::uint32_t c);
 
 std::string sha256(const std::string &message);

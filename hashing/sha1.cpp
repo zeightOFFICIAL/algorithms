@@ -56,50 +56,50 @@ std::string SHA1::final()
             for (int this_rotation = 0; this_rotation < 80; this_rotation++)  {  
                 string f,k;
                     if (this_rotation < 20)  {
-                        const string BandC = bitwise_and(b,c);
-                        const string notB = bitwise_and(bitwise_not(b),d);
-                        f = bitwise__or(BandC, notB);
+                        const string BandC = BitwiseAnd(b,c);
+                        const string notB = BitwiseAnd(BitwiseNot(b),d);
+                        f = BitwiseOr(BandC, notB);
                         k = "01011010100000100111100110011001";
                     }
                     else if (this_rotation < 40) {
-                        const string BxorC = bitwise_xor(b,c);
-                        f = bitwise_xor(BxorC, d);
+                        const string BxorC = BitwiseXor(b,c);
+                        f = BitwiseXor(BxorC, d);
                         k = "01101110110110011110101110100001";
                     }
                     else if (this_rotation < 60) {
-                        const string BandC = bitwise_and(b,c);
-                        const string BandD = bitwise_and(b,d);
-                        const string CandD = bitwise_and(c,d);
-                        const string BandCorBandD = bitwise__or(BandC,BandD);
-                        f = bitwise__or(BandCorBandD,CandD);
+                        const string BandC = BitwiseAnd(b,c);
+                        const string BandD = BitwiseAnd(b,d);
+                        const string CandD = BitwiseAnd(c,d);
+                        const string BandCorBandD = BitwiseOr(BandC,BandD);
+                        f = BitwiseOr(BandCorBandD,CandD);
                         k = "10001111000110111011110011011100";
                     }
                     else  {
-                        const string BxorC = bitwise_xor(b,c);
-                        f = bitwise_xor(BxorC, d);
+                        const string BxorC = BitwiseXor(b,c);
+                        f = BitwiseXor(BxorC, d);
                         k = "11001010011000101100000111010110";
                     }
                     const string chunk = chunks_bin[this_rotation];
-                    const string tempA = bitwise_add(bitwise_left_rotate(a,5),f);
-                    const string tempB = bitwise_add(tempA, e);
-                    const string tempC = bitwise_add(tempB, k);
-                    string temp = bitwise_add(tempC,chunk);
+                    const string tempA = BitwiseAdd(BitwiseLRotate(a,5),f);
+                    const string tempB = BitwiseAdd(tempA, e);
+                    const string tempC = BitwiseAdd(tempB, k);
+                    string temp = BitwiseAdd(tempC,chunk);
 
                     temp = temp.substr(0,32);
                     e = d;
                     d = c;
-                    c = bitwise_left_rotate(b,30);
+                    c = BitwiseLRotate(b,30);
                     b = a;
                     a = temp;
                 }
-            digest[0] = bitwise_add(digest[0],a).substr(0,32);
-            digest[1] = bitwise_add(digest[1],b).substr(0,32);
-            digest[2] = bitwise_add(digest[2],c).substr(0,32);
-            digest[3] = bitwise_add(digest[3],d).substr(0,32);
-            digest[4] = bitwise_add(digest[4],e).substr(0,32);
+            digest[0] = BitwiseAdd(digest[0],a).substr(0,32);
+            digest[1] = BitwiseAdd(digest[1],b).substr(0,32);
+            digest[2] = BitwiseAdd(digest[2],c).substr(0,32);
+            digest[3] = BitwiseAdd(digest[3],d).substr(0,32);
+            digest[4] = BitwiseAdd(digest[4],e).substr(0,32);
 
     for (int this_string = 0; this_string < 5; this_string++)
-            hash = hash + convert_bin_to_hex(digest[this_string]);
+            hash = hash + ConvertBinHex(digest[this_string]);
 
     return hash;
 }
@@ -145,12 +145,12 @@ vector<string> SHA1::extend_chunks(vector<string> &chunks_bin)
             const string wordC = chunks_bin[chunk_number-14];
             const string wordD = chunks_bin[chunk_number-16];
 
-            const string xorA = bitwise_xor(wordA, wordB); 
-            const string xorB = bitwise_xor(xorA, wordC);
-            const string xorC = bitwise_xor(xorB, wordD);
+            const string xorA = BitwiseXor(wordA, wordB); 
+            const string xorB = BitwiseXor(xorA, wordC);
+            const string xorC = BitwiseXor(xorB, wordD);
 
             string newchunk;
-            newchunk = bitwise_left_rotate(xorC,1);
+            newchunk = BitwiseLRotate(xorC,1);
             chunks_bin.push_back(newchunk);
         }
     return chunks_bin;
