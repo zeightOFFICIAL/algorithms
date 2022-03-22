@@ -25,7 +25,7 @@ int main()
     cout<<"Start."<<"\n";
     
     //cout << sha1("hello world!") << "\n";
-    cout << sha256("hi") << "\n";
+    cout << sha256("hello world!") << "\n";
     
     cout<<"End."<<"\n";
     return 0;
