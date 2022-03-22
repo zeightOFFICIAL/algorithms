@@ -17,6 +17,4 @@ public:
     std::vector<std::string> split_to_chunks(std::string &message_bin);
     std::vector<std::string> extend_chunks(std::vector<std::string> &chunks_bin);
 };
-
-std::string convert_bin_to_hex(std::string bin);
 std::string sha1(const std::string &message);

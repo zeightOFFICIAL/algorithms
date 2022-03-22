@@ -104,14 +104,6 @@ std::string SHA1::final()
     return hash;
 }
 
-string convert_bin_to_hex(string bin)
-{
-    bitset<32> set(bin);
-    std::stringstream res;
-    res << std::hex << set.to_ulong();
-    return res.str();
-}
-
 string SHA1::pad_message_bin(string &message_bin)
 {
     while (message_bin.length() % 512 != 448)
