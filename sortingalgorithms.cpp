@@ -7,7 +7,7 @@
 using std::cout, std::ios, std::ofstream, std::string;
 const int EXTREME_LENGTH = 1000000; 
 
-int* bubble_sort(int* array, int amount_of_elements)
+int* BubbleSort(int* array, int amount_of_elements)
 {
     static int* array_sorted = array;    
     clock_t t;
@@ -16,7 +16,7 @@ int* bubble_sort(int* array, int amount_of_elements)
     for (auto i = 0; i < amount_of_elements-1; i++)           
         for (auto j = 0; j < amount_of_elements-i-1; j++) 
             if (array_sorted[j] > array_sorted[j+1]) 
-                tool_swap_byptr(&array_sorted[j], &array_sorted[j+1]); 
+                ToolSwapByPointer(&array_sorted[j], &array_sorted[j+1]); 
     t = clock()-t;
     
     cout<<"Bubble sort. Elements: "<<amount_of_elements<<"\n";
@@ -24,18 +24,18 @@ int* bubble_sort(int* array, int amount_of_elements)
     return array_sorted;
 }
 
-int* heap_sort(int* array, int amount_of_elements)
+int* HeapSort(int* array, int amount_of_elements)
 {    
     static int* array_sorted = array;   
     clock_t t;
 
     t = clock();
     for (auto i = amount_of_elements / 2 - 1; i >= 0; i--)
-        tool_heapify_array(array_sorted, amount_of_elements, i);
+        ToolHeapifyArray(array_sorted, amount_of_elements, i);
     for (auto i = amount_of_elements - 1; i > 0; i--) 
         {
-            tool_swap_byptr(&array_sorted[0], &array_sorted[i]);
-            tool_heapify_array(array_sorted, i, 0);
+            ToolSwapByPointer(&array_sorted[0], &array_sorted[i]);
+            ToolHeapifyArray(array_sorted, i, 0);
         }        
     t = clock()-t;
     
@@ -44,7 +44,7 @@ int* heap_sort(int* array, int amount_of_elements)
     return array_sorted;
 }
 
-int* insertion_sort(int* array, int amount_of_elements)
+int* InsertionSort(int* array, int amount_of_elements)
 {
     static int* array_sorted = array; 
     clock_t t;
@@ -71,14 +71,14 @@ int* insertion_sort(int* array, int amount_of_elements)
 
 //=============================================================================
 
-void tool_swap_byptr(int *left_element, int *right_element)
+void ToolSwapByPointer(int *left_element, int *right_element)
 {
     auto temp = *left_element; 
     *left_element = *right_element; 
     *right_element = temp; 
 } 
 
-void tool_heapify_array(int* array, int amount_of_elements, int i)
+void ToolHeapifyArray(int* array, int amount_of_elements, int i)
 {
     int largest = i;
     int l = 2 * i + 1; 
@@ -89,12 +89,12 @@ void tool_heapify_array(int* array, int amount_of_elements, int i)
     if (r < amount_of_elements && array[r] > array[largest])
         largest = r;
     if (largest != i) {
-        tool_swap_byptr(&array[i], &array[largest]);
-        tool_heapify_array(array, amount_of_elements, largest);
+        ToolSwapByPointer(&array[i], &array[largest]);
+        ToolHeapifyArray(array, amount_of_elements, largest);
     }
 }
 
-void write_proof(int* array, int* array2, int* array3, int amount_of_elements)
+void WriteProof(int* array, int* array2, int* array3, int amount_of_elements)
 {
     ofstream file;
     file.open("exodus/sorted.txt",ios::trunc);
@@ -104,7 +104,7 @@ void write_proof(int* array, int* array2, int* array3, int amount_of_elements)
     file.close();
 }
 
-void write_array(int* array, int amount_of_elements, string name)
+void WriteArray(int* array, int amount_of_elements, string name)
 {
     string path = "exodus/"+name+".txt";
     ofstream file;
