@@ -6,6 +6,7 @@ Comparison of string-searching algorithms (by time and complexity)
 ### main.cpp (iostream, random, cstring, fstream)
 - Generate string (char[]) with truly random chars
 - Create custom (user) string (char[])
+- Create string (char[]) from custom txt file
   
 - Print string (char[]) in the console
 - Print result (int[]) in the console
@@ -22,9 +23,9 @@ Comparison of string-searching algorithms (by time and complexity)
 
 ---
 ## 1.1 Test with random string.
--The power of alphabet is 63 symbols (upper, lower-case latin, number)
--Length is adjustible
--Searched pattern is ('ab')
+- The power of alphabet is 63 symbols (upper, lower-case latin, numbers)
+- Length is adjustible
+- Searched pattern is ('ab')
 
 | Length of string (n)   | Boyer-Moore (s) | Rabin-Karp (s)  | Naive algorithm (s)|
 |     :---:              |     :---:       |     :---:       |       :---:        |

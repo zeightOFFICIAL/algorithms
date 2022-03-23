@@ -7,7 +7,7 @@
 using std::string, std::ios, std::ofstream, std::cin, std::cout;
 const int EXTREME_LENGTH = 1000000; 
 
-Occurances boyer_moore(char* text, string pattern_string, int length)
+Occurances BoyerMoore(char* text, string pattern_string, int length)
 {
     int count_occurances = 0, pattern_length = pattern_string.length(), s = 0;
     clock_t t;
@@ -15,7 +15,7 @@ Occurances boyer_moore(char* text, string pattern_string, int length)
     static int occurance_points[EXTREME_LENGTH];
     
     t = clock();
-    tool_badchar_heuristics(pattern_string,pattern_length,bad_char,length);
+    ToolBadcharHeuristics(pattern_string,pattern_length,bad_char,length);
     while (s <= (length - pattern_length))  {
 		auto j = pattern_length - 1;
 		while (j >= 0 && pattern_string[j] == text[s + j])
@@ -26,18 +26,18 @@ Occurances boyer_moore(char* text, string pattern_string, int length)
 			s += (s + pattern_length < length) ? pattern_length - bad_char[text[s + pattern_length]] : 1;
 		}
 		else
-			s += tool_max_byvalue(1, j - bad_char[text[s + j]]);
+			s += ToolMaxByValue(1, j - bad_char[text[s + j]]);
 	}
     t = clock()-t;
     cout<<"Boyer-Moore. Length: "<<length<<"\n";
     cout<<"Total cases: "<<count_occurances<<"\n";
     cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
     delete[] bad_char;
-    write_occurances(Occurances{occurance_points,count_occurances}, pattern_length, "boyer-moore");
+    WriteOccurances(Occurances{occurance_points,count_occurances}, pattern_length, "boyer-moore");
     return Occurances{occurance_points,count_occurances};
 }
 
-Occurances rabin_karp(char* text, string pattern_string, int length)
+Occurances RabinKarp(char* text, string pattern_string, int length)
 {
     int count_occurances = 0, d = 7, q = 7, pattern_length = pattern_string.length();
     int hashP, hashS, h = 1, j;
@@ -75,11 +75,11 @@ Occurances rabin_karp(char* text, string pattern_string, int length)
     cout<<"Rabin-Karp. Length: "<<length<<"\n";
     cout<<"Total cases: "<<count_occurances<<"\n";
     cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
-    write_occurances(Occurances{occurance_points,count_occurances}, pattern_length, "rabin-karp");
+    WriteOccurances(Occurances{occurance_points,count_occurances}, pattern_length, "rabin-karp");
     return Occurances{occurance_points,count_occurances};
 }
 
-Occurances naive_substring(char* text, string pattern_string, int length)
+Occurances NaiveSubstring(char* text, string pattern_string, int length)
 {
     int count_occurances = 0, pattern_length = pattern_string.length();
     clock_t t;
@@ -100,13 +100,13 @@ Occurances naive_substring(char* text, string pattern_string, int length)
     cout<<"Naive. Length: "<<length<<"\n";
     cout<<"Total cases: "<<count_occurances<<"\n";
     cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
-    write_occurances(Occurances{occurance_points,count_occurances}, pattern_length, "naive");
+    WriteOccurances(Occurances{occurance_points,count_occurances}, pattern_length, "naive");
     return Occurances{occurance_points,count_occurances};
 }
 
 //=====================================================================
 
-void tool_badchar_heuristics(string array, int pattern_length, int* bad_char, int length)
+void ToolBadcharHeuristics(string array, int pattern_length, int* bad_char, int length)
 {
     for (auto i = 0; i < length; i++)
 		bad_char[i] = -1;
@@ -114,12 +114,12 @@ void tool_badchar_heuristics(string array, int pattern_length, int* bad_char, in
 		bad_char[(int)array[i]] = i;
 }
 
-int tool_max_byvalue(int a, int b)
+int ToolMaxByValue(int a, int b)
 {
     return a >= b ? a : b;
 }
 
-Occurances enveloper_with_custom_text(char* text,int length,Occurances(*func)(char*,string,int))
+Occurances EveloperWithCustomText(char* text,int length,Occurances(*func)(char*,string,int))
 {
     string pattern_string;
     cout<<"Enter a pattern: ";
@@ -127,7 +127,7 @@ Occurances enveloper_with_custom_text(char* text,int length,Occurances(*func)(ch
     return func(text,pattern_string,length);
 }    
 
-void write_occurances(Occurances a, int pattern_length, string name)
+void WriteOccurances(Occurances a, int pattern_length, string name)
 {
     string path = "exodus/"+name+".txt";
     ofstream file;
