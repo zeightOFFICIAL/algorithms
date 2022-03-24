@@ -1,6 +1,6 @@
 #include "iteration_funcs.h"
 
-unsigned long long int fibonacci_iterative(unsigned long long int num)
+unsigned long long int FibonacciIterative(unsigned long long int num)
 {
     unsigned long long int x = 0, y = 1, z = 0;
     for (int i = 0; i < num; i++) {
@@ -11,7 +11,7 @@ unsigned long long int fibonacci_iterative(unsigned long long int num)
     return x;
 }
 
-unsigned long long int factorial_iterative(unsigned long long int num)
+unsigned long long int FactorialIterative(unsigned long long int num)
 {
     unsigned long long int fact,i;
     fact = 1;
@@ -20,7 +20,7 @@ unsigned long long int factorial_iterative(unsigned long long int num)
     return fact;
 }
 
-unsigned long long int greatest_common_divisor_iterative(unsigned long long int x, unsigned long long int y)
+unsigned long long int GCDIterative(unsigned long long int x, unsigned long long int y)
 {
     while(x != y) {
     if(x > y)
