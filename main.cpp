@@ -36,11 +36,11 @@ using namespace std;
 
 int main() {
 cout<<"Start."<<"\n===================================\n";
-    Graph Graph1(10,17);
+    Graph Graph1(20,32);
     Graph1.GenerateGraph(9);
     
-    //MST_prim(Graph1.GetDistancesMatrix());
-    //MST_kruskal(Graph1.ListOfEdges(),Graph1.GetNoVertex());
+    MST_prim(Graph1.GetDistancesMatrix());
+    MST_kruskal(Graph1.ListOfEdges(),Graph1.GetNoVertex());
     
     //SPG_dijkstra(Graph1.GetDistancesMatrix());
     //SPG_floyd(Graph1.GetDistancesMatrix());
