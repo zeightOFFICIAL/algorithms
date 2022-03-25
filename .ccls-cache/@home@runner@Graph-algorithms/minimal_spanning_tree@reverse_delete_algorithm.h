@@ -1,1 +1,0 @@
-int MST_redelete(int** Array, int NoVertex);
