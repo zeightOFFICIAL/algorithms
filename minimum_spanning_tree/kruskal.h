@@ -11,4 +11,4 @@ public:
     int find(int i);
 };
 
-int MST_kruskal(std::vector<std::vector<int>> EdgeList, int NoVertex);
+int MSTKruskal(std::vector<std::vector<int>> EdgeList, int NoVertex);

@@ -1,4 +1,5 @@
 #include <iostream>
 #include <vector>
 
-void SPGFloyd(std::vector<std::vector<int>> DistancesMatrix);
+std::vector<std::vector<int>> SPGFloydTable(std::vector<std::vector<int>> distance_matrix);
+void SPGFloydTablePrint(std::vector<std::vector<int>> distance_matrix);

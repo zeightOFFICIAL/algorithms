@@ -13,7 +13,7 @@ minimum spanning tree and shortest route:
 - Johnson's algorithm (SPG)
 main.cpp
 26.03.2022
-ver 0.9
+ver 1.03
 */
 
 #include <iostream>
@@ -29,8 +29,10 @@ ver 0.9
 
 using std::cout;
 
-int main() {
-cout<<"Start."<<"\n";
+int main() 
+{
+    //clock_t t; t = clock(); t = clock() - t;  cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<endl;
+    cout<<"Start."<<"\n"; //......................................... 
     Graph Graph1;
     Graph1.GenerateGraph(10,25,7);
     //Graph1.LoadGraph("test.txt");
@@ -41,8 +43,8 @@ cout<<"Start."<<"\n";
     //MST_prim(Graph1.GetDistancesMatrix());
     //MST_kruskal(Graph1.GetEdgesList(),Graph1.GetNumberVertices());
     
-    //SPGDijkstra(Graph1.GetDistancesMatrix());
+    SPGDijkstraTablePrint(Graph1.GetDistancesMatrix());
     //SPGFloyd(Graph1.GetDistancesMatrix());
     //SPGJohnson(Graph1.GetDistancesMatrix());
-    cout<<"End."<<"\n"; 
+    cout<<"End."<<"\n"; //..........................................
 }

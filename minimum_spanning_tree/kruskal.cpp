@@ -36,16 +36,16 @@ void DSU::unite(int x, int y) {
         }
     }
 
-int MST_kruskal(vector<vector<int>> EdgeList, int NoVertex)
+int MSTKruskal(vector<vector<int>> edges_list, int number_of_vertex)
 {
-    sort(EdgeList.begin(),EdgeList.end());
-    DSU s(NoVertex);
+    sort(edges_list.begin(),edges_list.end());
+    DSU s(number_of_vertex);
     int MinCost = 0;
     clock_t t;
     t = clock();
     
     cout<<"2.2 Kruskal's MST\nEdge: \tWeight:\n";  
-    for (auto edge : EdgeList) {
+    for (auto edge : edges_list) {
             int w = edge[0];
             int x = edge[1];
             int y = edge[2];

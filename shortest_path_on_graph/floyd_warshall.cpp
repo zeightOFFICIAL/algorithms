@@ -1,17 +1,23 @@
 #include <iostream>
 #include <vector>
+
+//delete ................
 #include <ctime>
+//.......................
 
 #include "floyd_warshall.h"
 #include "limits.h"
 
-using namespace std;
+using std::cout, std::vector;
 
-void SPGFloyd(vector<vector<int>> distances_matrix) 
+vector<vector<int>> SPGFloydTable(vector<vector<int>> distances_matrix) 
 {
-    int number_of_vertex = distances_matrix.size();
-    int map[number_of_vertex][number_of_vertex], i, j, k;
+    int number_of_vertex = distances_matrix.size(), i, j, k;
+    vector<vector<int>> map;
+    map.resize(number_of_vertex,vector<int>(number_of_vertex, 0));
+    //.............
     clock_t t;
+    //.............
     
     for (i = 0; i < number_of_vertex; i++)
         for (j = 0; j < number_of_vertex; j++) {
@@ -22,7 +28,9 @@ void SPGFloyd(vector<vector<int>> distances_matrix)
                 else
                     map[i][j] = distances_matrix[i][j];
                 }
+    //.............
     t = clock();
+    //.............
     for (k = 0; k < number_of_vertex; k++)
         for (i = 0; i < number_of_vertex; i++)
             for (j = 0; j < number_of_vertex; j++)  {
@@ -30,12 +38,22 @@ void SPGFloyd(vector<vector<int>> distances_matrix)
                         (map[k][j]!=INT_MAX && map[i][k]!=INT_MAX))
                         map[i][j]=map[i][k]+map[k][j];
                 }
+    //.............
     t = clock() - t;
-    cout<<"3.2 Floyd-Warshall's SPG\n";  
-    for (i = 0; i < number_of_vertex; i++)  {
-            for (k = 0; k < number_of_vertex; k++)
-                cout<<map[i][k]<<", ";
-            cout<<endl; 
+    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
+    //.............
+    return map;
+}
+
+void SPGFloydTablePrint(vector<vector<int>> distances_matrix)
+{
+    int number_of_vertices = distances_matrix.size();
+    vector<vector<int>> SPG_floyd_table;
+    SPG_floyd_table = SPGFloydTable(distances_matrix);
+    
+    for (int j = 0; j < number_of_vertices; j++) {
+        for (int l = 0; l < number_of_vertices; l++)
+             cout<<SPG_floyd_table[j][l]<<", ";
+        cout<<"\n"; 
         }
-    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<endl;
 }

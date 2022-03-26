@@ -1,4 +1,5 @@
 #include <iostream>
 #include <vector>
 
-void SPGJohnson(std::vector<std::vector<int>> DistancesMatrix);
+std::vector<std::vector<int>> SPGJohnsonTable(std::vector<std::vector<int>> distances_matrix);
+void SPGJohnsonTablePrint(std::vector<std::vector<int>> distances_matrix);
