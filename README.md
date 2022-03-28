@@ -1,7 +1,7 @@
-# Sorting_algorithms
-Comparison of sorting algorithms (by time and complexity) 
+# Sorting algorithms
+Comparison of sorting algorithms
 
-* Version 1.15
+* Version 1.17
 
 ### main.cpp (iostream, fstream, random)
 - Generate an array with truly random numbers
@@ -14,6 +14,8 @@ Comparison of sorting algorithms (by time and complexity)
 - Bubble sort
 - Heap sort
 - Insertion sort
+
+
 -   Swap values using pointers function
 -   Heapify (max heap) function
 -   Write all the sorts by side in the file. In order examine their correct work

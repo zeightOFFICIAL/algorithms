@@ -8,15 +8,18 @@ Sorting algorithms
 - Heap sort
 - Insertion sort
 main.cpp
-23.03.2022
-ver 1.16
+28.03.2022
+ver 1.1801
 */
 
 #include <iostream>
 #include <fstream>
 #include <random>
 
-#include "sortingalgorithms.h"
+//#include "sortingalgorithms.h"
+#include "sorting/heap_sort.h"
+#include "sorting/bubble_sort.h"
+#include "sorting/insertion_sort.h"
 
 using std::cout, std::cin, std::ios, std::ofstream, std::ifstream, std::string;
 const unsigned long int EXTREME_LENGTH = 10000000; 
@@ -97,17 +100,17 @@ int *GenerateArrayFile(string path, int &amount_of_elements)
     return array;
 }
 
-void PrintArray(int* array, int amount_of_elements)
+void PrintArray(long double* array, unsigned long amount_of_elements)
 {
     for (auto i = 0; i < amount_of_elements; i++)
         cout<<"i: "<<i<<" Value: "<<array[i]<<"\n";
 }
-
 //============================================================================
 
 int main() {
     int amount_of_elements = 15000, min_value = -15000, max_value = 15000;
-    int *array, *array_sorted1, *array_sorted2, *array_sorted3;
+    int* array;
+    clock_t t; // t = clock(); t = clock()-t; cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
     
     cout<<"Start."<<"\n"; //.................................................
 
@@ -117,10 +120,18 @@ int main() {
 
     //WriteArray(array,amount_of_elements,"presort");
     //PrintArray(array,amount_of_elements);
+
     
-    array_sorted1 = BubbleSort(array,amount_of_elements);
-    array_sorted2 = HeapSort(array,amount_of_elements);
-    array_sorted3 = InsertionSort(array,amount_of_elements);
+    
+    long double darray[7] = {2.56,0.9,0.13,0.99,2.567,2.9,3.1};
+    //int iarray[7] = {1,0,2,5,23,9,4};
+    HeapSort<long double>(darray,7);
+    //HeapSort<float>(farray,7);
+    PrintArray(darray,7);
+
+    //BubbleSort<int>(array,7);
+    //HeapSort(array,amount_of_elements);
+    //InsertionSort(array,amount_of_elements);
     
     //WriteArray(array_sorted1,amount_of_elements,"bubble");
     //WriteArray(array_sorted2,amount_of_elements,"heap");
