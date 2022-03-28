@@ -1,28 +1,21 @@
 # Sorting algorithms
 Comparison of sorting algorithms
 
-* Version 1.17
+* Version 1.18
 
-### main.cpp (iostream, fstream, random)
-- Generate an array with truly random numbers
-- Generate an array with custom numbers
-- Generate an array with numbers from file
-- Print a generated array in the console
+In computer science, a sorting algorithm is an algorithm that puts elements of a list into an order. The most frequently used orders are numerical order and lexicographical order, and either ascending or descending. Efficient sorting is important for optimizing the efficiency of other algorithms (such as search and merge algorithms) that require input data to be in sorted lists. Sorting is also often useful for canonicalizing data and for producing human-readable output.
 
+Currently available algorithms:
 
-### sortingalgorithms.cpp (iostream, fstream, ctime, string)
-- Bubble sort
-- Heap sort
-- Insertion sort
-
-
--   Swap values using pointers function
--   Heapify (max heap) function
--   Write all the sorts by side in the file. In order examine their correct work
--   Write one particular array in the file
+| Algorithm | Type | Complexity in worst case | Complexity in best case |
+| :---:              | :---:               | :---:  | :---:  |
+| Bubble sort        | Comparison of neighbors (exchanging)       | n^2  | n |
+| Heap sort          | Comparison of parent and child (selection) | n log(n) | n log(n) | 
+| Insertion sort     | Comparison of the row (insertion)          | n^2  | n |
 
 ---
-### Test results
+## Test results
+Totally random row of numbers
 
 | Number of elements (n) | Bubble sort (s) | Heap sort (s) | Insertion sort (s) |
 |     :---:              |     :---:       |     :---:     |       :---:        |
@@ -39,6 +32,4 @@ Comparison of sorting algorithms
 | 100000                 |     16.05213    |     0.013795  |       2.909558     |          
 | 150000                 |     35.10996	   |     0.021923	 |       6.769227     |
 
-| Time comparison |
-|       :---:     |
-| ![Screenshot from 2022-03-20 13 23 54](https://user-images.githubusercontent.com/50341618/159159898-ab00ac36-09a8-4dd3-b88a-f354eba14a54.png) |
+![Screenshot from 2022-03-20 13 23 54](https://user-images.githubusercontent.com/50341618/159159898-ab00ac36-09a8-4dd3-b88a-f354eba14a54.png)

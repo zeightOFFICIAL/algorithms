@@ -1,7 +1,8 @@
 #include "auxiliary.h"
+
 /*
     (T* A, unsigned long B)->()
-    Takes an array A with length of B and sorts it in 
+    Takes an array A (type T) with length of B and sorts it in 
     the ascending order, using bubble sorting. 
     Changes the array given as argument.
     >>BubbleSort(unsorted array, amount of elements)
