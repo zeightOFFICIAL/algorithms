@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <fstream>
 #include <ctime>
@@ -7,35 +8,7 @@
 using std::string, std::ios, std::ofstream, std::cin, std::cout;
 const int EXTREME_LENGTH = 1000000; 
 
-Occurances BoyerMoore(char* text, string pattern_string, int length)
-{
-    int count_occurances = 0, pattern_length = pattern_string.length(), s = 0;
-    clock_t t;
-    int* bad_char = new int[length];
-    static int occurance_points[EXTREME_LENGTH];
-    
-    t = clock();
-    ToolBadcharHeuristics(pattern_string,pattern_length,bad_char,length);
-    while (s <= (length - pattern_length))  {
-		auto j = pattern_length - 1;
-		while (j >= 0 && pattern_string[j] == text[s + j])
-		    --j;
-		if (j < 0) {
-            occurance_points[count_occurances] = s;
-            count_occurances++;
-			s += (s + pattern_length < length) ? pattern_length - bad_char[text[s + pattern_length]] : 1;
-		}
-		else
-			s += ToolMaxByValue(1, j - bad_char[text[s + j]]);
-	}
-    t = clock()-t;
-    cout<<"Boyer-Moore. Length: "<<length<<"\n";
-    cout<<"Total cases: "<<count_occurances<<"\n";
-    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
-    delete[] bad_char;
-    WriteOccurances(Occurances{occurance_points,count_occurances}, pattern_length, "boyer-moore");
-    return Occurances{occurance_points,count_occurances};
-}
+
 
 Occurances RabinKarp(char* text, string pattern_string, int length)
 {
@@ -135,4 +108,4 @@ void WriteOccurances(Occurances a, int pattern_length, string name)
     for (int i = 0; i < a.count_occurances; i++)
         file<<a.occurances_points[i]<<"  ["<<a.occurances_points[i]<<"..."<<a.occurances_points[i]+pattern_length-1<<"]"<<"\n";
     file.close();
-}
+}*/

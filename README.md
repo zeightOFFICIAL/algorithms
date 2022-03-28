@@ -1,28 +1,20 @@
-# String_searching_algorithms
-Comparison of string-searching algorithms (by time and complexity)
+# String-searching algorithms
+Comparison of string-searching algorithms
 
-* Version 1.15
+* Version 1.17
 
-### main.cpp (iostream, random, cstring, fstream)
-- Generate string (char[]) with truly random chars
-- Create custom (user) string (char[])
-- Create string (char[]) from custom txt file
-  
-- Print string (char[]) in the console
-- Print result (int[]) in the console
-- Write string (char[]) in the file
+In computer science, string-searching algorithms, sometimes called string-matching algorithms, are an important class of string algorithms that try to find a place where one or several strings (also called patterns) are found within a larger string or text.
 
-### substringalgorithms.cpp (iostream, fstream, ctime)
-- Boyer-Moore
-- Rabin-Karp
-- Naive algorithm  
-- Enveloper with custom text for each search algorithm
-- Bad char heuristics function
-- Max by value function
-- Write every occurances in the file
+Currently available algorithms:
+
+| Algorithm | Type | Complexity in worst case | Complexity in best case |
+| :---:              | :---:               | :---:  | :---:  |
+| Naive              | Simple indexing     | O(mn)  | O(mn)  |
+| Boyer-Moore (1977) | Bad char heuristics | O(mn)  | O(n)   | 
+| Rabin-Karp (1987)  | Hashing             | O(mn)  | O(m+n) |
 
 ---
-## 1.1 Test with random string.
+## 1.1 Test with random string
 - The power of alphabet is 63 symbols (upper, lower-case latin, numbers)
 - Length is adjustible
 - Searched pattern is ('ab')
@@ -38,18 +30,3 @@ Comparison of string-searching algorithms (by time and complexity)
 | 100000                 |     0.000361	   |     0.000851	 |       0.000162     |   
 | 150000                 |     0.000508	   |     0.001233	 |       0.000205     |   
 | 200000                 |     0.000732	   |     0.001701	 |       0.000347     |
-
-| Time comparison |
-| :---: |
-| ![Screenshot from 2022-03-21 14 52 33](https://user-images.githubusercontent.com/50341618/159264695-68fe01c6-8720-4ace-8846-ad6681244dfb.png)      |
-
----
-## 1.2 Test with html page.
-- The power of alphabet is 256 symbols (all ascii symbols)
-- Length is dependable (3985 in processed part of the text)
-- Text is part of wiki's page considering web-scraping
-
-| Word (occurances)  | Boyer-Moore (s) | Rabin-Karp (s) | Naive algorihm (s) |
-|     :---:              |     :---:       |     :---:       |       :---:        |
-| the (42)     | 0.000017        | 0.000041       | 0.000017           |
-| HTML (2)     | 0.000013        | 0.000037       | 0.000011           |               

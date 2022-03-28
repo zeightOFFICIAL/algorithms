@@ -1,28 +1,17 @@
-#include <string>
+
+//#include <string>
 
 /**
     struct (int* A, int B)
     Structure which stores the return result
     of the substring-search algorithms. Meaning
     total amount of occurances plus the actual points.
-*/
+
 struct Occurances  {
     int* occurances_points;
     int count_occurances; 
 };
-
-/**
-    (char* A, char* B, int C) -> (int* D, int E)
-    Takes an A array of chars (string), the pattern B
-    (string) and the length C of array A 
-    as the arguments. Finds pattern string B in the 
-    text char* A with length of B, using 
-    Boyer-Moore algorithm. Returns the int* D, 
-    meaning array of each occurance of B in A
-    and amount of occurances. In struct.
-    >>BoyerMoore(array, pattern ,length)
 */
-Occurances BoyerMoore(char* text, std::string pattern_string, int length);
 
 /**
     (char* A, char* B, int C) -> (int* D, int E)
@@ -35,7 +24,7 @@ Occurances BoyerMoore(char* text, std::string pattern_string, int length);
     and amount of occurances. In struct.
     >>RabinKarp(array, pattern ,length)
 */
-Occurances RabinKarp(char* text, std::string pattern_string, int length);
+//Occurances RabinKarp(char* text, std::string pattern_string, int length);
 
 /**
     (char* A, char* B, int C) -> (int* D, int E)
@@ -48,7 +37,7 @@ Occurances RabinKarp(char* text, std::string pattern_string, int length);
     and amount of occurances. In struct.
     >>NaiveSubstring(array, pattern ,length)
 */
-Occurances NaiveSubstring(char* text, std::string pattern_string, int length);
+//Occurances NaiveSubstring(char* text, std::string pattern_string, int length);
 
 //=================================================================
 
@@ -62,7 +51,7 @@ Occurances NaiveSubstring(char* text, std::string pattern_string, int length);
     >>Enter a pattern:
     >>hello
 */
-Occurances EveloperWithCustomText(char* text,int length,Occurances(*func)(char*,std::string,int));
+//Occurances EveloperWithCustomText(char* text,int length,Occurances(*func)(char*,std::string,int));
 
 /**
     (string A, int B, int* C, int D) -> ()
@@ -84,7 +73,7 @@ Occurances EveloperWithCustomText(char* text,int length,Occurances(*func)(char*,
     >>ToolBadcharHeuristics(pattern, pattern length, badchar table, length)
     <<
 */
-void ToolBadcharHeuristics(std::string array, int pattern_length, int* bad_char, int length);
+//void ToolBadcharHeuristics(std::string array, int pattern_length, int* bad_char, int length);
 
 /**
     (int A, int B) -> (int C)
@@ -92,7 +81,7 @@ void ToolBadcharHeuristics(std::string array, int pattern_length, int* bad_char,
     >>ToolMaxByValue(5,6);
     <<6
 */
-int ToolMaxByValue(int a, int b);
+//int ToolMaxByValue(int a, int b);
 
 /**
     (struct A, int B, string C) -> ()
@@ -101,4 +90,4 @@ int ToolMaxByValue(int a, int b);
     file (exodus/{C}.txt). Returns nothing.
     >>WriteOccurances(a,pattern length, name of file)
 */
-void WriteOccurances(Occurances a, int pattern_length, std::string name);
+//void WriteOccurances(Occurances a, int pattern_length, std::string name);
