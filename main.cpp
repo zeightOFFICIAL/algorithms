@@ -9,7 +9,7 @@ String-searching algorithms
  - Naive
 main.cpp
 28.03.2022
-ver 1.171
+ver 1.171 cut
 */
 
 #include <iostream>
