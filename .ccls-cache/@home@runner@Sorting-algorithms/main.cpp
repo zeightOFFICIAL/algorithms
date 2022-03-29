@@ -27,14 +27,13 @@ using std::cout, std::cin, std::ios, std::ofstream, std::ifstream, std::string;
 //============================================================================
 int main() {
     int min_value = -15000, max_value = 15000;
-    unsigned long amount_of_elements = 10000;
+    unsigned long amount_of_elements = 25000;
     long long* array;
-    float* farray, *farray2, *farray3;
     clock_t t; // t = clock(); t = clock()-t; cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
     
     cout<<"Start."<<"\n"; //.................................................
 
-    array = GenerateRandomArray<long long>(amount_of_elements,max_value,min_value);
+    //array = GenerateRandomArray<long long>(amount_of_elements,max_value,min_value);
     //farray = GenerateCustomArray<float>(amount_of_elements);
     //array = GenerateArrayFile("test.txt", amount_of_elements);
     
@@ -47,7 +46,7 @@ int main() {
     //BubbleSort(farray, amount_of_elements);
     //HeapSort(farray, amount_of_elements);
     //InsertionSort(farray,amount_of_elements);
-    StoogeSort(array,amount_of_elements);
+    //StoogeSort(array,amount_of_elements);
 
     //WriteProof("test.txt",farray,farray2,farray3,amount_of_elements);
 
