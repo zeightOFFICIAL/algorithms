@@ -8,6 +8,9 @@ vector<unsigned long> RabinKarp(char* text, string pattern_string, unsigned long
     int d = 7, q = 7, pattern_length = pattern_string.length();
     int hashP, hashS, h = 1, j;
     vector<unsigned long> occurance_points;
+
+    if (pattern_length==0)
+        return occurance_points;
   
     for (auto i = 0; i < pattern_length - 1; i++)
         h = (h * d) % q;

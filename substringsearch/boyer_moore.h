@@ -33,12 +33,12 @@ std::vector<unsigned long> BoyerMoore(char* text, std::string pattern_string, un
     Returns nothing.
     >>ToolBadcharHeuristics(pattern, pattern length, badchar table, length)
 */
-void ToolBadcharHeuristics(std::string array, int pattern_length, int* bad_char, unsigned long  length);
+void ToolBadcharHeuristics(std::string array, int pattern_length, int* bad_char, unsigned long length);
 
 /*
-    (int A, int B) -> (int C)
+    (int64 A, int64 B) -> (int64 C)
     Returns C biggest of values A and B
     >>ToolMaxByValue(5,6);
     <<6
 */
-int ToolMaxByValue(int a, int b);
+long long ToolMaxByValue(long long a, long long b);

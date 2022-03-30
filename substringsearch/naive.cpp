@@ -7,6 +7,9 @@ vector<unsigned long> NaiveSearch(char* text, string pattern_string, unsigned lo
 {
     int pattern_length = pattern_string.length();
     vector<unsigned long> occurance_points;
+
+    if (pattern_length==0)
+        return occurance_points;
     
     for (int i = 0; i <= length - pattern_length; i++)  {
         int j;

@@ -6,7 +6,7 @@
     Takes an A arary of chars (string), the pattern B,
     std::string and the length C of the array A as
     the arguments. Finds pattern std::string B in the
-    text char* A with length ob C, using Rabin-Karp
+    text char* A with length of C, using Rabin-Karp
     algorithm. Returns vector<ulong> D which 
     stores every point of occurance of the pattern 
     in text.

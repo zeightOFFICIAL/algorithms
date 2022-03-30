@@ -1,17 +1,18 @@
 #include <vector>
 #include "boyer_moore.h"
 
+
 using std::string, std::vector;
 
 vector<unsigned long> BoyerMoore(char* text, string pattern_string, unsigned long length)
 {
-    int pattern_length = pattern_string.length(), s = 0;
-    int* bad_char = new int[length];
+    int pattern_length = pattern_string.length(), *bad_char = new int[256];
+    long long s = 0, j;
     vector<unsigned long> occurance_points;
     
     ToolBadcharHeuristics(pattern_string,pattern_length,bad_char,length);
     while (s <= (length - pattern_length))  {
-		auto j = pattern_length - 1;
+		j = pattern_length - 1;
 		while (j >= 0 && pattern_string[j] == text[s + j])
 		    --j;
 		if (j < 0)  {
@@ -25,14 +26,14 @@ vector<unsigned long> BoyerMoore(char* text, string pattern_string, unsigned lon
     return occurance_points;
 }
 
-void ToolBadcharHeuristics(string array, int pattern_length, int* bad_char, unsigned long  length)
+void ToolBadcharHeuristics(string array, int pattern_length, int* bad_char, unsigned long length)
 {
-    for (unsigned long i = 0; i < length; i++)
+    for (unsigned long i = 0; i < 256; i++)
 		bad_char[i] = -1;
 	for (unsigned long i = 0; i < pattern_length; i++)
 		bad_char[(int)array[i]] = i;
 }
 
-int ToolMaxByValue(int a, int b)  {
+long long ToolMaxByValue(long long a, long long b)  {
     return a >= b ? a : b;
 }
