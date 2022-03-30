@@ -40,6 +40,7 @@ The power of alphabet is 256 symbols (all ASCII). Length, searched pattern are l
 |2| Novel "Stand" by Stephen King  | 2659099 | 'the' | 30784* |
 |3| Novel "Stand" by Stephen King  | 2659099 | 'Permacover' | 4 |
 |4| Novel "Stand" by Stephen King  | 2659099 | 'He and Larry sat on the' | 1 |
+
 \* Bitap algorithm found 30802 occurrences. It is rather caused by extended symbols which have the same ASCII number as the ones used in pattern.
 
 
