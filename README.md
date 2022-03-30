@@ -9,10 +9,10 @@ Currently available algorithms:
 
 | Algorithm | Type | Complexity in worst case | Complexity in best case |
 | :---:              | :---:               | :---:  | :---:  |
-| Bubble sort        | Comparison of neighbors (exchanging)       | n^2  | n |
-| Heap sort          | Comparison of parent and child (selection) | n log(n) | n log(n) | 
-| Insertion sort     | Comparison of the row (insertion)          | n^2  | n |
-| Stooge sort        | Comparison of first and last (exchanging)  | n^(log(3)/log(1.5)) | n^(log(3)/log(1.5)) |
+| Bubble sort        | Comparison of neighbors (exchanging)       | O(n^2)  | O(n) |
+| Heap sort          | Comparison of parent and child (selection) | O(n log(n)) | O(n log(n)) | 
+| Insertion sort     | Comparison of the row (insertion)          | O(n^2)  | O(n) |
+| Stooge sort        | Comparison of first and last (exchanging)  | O(n^(log(3)/log(1.5))) | O(n^(log(3)/log(1.5))) |
 
 ---
 ## Test results
