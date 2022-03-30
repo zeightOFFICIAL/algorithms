@@ -1,7 +1,7 @@
 # Sorting algorithms
 Comparison of sorting algorithms
 
-* Version 1.18
+* Version 1.19
 
 In computer science, a sorting algorithm is an algorithm that puts elements of a list into an order. The most frequently used orders are numerical order and lexicographical order, and either ascending or descending. Efficient sorting is important for optimizing the efficiency of other algorithms (such as search and merge algorithms) that require input data to be in sorted lists. Sorting is also often useful for canonicalizing data and for producing human-readable output.
 
@@ -9,10 +9,10 @@ Currently available algorithms:
 
 | Algorithm | Type | Complexity in worst case | Complexity in best case |
 | :---:              | :---:               | :---:  | :---:  |
-| Bubble sort        | Comparison of neighbors (exchanging)       | n^2  | n |
-| Heap sort          | Comparison of parent and child (selection) | n log(n) | n log(n) | 
-| Insertion sort     | Comparison of the row (insertion)          | n^2  | n |
-| Stooge sort        | Comparison of first and last (exchanging)  | n^(log(3)/log(1.5)) | n^(log(3)/log(1.5)) |
+| Bubble sort        | Comparison of neighbors (exchanging)       | O(n^2)  | O(n) |
+| Heap sort          | Comparison of parent and child (selection) | O(n log(n)) | O(n log(n)) | 
+| Insertion sort     | Comparison of the row (insertion)          | O(n^2)  | O(n) |
+| Stooge sort        | Comparison of first and last (exchanging)  | O(n^(log(3)/log(1.5))) | O(n^(log(3)/log(1.5))) |
 
 ---
 ## Test results

@@ -9,8 +9,8 @@ Sorting algorithms
 - Insertion sort
 - Stooge sort
 main.cpp
-29.03.2022
-ver 1.19
+30.03.2022
+ver 1.1905
 */
 
 #include <iostream>
