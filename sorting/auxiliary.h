@@ -5,7 +5,6 @@
 #include <fstream>
 #include <string>
 
-using std::cout, std::cin, std::string, std::ifstream, std::ofstream, std::ios;
 const unsigned long int EXTREME_LENGTH = 10000000;
 
 /*
@@ -27,14 +26,14 @@ void ToolSwapByPointer(T *left_element, T *right_element)  {
     numbers. Seeds of the random numbers are equal to current time.
     Each value is generated within range of B...C
     Returns the array.
-    >>GenerateRandomArray(Amount of elements, max value, min value)
+    >>GenerateRandomArray(amount of elements, max value, min value)
 */
 template <typename T>
 T *GenerateRandomArray(unsigned long amount_of_elements, long max_value, long min_value)
 {    
     static T array[EXTREME_LENGTH];
     srand((int)time(0));   
-    for (int i = 0; i < amount_of_elements; i++)
+    for (unsigned long i = 0; i < amount_of_elements; i++)
         array[i]=static_cast<T>(rand()%(max_value-min_value)+min_value);
     return array;
 }
@@ -50,12 +49,12 @@ T *GenerateRandomArray(unsigned long amount_of_elements, long max_value, long mi
 template <typename T>
 void PrintArray(T* array, unsigned long amount_of_elements)
 {
-    for (auto i = 0; i < amount_of_elements; i++)
-        cout<<"i: "<<i<<" Value: "<<array[i]<<"\n";
+    for (unsigned long i = 0; i < amount_of_elements; i++)
+        std::cout<<"i: "<<i<<" Value: "<<array[i]<<"\n";
 }
 
 /*
-    (T A)->(T A[])->(T*)
+    (ulong A)->(T A[])->(T*)
     Creates the array, with the length of A, using custom (user's)
     numbers.
     Returns the array.
@@ -68,30 +67,30 @@ T *GenerateCustomArray(unsigned long amount_of_elements)
 {     
     static T array[EXTREME_LENGTH];
     T this_element = 0;
-    for (auto i = 0; i < amount_of_elements; i++)  {   
-            cout<<"Input element with index "<<i<<": ";
-            cin>>this_element;
+    for (unsigned long i = 0; i < amount_of_elements; i++)  {   
+            std::cout<<"Input element with index "<<i<<": ";
+            std::cin>>this_element;
             array[i]=this_element;
         }
     return array;
 }
 
 /*
-    (string A, ulong &B)->(long long*)
+    (string A, ulong &B)->(long long* C)
     Creates the array, taking all the numbers from the file.
     File location is string A, Variable B responds for 
-    amount of elements in the array. Return the array.
+    amount of elements in the array. Return the array C.
     >>GenerateArrayFile("test.txt",Amount of elements)
 */
-long long *GenerateArrayFile(string filename, unsigned long &amount_of_elements)
+long long *GenerateArrayFile(std::string filename, unsigned long &amount_of_elements)
 {
     static long long array[EXTREME_LENGTH];
     long long this_number, amount_of_elements_local = 0;
-    string this_string;
-    ifstream file;
+    std::string this_string;
+    std::ifstream file;
     file.open(filename);
 	if (!file)
-		cout << "No such file.";
+		std::cout << "No such file.";
 	else  {
             while (getline (file, this_string)) {
             this_number=stoll(this_string);
@@ -114,21 +113,21 @@ long long *GenerateArrayFile(string filename, unsigned long &amount_of_elements)
     >>WriteProof("test.txt",array1,array2,array3,amount of elements)
 */
 template <typename T> 
-void WriteProof(string filename, T* array, T* array2, T* array3, unsigned long amount_of_elements)
+void WriteProof(std::string filename, T* array, T* array2, T* array3, unsigned long amount_of_elements)
 {
-    ofstream file;
-    file.open(filename, ios::trunc);
+    std::ofstream file;
+    file.open(filename, std::ios::trunc);
 	if (!file)
-		cout << "No such file.";
+		std::cout << "No such file.";
 	else  {
         file<<"The only proof of the correctness of all\nthese sorting algorithms is actual exactness\nof how they've performed. The equality of\nsorted arrays proves so.\n1st method\t2nd method\t3rd method\n";
-        for (auto i = 0; i < amount_of_elements; i++)
+        for (unsigned long i = 0; i < amount_of_elements; i++)
         file<<array[i]<<"\t"<<array2[i]<<"\t"<<array3[i]<<"\n";
         }
     file.close();
 }
 
-/**
+/*
     (string A, T* B, ulong C)->()
     Prints all values of the array B with length of C
     in file with path A.
@@ -136,14 +135,14 @@ void WriteProof(string filename, T* array, T* array2, T* array3, unsigned long a
     >>WriteArray("test.txt", array ,Amount of elements)
 */
 template <typename T> 
-void WriteArray(string filename, T* array, unsigned long amount_of_elements)
+void WriteArray(std::string filename, T* array, unsigned long amount_of_elements)
 {
-    ofstream file;
-    file.open(filename, ios::trunc);
+    std::ofstream file;
+    file.open(filename, std::ios::trunc);
 	if (!file)
-		cout << "No such file.";
+		std::cout << "No such file.";
 	else
-        for (auto i = 0; i < amount_of_elements; i++)
+        for (unsigned long i = 0; i < amount_of_elements; i++)
             file<<array[i]<<"\n";
     file.close();
 }
