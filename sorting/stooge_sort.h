@@ -1,7 +1,7 @@
 #include "auxiliary.h"
 
 /*
-    (T* A, unsigned int B. unsigned long C)->()
+    (T* A, ulong B. ulong C)->()
     Takes an array A with range of B..C and sorts it in 
     the ascending order, using stooge sorting. 
     Changes the array given as argument.

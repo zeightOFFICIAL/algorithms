@@ -1,7 +1,7 @@
 #include "auxiliary.h"
 
 /*
-    (T* A, long long int B, long long C) -> ()
+    (T* A, long long B, long long C) -> ()
     In order for heapsort to work properly, firstly we need to
     build the max heap tree, with maximum value at the vertex.
     Generally, speaking tree must be in decreasing order.

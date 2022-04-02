@@ -1,4 +1,4 @@
-/* 
+/*
 Saint Petersburg State University of Telecommunications (SPBSUT)
 IKPI-04
 Saganenko A.V
@@ -8,9 +8,10 @@ Sorting algorithms
 - Heap sort
 - Insertion sort
 - Stooge sort
+Clang++ 12
 main.cpp
-30.03.2022
-ver 1.1905
+02.04.2022
+ver 1.193
 */
 
 #include <iostream>
@@ -22,16 +23,14 @@ ver 1.1905
 #include "sorting/insertion_sort.h"
 #include "sorting/stooge_sort.h"
 
-using std::cout, std::cin, std::ios, std::ofstream, std::ifstream, std::string;
-
 //============================================================================
 int main() {
     int min_value = -15000, max_value = 15000;
-    unsigned long amount_of_elements = 25000;
+    unsigned long amount_of_elements = 5000;
     long long* array;
     clock_t t; // t = clock(); t = clock()-t; cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
     
-    cout<<"Start."<<"\n"; //.................................................
+    std::cout<<"Start."<<"\n"; //.................................................
 
     //array = GenerateRandomArray<long long>(amount_of_elements,max_value,min_value);
     //farray = GenerateCustomArray<float>(amount_of_elements);
@@ -52,20 +51,42 @@ int main() {
 
     //.....................................................................................
     /*
-    long double alltime = 0;
+    long double alltime = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0;
     int tries;
-    for(tries = 0; tries < 100; tries++)
+    std::cin >> amount_of_elements;
+    for(tries = 0; tries < 1; tries++)
         {
             array = GenerateRandomArray<long long>(amount_of_elements,max_value,min_value);
             t = clock();
             BubbleSort(array, amount_of_elements);
             t = clock()-t;
             alltime = alltime + ((float)t)/CLOCKS_PER_SEC;
+
+            array = GenerateRandomArray<long long>(amount_of_elements, max_value, min_value);
+            t = clock();
+            HeapSort(array, amount_of_elements);
+            t = clock() - t;
+            alltime2 = alltime2 + ((float)t) / CLOCKS_PER_SEC;
+
+            array = GenerateRandomArray<long long>(amount_of_elements, max_value, min_value);
+            t = clock();
+            InsertionSort(array, amount_of_elements);
+            t = clock() - t;
+            alltime3 = alltime3 + ((float)t) / CLOCKS_PER_SEC;
+
+            array = GenerateRandomArray<long long>(amount_of_elements, max_value, min_value);
+            t = clock();
+            StoogeSort(array, amount_of_elements);
+            t = clock() - t;
+            alltime4 = alltime4 + ((float)t) / CLOCKS_PER_SEC;
         }
-    cout<<"Average time: "<<alltime/tries<<" seconds"<<"\n";
+    std::cout << "Average time: " <<  alltime / tries << " seconds" << "\n";
+    std::cout << "Average time: " << alltime2 / tries << " seconds" << "\n";
+    std::cout << "Average time: " << alltime3 / tries << " seconds" << "\n";
+    std::cout << "Average time: " << alltime4 / tries << " seconds" << "\n";
     */
     //.....................................................................................
     
-    cout<<"End."<<"\n";  //.................................................
+    std::cout<<"End."<<"\n";  //.................................................
     return 0;
 }
