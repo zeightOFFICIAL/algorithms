@@ -4,13 +4,13 @@ IKPI-04
 Saganenko A.V
 Lab 2
 String-searching algorithms
- - Boyer–Moore
- - Rabin-Karp
- - Bitap
- - Naive
+- Boyer–Moore
+- Rabin-Karp
+- Naive
+- Bitap
 main.cpp
-30.03.2022
-ver 1.18
+03.04.2022
+ver 1.1850
 */
 
 #include <iostream>
@@ -23,14 +23,12 @@ ver 1.18
 #include "substringsearch/rabin_karp.h"
 #include "substringsearch/bitap.h"
 
-using std::cout, std::vector;
-
 int main() {
     char* array;
-    vector<unsigned long> occurrences;
+    std::vector<unsigned long> occurrences;
     clock_t t;
     
-    cout<<"Start."<<"\n";
+    std::cout<<"Start."<<"\n";
     //...............................................
     
     //array = GenerateRandomString(length,2);
@@ -81,33 +79,34 @@ int main() {
             t = clock()-t;
             alltime4 = alltime4 + ((float)t)/CLOCKS_PER_SEC;
         }
-    cout<<"Average time: "<<alltime/tries<<" seconds"<<"\n";
-    cout<<"Average time: "<<alltime2/tries<<" seconds"<<"\n";
-    cout<<"Average time: "<<alltime3/tries<<" seconds"<<"\n";
-    cout<<"Average time: "<<alltime4/tries<<" seconds"<<"\n";
+    std::cout<<"Average time: "<<alltime/tries<<" seconds"<<"\n";
+    std::cout<<"Average time: "<<alltime2/tries<<" seconds"<<"\n";
+    std::cout<<"Average time: "<<alltime3/tries<<" seconds"<<"\n";
+    std::cout<<"Average time: "<<alltime4/tries<<" seconds"<<"\n";
     */
     //.....................................................................................
     //.....................................................................................
-    
+    /*
     unsigned long length;
     int tries;
     long double alltime = 0;
     array = GenerateArrayFile("test.txt",length);
-    for(tries = 0; tries < 1000; tries++)
+    for(tries = 0; tries < 100; tries++)
         {
             t = clock();
-            occurrences = NaiveSearch(array,"The dark man had set his guardposts all along the eastern border of Oregon. The largest was at Ontario, where I-80 crosses over from Idaho; there were six men there, quartered in the trailer of a large Peterbilt truck.",length);
+            occurrences = Bitap(array,"His rifle was leaning against the rock beside him. He picked it up, flicked off the safety catch, and then put it down again, a little closer to hand. ", length);
             t = clock()-t;
             alltime = alltime + ((float)t)/CLOCKS_PER_SEC;
         }
-    cout<<"Average time: "<<alltime/tries<<" seconds"<<"\n";
-    cout<<occurrences.size()<<"\n";
-    cout<<length<<"\n";
+    std::cout<<"Average time: "<<alltime/tries<<" seconds"<<"\n";
+    std::cout<<occurrences.size()<<"\n";
+    std::cout<<length<<"\n";
+    */
     //.....................................................................................
     
     
     //...............................................
-    cout<<"End."<<"\n";   
+    std::cout<<"End."<<"\n";   
     
     return 0;
 }
