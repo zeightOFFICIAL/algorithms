@@ -1,12 +1,15 @@
 //use only for testing of the program's work
 //for version 1.19
 
+#include <iostream>
+
 #include "auxiliary.h"
 
 #include "heap_sort.h"
 #include "bubble_sort.h"
 #include "insertion_sort.h"
 #include "stooge_sort.h"
+
 
 void fulltest(unsigned long amount_of_elements, int tries)
 {
@@ -15,7 +18,7 @@ void fulltest(unsigned long amount_of_elements, int tries)
     clock_t t; //getting current time    
     int min_value = -15000, max_value = 15000; //intervals of generating numbers
     
-    for(tries = 0; tries < 1; tries++)
+    for(int local_tries = 0; local_tries < tries; local_tries++)
         {
             array = GenerateRandomArray<long long>(amount_of_elements,max_value,min_value);
             t = clock();
@@ -41,8 +44,9 @@ void fulltest(unsigned long amount_of_elements, int tries)
             t = clock() - t;
             alltime4 = alltime4 + ((float)t) / CLOCKS_PER_SEC;
         }
-    std::cout << "Average time: " <<  alltime / tries << " seconds" << "\n";
-    std::cout << "Average time: " << alltime2 / tries << " seconds" << "\n";
-    std::cout << "Average time: " << alltime3 / tries << " seconds" << "\n";
-    std::cout << "Average time: " << alltime4 / tries << " seconds" << "\n";
+    std::cout << "Bubble sort: Average time: " <<  alltime / tries << " seconds" << "\n";
+    std::cout << "Heap sort: Average time: " << alltime2 / tries << " seconds" << "\n";
+    std::cout << "Insertion sort: Average time: " << alltime3 / tries << " seconds" << "\n";
+    std::cout << "Stooge sort: Average time: " << alltime4 / tries << " seconds" << "\n";
+    std::cout << "Total tries: " << tries << "\n";
 }
