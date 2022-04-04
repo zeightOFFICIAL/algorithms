@@ -41,7 +41,7 @@ unsigned long long int BinaryEnveloper(unsigned long long int(*func)(unsigned lo
     R=func(x,y);
     t = clock()-t;
     cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
-    cout<<"GCD is: " << R << "\n";
+    cout<<"Result: " << R << "\n";
     return R;
 }
 

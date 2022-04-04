@@ -4,12 +4,13 @@ IKPI-04
 Saganenko A.V
 Lab 3
 Recursive and iterable algorithms
- - Fibonacci (recursion, iterative, tail-recursion)
- - Greatest common divisor (recursion, iterative)
- - Factorial (tail-recursion, iterative)
+- Fibonacci (recursion, iterative, tail-recursion)
+- Greatest common divisor (recursion, iterative)
+- Factorial (tail-recursion, iterative)
+- Sum of numbers in interval (tail-recursion)
 main.cpp
-31.03.2022
-ver 1.057
+04.04.2022
+ver 1.060
 */
 
 #include <iostream>
@@ -19,6 +20,7 @@ ver 1.057
 #include "recursion_vs_iteration/factorial.h"
 #include "recursion_vs_iteration/fibonacci.h"
 #include "recursion_vs_iteration/gcd.h"
+#include "recursion_vs_iteration/totalsum.h"
 
 using std::cout, std::cin;
 
@@ -37,6 +39,9 @@ int main()
     
     //cout<<BinaryEnveloper(&GCDIterative);
     //cout<<BinaryEnveloper(&GCDRecursive);
+    
+    //cout<<BinaryEnveloper(&SumIterative);
+    //cout<<BinaryEnveloper(&SumRecursive);
 
     //.....................................................................................
     /*
