@@ -32,9 +32,3 @@ Truly random row of numbers. For some algorithms this is the best case, for othe
 |75000|21.6597|0.0252|4.169|100000|
 |100000|35.9244|0.033|7.6735|225000|
 |150000|85.8114|0.0573|16.7438|700000|
-
-![image](https://user-images.githubusercontent.com/50341618/161387846-f9dce541-7e15-4999-8040-c0e0ae871f61.png)
-
-![image](https://user-images.githubusercontent.com/50341618/161387859-20ea8d8a-5c2c-4726-83be-2a026fd84567.png)
-
-
