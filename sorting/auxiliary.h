@@ -11,7 +11,7 @@ const unsigned long int EXTREME_LENGTH = 10000000;
     (T* A, T* B)->()
     Swaps element A with element B of an array, or other structure.
     Returns nothing.
-    >>ToolSwapByPointer(&array[K],&array[K+1])
+    >>ToolSwapByPointer(&array[K], &array[K+1])
 */
 template <typename T>
 void ToolSwapByPointer(T *left_element, T *right_element)  {
@@ -33,8 +33,8 @@ T *GenerateRandomArray(unsigned long amount_of_elements, long max_value, long mi
 {    
     static T array[EXTREME_LENGTH];
     srand((int)time(0));   
-    for (unsigned long i = 0; i < amount_of_elements; i++)
-        array[i]=static_cast<T>(rand()%(max_value-min_value)+min_value);
+    for (unsigned long index = 0; index < amount_of_elements; index++)
+        array[index]=static_cast<T>(rand()%(max_value-min_value)+min_value);
     return array;
 }
 
@@ -49,8 +49,8 @@ T *GenerateRandomArray(unsigned long amount_of_elements, long max_value, long mi
 template <typename T>
 void PrintArray(T* array, unsigned long amount_of_elements)
 {
-    for (unsigned long i = 0; i < amount_of_elements; i++)
-        std::cout<<"i: "<<i<<" Value: "<<array[i]<<"\n";
+    for (unsigned long index = 0; index < amount_of_elements; index++)
+        std::cout<<"i: "<<index<<" value: "<<array[index]<<"\n";
 }
 
 /*
@@ -67,10 +67,10 @@ T *GenerateCustomArray(unsigned long amount_of_elements)
 {     
     static T array[EXTREME_LENGTH];
     T this_element = 0;
-    for (unsigned long i = 0; i < amount_of_elements; i++)  {   
-            std::cout<<"Input element with index "<<i<<": ";
+    for (unsigned long index = 0; index < amount_of_elements; index++)  {   
+            std::cout<<"Input element with index "<<index<<": ";
             std::cin>>this_element;
-            array[i]=this_element;
+            array[index]=this_element;
         }
     return array;
 }
@@ -80,7 +80,7 @@ T *GenerateCustomArray(unsigned long amount_of_elements)
     Creates the array, taking all the numbers from the file.
     File location is string A, Variable B responds for 
     amount of elements in the array. Return the array C.
-    >>GenerateArrayFile("test.txt",Amount of elements)
+    >>GenerateArrayFile("test.txt", Amount of elements)
 */
 long long *GenerateArrayFile(std::string filename, unsigned long &amount_of_elements)
 {
@@ -90,7 +90,7 @@ long long *GenerateArrayFile(std::string filename, unsigned long &amount_of_elem
     std::ifstream file;
     file.open(filename);
 	if (!file)
-		std::cout << "No such file.";
+		std::cout << "wr: No such file.";
 	else  {
             while (getline (file, this_string)) {
             this_number=stoll(this_string);
@@ -110,7 +110,7 @@ long long *GenerateArrayFile(std::string filename, unsigned long &amount_of_elem
     Thus user can examine that all the
     algorithms are equally correct.
     Returns nothing.
-    >>WriteProof("test.txt",array1,array2,array3,amount of elements)
+    >>WriteProof("test.txt", array1, array2, array3, amount of elements)
 */
 template <typename T> 
 void WriteProof(std::string filename, T* array, T* array2, T* array3, unsigned long amount_of_elements)
@@ -118,11 +118,11 @@ void WriteProof(std::string filename, T* array, T* array2, T* array3, unsigned l
     std::ofstream file;
     file.open(filename, std::ios::trunc);
 	if (!file)
-		std::cout << "No such file.";
+		std::cout << "wr: No such file.";
 	else  {
         file<<"The only proof of the correctness of all\nthese sorting algorithms is actual exactness\nof how they've performed. The equality of\nsorted arrays proves so.\n1st method\t2nd method\t3rd method\n";
-        for (unsigned long i = 0; i < amount_of_elements; i++)
-        file<<array[i]<<"\t"<<array2[i]<<"\t"<<array3[i]<<"\n";
+        for (unsigned long index = 0; index < amount_of_elements; index++)
+        file<<array[index]<<"\t"<<array2[index]<<"\t"<<array3[index]<<"\n";
         }
     file.close();
 }
@@ -132,7 +132,7 @@ void WriteProof(std::string filename, T* array, T* array2, T* array3, unsigned l
     Prints all values of the array B with length of C
     in file with path A.
     Returns nothing.
-    >>WriteArray("test.txt", array ,Amount of elements)
+    >>WriteArray("test.txt", array, Amount of elements)
 */
 template <typename T> 
 void WriteArray(std::string filename, T* array, unsigned long amount_of_elements)
@@ -140,9 +140,9 @@ void WriteArray(std::string filename, T* array, unsigned long amount_of_elements
     std::ofstream file;
     file.open(filename, std::ios::trunc);
 	if (!file)
-		std::cout << "No such file.";
+		std::cout << "wr: No such file.";
 	else
-        for (unsigned long i = 0; i < amount_of_elements; i++)
-            file<<array[i]<<"\n";
+        for (unsigned long index = 0; index < amount_of_elements; index++)
+            file<<array[index]<<"\n";
     file.close();
 }

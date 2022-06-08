@@ -1,3 +1,5 @@
+#pragma once
+
 /*
     (T* A, unsigned int B)->()
     Takes an array A with length of B and sorts it in 
