@@ -9,7 +9,7 @@ Sorting algorithms
 - Gnome sort
 - Heap sort
 - Stooge sort
-originally build on
+originally bu
 Clang++ 12 (12.0.1)
 compatible with
 MSVC 142 (14.29)
