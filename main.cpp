@@ -11,7 +11,7 @@ Hashing algorithms
 Clang++ 12 (12.0.1)
 main.cpp
 15.06.2022
-ver 0.83
+ver 0.85
 */
 
 //for input and output
@@ -34,7 +34,8 @@ int main()
     //testing --------------------------------------------------------------------------------------------------------------
     std::chrono::steady_clock::time_point start, end, start2, end2, start3, end3, start4, end4; //time stamps
     long double alltime = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0; //time summers
-    std::string teststring = "hello world!"; //string for test
+    std::string teststring = "hellohellohellohellohellohelload"; //string for test
+    //                       "hellohellohellohellohellohhdddd"
     int tries, total_tries; //number of try, total tries 
     std::string result; //result string
     total_tries = 10;
