@@ -35,3 +35,11 @@ Truly random row of numbers. For some algorithms this is the best case, for othe
 |75000|39.785214|0.071666|5.579577|24.945645|?100000|
 |100000|70.872735|0.091089|9.431447|45.539161|?225000|
 |150000|158.558872|0.142775|22.109589|100.686872|?700000|
+
+![image](https://user-images.githubusercontent.com/50341618/173852649-9612c689-9c86-4904-bd17-c74e84d4ccfa.png)
+![image](https://user-images.githubusercontent.com/50341618/173852855-34f4be54-c915-42b0-b2e3-7e24c2a4fc26.png)
+![image](https://user-images.githubusercontent.com/50341618/173852982-9d5498f7-6057-4eab-a0f7-6e0dad503154.png)
+![image](https://user-images.githubusercontent.com/50341618/173853134-3a2f040d-10d8-49f2-ac1c-f959295f37b6.png)
+![image](https://user-images.githubusercontent.com/50341618/173853232-584bc4f5-373a-4906-88e0-ad3768ea39f6.png)
+![image](https://user-images.githubusercontent.com/50341618/173854077-55fabc75-fb82-4438-a716-4bbd1f8f7245.png)
+![image](https://user-images.githubusercontent.com/50341618/173854189-e35b06b0-42aa-4d3f-8a0d-ae7c75b40ecc.png)
