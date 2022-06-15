@@ -11,7 +11,16 @@
 
 const uint32_t MOD_ADLER = 65521;
 
-void adler32(std::string data) 
+std::string adler32(std::string data) 
+{
+    uint32_t innumber;
+    innumber = adler32_base(data);
+    std::string strnumber = ConvertUintStr(innumber);
+    strnumber = ConvertBinHex(strnumber);
+    return strnumber;
+}
+
+std::uint32_t adler32_base(std::string data)
 {
     int len = data.length();
     uint32_t a = 1, b = 0;
@@ -22,6 +31,5 @@ void adler32(std::string data)
     }
     a  = (b << 16) | a;
     hash = ConvertUintStr(a);
-    //std::cout << hash;
     return (b << 16) | a;
 }
