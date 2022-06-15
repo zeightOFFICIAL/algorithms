@@ -128,4 +128,4 @@ uint32_t Choose(uint32_t e, uint32_t f, uint32_t g) {
 
 uint32_t Majority(uint32_t a, uint32_t b, uint32_t c) {
 	return (a & (b | c)) | (b & c);
-}        
+}

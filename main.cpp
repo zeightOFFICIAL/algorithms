@@ -6,7 +6,7 @@ Lab 7
 Hashing algorithms
 - sha1
 - sha256
-- ?
+- adler32
 main.cpp
 22.03.2022
 ver 0.7
@@ -16,6 +16,7 @@ ver 0.7
 
 #include "hashing/sha1.h"
 #include "hashing/sha256.h"
+#include "hashing/adler32.h"
 
 #include "tools/bitwise_operations.h"
  
@@ -25,8 +26,10 @@ int main()
 {
     cout<<"Start."<<"\n";
     
-    cout << sha1("hello world!") << "\n";
-    cout << sha256("hello world!") << "\n";
+    //cout << sha1("hello world!") << "\n";
+    //cout << sha256("hello world!") << "\n";
+    //cout << md5("hello world!") << "\n";
+    cout << adler32("hello world!") << "\n";
     
     cout<<"End."<<"\n";
     return 0;
