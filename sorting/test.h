@@ -56,11 +56,10 @@ void PrintArray(T* array, unsigned long amount_of_elements)
     >>Input element with index 0: 6
     >>Input element with index 1: 10
 */
-template <typename T>
-T* GenerateCustomArray(unsigned long amount_of_elements)
+long long* GenerateCustomArray(unsigned long amount_of_elements)
 {
-    static T array[EXTREME_LENGTH];
-    T this_element = 0;
+    long long* array = new long long[EXTREME_LENGTH];
+    long long this_element = 0;
     for (unsigned long index = 0; index < amount_of_elements; index++) {
         std::cout << "Input element with index " << index << ": ";
         std::cin >> this_element;
