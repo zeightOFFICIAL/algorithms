@@ -15,7 +15,7 @@
 #include "stooge_sort.h"
 #include "gnome_sort.h"
 
-const unsigned long EXTREME_LENGTH = 4294967;
+const unsigned long EXTREME_LENGTH = 429496;
 
 /*
     (unsigned long A, long long B, long long C)->(long long* D)
