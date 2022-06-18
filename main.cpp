@@ -14,8 +14,8 @@ Clang++ 12 (12.0.1)
 compatible with
 MSVC 142 (14.29)
 main.cpp
-15.06.2022
-ver 1.205
+18.06.2022
+ver 1.215
 */
 
 // input output library
@@ -34,7 +34,8 @@ ver 1.205
 int main() {
     std::cout<<"Start."<<"\n";
     
-    fulltest(10000, 1);
+    fulltest(10);
+
     
     std::cout<<"End."<<"\n";
     return 0;

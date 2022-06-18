@@ -35,5 +35,21 @@
 *.replit
 *.nix
 
+# VS original
+*.sln
+*.vcxproj
+*.VC
+*.ipch
+*.suo
+*.db
+*.db-shm
+*.db-wal
+*.opendb
+/.vs
+/Debug
+/Debug
+*.filters
+*.user
+
 # ---------------
 *.txt
