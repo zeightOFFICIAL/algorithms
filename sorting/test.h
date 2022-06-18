@@ -15,7 +15,7 @@
 #include "stooge_sort.h"
 #include "gnome_sort.h"
 
-const unsigned long EXTREME_LENGTH = 4294967;
+const unsigned long EXTREME_LENGTH = 429496;
 
 /*
     (unsigned long A, long long B, long long C)->(long long* D)
@@ -140,12 +140,14 @@ void WriteArray(std::string filename, T* array, unsigned long amount_of_elements
 // -------------------------------------------------------------------------------------------------------------------------
 void fulltest(int tries)
 {
-    long long* array,* array2,* array3,* array4,* array5;
+    long long* array, * array2, * array3, * array4, * array5;
     long double alltime = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, alltime5 = 0; //time summers    
     int min_value = -15000, max_value = 15000; //intervals of generating numbers
     std::chrono::steady_clock::time_point start, end, start2, end2, start3, end3, start4, end4, start5, end5; //time stamps
     int local_length;
-    for (local_length = 5000; local_length <= 100000;) {
+    for (local_length = 5000; local_length <= 100000; local_length += 5000) {
+        std::cout << local_length << "\n";
+        alltime = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, alltime5 = 0;
         for (int local_tries = 0; local_tries < tries; local_tries++)
         {
             array = GenerateRandomArray(local_length, max_value, min_value);
@@ -177,7 +179,7 @@ void fulltest(int tries)
             GnomeSort(array5, local_length, false);
             end5 = std::chrono::steady_clock::now();
             alltime5 = alltime5 + std::chrono::duration_cast<std::chrono::microseconds>(end5 - start5).count() / 1000000.0;
-        }
+        }        
         delete array;
         delete array2;
         delete array3;
@@ -191,6 +193,5 @@ void fulltest(int tries)
         std::cout << "Total elements: " << local_length << "\n";
         std::cout << "Total tries: " << tries << "\n";
         std::cout << "\n";
-        local_length = local_length + 5000;
     }
 }

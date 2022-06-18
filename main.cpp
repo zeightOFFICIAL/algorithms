@@ -15,7 +15,7 @@ compatible with
 MSVC 142 (14.29)
 main.cpp
 18.06.2022
-ver 1.215
+ver 1.218
 */
 
 // input output library
@@ -31,12 +31,7 @@ ver 1.215
 #include "sorting/insertion_sort.h"
 #include "sorting/stooge_sort.h"
 
-int main() {
-    std::cout<<"Start."<<"\n";
-    
-    fulltest(10);
-
-    
-    std::cout<<"End."<<"\n";
+int main() {  
+    fulltest(1);
     return 0;
 }
