@@ -1,15 +1,14 @@
+#pragma once
 #include <string>
 #include <vector>
 
 /*
-    (char* A, string B, ulong C) -> (vector<ulong> D)
-    Takes an A arary of chars (string), the pattern B,
-    std::string and the length C of the array A as
-    the arguments. Finds pattern std::string B in the
-    text char* A with length of C, using Naive
-    algorithm. Returns vector<ulong> D which 
-    stores every point of occurance of the pattern 
+    (string A, string B) -> (vector<unsigned long> C)
+    Takes text string A, pattern string B as arguments.
+    Finds pattern B in A, using Naive algorithm. 
+    Returns vector<unsigned long> C which stores
+    every point of occurance of the pattern 
     in text.
     >>NaiveSearch(text, pattern, length)
 */
-std::vector<unsigned long> NaiveSearch(char* text, std::string pattern_string, unsigned long length);
+std::vector<unsigned long> NaiveSearch(std::string text, std::string pattern_string);

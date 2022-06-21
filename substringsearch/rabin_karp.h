@@ -1,15 +1,16 @@
+#pragma once
 #include <string>
 #include <vector>
 
 /*
-    (char* A, string B, ulong C) -> (vector<ulong> D)
-    Takes an A arary of chars (string), the pattern B,
-    std::string and the length C of the array A as
-    the arguments. Finds pattern std::string B in the
-    text char* A with length of C, using Rabin-Karp
-    algorithm. Returns vector<ulong> D which 
+    (string A, string B, int C) -> (vector<unsigned long> D)
+    Takes text string A, the pattern B, as
+    arguments. C is an amount of unique symbols in A.
+    Finds pattern B in the text A, using 
+    Rabin-Karp algorithm. 
+    Returns vector<unsigned long> D which 
     stores every point of occurance of the pattern 
     in text.
     >>NaiveSearch(text, pattern, length)
 */
-std::vector<unsigned long> RabinKarp(char* text, std::string pattern_string, unsigned long length);
+std::vector<unsigned long> RabinKarp(std::string text, std::string pattern_string, int alphabet = 64);

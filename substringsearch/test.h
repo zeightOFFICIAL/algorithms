@@ -23,23 +23,24 @@ void fulltest(int tries)
     for(local_tries = 0; local_tries <= tries; local_tries++)
         {
             array = GenerateRandomString(length,1);
+            std::string strarray = array;
             
             start = std::chrono::steady_clock::now();
-            occurrences = BoyerMoore(array, "ab" , length);
+            occurrences = BoyerMoore(strarray, "ab");
             end = std::chrono::steady_clock::now();
             alltime = alltime + std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000000.0;
             if (local_tries==tries)
                 std::cout << "BoyerMoore found: " << occurrences.size() << "\n";
             
             start2 = std::chrono::steady_clock::now();
-            occurrences = RabinKarp(array, "ab" , length);
+            occurrences = RabinKarp(strarray, "ab");
             end2 = std::chrono::steady_clock::now();
             alltime2 = alltime2 + std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2).count() / 1000000.0;
             if (local_tries==tries)
                 std::cout << "RabinKarp found: " << occurrences.size() << "\n";
             
             start3 = std::chrono::steady_clock::now();
-            occurrences = NaiveSearch(array, "ab" , length);
+            occurrences = NaiveSearch(strarray, "ab");
             end3 = std::chrono::steady_clock::now();
             alltime3 = alltime3 + std::chrono::duration_cast<std::chrono::microseconds>(end3 - start3).count() / 1000000.0;
             if (local_tries==tries)

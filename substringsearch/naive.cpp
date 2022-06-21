@@ -1,23 +1,21 @@
 #include <vector>
 #include "naive.h"
 
-using std::string, std::vector;
-
-vector<unsigned long> NaiveSearch(char* text, string pattern_string, unsigned long length)
+std::vector<unsigned long> NaiveSearch(std::string text, std::string pattern_string)
 {
-    int pattern_length = pattern_string.length();
-    vector<unsigned long> occurance_points;
+    unsigned long pattern_length = pattern_string.length(), text_length = text.length();
+    std::vector<unsigned long> occurance_points;
 
     if (pattern_length==0)
         return occurance_points;
     
-    for (int i = 0; i <= length - pattern_length; i++)  {
-        int j;
-        for (j = 0; j < pattern_length; j++)
-            if (text[i + j] != pattern_string[j])
+    for (unsigned long starting_index = 0; starting_index <= text_length - pattern_length; starting_index++)  {
+        unsigned long next_element;
+        for (next_element = 0; next_element < pattern_length; next_element++)
+            if (text[starting_index + next_element] != pattern_string[next_element])
                 break;
-        if (j == pattern_length)
-                occurance_points.push_back(i);
+        if (next_element == pattern_length)
+                occurance_points.push_back(starting_index);
     }
     return occurance_points;
 }

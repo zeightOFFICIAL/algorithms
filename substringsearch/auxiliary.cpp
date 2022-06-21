@@ -4,7 +4,6 @@
 #include <fstream>
 #include <vector>
 
-using std::cin, std::cout, std::string, std::ifstream, std::ofstream, std::vector, std::ios;
 const unsigned long int EXTREME_LENGTH = 10000000;  
 
 char* GenerateCustomString(unsigned long &length)
@@ -12,8 +11,8 @@ char* GenerateCustomString(unsigned long &length)
     static char array[EXTREME_LENGTH];
     int local_length = 0;
     
-    cout<<"String: ";
-    cin.getline(array,EXTREME_LENGTH);
+    std::cout<<"String: ";
+    std::cin.getline(array,EXTREME_LENGTH);
     local_length = strlen(array);
     length = local_length;
     return array;
@@ -22,7 +21,7 @@ char* GenerateCustomString(unsigned long &length)
 char* GenerateRandomString(unsigned long length, char alphabet_type)
 {
     static char array[EXTREME_LENGTH];
-    string alphabet_set;
+    std::string alphabet_set;
     int this_symbol_index = -1;
     
     if (alphabet_type==1)
@@ -30,7 +29,7 @@ char* GenerateRandomString(unsigned long length, char alphabet_type)
     else if (alphabet_type==2)
         alphabet_set = "ABC123 ";
     else {
-        cout << "Wrong alphabet type. Another will be selected."<<"\n";
+        std::cout << "Wrong alphabet type. Another will be selected."<<"\n";
         alphabet_set = "ABC123 ";
         }
     int set_length = alphabet_set.length();
@@ -43,14 +42,14 @@ char* GenerateRandomString(unsigned long length, char alphabet_type)
     return array;
 }
 
-char* GenerateArrayFile(string filename, unsigned long &length)
+char* GenerateArrayFile(std::string filename, unsigned long &length)
 {
     static char array[EXTREME_LENGTH];
     unsigned long i = 0;
-    ifstream file;
+    std::ifstream file;
     file.open(filename);
 	if (!file)
-		cout << "No such file.";
+        std::cout << "No such file.";
 	else  {
         char ch;
         while (file >> std::noskipws >> ch) {
@@ -66,45 +65,45 @@ char* GenerateArrayFile(string filename, unsigned long &length)
 void PrintArray(char* array, unsigned long length)
 {
     for (unsigned long i = 0; i < length; i++)
-        cout<<array[i];
-    cout<<"\n";
+        std::cout<<array[i];
+    std::cout<<"\n";
 }
-void PrintArray(vector<unsigned long> array)
+void PrintArray(std::vector<unsigned long> array)
 {
     for (unsigned long i = 0; i < array.size(); i++) {
-        cout<<array[i]<<"\n";
+        std::cout<<array[i]<<"\n";
         if (i >= 0 && array[i+1] == 0)
             break;
         }
 }
 
-void WriteArray(string filename, vector<unsigned long> array)
+void WriteArray(std::string filename, std::vector<unsigned long> array)
 {
-    ofstream file;
-    file.open(filename, ios::trunc);
+    std::ofstream file;
+    file.open(filename, std::ios::trunc);
 	if (!file)
-		cout << "No such file.";
+        std::cout << "No such file.";
 	else 
         for (int i = 0; i < array.size(); i++)
             file << array[i] << "\n";
     file.close();
 }
-void WriteArray(string filename, char* array, unsigned long length)
+void WriteArray(std::string filename, char* array, unsigned long length)
 {
-    ofstream file;
-    file.open(filename, ios::trunc);
+    std::ofstream file;
+    file.open(filename, std::ios::trunc);
 	if (!file)
-		cout << "No such file.";
+        std::cout << "No such file.";
 	else 
         for (int i = 0; i < length; i++)
             file << array[i];
     file.close();
 }
 
-vector<unsigned long> EveloperWithCustomText(char* text,unsigned long length,vector<unsigned long>(*func)(char*,string,unsigned long))
+std::vector<unsigned long> EveloperWithCustomText(char* text,unsigned long length, std::vector<unsigned long>(*func)(char*, std::string,unsigned long))
 {
-    string pattern_string;
-    cout<<"Enter a pattern: ";
-    cin>>pattern_string; 
+    std::string pattern_string;
+    std::cout<<"Enter a pattern: ";
+    std::cin>>pattern_string;
     return func(text,pattern_string,length);
 }    

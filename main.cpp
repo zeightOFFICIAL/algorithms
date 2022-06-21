@@ -7,12 +7,14 @@ String-searching algorithms
 - Boyer–Moore
 - Rabin-Karp
 - Naive
-- Bitap
+- Bitap (Shift-OR)
 originally build on
 Clang++ 12 (12.0.1)
+compatible with
+MSVC 142 (14.29)
 main.cpp
-15.06.2022
-ver 1.195
+21.06.2022
+ver 1.120
 */
 
 // input output library
@@ -28,10 +30,6 @@ ver 1.195
 #include "substringsearch/bitap.h"
 
 int main() {
-    std::cout<<"Start."<<"\n";
-    
     fulltest(100);
-    
-    std::cout<<"End."<<"\n";       
     return 0;
 }

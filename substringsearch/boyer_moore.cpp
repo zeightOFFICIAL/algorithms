@@ -2,38 +2,38 @@
 #include "boyer_moore.h"
 
 
-using std::string, std::vector;
-
-vector<unsigned long> BoyerMoore(char* text, string pattern_string, unsigned long length)
+std::vector<unsigned long> BoyerMoore(std::string text, std::string pattern_string)
 {
-    int pattern_length = pattern_string.length(), *bad_char = new int[256];
-    long long s = 0, j;
-    vector<unsigned long> occurance_points;
-    
-    ToolBadcharHeuristics(pattern_string,pattern_length,bad_char,length);
-    while (s <= (length - pattern_length))  {
-		j = pattern_length - 1;
-		while (j >= 0 && pattern_string[j] == text[s + j])
-		    --j;
-		if (j < 0)  {
-            occurance_points.push_back(s);
-			s += (s + pattern_length < length) ? pattern_length - bad_char[text[s + pattern_length]] : 1;
+	unsigned long pattern_length = pattern_string.length(), text_length = text.length();
+	int *heuristics_table = new int[256];
+	long long text_current_index = 0, pattern_previous_index;
+	std::vector<unsigned long> occurance_points;
+	
+	BadCharHeuristics(pattern_string, pattern_length, heuristics_table, text_length);
+
+    while (text_current_index <= (text_length - pattern_length))  {
+		pattern_previous_index = pattern_length - 1;
+		while (pattern_previous_index >= 0 && pattern_string[pattern_previous_index] == text[text_current_index + pattern_previous_index])
+		    --pattern_previous_index;
+		if (pattern_previous_index < 0)  {
+            occurance_points.push_back(text_current_index);
+			text_current_index += (text_current_index + pattern_length < text_length) ? pattern_length - heuristics_table[text[text_current_index + pattern_length]] : 1;
 		}
 		else
-			s += ToolMaxByValue(1, j - bad_char[text[s + j]]);
+			text_current_index += MaxByValue(1, pattern_previous_index - heuristics_table[text[text_current_index + pattern_previous_index]]);
 	}
-    delete[] bad_char;
+    delete[] heuristics_table;
     return occurance_points;
 }
 
-void ToolBadcharHeuristics(string array, int pattern_length, int* bad_char, unsigned long length)
+void BadCharHeuristics(std::string array, unsigned long pattern_length, int* bad_char, unsigned long length)
 {
-    for (unsigned long i = 0; i < 256; i++)
-		bad_char[i] = -1;
-	for (unsigned long i = 0; i < pattern_length; i++)
-		bad_char[(int)array[i]] = i;
+    for (unsigned long this_letter_from_alphabet = 0; this_letter_from_alphabet < 256; this_letter_from_alphabet++)
+		bad_char[this_letter_from_alphabet] = -1;
+	for (unsigned long this_letter_from_pattern = 0; this_letter_from_pattern < pattern_length; this_letter_from_pattern++)
+		bad_char[(int)array[this_letter_from_pattern]] = this_letter_from_pattern;
 }
 
-long long ToolMaxByValue(long long a, long long b)  {
+long long MaxByValue(long long a, long long b)  {
     return a >= b ? a : b;
 }

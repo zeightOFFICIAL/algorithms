@@ -2,12 +2,10 @@
 #include "bitap.h"
 #include "limits.h"
 
-using std::string, std::vector;
-
-vector<unsigned long> Bitap(char* text, string pattern_string, unsigned long length)
+std::vector<unsigned long> Bitap(char* text, std::string pattern_string, unsigned long length)
 {
     int pattern_length = pattern_string.length();
-    vector<unsigned long> occurance_points, pattern_mask;
+    std::vector<unsigned long> occurance_points, pattern_mask;
     unsigned long R = ~1;
 
     if (pattern_length==0)
