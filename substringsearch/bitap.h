@@ -3,7 +3,7 @@
 #include <vector>
 
 /*
-    (char* A, string B, ulong C) -> (vector<ulong> D)
+    (string A, string B) -> (vector<ulong> C)
     Takes an A arary of chars (string), the pattern B,
     std::string and the length C of the array A as
     the arguments. Finds pattern std::string B in the
@@ -13,4 +13,4 @@
     in text.
     >>NaiveSearch(text, pattern, length)
 */
-std::vector<unsigned long> Bitap(char* text, std::string pattern_string, unsigned long length);
+std::vector<unsigned long> Bitap(std::string text, std::string pattern_string);

@@ -6,7 +6,7 @@ std::vector<unsigned long> NaiveSearch(std::string text, std::string pattern_str
     unsigned long pattern_length = pattern_string.length(), text_length = text.length();
     std::vector<unsigned long> occurance_points;
 
-    if (pattern_length==0)
+    if (pattern_length == 0 || text_length == 0 || pattern_length < text_length)
         return occurance_points;
     
     for (unsigned long starting_index = 0; starting_index <= text_length - pattern_length; starting_index++)  {

@@ -9,7 +9,7 @@ std::vector<unsigned long> RabinKarp(std::string text, std::string pattern_strin
     long long pattern_hash = 1, text_hash = 1, h = 1;
     std::vector<unsigned long> occurance_points;
 
-    if (pattern_length==0)
+    if (pattern_length == 0 || text_length == 0 || pattern_length < text_length)
         return occurance_points;
   
     for (unsigned long each_letter_in_pattern = 0; each_letter_in_pattern < pattern_length - 1; each_letter_in_pattern++)

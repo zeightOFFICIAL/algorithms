@@ -14,7 +14,7 @@ compatible with
 MSVC 142 (14.29)
 main.cpp
 21.06.2022
-ver 1.120
+ver 1.201
 */
 
 // input output library

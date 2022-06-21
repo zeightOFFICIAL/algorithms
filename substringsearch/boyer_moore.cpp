@@ -8,6 +8,9 @@ std::vector<unsigned long> BoyerMoore(std::string text, std::string pattern_stri
 	int *heuristics_table = new int[256];
 	long long text_current_index = 0, pattern_previous_index;
 	std::vector<unsigned long> occurance_points;
+
+	if (pattern_length == 0 || text_length == 0 || pattern_length < text_length)
+		return occurance_points;
 	
 	BadCharHeuristics(pattern_string, pattern_length, heuristics_table, text_length);
 
