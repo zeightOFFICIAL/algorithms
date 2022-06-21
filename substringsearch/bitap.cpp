@@ -6,7 +6,7 @@ std::vector<unsigned long> Bitap(std::string text, std::string pattern_string)
     unsigned long pattern_length = pattern_string.length(), text_length = text.length(), R = ~1;
     std::vector<unsigned long> occurance_points, pattern_bitmask;
 
-    if (pattern_length == 0 || text_length == 0 || pattern_length < text_length)
+    if (pattern_length == 0 || text_length == 0 || pattern_length > text_length)
         return occurance_points;
     if (pattern_length > 31)
         return occurance_points;

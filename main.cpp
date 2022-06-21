@@ -14,7 +14,7 @@ compatible with
 MSVC 142 (14.29)
 main.cpp
 21.06.2022
-ver 1.201
+ver 1.202
 */
 
 // input output library
@@ -30,6 +30,6 @@ ver 1.201
 #include "substringsearch/bitap.h"
 
 int main() {
-    fulltest(100);
+    fulltest(1);
     return 0;
 }

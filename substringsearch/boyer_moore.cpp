@@ -9,7 +9,7 @@ std::vector<unsigned long> BoyerMoore(std::string text, std::string pattern_stri
 	long long text_current_index = 0, pattern_previous_index;
 	std::vector<unsigned long> occurance_points;
 
-	if (pattern_length == 0 || text_length == 0 || pattern_length < text_length)
+	if (pattern_length == 0 || text_length == 0 || pattern_length > text_length)
 		return occurance_points;
 	
 	BadCharHeuristics(pattern_string, pattern_length, heuristics_table, text_length);
@@ -29,14 +29,15 @@ std::vector<unsigned long> BoyerMoore(std::string text, std::string pattern_stri
     return occurance_points;
 }
 
-void BadCharHeuristics(std::string array, unsigned long pattern_length, int* bad_char, unsigned long length)
+void BadCharHeuristics(std::string pattern, unsigned long pattern_length, int* heuristics_table, unsigned long text_length)
 {
     for (unsigned long this_letter_from_alphabet = 0; this_letter_from_alphabet < 256; this_letter_from_alphabet++)
-		bad_char[this_letter_from_alphabet] = -1;
+		heuristics_table[this_letter_from_alphabet] = -1;
 	for (unsigned long this_letter_from_pattern = 0; this_letter_from_pattern < pattern_length; this_letter_from_pattern++)
-		bad_char[(int)array[this_letter_from_pattern]] = this_letter_from_pattern;
+		heuristics_table[(int)pattern[this_letter_from_pattern]] = this_letter_from_pattern;
 }
 
-long long MaxByValue(long long a, long long b)  {
+long long MaxByValue(long long a, long long b)  
+{
     return a >= b ? a : b;
 }

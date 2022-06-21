@@ -11,6 +11,6 @@
     Returns vector<unsigned long> D which 
     stores every point of occurance of the pattern 
     in text.
-    >>NaiveSearch(text, pattern, length)
+    >>NaiveSearch(text, pattern, alphabet)
 */
 std::vector<unsigned long> RabinKarp(std::string text, std::string pattern_string, int alphabet = 64);
