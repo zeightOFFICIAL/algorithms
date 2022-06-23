@@ -1,16 +1,17 @@
+#pragma once
 /*
-    (uint64_t A, uint64_t B) -> (uint64_t C)
+    (uint64 A, uint64 B) -> (uint64 C)
     Finds GCD of numbers A and B and returns
     its value - C. Uses recursion.
     >>GCDRecursive(15,5)
     <<5
 */
-unsigned long long int GCDRecursive(unsigned long long int x, unsigned long long int y);
+unsigned long long GCDRecursive(unsigned long long x, unsigned long long y);
 /*
-    (uint64_t A, uint64_t B) -> (uint64_t C)
+    (uint64 A, uint64 B) -> (uint64 C)
     Finds GCD of numbers A and B and returns
     its value - C. Uses iteration.
-    >>greatest_common_divisor_iterative(15,5)
+    >>GCDIterative(15,5)
     <<5
 */
-unsigned long long int GCDIterative(unsigned long long int x, unsigned long long int y);
+unsigned long long GCDIterative(unsigned long long x, unsigned long long y);

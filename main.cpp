@@ -8,72 +8,30 @@ Recursive and iterable algorithms
 - Greatest common divisor (recursion, iterative)
 - Factorial (tail-recursion, iterative)
 - Sum of numbers in interval (tail-recursion)
+originally build on
+Clang++ 12 (12.0.1)
+compatible with
+MSVC 142 (14.29)
 main.cpp
-04.04.2022
-ver 1.060
+23.06.2022
+ver 1.070
 */
 
+// input output library
 #include <iostream>
-#include <ctime>
 
-#include "recursion_vs_iteration/auxiliary.h"
+// library for testing
+#include "recursion_vs_iteration/test.h"
+
+// recursive and iterative algorithms libraries
 #include "recursion_vs_iteration/factorial.h"
 #include "recursion_vs_iteration/fibonacci.h"
 #include "recursion_vs_iteration/gcd.h"
 #include "recursion_vs_iteration/totalsum.h"
 
-using std::cout, std::cin;
-
 
 int main() 
 {
-    cout<<"Start."<<"\n";
-    //...............................................
-
-    //cout<<UnaryEnveloperForTailRecursion(&FibonacciTailRecursive) << "\n";
-    //cout<<UnaryEnveloper(&FibonacciRecursive) << "\n";
-    //cout<<UnaryEnveloper(&FibonacciIterative) << "\n";
-
-    //cout<<UnaryEnveloper(&FactorialRecursive) << "\n";
-    //cout<<UnaryEnveloper(&FactorialIterative) << "\n";
-    
-    //cout<<BinaryEnveloper(&GCDIterative);
-    //cout<<BinaryEnveloper(&GCDRecursive);
-    
-    //cout<<BinaryEnveloper(&SumIterative);
-    //cout<<BinaryEnveloper(&SumRecursive);
-
-    //.....................................................................................
-    /*
-    long double alltime = 0, alltime2 = 0, alltime3 = 0;
-    int tries;
-    clock_t t;
-    unsigned long long n, x;
-    cin >> n;
-    cin >> x;
-    for(tries = 0; tries < 1; tries++)
-        {
-            //t = clock();
-            //FibonacciRecursive(n);
-            //t = clock()-t;
-            //alltime = alltime + ((float)t)/CLOCKS_PER_SEC;
-            
-            t = clock();
-            GCDRecursive(n,x);
-            t = clock()-t;
-            alltime2 = alltime2 + ((float)t)/CLOCKS_PER_SEC;
-
-            t = clock();
-            GCDIterative(n,x);
-            t = clock()-t;
-            alltime3 = alltime3 + ((float)t)/CLOCKS_PER_SEC;
-        }
-    cout<<"Average time: "<<alltime/tries<<" seconds"<<"\n";
-    cout<<"Average time: "<<alltime2/tries<<" seconds"<<"\n";
-    cout<<"Average time: "<<alltime3/tries<<" seconds"<<"\n";
-    */
-    //.....................................................................................
-
-    //...............................................
-    cout<<"End."<<"\n";
+    fulltest(10);
+    return 0;
 }

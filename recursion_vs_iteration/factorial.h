@@ -1,16 +1,17 @@
+#pragma once
 /*
-    (uint64_t A) -> (uint64_t B)
+    (uint64 A) -> (uint64 B)
     Finds factorial of number A and returns
     its value - B. Uses recursion.
     >>FactorialRecursive(3)
     <<6
 */
-unsigned long long int FactorialRecursive(unsigned long long int x);
+unsigned long long FactorialRecursive(unsigned long long x);
 /*
-    (uint64_t A) -> (uint64_t B)
+    (uint64 A) -> (uint32 B)
     Finds factorial of number A and returns
     its value - B. Uses iteration.
     >>FactorialIterative(3)
     <<6
 */
-unsigned long long int FactorialIterative(unsigned long long int num);
+unsigned long long FactorialIterative(unsigned int x);

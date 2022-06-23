@@ -1,16 +1,17 @@
+#pragma once
 /*
-    (uint64_t A, uint64_t B) -> (uint64_t C)
+    (uint64 A, uint64 B) -> (uint64 C)
     Finds sum of all elements in range A..B.
     And returns its value C. Uses recursion.
     >>SumRecursive(1,3)
     <<6
 */
-unsigned long long int SumRecursive(unsigned long long int x, unsigned long long int y);
+unsigned long long SumRecursive(unsigned long long x, unsigned long long y);
 /*
-    (uint64_t A, uint64_t B) -> (uint64_t C)
+    (uint64 A, uint64 B) -> (uint64 C)
     Finds sum of all elements in range A..B.
     And returns its value C. Uses iteration.
     >>SumIterative(1,3)
     <<6
 */
-unsigned long long int SumIterative(unsigned long long int x, unsigned long long int y);
+unsigned long long SumIterative(unsigned long long x, unsigned long long y);
