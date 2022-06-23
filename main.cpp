@@ -14,7 +14,7 @@ compatible with
 MSVC 142 (14.29)
 main.cpp
 23.06.2022
-ver 1.070
+ver 1.071
 */
 
 // input output library
@@ -32,6 +32,7 @@ ver 1.070
 
 int main() 
 {
-    fulltest(10);
+    fulltestunary(10);
+    fulltestbinary(170000, 125000, 10);
     return 0;
 }
