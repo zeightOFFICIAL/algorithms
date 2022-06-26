@@ -8,7 +8,6 @@
 #include "graph.h"
 
 Graph::Graph() {}
-
 Graph::~Graph() {}
 
 void Graph::GenerateGraph(int number_of_vertices, int number_of_edges, int power)
@@ -134,7 +133,7 @@ void Graph::PrintEdgesList()
     std::vector<std::vector<int>> edges_list = GetEdgesList();
     for (int each_edge = 0; each_edge < edges_list.size(); each_edge++) {
         std::cout << "\t";
-        std::cout << "I:" << std::left << std::setw(3) << each_edge << " " << std::setw(3) << edges_list[each_edge][1] << "- " << std::setw(3) << edges_list[each_edge][2] << " with weight " << std::setw(2) << edges_list[each_edge][0] << "\n";
+        std::cout << "I:" << std::left << std::setw(3) << each_edge << " " << std::setw(3) << edges_list[each_edge][1] << " -  " << std::setw(3) << edges_list[each_edge][2] << " with weight " << std::setw(2) << edges_list[each_edge][0] << "\n";
     }
 }
 
@@ -142,9 +141,8 @@ std::vector<std::vector<int>> Graph::GetEdgesList()
 {
     std::vector<std::vector<int>> edges_list;
     for (int row = 0; row < distances_matrix.size(); row++)
-        for (int col = 0; col < distances_matrix.size(); col++)
+        for (int col = row; col < distances_matrix.size(); col++)
             if (distances_matrix[row][col] != 0) {
-                std::cout << distances_matrix[row][col] << "\n";
                 edges_list.push_back({ distances_matrix[row][col],row,col });
             }
     return edges_list;

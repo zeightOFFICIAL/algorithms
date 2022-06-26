@@ -16,7 +16,7 @@ compatible with
 MSVC 142 (14.29)
 main.cpp
 26.06.2022
-ver 1.108.5
+ver 1.110
 */
 
 #include <iostream>
@@ -26,27 +26,17 @@ ver 1.108.5
 //#include "minimum_spanning_tree/prim.h"
 //#include "minimum_spanning_tree/kruskal.h"
 
-// "shortest_path_on_graph/dijkstra.h"
+#include "shortest_path_on_graph/dijkstra.h"
 //#include "shortest_path_on_graph/floyd_warshall.h"
 //#include "shortest_path_on_graph/johnson.h"
 
 int main() 
 {
-    Graph Graph1;
-    
-    Graph1.GenerateGraph(5,5,3);
-    //Graph1.LoadGraph("graph1.txt");
-    //Graph1.CustomGraph(3);
-    Graph1.PrintAdjacencyMatrix();
+    Graph Graph1;    
+    Graph1.GenerateGraph();
     Graph1.PrintDistancesMatrix();
-    Graph1.PrintEdgesList();
-    Graph1.SaveGraph("graph1.txt");
-
-
-    //Graph1.LoadGraph("test.txt");
-    //Graph1.PrintDistancesMatrix();
-    //Graph1.SaveGraph("test.txt");    
-    //Graph1.PrintEdgesList();
+    
+    SPGDijkstraTablePrint(Graph1.GetDistancesMatrix());
     
     //MST_prim(Graph1.GetDistancesMatrix());
     //MST_kruskal(Graph1.GetEdgesList(),Graph1.GetNumberVertices());

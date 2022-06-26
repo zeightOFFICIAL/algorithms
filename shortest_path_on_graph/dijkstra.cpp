@@ -1,13 +1,8 @@
 #include <iostream>
 #include <vector>
 
-//delete ................
-#include <ctime>
-//.......................
-
 #include "dijkstra.h"
 #include "limits.h"
-
 
 std::vector<std::vector<int>> SPGDijkstraTable(std::vector<std::vector<int>> distances_matrix)
 {
@@ -16,10 +11,6 @@ std::vector<std::vector<int>> SPGDijkstraTable(std::vector<std::vector<int>> dis
     bool* map_spt = new bool[number_of_vertices];
     std::vector<std::vector<int>> SPG_dijkstra_table;
     SPG_dijkstra_table.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
-    //.............
-    clock_t t;
-    t = clock();
-    //.............
     for (int each_vertex = 0; each_vertex < number_of_vertices; each_vertex++)  {
         for (int i = 0; i < number_of_vertices; i++)
             map[i] = INT_MAX, map_spt[i] = false;
@@ -34,10 +25,7 @@ std::vector<std::vector<int>> SPGDijkstraTable(std::vector<std::vector<int>> dis
         for (int another_vertex = 0; another_vertex < number_of_vertices; another_vertex++)
             SPG_dijkstra_table[another_vertex][each_vertex]=map[another_vertex];
         }
-    //.............
-    t = clock() - t;
-    std::cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
-    //.............
+    delete[] map, map_spt;
     return SPG_dijkstra_table;
 }
 
