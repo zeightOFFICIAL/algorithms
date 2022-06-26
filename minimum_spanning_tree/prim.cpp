@@ -4,6 +4,7 @@
 
 #include "prim.h"
 #include "limits.h"
+#include "D:\Visual Studio Projects\temp_graph\graph\graph.h"
 
 using namespace std;
 
@@ -22,10 +23,9 @@ int MinKey(int key[], bool visited[], int NoVertex)
 int MSTPrim(vector<vector<int>> distances_matrix)
 {
     int number_of_vertex = distances_matrix.size();
-    int parent[number_of_vertex], key[number_of_vertex];
-    bool visited[number_of_vertex];
-    clock_t t;
-    t = clock();
+    int* parent = new int[number_of_vertex];
+    int* key = new int[number_of_vertex];
+    bool* visited = new bool[number_of_vertex];
     
     for (int i = 0; i< number_of_vertex; i++) { 
         key[i] = 999; 
@@ -45,13 +45,10 @@ int MSTPrim(vector<vector<int>> distances_matrix)
         }
     }
     int minCost=0;
-    t = clock()-t;
 	cout<<"2.1 Prim's MST\nEdge: \tWeight:\n";  
     for (int i = 1; i< number_of_vertex; i++) {
 		cout<<parent[i]<<" - "<<i<<" \t"<<distances_matrix[i][parent[i]]<<" \n";  
 		minCost+=distances_matrix[i][parent[i]];
     }
-	cout<<"Total cost is: "<<minCost<<endl;
-    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<endl;
     return minCost;
 }

@@ -8,14 +8,14 @@
 #include "dijkstra.h"
 #include "limits.h"
 
-using std::vector, std::cout;
 
-vector<vector<int>> SPGDijkstraTable(vector<vector<int>> distances_matrix)
+std::vector<std::vector<int>> SPGDijkstraTable(std::vector<std::vector<int>> distances_matrix)
 {
-    int number_of_vertices = distances_matrix.size(), map[number_of_vertices];
-    bool map_spt[number_of_vertices];
-    vector<vector<int>> SPG_dijkstra_table;
-    SPG_dijkstra_table.resize(number_of_vertices,vector<int>(number_of_vertices, 0));
+    int number_of_vertices = distances_matrix.size();
+    int* map = new int[number_of_vertices];
+    bool* map_spt = new bool[number_of_vertices];
+    std::vector<std::vector<int>> SPG_dijkstra_table;
+    SPG_dijkstra_table.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
     //.............
     clock_t t;
     t = clock();
@@ -36,21 +36,21 @@ vector<vector<int>> SPGDijkstraTable(vector<vector<int>> distances_matrix)
         }
     //.............
     t = clock() - t;
-    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
+    std::cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
     //.............
     return SPG_dijkstra_table;
 }
 
-void SPGDijkstraTablePrint(vector<vector<int>> distances_matrix)
+void SPGDijkstraTablePrint(std::vector<std::vector<int>> distances_matrix)
 {
     int number_of_vertices = distances_matrix.size();
-    vector<vector<int>> SPG_dijkstra_table;
+    std::vector<std::vector<int>> SPG_dijkstra_table;
     SPG_dijkstra_table = SPGDijkstraTable(distances_matrix);
     
     for (int j = 0; j < number_of_vertices; j++) {
         for (int l = 0; l < number_of_vertices; l++)
-             cout<<SPG_dijkstra_table[j][l]<<", ";
-        cout<<"\n"; 
+            std::cout<<SPG_dijkstra_table[j][l]<<", ";
+        std::cout<<"\n";
         }
 }
 

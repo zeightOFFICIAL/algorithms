@@ -8,13 +8,12 @@
 #include "floyd_warshall.h"
 #include "limits.h"
 
-using std::cout, std::vector;
 
-vector<vector<int>> SPGFloydTable(vector<vector<int>> distances_matrix) 
+std::vector<std::vector<int>> SPGFloydTable(std::vector<std::vector<int>> distances_matrix)
 {
     int number_of_vertex = distances_matrix.size(), i, j, k;
-    vector<vector<int>> map;
-    map.resize(number_of_vertex,vector<int>(number_of_vertex, 0));
+    std::vector<std::vector<int>> map;
+    map.resize(number_of_vertex, std::vector<int>(number_of_vertex, 0));
     //.............
     clock_t t;
     //.............
@@ -40,20 +39,20 @@ vector<vector<int>> SPGFloydTable(vector<vector<int>> distances_matrix)
                 }
     //.............
     t = clock() - t;
-    cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
+    std::cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<<"\n";
     //.............
     return map;
 }
 
-void SPGFloydTablePrint(vector<vector<int>> distances_matrix)
+void SPGFloydTablePrint(std::vector<std::vector<int>> distances_matrix)
 {
     int number_of_vertices = distances_matrix.size();
-    vector<vector<int>> SPG_floyd_table;
+    std::vector<std::vector<int>> SPG_floyd_table;
     SPG_floyd_table = SPGFloydTable(distances_matrix);
     
     for (int j = 0; j < number_of_vertices; j++) {
         for (int l = 0; l < number_of_vertices; l++)
-             cout<<SPG_floyd_table[j][l]<<", ";
-        cout<<"\n"; 
+            std::cout<<SPG_floyd_table[j][l]<<", ";
+        std::cout<<"\n";
         }
 }
