@@ -15,8 +15,8 @@ Clang++ 12 (12.0.1)
 compatible with
 MSVC 142 (14.29)
 main.cpp
-25.06.2022
-ver 1.107
+26.06.2022
+ver 1.108.5
 */
 
 #include <iostream>
@@ -33,8 +33,16 @@ ver 1.107
 int main() 
 {
     Graph Graph1;
-    Graph1.GenerateGraph(10,25,20);
+    
+    Graph1.GenerateGraph(5,5,3);
+    //Graph1.LoadGraph("graph1.txt");
+    //Graph1.CustomGraph(3);
     Graph1.PrintAdjacencyMatrix();
+    Graph1.PrintDistancesMatrix();
+    Graph1.PrintEdgesList();
+    Graph1.SaveGraph("graph1.txt");
+
+
     //Graph1.LoadGraph("test.txt");
     //Graph1.PrintDistancesMatrix();
     //Graph1.SaveGraph("test.txt");    

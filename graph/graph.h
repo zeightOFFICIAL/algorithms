@@ -3,8 +3,8 @@
 * Graph class and a set of methods
 * for creating (generating) and deleting:
 *   explicit constructor
-*   create custom graph
 *   virtual destructor
+*   create custom graph
 *   graph generator
 *   load graph from file
 *   save graph to file
@@ -27,9 +27,6 @@
 class Graph
 {
 private:
-    int number_of_vertices;
-    int number_of_edges;
-protected:
     std::vector<std::vector<int>> adjacency_matrix;
     std::vector<std::vector<int>> distances_matrix;
 public:
@@ -37,17 +34,15 @@ public:
     virtual ~Graph();
 
     void GenerateGraph(int number_of_vertices = 5, int number_of_edges = 15, int power = 10);
-    void CustomGraph(int number_of_vertices);
+    void CustomGraph(int number_of_vertices = 5);
     void LoadGraph(std::string filename);
-    void SaveGraph(std::string filename);
+    void SaveGraph(std::string filename = "test.txt");
     void ClearGraph();
 
     void PrintAdjacencyMatrix();
     void PrintDistancesMatrix();
     void PrintEdgesList();
 
-    int GetNumberVertices();
-    int GetNumberEdges();
     std::vector<std::vector<int>> GetAdjacencyMatrix();
     std::vector<std::vector<int>> GetDistancesMatrix();
     std::vector<std::vector<int>> GetEdgesList();
