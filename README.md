@@ -14,7 +14,7 @@ Currently available algorithms:
 
 | Algorithm | Type | Matching time |
 | :---:                 | :---:               | :---:  |
-| Naive                 | Simple indexing, checks pattern and text one symbol at a time     | $$O(nm)$$ in best: $$ O(2m) $$  |
+| Naive                 | Simple indexing, checks pattern and text one symbol at a time     | $$O(nm)$$ in best: $$O(2m)$$  |
 | Boyer-Moore (1977)    | Bad char heuristics, advanced naive algorithm| $$O(mn)$$ in best: $$O(m/n)$$  |
 | Rabin-Karp (1987)     | Hashing, compare hash of pattern with hash of text             | $$O(mn)$$  |
 | Bitap (1964) Shift-OR | Uses features of circular bit shift and linearizability of bitwise OR and SHIFT | $$O(m*(n/32))$$ |
