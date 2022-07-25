@@ -42,7 +42,7 @@ std::vector<std::vector<int>> Spg::SpgJohnson()
         std::cout << "the matrix is undefined" << "\n";
     else
     {
-        spg_table = SPGFloydTable(distances_matrix);
+        spg_table = SPGJohnsonTable(distances_matrix);
         return spg_table;
     }
 }
