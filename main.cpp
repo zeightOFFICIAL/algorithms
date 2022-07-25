@@ -18,7 +18,7 @@ compatible with:
 g++ 7.5.0
 main.cpp
 25.07.2022
-ver 1.115
+ver 1.116
 */
 
 #include <iostream>
@@ -34,6 +34,8 @@ int main()
     Graph1.SpgDijstra();
     Graph1.SpgPrintTable();
     Graph1.SpgFloyd();
+    Graph1.SpgPrintTable();
+    Graph1.SpgJohnson();
     Graph1.SpgPrintTable();
     
     return 0;

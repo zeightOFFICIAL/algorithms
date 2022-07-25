@@ -6,6 +6,7 @@
 #include "spg.h"
 #include "dijkstra.h"
 #include "floyd_warshall.h"
+#include "johnson.h"
 
 Spg::Spg() { }
 Spg::Spg(Graph &grph) 
@@ -26,6 +27,16 @@ std::vector<std::vector<int>> Spg::SpgDijstra()
     }
 }
 std::vector<std::vector<int>> Spg::SpgFloyd()
+{
+    if (distances_matrix.size() <= 0)
+        std::cout << "the matrix is undefined" << "\n";
+    else
+    {
+        spg_table = SPGFloydTable(distances_matrix);
+        return spg_table;
+    }
+}
+std::vector<std::vector<int>> Spg::SpgJohnson()
 {
     if (distances_matrix.size() <= 0)
         std::cout << "the matrix is undefined" << "\n";

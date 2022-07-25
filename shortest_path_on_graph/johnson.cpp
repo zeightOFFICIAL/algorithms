@@ -1,56 +1,28 @@
-#include <iostream>
 #include <vector>
 
-//delete ................
-#include <ctime>
-//.......................
-
 #include "johnson.h"
-
 #define INF 999999
-
 
 std::vector<std::vector<int>> SPGJohnsonTable(std::vector<std::vector<int>> distances_matrix)
 {
     int number_of_vertex = distances_matrix.size();
-    std::vector<std::vector<int>> map;
-    map.resize(number_of_vertex, std::vector<int>(number_of_vertex, 0));
-    //.............
-    clock_t t;
-    //.............
-    
-    for (int i = 0; i < number_of_vertex; i++)
-        for (int j = 0; j < number_of_vertex; j++) {
-            if (i == j)
-                map[i][j] = 0;
-            else if (distances_matrix[i][j] == 0)
-                map[i][j] = INF;
+    std::vector<std::vector<int>> spg_johnson_table;
+    spg_johnson_table.resize(number_of_vertex, std::vector<int>(number_of_vertex, 0));
+
+    for (int src_vertex = 0; src_vertex < number_of_vertex; src_vertex++)
+        for (int dst_vertex = 0; dst_vertex < number_of_vertex; dst_vertex++) {
+            if (src_vertex == dst_vertex)
+                spg_johnson_table[src_vertex][dst_vertex] = 0;
+            else if (distances_matrix[src_vertex][dst_vertex] == 0)
+                spg_johnson_table[src_vertex][dst_vertex] = INF;
             else
-                map[i][j] = distances_matrix[i][j];
+                spg_johnson_table[src_vertex][dst_vertex] = distances_matrix[src_vertex][dst_vertex];
             }
-    //.............
-    t = clock();
-    //.............
+
     for (int k = 0; k < number_of_vertex; k++)
       for (int i = 0; i < number_of_vertex; i++)
          for (int j = 0; j < number_of_vertex; j++)
-            map[i][j] = std::min(map[i][j], map[i][k] + map[k][j]);
-    //.............
-    t = clock() - t;
-    //.............
-    std::cout<<"Time: "<<((float)t)/CLOCKS_PER_SEC<<" seconds"<< std::endl;
-    return map;
-}
+            spg_johnson_table[i][j] = std::min(spg_johnson_table[i][j], spg_johnson_table[i][k] + spg_johnson_table[k][j]);
 
-void SPGJohnsonTablePrint(std::vector<std::vector<int>> distances_matrix)
-{
-    int number_of_vertices = distances_matrix.size();
-    std::vector<std::vector<int>> SPG_johnson_table;
-    SPG_johnson_table = SPGJohnsonTable(distances_matrix);
-    
-    for (int j = 0; j < number_of_vertices; j++) {
-        for (int l = 0; l < number_of_vertices; l++)
-            std::cout<<SPG_johnson_table[j][l]<<", ";
-        std::cout<<"\n";
-        }
+    return spg_johnson_table;
 }
