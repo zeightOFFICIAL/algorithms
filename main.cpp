@@ -12,37 +12,29 @@ Algorithms of finding minimum spanning tree and shortest route:
 - Johnson's algorithm (SPG)
 originally build on
 Clang++ 12 (12.0.1)
-compatible with
+compatible with:
 MSVC 142 (14.29)
+compatible with:
+g++ 7.5.0
 main.cpp
-26.06.2022
-ver 1.110
+25.07.2022
+ver 1.115
 */
 
 #include <iostream>
 
 #include "graph/graph.h"
-
-//#include "minimum_spanning_tree/prim.h"
-//#include "minimum_spanning_tree/kruskal.h"
-
-#include "shortest_path_on_graph/dijkstra.h"
-//#include "shortest_path_on_graph/floyd_warshall.h"
-//#include "shortest_path_on_graph/johnson.h"
+#include "shortest_path_on_graph/spg.h"
 
 int main() 
 {
-    Graph Graph1;    
+    Spg Graph1;
     Graph1.GenerateGraph();
     Graph1.PrintDistancesMatrix();
+    Graph1.SpgDijstra();
+    Graph1.SpgPrintTable();
+    Graph1.SpgFloyd();
+    Graph1.SpgPrintTable();
     
-    SPGDijkstraTablePrint(Graph1.GetDistancesMatrix());
-    
-    //MST_prim(Graph1.GetDistancesMatrix());
-    //MST_kruskal(Graph1.GetEdgesList(),Graph1.GetNumberVertices());
-
-    //SPGDijkstraTable(Graph1.GetDistancesMatrix());
-    //SPGFloydTable(Graph1.GetDistancesMatrix());
-    //SPGJohnsonTable(Graph1.GetDistancesMatrix());
     return 0;
 }

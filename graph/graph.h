@@ -1,23 +1,25 @@
-//graph.h 1110
+//graph.h 1115
 #pragma once
 
 #include <vector>
+#include <string>
 
 class Graph
 {
-private:
+protected:
     std::vector<std::vector<int>> adjacency_matrix;
     std::vector<std::vector<int>> distances_matrix;
+    void ClearGraph();
 public:
     explicit Graph();
+    explicit Graph(Graph &grph);
     virtual ~Graph();
 
-    void GenerateGraph(int number_of_vertices = 5, int number_of_edges = 10, int power = 10);
+    void GenerateGraph(int number_of_vertices = 5, int number_of_edges = 7, int power = 10);
     void CustomGraph(int number_of_vertices = 5);
     void LoadGraph(std::string filename);
 
     void SaveGraph(std::string filename = "test.txt");
-    void ClearGraph();
 
     void PrintAdjacencyMatrix();
     void PrintDistancesMatrix();

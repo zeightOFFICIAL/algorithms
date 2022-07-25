@@ -38,6 +38,7 @@
 # VS original
 /.vs
 /Debug
+/.vscode
 *.sln
 *.vcxproj
 *.filters

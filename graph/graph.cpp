@@ -8,6 +8,11 @@
 #include "graph.h"
 
 Graph::Graph() {}
+Graph::Graph(Graph &grph)
+{
+    adjacency_matrix = grph.GetAdjacencyMatrix();
+    distances_matrix = grph.GetDistancesMatrix();
+}
 Graph::~Graph() {}
 
 void Graph::GenerateGraph(int number_of_vertices, int number_of_edges, int power)

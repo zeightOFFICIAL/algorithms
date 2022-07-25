@@ -1,5 +1,6 @@
-#include <iostream>
+//floyd_warshall.h 1115
+#pragma once
+
 #include <vector>
 
 std::vector<std::vector<int>> SPGFloydTable(std::vector<std::vector<int>> distance_matrix);
-void SPGFloydTablePrint(std::vector<std::vector<int>> distance_matrix);
