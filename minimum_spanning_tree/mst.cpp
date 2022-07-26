@@ -40,7 +40,10 @@ void Mst::MstPrintTable()
 {
     int number_of_vertices = distances_matrix.size();
     std::cout<<"Minimum spanning tree matrix:\n";
+    int min_cost = 0;
     for (int l = 0; l < mst_table.size(); l++) {
         std::cout << "\t" << std::setw(2) << std::left << mst_table[l][0] << "- " << std::left << std::setw(2) << mst_table[l][1] << std::setw(3) << " weight " << mst_table[l][2] << "\n";
+        min_cost += mst_table[l][2];
     }
+    std::cout << "MST cost: " << min_cost << "\n";
 }
