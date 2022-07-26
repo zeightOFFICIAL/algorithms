@@ -1,3 +1,6 @@
+//kruskal.h 1118
+#pragma once
+
 #include <iostream>
 #include <vector>
 
@@ -11,4 +14,4 @@ public:
     int find(int i);
 };
 
-int MSTKruskal(std::vector<std::vector<int>> EdgeList, int NoVertex);
+std::vector<std::vector<int>> MSTKruskal(std::vector<std::vector<int>> EdgeList, int NoVertex);

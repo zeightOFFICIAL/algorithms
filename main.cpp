@@ -17,26 +17,31 @@ MSVC 142 (14.29)
 compatible with:
 g++ 7.5.0
 main.cpp
-25.07.2022
-ver 1.116
+26.07.2022
+ver 1.118
 */
 
 #include <iostream>
 
 #include "graph/graph.h"
 #include "shortest_path_on_graph/spg.h"
+#include "minimum_spanning_tree/mst.h"
 
 int main() 
 {
     Spg Graph1;
     Graph1.GenerateGraph();
     Graph1.PrintDistancesMatrix();
-    Graph1.SpgDijstra();
-    Graph1.SpgPrintTable();
-    Graph1.SpgFloyd();
-    Graph1.SpgPrintTable();
-    Graph1.SpgJohnson();
-    Graph1.SpgPrintTable();
+    // Graph1.SpgDijstra();
+    // Graph1.SpgPrintTable();
+    // Graph1.SpgFloyd();
+    // Graph1.SpgPrintTable();
+    // Graph1.SpgJohnson();
+    // Graph1.SpgPrintTable();
+    
+    Mst Graph2(Graph1);
+    Graph2.MstKruskall();
+    Graph2.MstPrintTable();
     
     return 0;
 }
