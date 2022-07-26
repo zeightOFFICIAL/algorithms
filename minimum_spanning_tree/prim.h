@@ -1,5 +1,7 @@
-#include <iostream>
+//prim.h 1119
+#pragma once
+
 #include <vector>
 
-int MSTPrim(std::vector<std::vector<int>> DistancesMatrix);
+std::vector<std::vector<int>> MSTPrim(std::vector<std::vector<int>> DistancesMatrix);
 int MinKey(int key[], bool visited[], int NoVertex);

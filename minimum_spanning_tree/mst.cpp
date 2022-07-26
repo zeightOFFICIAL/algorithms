@@ -5,6 +5,7 @@
 
 #include "mst.h"
 #include "kruskal.h"
+#include "prim.h"
 
 Mst::Mst() { }
 Mst::Mst(Graph &grph) 
@@ -24,6 +25,16 @@ std::vector<std::vector<int>> Mst::MstKruskall()
         return mst_table;
     }
 }
+std::vector<std::vector<int>> Mst::MstPrim()
+{
+    if (distances_matrix.size() <= 0)
+        std::cout << "the matrix is undefined" << "\n";
+    else
+    {
+        mst_table = MSTPrim(distances_matrix);
+        return mst_table;
+    }
+}
 
 void Mst::MstPrintTable()
 {
@@ -32,5 +43,4 @@ void Mst::MstPrintTable()
     for (int l = 0; l < mst_table.size(); l++) {
         std::cout << "\t" << std::setw(2) << std::left << mst_table[l][0] << "- " << std::left << std::setw(2) << mst_table[l][1] << std::setw(3) << " weight " << mst_table[l][2] << "\n";
     }
-    std::cout << "\n";
 }

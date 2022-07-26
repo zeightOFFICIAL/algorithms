@@ -48,7 +48,7 @@ void Graph::LoadGraph(std::string filename)
     std::ifstream file;
     file.open(filename);
 	if (!file)
-        std::cout << "No such file.";
+        std::cout << "no such file";
     else {
         file >> number_of_vertices;
         adjacency_matrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
@@ -72,7 +72,7 @@ void Graph::CustomGraph(int number_of_vertices)
     int count_edge = 0, this_edge = 0;
     for (int row = 0; row < number_of_vertices; row++) {
         for (int col = row + 1; col < number_of_vertices; col++) {
-            std::cout << "Input value of edge " << row << " to " << col << ":";
+            std::cout << "Input value of edge " << row << " -> " << col << ":";
             std::cin >> this_edge;
             if (this_edge != 0) {
                 distances_matrix[row][col] = this_edge;
@@ -90,7 +90,7 @@ void Graph::SaveGraph(std::string filename)
     std::ofstream file;
     file.open(filename, std::ios::trunc);
 	if (!file)
-        std::cout << "No such file.";
+        std::cout << "no such file";
     else {
         file << distances_matrix.size() << "\n";
         for (int row = 0; row < distances_matrix.size(); row++) {

@@ -18,7 +18,7 @@ compatible with:
 g++ 7.5.0
 main.cpp
 26.07.2022
-ver 1.118
+ver 1.119
 */
 
 #include <iostream>
@@ -32,15 +32,17 @@ int main()
     Spg Graph1;
     Graph1.GenerateGraph();
     Graph1.PrintDistancesMatrix();
-    // Graph1.SpgDijstra();
-    // Graph1.SpgPrintTable();
-    // Graph1.SpgFloyd();
-    // Graph1.SpgPrintTable();
-    // Graph1.SpgJohnson();
-    // Graph1.SpgPrintTable();
+    Graph1.SpgDijstra();
+    Graph1.SpgPrintTable();
+    Graph1.SpgFloyd();
+    Graph1.SpgPrintTable();
+    Graph1.SpgJohnson();
+    Graph1.SpgPrintTable();
     
     Mst Graph2(Graph1);
     Graph2.MstKruskall();
+    Graph2.MstPrintTable();
+    Graph2.MstPrim();
     Graph2.MstPrintTable();
     
     return 0;

@@ -35,8 +35,7 @@ std::vector<std::vector<int>> MSTKruskal(std::vector<std::vector<int>> edges_lis
 {
     sort(edges_list.begin(),edges_list.end());
     DSU s(number_of_vertex);
-    std::vector<std::vector<int>> mst_kruskal_table;
-    
+    std::vector<std::vector<int>> mst_kruskal_table;    
     for (auto edge : edges_list)  {
             int w = edge[0];
             int x = edge[1];

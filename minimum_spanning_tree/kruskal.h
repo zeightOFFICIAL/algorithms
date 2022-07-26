@@ -1,4 +1,4 @@
-//kruskal.h 1118
+//kruskal.h 1119
 #pragma once
 
 #include <iostream>
