@@ -20,7 +20,7 @@ compatible with:
 g++ 7.5.0
 main.cpp
 31.07.2022
-ver 1.122
+ver 1.123
 */
 
 #include "graph/graph.h"
@@ -28,6 +28,11 @@ ver 1.122
 #include "minimum_spanning_tree/mst.h"
 
 int main() 
-{    
+{   
+    Mst Graph1;
+    Graph1.GenerateGraph();
+    Graph1.PrintDistancesMatrix();
+    Graph1.MstRedelete();
+
     return 0;
 }
