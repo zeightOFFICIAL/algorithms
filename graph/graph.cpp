@@ -40,7 +40,6 @@ void Graph::GenerateGraph(int number_of_vertices, int number_of_edges, int power
         }
     }
 }
-
 void Graph::LoadGraph(std::string filename)
 {
     Graph::ClearGraph();
@@ -63,7 +62,6 @@ void Graph::LoadGraph(std::string filename)
     }
     file.close();
 }
-
 void Graph::CustomGraph(int number_of_vertices)
 {
     Graph::ClearGraph();
@@ -84,7 +82,6 @@ void Graph::CustomGraph(int number_of_vertices)
         }
     }
 }
-
 void Graph::SaveGraph(std::string filename)
 {
     std::ofstream file;
@@ -119,7 +116,6 @@ void Graph::PrintAdjacencyMatrix()
         std::cout << "\n";
     }
 }
-
 void Graph::PrintDistancesMatrix()
 {
     std::cout<<"Distances matrix:\n";
@@ -131,7 +127,6 @@ void Graph::PrintDistancesMatrix()
         std::cout << "\n";
     }
 }
-
 void Graph::PrintEdgesList()
 {
     std::cout << "Edges list:\n";
@@ -152,6 +147,5 @@ std::vector<std::vector<int>> Graph::GetEdgesList()
             }
     return edges_list;
 }
-
 std::vector<std::vector<int>> Graph::GetAdjacencyMatrix() {return adjacency_matrix;}
 std::vector<std::vector<int>> Graph::GetDistancesMatrix() {return distances_matrix;}

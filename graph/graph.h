@@ -1,4 +1,4 @@
-//graph.h 1119
+//graph.h 1122
 #pragma once
 
 #include <vector>
@@ -18,7 +18,6 @@ public:
     void GenerateGraph(int number_of_vertices = 5, int number_of_edges = 7, int power = 10);
     void CustomGraph(int number_of_vertices = 5);
     void LoadGraph(std::string filename);
-
     void SaveGraph(std::string filename = "test.txt");
 
     void PrintAdjacencyMatrix();

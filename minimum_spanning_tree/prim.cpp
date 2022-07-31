@@ -11,7 +11,7 @@ int MinKey(int key[], bool visited[], int NoVertex)
             min = key[v];
 			min_index = v;  
         }
-    }    
+    }
     return min_index;  
 }  
 

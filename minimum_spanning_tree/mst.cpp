@@ -6,6 +6,7 @@
 #include "mst.h"
 #include "kruskal.h"
 #include "prim.h"
+#include "reverse_delete.h"
 
 Mst::Mst() { }
 Mst::Mst(Graph &grph) 
@@ -35,6 +36,17 @@ std::vector<std::vector<int>> Mst::MstPrim()
         return mst_table;
     }
 }
+std::vector<std::vector<int>> Mst::MstRedelete()
+{
+    if (distances_matrix.size() <= 0)
+        std::cout << "the matrix is undefined" << "\n";
+    else
+    {
+        mst_table = MSTReverseDelete(GetEdgesList());
+        return mst_table;
+    }
+}
+
 
 void Mst::MstPrintTable()
 {

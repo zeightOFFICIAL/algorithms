@@ -1,4 +1,4 @@
-//mst.h 1120
+//mst.h 1122
 #pragma once
 
 #include <vector>
@@ -15,6 +15,7 @@ public:
 
     std::vector<std::vector<int>> MstKruskall();
     std::vector<std::vector<int>> MstPrim();
+    std::vector<std::vector<int>> MstRedelete();
 
     void MstPrintTable();
     std::vector<std::vector<int>> GetVector();
