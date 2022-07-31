@@ -20,7 +20,7 @@ compatible with:
 g++ 7.5.0
 main.cpp
 31.07.2022
-ver 1.123
+ver 1.124
 */
 
 #include "graph/graph.h"
@@ -33,6 +33,9 @@ int main()
     Graph1.GenerateGraph();
     Graph1.PrintDistancesMatrix();
     Graph1.MstRedelete();
+    Graph1.MstPrintTable();
+    Graph1.MstPrim();
+    Graph1.MstPrintTable();
 
     return 0;
 }
