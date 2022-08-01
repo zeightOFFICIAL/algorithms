@@ -8,11 +8,11 @@ Algorithms of finding minimum spanning tree (MST):
 - Prim's algorithm (minimal spanning tree, MST)
 - Kruskal's algorithm (MST)
 - Reverse delete algorithm (MST)
-Algorithms of finding shortest route on graph (SPG):
-- Dijkstra algorithm (Shortest path on graph, SPG)
+Algorithms of finding shortest path on graph (SPG):
+- Dijkstra algorithm (shortest path on graph, SPG)
 - Floyd-Warshall's algorithm (SPG)
 - Johnson's algorithm (SPG)
-originally build on
+originally built on
 Clang++ 12 (12.0.1)
 compatible with:
 MSVC 142 (14.29)
@@ -20,7 +20,7 @@ compatible with:
 g++ 7.5.0
 main.cpp
 01.08.2022
-ver 1.126
+ver 1.128
 */
 
 #include "graph/graph.h"
@@ -29,13 +29,5 @@ ver 1.126
 
 int main() 
 {   
-    Mst Graph1;
-    Graph1.GenerateGraph();
-    Graph1.PrintDistancesMatrix();
-    Graph1.MstRedelete();
-    Graph1.MstPrintTable();
-    Graph1.MstPrim();
-    Graph1.MstPrintTable();
-
     return 0;
 }

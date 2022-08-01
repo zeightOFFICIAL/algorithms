@@ -1,4 +1,4 @@
-//kruskal.h 1119
+//kruskal.h 1128
 #pragma once
 
 #include <iostream>
@@ -10,8 +10,8 @@ class DSU
     int* rank;
 public:
     DSU(int n);
-    void unite(int x, int y);
-    int find(int i);
+    void unite_sets(int x, int y);
+    int find_set(int i);
 };
 
 std::vector<std::vector<int>> MSTKruskal(std::vector<std::vector<int>> EdgeList, int NoVertex);

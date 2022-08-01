@@ -1,12 +1,12 @@
 #include <vector>
-
-#include "prim.h"
 #include "limits.h"
 
-int MinKey(int key[], bool visited[], int NoVertex)  
+#include "prim.h"
+
+int MinKey(int key[], bool visited[], int number_of_vertex)  
 { 
     int min = INT_MAX, min_index;
-    for (int v = 0; v < NoVertex; v++) { 
+    for (int v = 0; v < number_of_vertex; v++) { 
         if (visited[v] == false && key[v] < min) { 
             min = key[v];
 			min_index = v;  
@@ -22,7 +22,6 @@ std::vector<std::vector<int>> MSTPrim(std::vector<std::vector<int>> distances_ma
     int* key = new int[number_of_vertex];
     bool* visited = new bool[number_of_vertex];
     std::vector<std::vector<int>> mst_prim_table;
-    
     for (int each_vertex = 0; each_vertex< number_of_vertex; each_vertex++) { 
         key[each_vertex] = 999; 
         visited[each_vertex] = false;

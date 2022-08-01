@@ -47,7 +47,6 @@ std::vector<std::vector<int>> Mst::MstRedelete()
     }
 }
 
-
 void Mst::MstPrintTable()
 {
     int number_of_vertices = distances_matrix.size();
