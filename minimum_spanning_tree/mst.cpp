@@ -22,7 +22,7 @@ std::vector<std::vector<int>> Mst::MstKruskall()
         std::cout << "the matrix is undefined" << "\n";
     else
     {
-        mst_table = MSTKruskal(GetEdgesList(), distances_matrix.size());
+        mst_table = MSTKruskal(GetEdgesList(), adjacency_matrix.size());
         return mst_table;
     }
 }
@@ -42,7 +42,7 @@ std::vector<std::vector<int>> Mst::MstRedelete()
         std::cout << "the matrix is undefined" << "\n";
     else
     {
-        mst_table = MSTReverseDelete(GetEdgesList());
+        mst_table = MSTReverseDelete(GetEdgesList(), adjacency_matrix.size());
         return mst_table;
     }
 }

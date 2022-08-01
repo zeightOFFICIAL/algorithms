@@ -19,8 +19,8 @@ MSVC 142 (14.29)
 compatible with:
 g++ 7.5.0
 main.cpp
-31.07.2022
-ver 1.124
+01.08.2022
+ver 1.126
 */
 
 #include "graph/graph.h"
