@@ -1,4 +1,4 @@
-#include <string>
-#include <algorithm>
+//fnv132.h 1003
+#pragma once
 
-std::string fnv132(std::string data);
+std::uint32_t fnv132(std::string data);
