@@ -14,7 +14,7 @@ compatible with:
 g++ 7.5.0
 main.cpp
 02.08.2022
-ver 1001
+ver 1002
 */
 
 #include <iostream>
@@ -26,6 +26,6 @@ ver 1001
   
 int main()
 {
-    std::cout << adler32("Wikipedia");
+    std::cout << std::hex << adler32("Wikipedia") << "\n";
     return 0;
 }
