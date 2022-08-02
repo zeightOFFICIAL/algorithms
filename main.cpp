@@ -13,8 +13,8 @@ Clang++ 12 (12.0.1)
 compatible with:
 g++ 7.5.0
 main.cpp
-28.07.2022
-ver 1000
+02.08.2022
+ver 1001
 */
 
 #include <iostream>
@@ -26,5 +26,6 @@ ver 1000
   
 int main()
 {
+    std::cout << adler32("Wikipedia");
     return 0;
 }
