@@ -13,8 +13,8 @@ Clang++ 12 (12.0.1)
 compatible with:
 g++ 7.5.0
 main.cpp
-02.08.2022
-ver 1003
+03.08.2022
+ver 1004
 */
 
 #include <iostream>
@@ -28,5 +28,6 @@ int main()
 {
     std::cout << std::hex << adler32("Wikipedia") << "\n";
     std::cout << std::hex << fnv132("Wikipedia") << "\n";
+    std::cout << std::hex << sha1("Wikipedia") << "\n";
     return 0;
 }
