@@ -14,7 +14,7 @@ compatible with:
 g++ 7.5.0
 main.cpp
 03.08.2022
-ver 1004
+ver 1005
 */
 
 #include <iostream>
@@ -28,6 +28,6 @@ int main()
 {
     std::cout << std::hex << adler32("Wikipedia") << "\n";
     std::cout << std::hex << fnv132("Wikipedia") << "\n";
-    std::cout << std::hex << sha1("Wikipedia") << "\n";
+    std::cout << sha1("A Test") << "\n";
     return 0;
 }
