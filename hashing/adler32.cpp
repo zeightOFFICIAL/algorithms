@@ -7,8 +7,8 @@ std::uint32_t adler32(const std::string data)
 {
     int length = data.length();
     uint32_t a = 1, b = 0;
-
-    for (size_t index = 0; index < length; ++index) {
+    for (size_t index = 0; index < length; ++index)
+    {
         a = (a + data[index]) % MOD_ADLER;
         b = (b + a) % MOD_ADLER;
     }

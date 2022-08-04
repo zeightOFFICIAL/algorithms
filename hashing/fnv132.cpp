@@ -8,10 +8,10 @@ std::uint32_t fnv132(const std::string data)
 {
     int length = data.length();
     uint32_t hash = FNV_OFFSET;
-
-    for (size_t index = 0; index < length; index++) {
-		hash *= FNV_PRIME;
-		hash ^= (data[index]);
-	}
+    for (size_t index = 0; index < length; index++)
+    {
+        hash *= FNV_PRIME;
+        hash ^= (data[index]);
+    }
     return hash;
 }

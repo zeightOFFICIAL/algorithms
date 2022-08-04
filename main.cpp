@@ -1,4 +1,4 @@
-/* 
+/*
 Saint Petersburg State University of Telecommunications (SPBSUT)
 IKPI-04
 Saganenko A.V
@@ -14,7 +14,7 @@ compatible with:
 g++ 7.5.0
 main.cpp
 04.08.2022
-ver 1007
+ver 1008
 */
 
 #include <iostream>
@@ -23,7 +23,7 @@ ver 1007
 #include "hashing/sha256.h"
 #include "hashing/adler32.h"
 #include "hashing/fnv132.h"
-  
+
 int main()
 {
     std::cout << std::hex << adler32("Wikipedia") << "\n";
