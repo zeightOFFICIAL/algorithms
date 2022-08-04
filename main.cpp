@@ -13,8 +13,8 @@ Clang++ 12 (12.0.1)
 compatible with:
 g++ 7.5.0
 main.cpp
-03.08.2022
-ver 1005
+04.08.2022
+ver 1006
 */
 
 #include <iostream>

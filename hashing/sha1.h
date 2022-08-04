@@ -15,7 +15,6 @@ private:
     void split_to_chunks(std::string message_bin);
     void extend_chunks();
     std::bitset<32> bitsetwise_add(std::bitset<32> first, std::bitset<32> second);
-    bool bool_full_add(bool b1, bool b2, bool& carry_over);
     std::bitset<32> bitsetwise_rotate(std::bitset<32> first, unsigned size_of_rotate);
     std::string convert_bin_hex(std::string bin);
 public:

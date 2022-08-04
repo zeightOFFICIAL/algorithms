@@ -69,23 +69,24 @@ std::string SHA1::process()
                     }
                     const std::bitset<32> chunk = chunks[this_rotation];
                     const std::bitset<32> temp_a = bitsetwise_rotate(a, 5);
-                    std::bitset<32> temp = bitsetwise_add(temp_a, f);
-                    temp = bitsetwise_add(temp, f);
-                    temp = bitsetwise_add(temp, e);
-                    temp = bitsetwise_add(temp, k);
-                    temp = bitsetwise_add(temp, chunk);
+                    // std::bitset<32> temp = bitsetwise_add(temp_a, f);
+                    // temp = bitsetwise_add(temp, f);
+                    // temp = bitsetwise_add(temp, e);
+                    // temp = bitsetwise_add(temp, k);
+                    // temp = bitsetwise_add(temp, chunk);
+                    uint32_t temp = temp_a.to_ullong() + f.to_ullong() + e.to_ullong() + k.to_ullong() + chunk.to_ullong();
 
                     e = d;
                     d = c;
                     c = bitsetwise_rotate(b, 30);
                     b = a;
-                    a = temp;
+                    a = std::bitset<32>(temp);
                 }
-            digest[0] = bitsetwise_add(digest[0], a);
-            digest[1] = bitsetwise_add(digest[1], b);
-            digest[2] = bitsetwise_add(digest[2], c);
-            digest[3] = bitsetwise_add(digest[3], d);
-            digest[4] = bitsetwise_add(digest[4], e);
+            digest[0] = digest[0].to_ullong() + a.to_ullong();
+            digest[1] = digest[1].to_ullong() + b.to_ullong();
+            digest[2] = digest[2].to_ullong() + c.to_ullong();
+            digest[3] = digest[3].to_ullong() + d.to_ullong();
+            digest[4] = digest[4].to_ullong() + e.to_ullong();
 
     std::string unite_digest = "";
     for (int this_string = 0; this_string < 5; this_string++) {
@@ -138,16 +139,11 @@ void SHA1::extend_chunks()
 
 std::bitset<32> SHA1::bitsetwise_add(std::bitset<32> first, std::bitset<32> second) 
 {
-    uint32_t first_int = first.to_ulong(), second_int = second.to_ullong();
-    return std::bitset<32>(first_int+second_int);
-}
-bool SHA1::bool_full_add(bool b1, bool b2, bool& carry_over)
-{
-    bool sum = (b1 ^ b2) ^ carry_over;
-    carry_over = (b1 && b2) || (b1 && carry_over) || (b2 && carry_over);
-    return sum;
-}
+    std::string result = "";
+    //std::cout << first_int << " " << second_int << " " << result_str << "\n";
 
+    return std::bitset<32>(result);
+}
 
 std::bitset<32> SHA1::bitsetwise_rotate(std::bitset<32> first, unsigned size_of_rotate)
 {
