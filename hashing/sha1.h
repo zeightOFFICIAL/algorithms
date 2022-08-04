@@ -1,4 +1,4 @@
-//sha1.h 1005
+//sha1.h 1007
 #pragma once
 
 #include <vector>
@@ -14,7 +14,6 @@ private:
     std::string length_bin_padding(std::string length_bin);
     void split_to_chunks(std::string message_bin);
     void extend_chunks();
-    std::bitset<32> bitsetwise_add(std::bitset<32> first, std::bitset<32> second);
     std::bitset<32> bitsetwise_rotate(std::bitset<32> first, unsigned size_of_rotate);
     std::string convert_bin_hex(std::string bin);
 public:

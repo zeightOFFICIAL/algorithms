@@ -4,17 +4,17 @@ IKPI-04
 Saganenko A.V
 Lab 7
 Hashing algorithms
-- sha1 (Secure Hash Algorithm)
-- sha256 (Secure Hash Algorithm)
-- adler32
-- fnv1-32
+- sha1 (secure hash algorithm)
+- sha256 (secure hash algorithm)
+- adler32 (checksum)
+- fnv1-32 (checksum)
 originally build on
 Clang++ 12 (12.0.1)
 compatible with:
 g++ 7.5.0
 main.cpp
 04.08.2022
-ver 1006
+ver 1007
 */
 
 #include <iostream>
@@ -28,6 +28,6 @@ int main()
 {
     std::cout << std::hex << adler32("Wikipedia") << "\n";
     std::cout << std::hex << fnv132("Wikipedia") << "\n";
-    std::cout << sha1("A Test") << "\n";
+    std::cout << sha1("Wikipedia") << "\n";
     return 0;
 }

@@ -1,4 +1,4 @@
-//adler32.h 1003
+//adler32.h 1007
 #pragma once
 
-std::uint32_t adler32(std::string data);
+std::uint32_t adler32(const std::string data);

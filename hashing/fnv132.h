@@ -1,4 +1,4 @@
-//fnv132.h 1003
+//fnv132.h 1007
 #pragma once
 
-std::uint32_t fnv132(std::string data);
+std::uint32_t fnv132(const std::string data);

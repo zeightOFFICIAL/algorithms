@@ -69,11 +69,6 @@ std::string SHA1::process()
                     }
                     const std::bitset<32> chunk = chunks[this_rotation];
                     const std::bitset<32> temp_a = bitsetwise_rotate(a, 5);
-                    // std::bitset<32> temp = bitsetwise_add(temp_a, f);
-                    // temp = bitsetwise_add(temp, f);
-                    // temp = bitsetwise_add(temp, e);
-                    // temp = bitsetwise_add(temp, k);
-                    // temp = bitsetwise_add(temp, chunk);
                     uint32_t temp = temp_a.to_ullong() + f.to_ullong() + e.to_ullong() + k.to_ullong() + chunk.to_ullong();
 
                     e = d;
@@ -135,14 +130,6 @@ void SHA1::extend_chunks()
             std::bitset<32> new_chunk = bitsetwise_rotate(xor_c, 1);
             chunks.push_back(new_chunk);
         }
-}
-
-std::bitset<32> SHA1::bitsetwise_add(std::bitset<32> first, std::bitset<32> second) 
-{
-    std::string result = "";
-    //std::cout << first_int << " " << second_int << " " << result_str << "\n";
-
-    return std::bitset<32>(result);
 }
 
 std::bitset<32> SHA1::bitsetwise_rotate(std::bitset<32> first, unsigned size_of_rotate)
