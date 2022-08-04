@@ -38,6 +38,7 @@
 
 # vscode original
 /.vscode
+*.json
 
 # ---------------
 *.txt

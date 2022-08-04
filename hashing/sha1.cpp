@@ -1,9 +1,6 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
 #include <bitset>
-#include <vector>
 #include <sstream>
+#include <vector>
 
 #include "sha1.h"
 

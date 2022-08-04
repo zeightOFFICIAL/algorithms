@@ -1,8 +1,7 @@
-// sha1.h 1008
+// sha1.h 1009
 #pragma once
 
 #include <vector>
-#include <bitset>
 
 class SHA1
 {
