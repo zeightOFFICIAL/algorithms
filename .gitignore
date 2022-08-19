@@ -31,10 +31,6 @@
 *.out
 *.app
 
-# Replit original
-*.replit
-*.nix
-
 # ---------------
 *.txt
 /.vs
