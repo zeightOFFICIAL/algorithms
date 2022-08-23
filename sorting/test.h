@@ -169,7 +169,7 @@ void fulltest(int tries)
 
             array4 = GenerateRandomArray(local_length, max_value, min_value);
             start4 = std::chrono::steady_clock::now();
-            StoogeSort(array4, local_length, false);
+            //StoogeSort(array4, local_length, false);
             end4 = std::chrono::steady_clock::now();
             alltime4 = alltime4 + std::chrono::duration_cast<std::chrono::microseconds>(end4 - start4).count() / 1000000.0;
 
