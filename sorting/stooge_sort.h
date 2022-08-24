@@ -17,24 +17,28 @@ typedef unsigned long u_long;
     Takes an array A within range of D..B and sorts it in 
     the ascending order if C - true and descending if C - false, 
     using stooge sorting. 
-    Changes the array given as argument.
-    >>StoogeSort(unsorted array, end point, order, HIDDEN start point HIDDEN)
+    - Changes the array given as argument, length and order remains
+	unchanged.
 */
 template <typename T>
-void StoogeSort(T* array, u_long end_point, bool order = true, u_long start_point = 0)
+void StoogeSort(T* array, u_long h, bool order = true, u_long l = 0)
 {
-        if (start_point >= end_point)
+        if (l >= h)
             return;
-        if ((array[start_point] > array[end_point]) && (order == true)) {
-            std::swap(array[start_point], array[end_point]);
+
+        if (order == true) {
+            if (array[l] > array[h])
+                std::swap(array[l], array[h]);
         }
-        else if ((array[start_point] <= array[end_point]) && (order == false)) {
-            std::swap(array[start_point], array[end_point]);
+        if (order == false) {
+            if (array[l] < array[h])
+                std::swap(array[l], array[h]);
         }
-        if (end_point - start_point + 1 > 2) {
-            u_long cut_index = (end_point - start_point + 1) / 3;
-            StoogeSort<T>(array, end_point - cut_index, order, start_point);
-            StoogeSort<T>(array, end_point, order, start_point + cut_index);
-            StoogeSort<T>(array, end_point - cut_index, order, start_point);
+
+        if (h - l + 1 > 2) {
+            u_long t = (h - l + 1) / 3;
+            StoogeSort(array, h - t, order, l);
+            StoogeSort(array, h, order, l + t);
+            StoogeSort(array, h - t, order, l);
         }
 }
