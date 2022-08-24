@@ -1,8 +1,9 @@
 #include "sorting/test.h"
+#include <iostream>
 
 int main() {
   long long* arr;
-  arr = GenerateRandomArray(10000, 15000, -15000);
+  arr = GenerateRandomArray(1000, 15000, -15000);
   //PrintArray(arr, 10000);
   /*
   arr = new long long[6];
@@ -13,7 +14,7 @@ int main() {
   arr[4] = 500000;
   arr[5] = -500000;
   */
-  GnomeSort(arr, 10000, false);
-  PrintArray(arr, 10000);
+  StoogeSort(arr, 1000, true);
+  PrintArray(arr, 1000);
   return 0;
 }

@@ -1,6 +1,19 @@
-#pragma once
+// stooge_sort.h
+
 /*
-    (T* A, unsigned long B, bool C, unsigned long D)->()
+Stooge Sort is a recursive sorting algorithm. It is not much 
+efficient but interesting sorting algorithm. It generally 
+divides the array into two overlapping parts (2/3 each). After 
+that it performs sorting in first 2/3 part and then it performs 
+sorting in last 2/3 part. And then, sorting is done on first 2/3 
+part to ensure that the array is sorted.
+https://www.geeksforgeeks.org/stooge-sort/
+*/
+
+typedef unsigned long u_long;
+
+/*
+    (T* A, unsigned long B, bool C, unsigned long D) -> ()
     Takes an array A within range of D..B and sorts it in 
     the ascending order if C - true and descending if C - false, 
     using stooge sorting. 
@@ -8,33 +21,20 @@
     >>StoogeSort(unsorted array, end point, order, HIDDEN start point HIDDEN)
 */
 template <typename T>
-void StoogeSort(T* array, unsigned long end_point, bool order = true, unsigned long start_point = 0)
+void StoogeSort(T* array, u_long end_point, bool order = true, u_long start_point = 0)
 {
         if (start_point >= end_point)
             return;
         if ((array[start_point] > array[end_point]) && (order == true)) {
-            SwapByPointer_<T>(&array[start_point], &array[end_point]);
+            std::swap(array[start_point], array[end_point]);
         }
-        else if ((array[start_point] < array[end_point]) && (order == false)) {
-            SwapByPointer_<T>(&array[start_point], &array[end_point]);
+        else if ((array[start_point] <= array[end_point]) && (order == false)) {
+            std::swap(array[start_point], array[end_point]);
         }
         if (end_point - start_point + 1 > 2) {
-            unsigned long cut_index = (end_point - start_point + 1) / 3;
+            u_long cut_index = (end_point - start_point + 1) / 3;
             StoogeSort<T>(array, end_point - cut_index, order, start_point);
             StoogeSort<T>(array, end_point, order, start_point + cut_index);
             StoogeSort<T>(array, end_point - cut_index, order, start_point);
         }
-}
-/*
-    (T* A, T* B)->()
-    Swaps element A with element B of an array, or other structure.
-    Returns nothing.
-    >>SwapByPointer_(&array[K], &array[K+1])
-*/
-template <typename T>
-void SwapByPointer_(T* left_element, T* right_element)
-{
-    T temp = *left_element;
-    *left_element = *right_element;
-    *right_element = temp;
 }
