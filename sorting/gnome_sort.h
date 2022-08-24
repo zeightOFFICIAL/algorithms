@@ -1,38 +1,53 @@
-#pragma once
+// gnome_sort.h
+
 /*
-    (T* A, unsigned long B, bool C)->()
-    Takes an array A (type T) with length of B and sorts it in
-    the ascending order if C - true, descending if 
-    C - false, using gnome sorting (a.k.a stupid sort)
-    Changes the array given as argument.
-    >>GnomeSort(unsorted array, amount of elements)
+Gnome Sort also called Stupid sort is based on the concept of a
+Garden Gnome sorting his flower pots. A garden gnome sorts the
+flower pots by the following method:
+ - He looks at the flower pot next to him and the previous one;
+if they are in the right order he steps one pot forward, otherwise
+he swaps them and steps one pot backwards.
+ - If there is no previous pot (he is at the starting of the pot line),
+he steps forwards; if there is no pot next to him (he is at the end of the pot line),
+he is done.
+https://www.geeksforgeeks.org/gnome-sort-a-stupid-one/
+*/
+
+typedef unsigned long u_long;
+
+/*
+	(T* A, unsigned long B, bool C) -> ()
+	Takes an array A (type T) with length of B and sorts it in
+	the ascending order if C - true, descending if
+	C - false, using gnome sorting (a.k.a stupid sort)
+	- Changes the array given as argument, length and order remains
+	unchanged.
 */
 template <typename T>
-void GnomeSort(T* array, unsigned long amount_of_elements, bool order = true) {
-    unsigned long this_element = 0;
-    while (this_element < amount_of_elements)  {
-        if (this_element == 0)
-            this_element++;
-        else if (order == true && array[this_element] >= array[this_element - 1])
-            this_element++;
-        else if (order == false && array[this_element] <= array[this_element - 1])
-            this_element++;
-        else  {
-            _SwapByPointer<T>(&array[this_element], &array[this_element - 1]);
-            this_element--;
-        }
-    }
-}
-/*
-    (T* A, T* B)->()
-    Swaps element A with element B of an array, or other structure.
-    Returns nothing.
-    >>SwapByPointer(&array[K], &array[K+1])
-*/
-template <typename T>
-void _SwapByPointer(T* left_element, T* right_element)
-{
-    T temp = *left_element;
-    *left_element = *right_element;
-    *right_element = temp;
+static void GnomeSort(T* array, u_long length, bool order = true) {
+	unsigned long index = 0;
+	if (order == true) {
+		while (index < length) {
+			if (index == 0)
+				index++;
+			else if (array[index] >= array[index - 1])
+				index++;
+			else {
+				std::swap(array[index], array[index - 1]);
+				index--;
+			}
+		}
+	}
+	else {
+		while (index < length) {
+			if (index == 0)
+				index++;
+			else if (array[index] <= array[index - 1])
+				index++;
+			else {
+				std::swap(array[index], array[index - 1]);
+				index--;
+			}
+		}
+	}
 }
