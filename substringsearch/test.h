@@ -161,7 +161,7 @@ std::vector<unsigned long> EveloperWithCustomText(char* text, unsigned long leng
     return func(text, pattern_string, length);
 }
 
-void fulltest(int tries)
+void sorting_demo(int tries)
 {
     char* array;
     std::vector<unsigned long> occurrences;
