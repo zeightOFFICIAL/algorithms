@@ -1,7 +1,9 @@
-#include "sorting/sorting_demo.h"
+#include "recursion_iteration/fibonacci.h"
 #include <iostream>
 
 int main() {
-	sorting_demo(1);
+	std::cout << FibonacciIterative(17) << "\n";
+	std::cout << FibonacciRecursive(17) << "\n";
+	std::cout << FibonacciTailRecursive(17) << "\n";
 	return 0;
 }

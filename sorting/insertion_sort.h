@@ -24,9 +24,9 @@ static void InsertionSort(T* array, u_long length, bool order = true)
 {
 	T selected_element;
 	if (order == true) {
-		for (u_long this_element = 1; this_element < length; this_element++) {
-			selected_element = array[this_element];
-			u_long next_element = this_element - 1;
+		for (u_long element = 1; element < length; element++) {
+			selected_element = array[element];
+			u_long next_element = element - 1;
 			while ((next_element >= 0) && (array[next_element] > selected_element)) {
 				array[next_element + 1] = array[next_element];
 				next_element = next_element - 1;
@@ -35,9 +35,9 @@ static void InsertionSort(T* array, u_long length, bool order = true)
 		}
 	}
 	else {
-		for (u_long this_element = 1; this_element < length; this_element++) {
-			selected_element = array[this_element];
-			u_long next_element = this_element - 1;
+		for (u_long element = 1; element < length; element++) {
+			selected_element = array[element];
+			u_long next_element = element - 1;
 			while ((next_element >= 0) && (array[next_element] < selected_element)) {
 				array[next_element + 1] = array[next_element];
 				next_element = next_element - 1;
