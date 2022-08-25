@@ -1,3 +1,7 @@
+// use only for testing of the program's work
+// for version 1.2
+#pragma once
+
 #include <iostream>
 #include <chrono>
 #include <iomanip>
@@ -7,12 +11,14 @@
 #include "gcd.h"
 #include "totalsum.h"
 
+typedef unsigned long long u_d_long;
+typedef unsigned int u_int;
+
 void fulltestunary(int tries = 10) {
-	unsigned int x, local_tries;
-	unsigned long long res = 0;
+	u_int x, local_tries;
+	u_d_long res = 0;
 	std::chrono::steady_clock::time_point start, end, start2, end2, start3, end3, start4, end4, start5, end5, start6, end6, start7, end7; //time stamps
 	double alltime = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, alltime5 = 0, alltime6 = 0, alltime7 = 0; //time summers
-
 	for (x = 5; x <= 65; x++) {
 		for (local_tries = 0; local_tries < tries; local_tries++)
 		{
@@ -64,8 +70,8 @@ void fulltestunary(int tries = 10) {
 
 void fulltestbinary(unsigned long long x, unsigned long long y, int tries = 10)
 {
-	unsigned int local_tries;
-	unsigned long long res = 0;
+	u_int local_tries;
+	u_d_long res = 0;
 	std::chrono::steady_clock::time_point start, end, start2, end2, start3, end3, start4, end4, start5, end5, start6, end6, start7, end7; //time stamps
 	double alltime = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, alltime5 = 0, alltime6 = 0, alltime7 = 0; //time summers
 

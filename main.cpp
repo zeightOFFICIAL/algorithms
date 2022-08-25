@@ -1,9 +1,7 @@
-#include "recursion_iteration/fibonacci.h"
+#include "recursion_iteration/rec_iter_demo.h"
 #include <iostream>
 
 int main() {
-	std::cout << FibonacciIterative(17) << "\n";
-	std::cout << FibonacciRecursive(17) << "\n";
-	std::cout << FibonacciTailRecursive(17) << "\n";
+	fulltestunary(1);
 	return 0;
 }
