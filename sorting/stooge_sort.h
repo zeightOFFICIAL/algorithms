@@ -14,11 +14,10 @@ typedef unsigned long u_long;
 
 /*
 	(T* A, unsigned long B, bool C) -> ()
-	Takes an array A with a lenght of B and sorts it in
+	Takes an array A (type T) with length of B and sorts it in
 	the ascending order if C - true and descending if C - false,
 	using stooge sorting.
-	- Changes the array given as argument, length and order remains
-	unchanged.
+	- Changes the array given as argument.
 */
 template <typename T>
 static void StoogeSort(T* array, u_long length, bool order = true)
@@ -32,8 +31,7 @@ static void StoogeSort(T* array, u_long length, bool order = true)
 	Takes an array A within range of B..C and sorts it in
 	the ascending order if D - true and descending if C - false,
 	using stooge sorting.
-	- Changes the array given as argument, length and order remains
-	unchanged.
+	- Changes the array given as argument.
 */
 template <typename T>
 static void StoogeSortRanged(T* array, u_long start_point, u_long end_point, bool order)
@@ -41,14 +39,12 @@ static void StoogeSortRanged(T* array, u_long start_point, u_long end_point, boo
 	if (start_point >= end_point)
 		return;
 
-	if (order == true) {
+	if (order == true)
 		if (array[start_point] > array[end_point])
 			std::swap(array[start_point], array[end_point]);
-	}
-	if (order == false) {
+	if (order == false)
 		if (array[start_point] < array[end_point])
 			std::swap(array[start_point], array[end_point]);
-	}
 
 	if (end_point - start_point + 1 > 2) {
 		u_long cut_index = (end_point - start_point + 1) / 3;

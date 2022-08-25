@@ -13,11 +13,10 @@ typedef unsigned long u_long;
 
 /*
 	(T* A, unsigned long B, bool C) -> ()
-	Takes an array A with length of B and sorts it in
-	the ascending order if C - true, descending if C - false
+	Takes an array A (type T) with length of B and sorts it in
+	the ascending order if C - true and descending if C - false,
 	using insertion sorting.
-	- Changes the array given as argument, length and order remains
-	unchanged.
+	- Changes the array given as argument.
 */
 template <typename T>
 static void InsertionSort(T* array, u_long length, bool order = true)
@@ -34,7 +33,7 @@ static void InsertionSort(T* array, u_long length, bool order = true)
 			array[next_element + 1] = selected_element;
 		}
 	}
-	else {
+	else if (order == false) {
 		for (u_long element = 1; element < length; element++) {
 			selected_element = array[element];
 			u_long next_element = element - 1;

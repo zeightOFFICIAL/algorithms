@@ -1,8 +1,8 @@
 // factorial.h
 
 /*
-Factorial of a non-negative integer is the multiplication 
-of all positive integers smaller than or equal to n. 
+Factorial of a non-negative integer is the multiplication
+of all positive integers smaller than or equal to n.
 For example factorial of 6 is 6*5*4*3*2*1 which is 720.
 https://www.geeksforgeeks.org/program-for-factorial-of-a-number/
 */

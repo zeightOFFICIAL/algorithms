@@ -18,35 +18,43 @@ typedef unsigned long u_long;
 /*
 	(T* A, unsigned long B, bool C) -> ()
 	Takes an array A (type T) with length of B and sorts it in
-	the ascending order if C - true, descending if
-	C - false, using gnome sorting (a.k.a stupid sort)
-	- Changes the array given as argument, length and order remains
-	unchanged.
+	the ascending order if C - true and descending if C - false,
+	using gnome sorting (a.k.a stupid sort)
+	- Changes the array given as argument.
 */
 template <typename T>
 static void GnomeSort(T* array, u_long length, bool order = true) {
-	unsigned long index = 0;
+	u_long index = 1;
+	u_long last_pos = 2;
 	if (order == true) {
 		while (index < length) {
-			if (index == 0)
-				index++;
-			else if (array[index] >= array[index - 1])
-				index++;
+			if (array[index - 1] < array[index]) {
+				index = last_pos;
+				last_pos++;
+			}
 			else {
-				std::swap(array[index], array[index - 1]);
+				std::swap(array[index - 1], array[index]);
 				index--;
+				if (index == 0) {
+					index = last_pos;
+					last_pos++;
+				}
 			}
 		}
 	}
-	else {
+	else if (order == false) {
 		while (index < length) {
-			if (index == 0)
-				index++;
-			else if (array[index] <= array[index - 1])
-				index++;
+			if (array[index - 1] > array[index]) {
+				index = last_pos;
+				last_pos++;
+			}
 			else {
-				std::swap(array[index], array[index - 1]);
+				std::swap(array[index - 1], array[index]);
 				index--;
+				if (index == 0) {
+					index = last_pos;
+					last_pos++;
+				}
 			}
 		}
 	}
