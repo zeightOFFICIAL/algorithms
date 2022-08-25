@@ -20,9 +20,9 @@ In computer science, string-searching algorithms, sometimes called string-matchi
 
 Currently available algorithms:
 
-* <b><em>Boyer-Moore</em></b> is an efficient string-searching algorithm that is the standard benchmark for practical string-search literature. It was developed by Robert S. Boyer and J Strother Moore in 1977. Bad char heuristics, advanced naive algorithm. $$O(mn)>>O(m/n)$$
+* <b><em>Boyer-Moore</em></b> is an efficient string-searching algorithm that is the standard benchmark for practical string-search literature. It was developed by Robert S. Boyer and J Strother Moore in 1977. Bad char heuristics, advanced naive algorithm. $$O(m/n)>>O(mn)$$
 * <b><em>Rabin-Karp</em></b> is a string-searching algorithm created by Richard M. Karp and Michael O. Rabin (1987) that uses hashing to find an exact match of a pattern string in a text. It uses a rolling hash to quickly filter out positions of the text that cannot match the pattern, and then checks for a match at the remaining positions. Hashing, compare hash of pattern with hash of text. $$O(mn)$$
-* <b><em>Naïve algorithm</em></b> is a simple string-searching algorithm. It checks for all character of the main string to the pattern. Naive algorithm is exact string matching. Simple indexing, checks pattern and text one symbol at a time. $$O(nm)>>O(2m)$$
+* <b><em>Naïve algorithm</em></b> is a simple string-searching algorithm. It checks for all character of the main string to the pattern. Naive algorithm is exact string matching. Simple indexing, checks pattern and text one symbol at a time. $$O(2m)>>O(nm)$$
 * <b><em>Bitap (Shift-OR)</em></b>, distinguishes itself from other well-known string searching algorithms in its natural mapping onto simple bitwise operations. Uses features of circular bit shift and linearizability of bitwise OR and SHIFT. $$O(m*(n/32))$$
 
 ## Recursion and Iteration
