@@ -12,6 +12,11 @@ https://www.geeksforgeeks.org/stooge-sort/
 
 typedef unsigned long u_long;
 
+template <typename T>
+static void StoogeSort(T* array, u_long length, bool order = true);
+template <typename T>
+static void StoogeSortRanged(T* array, u_long start_point, u_long end_point, bool order);
+
 /*
 	(T* A, unsigned long B, bool C) -> ()
 	Takes an array A (type T) with length of B and sorts it in
@@ -20,7 +25,7 @@ typedef unsigned long u_long;
 	- Changes the array given as argument.
 */
 template <typename T>
-static void StoogeSort(T* array, u_long length, bool order = true)
+static void StoogeSort(T* array, u_long length, bool order)
 {
 	length--;
 	StoogeSortRanged(array, 0, length, order);

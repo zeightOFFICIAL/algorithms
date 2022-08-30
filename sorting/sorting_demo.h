@@ -14,6 +14,7 @@
 #include "heap_sort.h"
 #include "insertion_sort.h"
 #include "stooge_sort.h"
+#include "comb_sort.h"
 
 typedef unsigned long u_long;
 typedef long long d_long;
@@ -50,14 +51,14 @@ void PrintArray(T* array, u_long length)
 // -------------------------------------------------------------------------------------------------------------------------
 void sorting_demo(int tries)
 {
-	d_long* arr1, * arr2, * arr3, * arr5;
-	d_double alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0;  
+	d_long* arr1, * arr2, * arr3, * arr4, * arr5;
+	d_double alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, alltime5 = 0;  
 	int min_value = -15000, max_value = 15000;
 	int local_length;
-	std::chrono::steady_clock::time_point start1, end1, start2, end2, start3, end3, start4, end4;
+	std::chrono::steady_clock::time_point start1, end1, start2, end2, start3, end3, start4, end4, start5, end5;
 	for (local_length = 5000; local_length <= 100000; local_length += 5000) {
 		std::cout << local_length << "\n";
-		alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0;
+		alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, alltime5 = 0;
 		for (int local_tries = 0; local_tries < tries; local_tries++)
 		{
 			arr1 = GenerateRandomArray(local_length, max_value, min_value);
@@ -78,16 +79,23 @@ void sorting_demo(int tries)
 			end3 = std::chrono::steady_clock::now();
 			alltime3 = alltime3 + std::chrono::duration_cast<std::chrono::microseconds>(end3 - start3).count() / 1000000.0;
 
-			arr5 = GenerateRandomArray(local_length, max_value, min_value);
+			arr4 = GenerateRandomArray(local_length, max_value, min_value);
 			start4 = std::chrono::steady_clock::now();
-			GnomeSort(arr5, local_length, false);
+			GnomeSort(arr4, local_length, false);
 			end4 = std::chrono::steady_clock::now();
 			alltime4 = alltime4 + std::chrono::duration_cast<std::chrono::microseconds>(end4 - start4).count() / 1000000.0;
+
+            arr5 = GenerateRandomArray(local_length, max_value, min_value);
+			start5 = std::chrono::steady_clock::now();
+			CombSort(arr5, local_length, false);
+			end5 = std::chrono::steady_clock::now();
+			alltime5 = alltime5 + std::chrono::duration_cast<std::chrono::microseconds>(end5 - start5).count() / 1000000.0;
 		}
 		std::cout << "Bubble sort: Average time: " << std::setprecision(9) << (alltime1 / tries) << " seconds" << "\n";
 		std::cout << "Heap sort: Average time: " << std::setprecision(9) << (alltime2 / tries) << " seconds" << "\n";
 		std::cout << "Insertion sort: Average time: " << std::setprecision(9) << (alltime3 / tries) << " seconds" << "\n";
 		std::cout << "Gnome sort: Average time: " << std::setprecision(9) << (alltime4 / tries) << " seconds" << "\n";
+        std::cout << "Comb sort: Average time: " << std::setprecision(9) << (alltime5 / tries) << " seconds" << "\n";
 		std::cout << "Total elements: " << local_length << "\n";
 		std::cout << "Total tries: " << tries << "\n";
 		std::cout << "\n";

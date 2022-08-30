@@ -10,13 +10,18 @@ for the remaining elements.
 Heapify is the process of creating a heap data structure
 from a binary tree represented using an array. It is used
 to create Min-Heap or Max-heap. Start from the first index
-of the non-leaf node whose index is given by n/2 – 1.
+of the non-leaf node whose index is given by n/2 ï¿½ 1.
 Heapify uses recursion
 https://www.geeksforgeeks.org/stooge-sort/
 */
 
 typedef unsigned long u_long;
 typedef long long d_long;
+
+template <typename T>
+static void HeapSort(T* array, u_long length, bool order = true);
+template <typename T>
+void HeapifyArray(T* array, d_long length, d_long i, bool order);
 
 /*
 	(T* A, unsigned long B, bool C) -> ()
@@ -26,7 +31,7 @@ typedef long long d_long;
 	- Changes the array given as argument.
 */
 template <typename T>
-static void HeapSort(T* array, u_long length, bool order = true)
+static void HeapSort(T* array, u_long length, bool order)
 {
 	d_long node;
 	for (node = length / 2 - 1; node >= 0; node--)

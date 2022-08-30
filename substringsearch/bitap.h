@@ -12,6 +12,7 @@ https://en.wikipedia.org/wiki/Bitap_algorithm
 
 #include <string>
 #include <vector>
+#include <climits>
 
 typedef unsigned long u_long;
 

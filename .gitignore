@@ -40,3 +40,7 @@
 *.vcxproj
 *.filters
 *.user
+.ccls-cache
+.replit
+replit.nix
+main.cpp
