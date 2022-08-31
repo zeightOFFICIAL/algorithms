@@ -16,6 +16,8 @@ https://en.wikipedia.org/wiki/Bitap_algorithm
 
 typedef unsigned long u_long;
 
+std::vector<u_long> Bitap(std::string text, std::string pattern);
+
 /*
 	(string A, string B) -> (vector<unsigned long> C)
 	Takes string A, string pattern B, as

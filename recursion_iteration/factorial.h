@@ -9,6 +9,9 @@ https://www.geeksforgeeks.org/program-for-factorial-of-a-number/
 
 #include <cstdint>
 
+uint64_t FactorialRecursive(uint64_t x);
+uint64_t FactorialIterative(uint64_t n);
+
 /*
 	(uint64 A) -> (uint64 B)
 	Finds factorial of number A and returns

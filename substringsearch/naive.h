@@ -12,6 +12,8 @@ https://www.geeksforgeeks.org/naive-algorithm-for-pattern-searching/
 
 typedef unsigned long u_long;
 
+std::vector<u_long> NaiveSearch(std::string text, std::string pattern);
+
 /*
 	(string A, string B) -> (vector<unsigned long> C)
 	Takes text string A, pattern string B as arguments.

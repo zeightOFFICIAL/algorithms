@@ -10,6 +10,9 @@ https://en.wikipedia.org/wiki/Greatest_common_divisor
 
 #include <cstdint>
 
+uint64_t GCDRecursive(uint64_t x, uint64_t y);
+uint64_t GCDIterative(uint64_t x, uint64_t y);
+
 /*
 	(uint64 A, uint64 B) -> (uint64 C)
 	Finds GCD of numbers A and B and returns

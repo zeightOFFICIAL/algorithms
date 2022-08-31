@@ -9,6 +9,10 @@ https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
 
 #include <cstdint>
 
+uint64_t FibonacciRecursive(uint64_t x);
+uint64_t FibonacciTailRecursive(uint64_t x, uint64_t a = 0, uint64_t b = 1);
+uint64_t FibonacciIterative(int n);
+
 /*
 	(uint64 A) -> (uint64 B)
 	Finds A-x element of fibonacci sequence
@@ -20,7 +24,7 @@ uint64_t FibonacciRecursive(uint64_t x)
 		return(x);
 	return(FibonacciRecursive(x - 1) + FibonacciRecursive(x - 2));
 }
-uint64_t FibonacciTailRecursive(uint64_t x, uint64_t a = 0, uint64_t b = 1)
+uint64_t FibonacciTailRecursive(uint64_t x, uint64_t a, uint64_t b)
 {
 	if (x == 0)
 		return a;

@@ -17,6 +17,8 @@ https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/
 typedef unsigned long u_long;
 typedef long long d_long;
 
+std::vector<u_long> RabinKarp(std::string text, std::string pattern, int alphabet_power = 256);
+
 /*
 	(string A, string B) -> (vector<unsigned long> D)
 	Takes text string A, the pattern B, as
@@ -26,7 +28,7 @@ typedef long long d_long;
 	stores every point of occurance of the pattern
 	in text.
 */
-std::vector<u_long> RabinKarp(std::string text, std::string pattern, int alphabet_power = 256)
+std::vector<u_long> RabinKarp(std::string text, std::string pattern, int alphabet_power)
 {
 	u_long text_length = text.length(), pattern_length = pattern.length(), through_pattern;
 	int d_capacity = alphabet_power, q_prime = 7;

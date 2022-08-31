@@ -10,6 +10,9 @@ https://www.geeksforgeeks.org/bubble-sort/
 
 typedef unsigned long u_long;
 
+template <typename T>
+static void BubbleSort(T* array, u_long length, bool order = true);
+
 /*
 	(T* A, unsigned long B, bool C) -> ()
 	Takes an array A (type T) with length of B and sorts it in
@@ -18,7 +21,7 @@ typedef unsigned long u_long;
 	- Changes the array given as argument.
 */
 template <typename T>
-static void BubbleSort(T* array, u_long length, bool order = true)
+static void BubbleSort(T* array, u_long length, bool order)
 {
 	if (order == true) {
 		for (u_long element = 0; element < length - 1; element++) {

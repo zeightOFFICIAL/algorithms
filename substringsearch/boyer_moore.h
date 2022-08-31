@@ -4,18 +4,18 @@
 The algorithm preprocesses the string being searched for (the pattern),
 but not the string being searched in (the text). It is thus well-suited
 for applications in which the pattern is much shorter than the text or
-where it persists across multiple searches. The Boyer–Moore algorithm
+where it persists across multiple searches. The Boyerï¿½Moore algorithm
 uses information gathered during the preprocess step to skip sections
 of the text, resulting in a lower constant factor than many other
 string search algorithms.
 
 The idea of bad character heuristic is simple. The character
-of the text which doesn’t match with the current character
+of the text which doesn't match with the current character
 of the pattern is called the Bad Character. Upon mismatch,
 we shift the pattern until:
 - he mismatch becomes a match
 - Pattern P moves past the mismatched character.
-https://en.wikipedia.org/wiki/Boyer–Moore_string-search_algorithm
+https://en.wikipedia.org/wiki/Boyer-Moore_string-search_algorithm
 https://www.geeksforgeeks.org/boyer-moore-algorithm-for-pattern-searching/
 */
 

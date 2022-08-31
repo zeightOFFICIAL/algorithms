@@ -15,6 +15,7 @@
 #include "naive.h"
 #include "rabin_karp.h"
 #include "bitap.h"
+#include "knuth_morris_pratt.h"
 
 typedef unsigned long u_long;
 typedef long double d_double;
@@ -77,8 +78,8 @@ void substrsearch_demo(int tries)
 	char* array;
 	std::vector<u_long> occurrences;
 	u_long length;
-	d_double alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0;
-	std::chrono::steady_clock::time_point start1, end1, start2, end2, start3, end3, start4, end4;
+	d_double alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, alltime5 = 0;
+	std::chrono::steady_clock::time_point start1, end1, start2, end2, start3, end3, start4, end4, start5, end5;
 	for (length = 10000; length <= 250000; length += 10000) {
 		for (int local_tries = 0; local_tries <= tries; local_tries++) {
 			array = GenerateRandomString(length, 1);
@@ -90,6 +91,13 @@ void substrsearch_demo(int tries)
 			alltime1 = alltime1 + std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1).count() / 1000000.0;
 			if (local_tries == tries)
 				std::cout << "BoyerMoore found: " << occurrences.size() << "\n";
+
+            start5 = std::chrono::steady_clock::now();
+			occurrences = KnuthMorrisPratt(array, "ga");
+			end5 = std::chrono::steady_clock::now();
+			alltime5 = alltime5 + std::chrono::duration_cast<std::chrono::microseconds>(end5 - start5).count() / 1000000.0;
+			if (local_tries == tries)
+				std::cout << "Knuth-Morris-Pratt found: " << occurrences.size() << "\n";
 
 			start2 = std::chrono::steady_clock::now();
 			occurrences = RabinKarp(strarray, "ga", 64);
@@ -111,8 +119,10 @@ void substrsearch_demo(int tries)
 			alltime4 = alltime4 + std::chrono::duration_cast<std::chrono::microseconds>(end4 - start4).count() / 1000000.0;
 			if (local_tries == tries)
 				std::cout << "Bitap found: " << occurrences.size() << "\n";
+
 		}
 		std::cout << "Boyer-Moore: Average time: " << std::setprecision(9) << (alltime1 / tries) << " seconds" << "\n";
+        std::cout << "Knuth-Morris-Pratt: Average time: " << std::setprecision(9) << (alltime5 / tries) << " seconds" << "\n";
 		std::cout << "Rabin-Karp: Average time: " << std::setprecision(9) << (alltime2 / tries) << " seconds" << "\n";
 		std::cout << "Naive: Average time: " << std::setprecision(9) << (alltime3 / tries) << " seconds" << "\n";
 		std::cout << "Bitap: Average time: " << std::setprecision(9) << (alltime4 / tries) << " seconds" << "\n";

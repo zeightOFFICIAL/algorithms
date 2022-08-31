@@ -15,6 +15,9 @@ https://www.geeksforgeeks.org/gnome-sort-a-stupid-one/
 
 typedef unsigned long u_long;
 
+template <typename T>
+static void GnomeSort(T* array, u_long length, bool order = true);
+
 /*
 	(T* A, unsigned long B, bool C) -> ()
 	Takes an array A (type T) with length of B and sorts it in
@@ -23,7 +26,8 @@ typedef unsigned long u_long;
 	- Changes the array given as argument.
 */
 template <typename T>
-static void GnomeSort(T* array, u_long length, bool order = true) {
+static void GnomeSort(T* array, u_long length, bool order) 
+{
 	u_long index = 1;
 	u_long last_pos = 2;
 	if (order == true) {

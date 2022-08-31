@@ -2,6 +2,9 @@
 
 #include <cstdint>
 
+uint64_t SumRecursive(uint64_t x, uint64_t y);
+uint64_t SumIterative(uint64_t x, uint64_t y);
+
 /*
 	(uint64 A, uint64 B) -> (uint64 C)
 	Finds sum of all elements in range A..B.

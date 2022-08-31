@@ -15,6 +15,9 @@ https://www.geeksforgeeks.org/comb-sort/
 typedef unsigned long u_long;
 typedef long double d_double;
 
+template <typename T>
+static void CombSort(T *array, u_long length, bool order = true);
+
 /*
     (T* A, unsigned long B, bool C) -> ()
     Takes an array A (type T) with length of B and sorts it in
@@ -23,7 +26,7 @@ typedef long double d_double;
     - Changes the array given as argument.
 */
 template <typename T>
-static void CombSort(T *array, u_long length, bool order = true) 
+static void CombSort(T *array, u_long length, bool order) 
 {
     d_double dec_factor = 1.247330950103979;
     u_long gap = length;
