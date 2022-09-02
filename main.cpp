@@ -7,7 +7,7 @@
 
 int main() {
     long long res = 0;
-    res = EuclideanGCDIterative(24826148, 45296490);
+    res = SteinGCDRecursive(24826148, 45296490);
     std::cout << res << "\n";
     res = SteinGCDIterative(24826148, 45296490);
     std::cout << res;

@@ -29,6 +29,14 @@ Currently available algorithms:
 
 ## Theory of numbers
 
+In mathematics, the greatest common divisor (GCD) of two or more integers,
+which are not all zero, is the largest positive integer that divides each of
+the integers. For two integers x, y, the greatest common divisor of x and y
+is denoted gcd(x, y). For example, the GCD of 8 and 12 is 4.
+
+Currently available algorithms:
+* <b><em>Euclidean algorithm</em></b> In mathematics, the Euclidean algorithm, or Euclid's algorithm, is an efficient method for computing the greatest common divisor (GCD) of two integers (numbers), the largest number that divides them both without a remainder. Iterative: O(log(a*b)) Recursive: O(log(a+b))
+* <b><em>Stein's algorithm</em></b> ,also known as binary GCD algorithm algorithm or the binary Euclidean algorithm, is an algorithm that computes the greatest common divisor of two nonnegative integers. Stein's algorithm uses simpler arithmetic operations than the conventional Euclidean algorithm; it replaces division with arithmetic shifts, comparisons, and subtraction. O(min(a, b)^2)
 
 ## Recursion and Iteration
 In computer science, recursion is a method of solving a computational problem where the solution depends on solutions to smaller instances of the same problem. Recursion solves such recursive problems by using functions that call themselves from within their own code. The approach can be applied to many types of problems, and recursion is one of the central ideas of computer science.
@@ -39,7 +47,6 @@ Currently available algorithms:
 
 * <b><em>Factorial</em></b> In mathematics, the factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n. The factorial of n also equals the product of n with the next smaller factorial. Iterative: O(n) Tail-recursion: O(n)
 * <b><em>Fibonacci sequence</em></b> is a series of numbers in which each number is the sum of the two that precede it. Starting at 0 and 1, the sequence looks like this: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on forever. Iterative: O(n) Recursive: O(n^2) Tail-recursion: O(n)
-* <b><em>Greatest common divisor</em></b> In mathematics, the greatest common divisor (GCD) of two or more integers, which are not all zero, is the largest positive integer that divides each of the integers. Iterative: O(log(ab) Recursive: O(log(a+b) This actually makes GCD-tail recursive the only one to be more efficient than iterative alternative.
 * <b><em>Sigma</em></b>, sum of all the elements within function in specific range. Iterative: O(n) Tail-recursion: O(n)
 
 https://en.wikipedia.org/wiki \
