@@ -9,7 +9,6 @@
 
 #include "factorial.h"
 #include "fibonacci.h"
-#include "gcd.h"
 #include "totalsum.h"
 
 typedef unsigned long long u_d_long;
@@ -74,19 +73,6 @@ void reciter2_demo(unsigned long long x, unsigned long long y, int tries = 10)
 	std::chrono::steady_clock::time_point start1, end1, start2, end2, start3, end3, start4, end4;
 	for (int local_tries = 0; local_tries < tries; local_tries++)
 	{
-		start1 = std::chrono::steady_clock::now();
-		res = GCDIterative(x, y);
-		end1 = std::chrono::steady_clock::now();
-		alltime1 = alltime1 + std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1).count() / 1000000.0;
-		if (local_tries == tries - 1)
-			std::cout << res << "\n";
-
-		start2 = std::chrono::steady_clock::now();
-		res = GCDRecursive(x, y);
-		end2 = std::chrono::steady_clock::now();
-		alltime2 = alltime2 + std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2).count() / 1000000.0;
-		if (local_tries == tries - 1)
-			std::cout << res << "\n";
 		//-------------------------------------------------------------------------------------------------------------
 		start3 = std::chrono::steady_clock::now();
 		res = SumIterative(y, x);

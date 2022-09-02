@@ -27,6 +27,9 @@ Currently available algorithms:
 * <b><em>Naïve algorithm</em></b> is a simple string-searching algorithm. It checks for all character of the main string to the pattern. Naive algorithm is exact string matching. Simple indexing, checks pattern and text one symbol at a time. In best: O(2m) In worst: O(nm)
 * <b><em>Bitap (Shift-OR)</em></b>, distinguishes itself from other well-known string searching algorithms in its natural mapping onto simple bitwise operations. Uses features of circular bit shift and linearizability of bitwise OR and SHIFT. O(m*(n/32))
 
+## Theory of numbers
+
+
 ## Recursion and Iteration
 In computer science, recursion is a method of solving a computational problem where the solution depends on solutions to smaller instances of the same problem. Recursion solves such recursive problems by using functions that call themselves from within their own code. The approach can be applied to many types of problems, and recursion is one of the central ideas of computer science.
 
