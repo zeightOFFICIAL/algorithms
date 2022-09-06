@@ -37,6 +37,13 @@ is denoted gcd(x, y). For example, the GCD of 8 and 12 is 4.
 Currently available algorithms:
 * <b><em>Euclidean algorithm.</em></b> In mathematics, the Euclidean algorithm, or Euclid's algorithm, is an efficient method for computing the greatest common divisor (GCD) of two integers (numbers), the largest number that divides them both without a remainder. Iterative: O(log(a*b)) Recursive: O(log(a+b))
 * <b><em>Stein's algorithm</em></b>, also known as binary GCD algorithm algorithm or the binary Euclidean algorithm, is an algorithm that computes the greatest common divisor of two nonnegative integers. Stein's algorithm uses simpler arithmetic operations than the conventional Euclidean algorithm; it replaces division with arithmetic shifts, comparisons, and subtraction. O(min(a, b)^2)
+---
+A prime number (or a prime) is a natural number greater than 1 that is not a product of two smaller natural numbers. A natural number greater than 1 that is not prime is called a composite number.
+
+Currently available algorithms:
+* <b><em>Eratosthenes sieve.</em></b> In mathematics, the sieve of Eratosthenes is an ancient algorithm for finding all prime numbers up to any given limit.
+* <b><em>Sundaram sieve</em></b> In mathematics, the sieve of Sundaram is a variant of the sieve of Eratosthenes, a simple deterministic algorithm for finding all the prime numbers up to a specified integer. It was discovered by Indian student S. P. Sundaram in 1934.
+
 
 ## Recursion and Iteration
 In computer science, recursion is a method of solving a computational problem where the solution depends on solutions to smaller instances of the same problem. Recursion solves such recursive problems by using functions that call themselves from within their own code. The approach can be applied to many types of problems, and recursion is one of the central ideas of computer science.
