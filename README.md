@@ -15,7 +15,7 @@ Currently available algorithms:
 * <b><em>Insertion sort</em></b> is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. Comparison of the row (insertion). Stable. In best: O(n) In worst: O(n^2)
 * <b><em>Gnome sort</em></b>, nicknamed stupid sort, is a variation of the insertion sort sorting algorithm that does not use nested loops. Comparison of the row (exchanging). Stable. In best: O(n) In worst: O(n^2)
 * <b><em>Stooge sort</em></b> is a recursive sorting algorithm. It is notable for its exceptionally bad time complexity. Comparison of first and last (exchanging). Not stable. O(n^(log(3)/log(1.5)))
-  
+
 ## Substring search
 In computer science, string-searching algorithms, sometimes called string-matching algorithms, are an important class of string algorithms that try to find a place where one or several strings (also called patterns) are found within a larger string or text. A basic example of string searching is when the pattern and the searched text are arrays of elements of an alphabet.
 
@@ -29,10 +29,7 @@ Currently available algorithms:
 
 ## Theory of numbers
 
-In mathematics, the greatest common divisor (GCD) of two or more integers,
-which are not all zero, is the largest positive integer that divides each of
-the integers. For two integers x, y, the greatest common divisor of x and y
-is denoted gcd(x, y). For example, the GCD of 8 and 12 is 4.
+In mathematics, the greatest common divisor (GCD) of two or more integers, which are not all zero, is the largest positive integer that divides each of the integers. For two integers x, y, the greatest common divisor of x and y is denoted gcd(x, y). For example, the GCD of 8 and 12 is 4.
 
 Currently available algorithms:
 * <b><em>Euclidean algorithm.</em></b> In mathematics, the Euclidean algorithm, or Euclid's algorithm, is an efficient method for computing the greatest common divisor (GCD) of two integers (numbers), the largest number that divides them both without a remainder. Iterative: O(log(a*b)) Recursive: O(log(a+b))
@@ -43,7 +40,16 @@ A prime number (or a prime) is a natural number greater than 1 that is not a pro
 Currently available algorithms:
 * <b><em>Eratosthenes sieve.</em></b> In mathematics, the sieve of Eratosthenes is an ancient algorithm for finding all prime numbers up to any given limit.
 * <b><em>Sundaram sieve</em></b> In mathematics, the sieve of Sundaram is a variant of the sieve of Eratosthenes, a simple deterministic algorithm for finding all the prime numbers up to a specified integer. It was discovered by Indian student S. P. Sundaram in 1934.
+---
+Exponentiation is a mathematical operation, written as b^n, involving two numbers, the base b and the exponent or power n. It is pronounced as "b raised to the power of n". When n is a positive integer, exponentiation corresponds to repeated multiplication of the base: that is, b^n is the product of multiplying bases n-times.
 
+Currently available algorithms:
+* <b><em>Exponentiation Squaring</em></b> In mathematics and computer programming, exponentiating by squaring is a general method for fast computation of large positive integer powers of a number, or more generally of an element of a semigroup, like a polynomial or a square matrix.
+---
+Summation of sequence.
+Currently available algorithms:
+* <b><em>Kahan summation algorithm</em></b> In numerical analysis, the Kahan summation algorithm, also known as compensated summation, significantly reduces the numerical error in the total obtained by adding a sequence of finite-precision floating-point numbers, compared to the obvious approach.
+* <b><em>Naive summation algorithm</em></b>, sum of all the elements in the sequence. O(n)
 
 ## Recursion and Iteration
 In computer science, recursion is a method of solving a computational problem where the solution depends on solutions to smaller instances of the same problem. Recursion solves such recursive problems by using functions that call themselves from within their own code. The approach can be applied to many types of problems, and recursion is one of the central ideas of computer science.
@@ -54,7 +60,6 @@ Currently available algorithms:
 
 * <b><em>Factorial</em></b> In mathematics, the factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n. The factorial of n also equals the product of n with the next smaller factorial. Iterative: O(n) Tail-recursion: O(n)
 * <b><em>Fibonacci sequence</em></b> is a series of numbers in which each number is the sum of the two that precede it. Starting at 0 and 1, the sequence looks like this: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on forever. Iterative: O(n) Recursive: O(n^2) Tail-recursion: O(n)
-* <b><em>Sigma</em></b>, sum of all the elements within function in specific range. Iterative: O(n) Tail-recursion: O(n)
 
 https://en.wikipedia.org/wiki \
 https://www.geeksforgeeks.org \
