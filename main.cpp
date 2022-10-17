@@ -1,6 +1,7 @@
 #include "theoryofnumbers/sieve_of_eratosthenes.h"
 #include "elementary/kahan_summation.h"
 #include "elementary/naive_summation.h"
+#include "elementary/gauss_legendre_pi.h"
 #include <vector>
 #include <iostream>
 #include <limits>
@@ -17,5 +18,6 @@ int main() {
     //std::cout << KahanSummation(x);
     std::cout << NaiveSumIterative<long>(x) << "\n";
     std::cout << NaiveSumRecursive<long>(x) << "\n";
-    std::cout << KahanSummation<long>(x);
+    std::cout << KahanSummation<long>(x) << "\n";
+    std::cout << GaussLegendrePi(1);
 }

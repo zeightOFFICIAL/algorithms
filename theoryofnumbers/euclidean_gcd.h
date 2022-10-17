@@ -1,7 +1,7 @@
 // euclidean_gcd.h
 
 /*
-In mathematics, the Euclidean algorithm, or Euclid's algorithm, is 
+In mathematics, the Euclidean algorithm, or Euclid's algorithm, is
 an efficient method for computing the greatest common divisor (GCD) of two
 integers (numbers), the largest number that divides them both without a
 remainder.
@@ -15,29 +15,27 @@ uint64_t EuclideanGCDRecursive(uint64_t x, uint64_t y);
 uint64_t EuclideanGCDIterative(uint64_t x, uint64_t y);
 
 /*
-	(uint64 A, uint64 B) -> (uint64 C)
-	Finds GCD of numbers A and B and returns
-	its value - C. Uses recursion.
+        (uint64 A, uint64 B) -> (uint64 C)
+        Finds GCD of numbers A and B and returns
+        its value - C. Uses recursion.
 */
-uint64_t EuclideanGCDRecursive(uint64_t x, uint64_t y)
-{
-	if (y == 0)
-		return x;
-	return EuclideanGCDRecursive(y, x % y);
+uint64_t EuclideanGCDRecursive(uint64_t x, uint64_t y) {
+  if (y == 0)
+    return x;
+  return EuclideanGCDRecursive(y, x % y);
 }
 
 /*
-	(uint64 A, uint64 B) -> (uint64 C)
-	Finds GCD of numbers A and B and returns
-	its value - C. Uses iteration.
+        (uint64 A, uint64 B) -> (uint64 C)
+        Finds GCD of numbers A and B and returns
+        its value - C. Uses iteration.
 */
-uint64_t EuclideanGCDIterative(uint64_t x, uint64_t y)
-{
-	while (x != y) {
-		if (x > y)
-			x -= y;
-		else
-			y -= x;
-	}
-	return x;
+uint64_t EuclideanGCDIterative(uint64_t x, uint64_t y) {
+  while (x != y) {
+    if (x > y)
+      x -= y;
+    else
+      y -= x;
+  }
+  return x;
 }

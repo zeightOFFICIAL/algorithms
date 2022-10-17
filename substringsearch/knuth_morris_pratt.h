@@ -13,10 +13,8 @@ the characters that we know will anyway match.
 https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
 */
 
-typedef unsigned long u_long;
-
-std::vector<u_long> KnuthMorrisPratt(std::string text, std::string pattern);
-void LongestPrefixSufix(std::string pattern, u_long pattern_length, u_long* table, u_long text_length);
+std::vector<unsigned long> KnuthMorrisPratt(std::string text, std::string pattern);
+void LongestPrefixSufix(std::string pattern, unsigned long pattern_length, unsigned long* table, unsigned long text_length);
 
 /*
 	(string A, string B) -> (vector<unsigned long> C)
@@ -28,13 +26,13 @@ void LongestPrefixSufix(std::string pattern, u_long pattern_length, u_long* tabl
 */
 std::vector<u_long> KnuthMorrisPratt(std::string text, std::string pattern)
 {
-    u_long pattern_length = pattern.length(), text_length = text.length();
-	u_long* prefix_table = new u_long[pattern_length];
-	std::vector<u_long> occurance_points;
+    unsigned long pattern_length = pattern.length(), text_length = text.length();
+	unsigned long* prefix_table = new unsigned long[pattern_length];
+	std::vector<unsigned long> occurance_points;
 	if (pattern_length == 0 || text_length == 0 || pattern_length > text_length)
 		return occurance_points;
     LongestPrefixSufix(pattern, pattern_length, prefix_table, text_length);
-    u_long index = 0, through = 0;
+    unsigned long index = 0, through = 0;
     while (index < text_length) {
         if (pattern[through] == text[index]) {
             index++;
@@ -63,10 +61,10 @@ std::vector<u_long> KnuthMorrisPratt(std::string text, std::string pattern)
     A proper prefix is prefix with wholestring not allowed.
     Returns nothing, changes C.
 */
-void LongestPrefixSufix(std::string pattern, u_long pattern_length, u_long* table, u_long text_length)
+void LongestPrefixSufix(std::string pattern, unsigned long pattern_length, unsigned long* table, unsigned long text_length)
 {
     table[0] = 0;
-    u_long index = 1, prefix_length = 0;
+    unsigned long index = 1, prefix_length = 0;
     while (index < pattern_length) {
         if (pattern[index] == pattern[prefix_length]) {
             prefix_length++;

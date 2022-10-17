@@ -15,64 +15,58 @@ Heapify uses recursion
 https://www.geeksforgeeks.org/stooge-sort/
 */
 
-typedef unsigned long u_long;
-typedef long long d_long;
-
 template <typename T>
-static void HeapSort(T* array, u_long length, bool order = true);
+static void HeapSort(T *array, unsigned long length, bool order = true);
 template <typename T>
-void HeapifyArray(T* array, d_long length, d_long i, bool order);
+void HeapifyArray(T *array, long long length, long long i, bool order);
 
 /*
-	(T* A, unsigned long B, bool C) -> ()
-	Takes an array A (type T) with length of B and sorts it in
-	the ascending order if C - true and descending if C - false,
-	using heap sorting.
-	- Changes the array given as argument.
+    (T* A, unsigned long B, bool C) -> ()
+    Takes an array A (type T) with length of B and sorts it in
+    the ascending order if C - true and descending if C - false,
+    using heap sorting.
+    - Changes the array given as argument.
 */
 template <typename T>
-static void HeapSort(T* array, u_long length, bool order)
-{
-	d_long node;
-	for (node = length / 2 - 1; node >= 0; node--)
-		HeapifyArray<T>(array, length, node, order);
-	for (node = length - 1; node > 0; node--) {
-		std::swap(array[0], array[node]);
-		HeapifyArray<T>(array, node, 0, order);
-	}
+static void HeapSort(T *array, unsigned long length, bool order) {
+  long long node;
+  for (node = length / 2 - 1; node >= 0; node--)
+    HeapifyArray<T>(array, length, node, order);
+  for (node = length - 1; node > 0; node--) {
+    std::swap(array[0], array[node]);
+    HeapifyArray<T>(array, node, 0, order);
+  }
 }
 
 /*
-	(T* A, long long B, long long C, bool D) -> ()
-	In order for heapsort to work properly, firstly we need to
-	build the max (min) - heap tree, with maximum (minumum) value 
-	at the vertex. Generally, speaking tree must be in decreasing 
-	or increasing order.
-	Process 'heapify' swaps the values so that the tree, beside
-	the already sorted part is in decreasing (increasing) order, 
-	technically parent value of the tree is bigger (smaller) than 
-	children's.
-	A is an array which is needed to be heapfied. B responds
-	for amount of elements. C for current head of the tree
+        (T* A, long long B, long long C, bool D) -> ()
+        In order for heapsort to work properly, firstly we need to
+        build the max (min) - heap tree, with maximum (minumum) value
+        at the vertex. Generally, speaking tree must be in decreasing
+        or increasing order.
+        Process 'heapify' swaps the values so that the tree, beside
+        the already sorted part is in decreasing (increasing) order,
+        technically parent value of the tree is bigger (smaller) than
+        children's.
+        A is an array which is needed to be heapfied. B responds
+        for amount of elements. C for current head of the tree
 */
 template <typename T>
-void HeapifyArray(T* array, d_long length, d_long i, bool order)
-{
-	d_long peak = i, left = 2 * i + 1, right = 2 * i + 2;
-	if (order == true) {
-		if (left < length && array[left] > array[peak])
-			peak = left;
-		if (right < length && array[right] > array[peak])
-			peak = right;
-	}
-	else if (order == false) {
-		if (left < length && array[left] < array[peak])
-			peak = left;
-		if (right < length && array[right] < array[peak])
-			peak = right;
-	}
-	if (peak != i) {
-		std::swap(array[i], array[peak]);
-		HeapifyArray<T>(array, length, peak, order);
-	}
+void HeapifyArray(T *array, long long length, long long i, bool order) {
+  long long peak = i, left = 2 * i + 1, right = 2 * i + 2;
+  if (order == true) {
+    if (left < length && array[left] > array[peak])
+      peak = left;
+    if (right < length && array[right] > array[peak])
+      peak = right;
+  } else if (order == false) {
+    if (left < length && array[left] < array[peak])
+      peak = left;
+    if (right < length && array[right] < array[peak])
+      peak = right;
+  }
+  if (peak != i) {
+    std::swap(array[i], array[peak]);
+    HeapifyArray<T>(array, length, peak, order);
+  }
 }

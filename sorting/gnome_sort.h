@@ -8,58 +8,51 @@ flower pots by the following method:
 if they are in the right order he steps one pot forward, otherwise
 he swaps them and steps one pot backwards.
  - If there is no previous pot (he is at the starting of the pot line),
-he steps forwards; if there is no pot next to him (he is at the end of the pot line),
-he is done.
-https://www.geeksforgeeks.org/gnome-sort-a-stupid-one/
+he steps forwards; if there is no pot next to him (he is at the end of the pot
+line), he is done. https://www.geeksforgeeks.org/gnome-sort-a-stupid-one/
 */
 
-typedef unsigned long u_long;
-
 template <typename T>
-static void GnomeSort(T* array, u_long length, bool order = true);
+static void GnomeSort(T *array, unsigned long length, bool order = true);
 
 /*
-	(T* A, unsigned long B, bool C) -> ()
-	Takes an array A (type T) with length of B and sorts it in
-	the ascending order if C - true and descending if C - false,
-	using gnome sorting (a.k.a stupid sort)
-	- Changes the array given as argument.
+    (T* A, unsigned long B, bool C) -> ()
+    Takes an array A (type T) with length of B and sorts it in
+    the ascending order if C - true and descending if C - false,
+    using gnome sorting (a.k.a stupid sort)
+    - Changes the array given as argument.
 */
 template <typename T>
-static void GnomeSort(T* array, u_long length, bool order) 
-{
-	u_long index = 1;
-	u_long last_pos = 2;
-	if (order == true) {
-		while (index < length) {
-			if (array[index - 1] < array[index]) {
-				index = last_pos;
-				last_pos++;
-			}
-			else {
-				std::swap(array[index - 1], array[index]);
-				index--;
-				if (index == 0) {
-					index = last_pos;
-					last_pos++;
-				}
-			}
-		}
-	}
-	else if (order == false) {
-		while (index < length) {
-			if (array[index - 1] > array[index]) {
-				index = last_pos;
-				last_pos++;
-			}
-			else {
-				std::swap(array[index - 1], array[index]);
-				index--;
-				if (index == 0) {
-					index = last_pos;
-					last_pos++;
-				}
-			}
-		}
-	}
+static void GnomeSort(T *array, unsigned long length, bool order) {
+  unsigned long index = 1;
+  unsigned long last_pos = 2;
+  if (order == true) {
+    while (index < length) {
+      if (array[index - 1] < array[index]) {
+        index = last_pos;
+        last_pos++;
+      } else {
+        std::swap(array[index - 1], array[index]);
+        index--;
+        if (index == 0) {
+          index = last_pos;
+          last_pos++;
+        }
+      }
+    }
+  } else if (order == false) {
+    while (index < length) {
+      if (array[index - 1] > array[index]) {
+        index = last_pos;
+        last_pos++;
+      } else {
+        std::swap(array[index - 1], array[index]);
+        index--;
+        if (index == 0) {
+          index = last_pos;
+          last_pos++;
+        }
+      }
+    }
+  }
 }
