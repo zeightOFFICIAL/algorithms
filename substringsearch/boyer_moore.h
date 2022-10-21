@@ -23,7 +23,8 @@ https://www.geeksforgeeks.org/boyer-moore-algorithm-for-pattern-searching/
 #include <vector>
 
 std::vector<unsigned long> BoyerMoore(std::string text, std::string pattern);
-void BadCharHeuristics(std::string pattern, unsigned longed long pattern_length, int *heuristics_unsigned long unsigned long text_length);
+void BadCharHeuristics(std::string pattern, unsigned long pattern_length,
+                       int *heuristics_unsigned, unsigned long text_length);
 long long MaxByValue(long long a, long long b);
 
 /*

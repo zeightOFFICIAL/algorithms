@@ -24,12 +24,6 @@ uint64_t EuclideanGCDRecursive(uint64_t x, uint64_t y) {
     return x;
   return EuclideanGCDRecursive(y, x % y);
 }
-
-/*
-        (uint64 A, uint64 B) -> (uint64 C)
-        Finds GCD of numbers A and B and returns
-        its value - C. Uses iteration.
-*/
 uint64_t EuclideanGCDIterative(uint64_t x, uint64_t y) {
   while (x != y) {
     if (x > y)

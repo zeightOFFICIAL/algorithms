@@ -21,13 +21,13 @@
 #define PRIME_NUMBER 1000000007
 
 int64_t ExponentiationSquaringRecursive(int64_t base, int64_t power);
-int64_t ExponentiationSquaringRecursiveWithPrime(int64_t base, int64_t power);
 int64_t ExponentiationSquaringIterative(int64_t base, int64_t power);
+int64_t ExponentiationSquaringRecursiveWithPrime(int64_t base, int64_t power);
 int64_t ExponentiationSquaringIterativeWithPrime(int64_t base, int64_t power);
 
 /*
     (int64_t A, int64_t B)->(int64_t C)
-    Finds C of the A^B=C equation.
+    Finds C of the A**B=C equation.
     Returns the C.
 */
 int64_t ExponentiationSquaringRecursive(int64_t base, int64_t power) {
