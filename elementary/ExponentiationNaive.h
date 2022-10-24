@@ -3,15 +3,15 @@
 #include "math.h" // int64_t
 
 /*
-(long double A, int64_t B) -> (long double C)
-Finds C of the A**B=C equation. Uses iteration.
-Returns the C.
+  (long double A, int64_t B) -> (long double C)
+  Finds C of the A**B=C equation. Uses iteration.
+  -Returns the C.
 */
 long double exponentiationNaiveIterative(long double base, int64_t power);
 /*
-(long double A, int64_t B) -> (long double C)
-Finds C of the A**B=C equation. Uses Recursion.
-Returns the C.
+  (long double A, int64_t B) -> (long double C)
+  Finds C of the A**B=C equation. Uses Recursion.
+  -Returns the C.
 */
 long double exponentiationNaiveRecursive(long double base, int64_t power);
 

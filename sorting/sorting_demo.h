@@ -1,6 +1,6 @@
 // sorting_demo.h
 // use only for testing of the program's work
-// for version 1.2
+// for version 1.3
 #pragma once
 
 #include <chrono>
@@ -9,12 +9,12 @@
 #include <random>
 #include <string>
 
-#include "bubble_sort.h"
-#include "comb_sort.h"
-#include "gnome_sort.h"
-#include "heap_sort.h"
-#include "insertion_sort.h"
-#include "stooge_sort.h"
+#include "BubbleSort.h"
+#include "CombSort.h"
+#include "GnomeSort.h"
+#include "HeapSort.h"
+#include "InsertionSort.h"
+#include "StoogeSort.h"
 
 const unsigned long EXTREME_SIZE = 429496;
 
@@ -56,7 +56,7 @@ void sorting_demo(int tries) {
     for (int local_tries = 0; local_tries < tries; local_tries++) {
       arr1 = GenerateRandomArray(local_length, max_value, min_value);
       start1 = std::chrono::steady_clock::now();
-      BubbleSort(arr1, local_length, false);
+      sortBubble(arr1, local_length, false);
       end1 = std::chrono::steady_clock::now();
       alltime1 =
           alltime1 +
@@ -66,7 +66,7 @@ void sorting_demo(int tries) {
 
       arr2 = GenerateRandomArray(local_length, max_value, min_value);
       start2 = std::chrono::steady_clock::now();
-      HeapSort(arr2, local_length, false);
+      sortHeap(arr2, local_length, false);
       end2 = std::chrono::steady_clock::now();
       alltime2 =
           alltime2 +
@@ -76,7 +76,7 @@ void sorting_demo(int tries) {
 
       arr3 = GenerateRandomArray(local_length, max_value, min_value);
       start3 = std::chrono::steady_clock::now();
-      InsertionSort(arr3, local_length, false);
+      sortInsertion(arr3, local_length, false);
       end3 = std::chrono::steady_clock::now();
       alltime3 =
           alltime3 +
@@ -86,7 +86,7 @@ void sorting_demo(int tries) {
 
       arr4 = GenerateRandomArray(local_length, max_value, min_value);
       start4 = std::chrono::steady_clock::now();
-      GnomeSort(arr4, local_length, false);
+      sortGnome(arr4, local_length, false);
       end4 = std::chrono::steady_clock::now();
       alltime4 =
           alltime4 +
@@ -96,7 +96,7 @@ void sorting_demo(int tries) {
 
       arr5 = GenerateRandomArray(local_length, max_value, min_value);
       start5 = std::chrono::steady_clock::now();
-      CombSort(arr5, local_length, false);
+      sortComb(arr5, local_length, false);
       end5 = std::chrono::steady_clock::now();
       alltime5 =
           alltime5 +
@@ -136,7 +136,7 @@ void sorting_demo_silly(int tries) {
     for (int local_tries = 0; local_tries < tries; local_tries++) {
       arr = GenerateRandomArray(local_length, max_value, min_value);
       start = std::chrono::steady_clock::now();
-      StoogeSort(arr, local_length, false);
+      sortStooge(arr, local_length, false);
       end = std::chrono::steady_clock::now();
       alltime = alltime + std::chrono::duration_cast<std::chrono::microseconds>(
                               end - start)

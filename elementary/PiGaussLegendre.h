@@ -1,19 +1,19 @@
 // PiGaussLegendre.h
 
 /*
-  The Gauss–Legendre algorithm is an algorithm to compute the digits of
-  π. It is notable for being rapidly convergent, with only 25
-  iterations producing 45 million correct digits of π.
+The Gauss–Legendre algorithm is an algorithm to compute the digits of
+π. It is notable for being rapidly convergent, with only 25
+iterations producing 45 million correct digits of π.
 
-  https://en.wikipedia.org/wiki/Gauss%E2%80%93Legendre_algorithm
+https://en.wikipedia.org/wiki/Gauss%E2%80%93Legendre_algorithm
 */
 
 #include "math.h" // sqrt
 
 /*
-(unsigned int A) -> (long double B)
-Finds pi number B with precision of A.
-Returns pi number B.
+  (unsigned int A) -> (long double B)
+  Finds pi number B with precision of A.
+  -Returns pi number B.
 */
 long double piGaussLegendre(unsigned int precisionRequired);
 

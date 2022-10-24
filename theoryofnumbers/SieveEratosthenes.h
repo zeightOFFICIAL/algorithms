@@ -3,20 +3,21 @@
 /*
 In mathematics, the sieve of Eratosthenes is an ancient algorithm
 for finding all prime numbers up to any given limit.
+
 https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 */
 
-#include <vector>
-
-std::vector<unsigned long> EratosthenesPrimes(unsigned long n);
+#include <vector> // vector
 
 /*
-    (u_long A) -> (vector<u_long> B)
-    Finds prime numbers within range of 0..A
-    with a help of Eratosthenes' sieve. Returns
-    vector which stores every prime number.
+  (u_long A) -> (vector<u_long> B)
+  Finds prime numbers within range of 0..A
+  with a help of Eratosthenes' sieve.
+  -Returns vector which stores every prime number.
 */
-std::vector<unsigned long> EratosthenesPrimes(unsigned long n) {
+std::vector<unsigned long> primesEratosthenes(unsigned long n);
+
+std::vector<unsigned long> primesEratosthenes(unsigned long n) {
   std::vector<unsigned long> primes;
   bool sieve[n + 1];
   for (unsigned long i = 0; i <= n; i++)
@@ -26,7 +27,7 @@ std::vector<unsigned long> EratosthenesPrimes(unsigned long n) {
       for (unsigned long j = i * i; j <= n; j += i)
         sieve[j] = false;
   }
-  for (unsigned long i = 0; i <= n; i++)
+  for (unsigned long i = 2; i <= n; i++)
     if (sieve[i])
       primes.push_back(i);
   return primes;

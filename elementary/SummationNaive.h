@@ -3,15 +3,15 @@
 #include <vector> // vector
 
 /*
-    (vector T A) -> (T B)
-    Finds the sum of elements in vector A. Uses recursion.
-    Returns B.
+  (vector T A) -> (T B)
+  Finds the sum of elements in vector A. Uses recursion.
+  -Returns B.
 */
 template <typename T> T summationNaiveRecursive(std::vector<T> elements);
 /*
-    (vector T A) -> (T B)
-    Finds the sum of elements in vector A. Uses iteration.
-    Returns B.
+  (vector T A) -> (T B)
+  Finds the sum of elements in vector A. Uses iteration.
+  -Returns B.
 */
 template <typename T> T summationNaiveIterative(std::vector<T> elements);
 

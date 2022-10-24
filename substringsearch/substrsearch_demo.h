@@ -11,11 +11,11 @@
 #include <random>
 #include <vector>
 
-#include "bitap.h"
-#include "boyer_moore.h"
-#include "knuth_morris_pratt.h"
-#include "naive.h"
-#include "rabin_karp.h"
+#include "Bitap.h"
+#include "BoyerMoore.h"
+#include "KnuthMorrisPratt.h"
+#include "Naive.h"
+#include "RabinKarp.h"
 
 const unsigned long EXTREME_LENGTH = 10000000;
 
@@ -82,7 +82,7 @@ void substrsearch_demo(int tries) {
       std::string strarray = array;
 
       start1 = std::chrono::steady_clock::now();
-      occurrences = BoyerMoore(strarray, "ga");
+      occurrences = substrBoyerMoore(strarray, "ga");
       end1 = std::chrono::steady_clock::now();
       alltime1 =
           alltime1 +
@@ -93,7 +93,7 @@ void substrsearch_demo(int tries) {
         std::cout << "BoyerMoore found: " << occurrences.size() << "\n";
 
       start5 = std::chrono::steady_clock::now();
-      occurrences = KnuthMorrisPratt(array, "ga");
+      occurrences = substrKnuthMorrisPratt(array, "ga");
       end5 = std::chrono::steady_clock::now();
       alltime5 =
           alltime5 +
@@ -104,7 +104,7 @@ void substrsearch_demo(int tries) {
         std::cout << "Knuth-Morris-Pratt found: " << occurrences.size() << "\n";
 
       start2 = std::chrono::steady_clock::now();
-      occurrences = RabinKarp(strarray, "ga", 64);
+      occurrences = substrRabinKarp(strarray, "ga", 64);
       end2 = std::chrono::steady_clock::now();
       alltime2 =
           alltime2 +
@@ -115,7 +115,7 @@ void substrsearch_demo(int tries) {
         std::cout << "RabinKarp found: " << occurrences.size() << "\n";
 
       start3 = std::chrono::steady_clock::now();
-      occurrences = NaiveSearch(strarray, "ga");
+      occurrences = substrNaive(strarray, "ga");
       end3 = std::chrono::steady_clock::now();
       alltime3 =
           alltime3 +
@@ -126,7 +126,7 @@ void substrsearch_demo(int tries) {
         std::cout << "Naive found: " << occurrences.size() << "\n";
 
       start4 = std::chrono::steady_clock::now();
-      occurrences = Bitap(array, "ga");
+      occurrences = substrBitap(array, "ga");
       end4 = std::chrono::steady_clock::now();
       alltime4 =
           alltime4 +

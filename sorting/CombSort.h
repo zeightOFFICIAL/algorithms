@@ -1,4 +1,4 @@
-// comb_sort.h
+// CombSort.h
 
 /*
 Comb Sort is mainly an improvement over Bubble Sort. Bubble
@@ -9,22 +9,23 @@ a large value and shrinks by a factor of 1.3 in every
 iteration until it reaches the value 1. Thus Comb Sort
 removes more than one inversion count with one swap and
 performs better than Bubble Sort.
+
 https://www.geeksforgeeks.org/comb-sort/
 */
 
-template <typename T>
-static void CombSort(T *array, unsigned long length, bool order = true);
-
 /*
-    (T* A, unsigned long B, bool C) -> ()
-    Takes an array A (type T) with length of B and sorts it in
-    the ascending order if C - true and descending if C - false,
-    using comb sorting.
-    - Changes the array given as argument.
+  (T* A, unsigned long B, bool C) -> ()
+  Takes an array A (type T) with length of B and sorts it in
+  the ascending order if C - true and descending if C - false,
+  using comb sorting.
+  -Changes the array given as argument.
 */
 template <typename T>
-static void CombSort(T *array, unsigned long length, bool order) {
-  long double dec_factor = 1.247330950103979;
+static void sortComb(T *array, unsigned long length, bool order = true);
+
+template <typename T>
+static void sortComb(T *array, unsigned long length, bool order) {
+  long double decreaseFactor = 1.247330950103979f;
   unsigned long gap = length;
 
   if (order == true) {
@@ -32,14 +33,14 @@ static void CombSort(T *array, unsigned long length, bool order) {
       for (unsigned long element = 0; element + gap < length; element++)
         if (array[element] > array[element + gap])
           std::swap(array[element], array[element + gap]);
-      gap /= dec_factor;
+      gap /= decreaseFactor;
     }
   } else if (order == false) {
     while (gap >= 1) {
       for (unsigned long element = 0; element + gap < length; element++)
         if (array[element] < array[element + gap])
           std::swap(array[element], array[element + gap]);
-      gap /= dec_factor;
+      gap /= decreaseFactor;
     }
   }
 }
