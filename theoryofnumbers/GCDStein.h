@@ -1,4 +1,4 @@
-// stein_gcd.h
+// GCDStein.h
 
 /*
 Stein’s algorithm or binary GCD algorithm is an algorithm that computes the
@@ -10,15 +10,15 @@ https://www.geeksforgeeks.org/steins-algorithm-for-finding-gcd/
 
 #include <cstdint>
 
-uint64_t SteinGCDRecursive(uint64_t x, uint64_t y);
-uint64_t SteinGCDIterative(uint64_t x, uint64_t y);
+uint64_t GCDSteinRecursive(uint64_t x, uint64_t y);
+uint64_t GCDSteinIterative(uint64_t x, uint64_t y);
 
 /*
         (uint64 A, uint64 B) -> (uint64 C)
         Finds GCD of numbers A and B and returns
         its value - C. Uses recursion.
 */
-uint64_t SteinGCDRecursive(uint64_t x, uint64_t y) {
+uint64_t GCDSteinRecursive(uint64_t x, uint64_t y) {
   if (x == y)
     return x;
   if (x == 0)
@@ -27,15 +27,15 @@ uint64_t SteinGCDRecursive(uint64_t x, uint64_t y) {
     return x;
   if (~x & 1) {
     if (y & 1)
-      return SteinGCDRecursive(x >> 1, y);
+      return GCDSteinRecursive(x >> 1, y);
     else
-      return SteinGCDRecursive(x >> 1, y >> 1) << 1;
+      return GCDSteinRecursive(x >> 1, y >> 1) << 1;
   }
   if (~y & 1)
-    return SteinGCDRecursive(x, y >> 1);
+    return GCDSteinRecursive(x, y >> 1);
   if (x > y)
-    return SteinGCDRecursive((x - y) >> 1, y);
-  return SteinGCDRecursive((y - x) >> 1, x);
+    return GCDSteinRecursive((x - y) >> 1, y);
+  return GCDSteinRecursive((y - x) >> 1, x);
 }
 
 /*
@@ -43,7 +43,7 @@ uint64_t SteinGCDRecursive(uint64_t x, uint64_t y) {
         Finds GCD of numbers A and B and returns
         its value - C. Uses iteration.
 */
-uint64_t SteinGCDIterative(uint64_t x, uint64_t y) {
+uint64_t GCDSteinIterative(uint64_t x, uint64_t y) {
   if (x == 0)
     return y;
   if (y == 0)

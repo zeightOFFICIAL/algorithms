@@ -20,47 +20,63 @@
 
 #define PRIME_NUMBER 1000000007
 
-int64_t ExponentiationSquaringRecursive(int64_t base, int64_t power);
-int64_t ExponentiationSquaringIterative(int64_t base, int64_t power);
-int64_t ExponentiationSquaringRecursiveWithPrime(int64_t base, int64_t power);
-int64_t ExponentiationSquaringIterativeWithPrime(int64_t base, int64_t power);
-
 /*
-    (int64_t A, int64_t B)->(int64_t C)
-    Finds C of the A**B=C equation.
+    (long double A, int64_t B)->(long double C)
+    Finds C of the A**B=C equation. Recursuve.
     Returns the C.
 */
-int64_t ExponentiationSquaringRecursive(int64_t base, int64_t power) {
+long double exponentiationSquaringRecursive(long double base, int64_t power);
+/*
+    (long double A, int64_t B)->(long double C)
+    Finds C of the A**B=C equation. Iterative.
+    Returns the C.
+*/
+long double exponentiationSquaringIterative(long double base, int64_t power);
+/*
+    (long double A, int64_t B)->(long double C)
+    Finds C of the A**B=C equation. Iterative with prime.
+    Returns the C.
+*/
+long double exponentiationSquaringRecursiveWithPrime(long double base, int64_t power);
+/*
+    (long double A, int64_t B)->(long double C)
+    Finds C of the A**B=C equation. Recursive with prime.
+    Returns the C.
+*/
+long double exponentiationSquaringIterativeWithPrime(long double base, int64_t power);
+
+long double exponentiationSquaringRecursive(long double base, int64_t power) {
   if (power < 0)
-    return ExponentiationSquaringRecursive(1 / base, -power);
+    return exponentiationSquaringRecursive(1.0f / base, -power);
   else if (power == 0)
-    return 1;
+    return 1.0f;
   else if (power % 2 == 0)
-    return ExponentiationSquaringRecursive(base * base, power / 2);
+    return exponentiationSquaringRecursive(base * base, power / 2);
   else if (power % 2 != 0)
-    return base * ExponentiationSquaringRecursive(base * base, (power - 1) / 2);
-  return -1;
+    return base * exponentiationSquaringRecursive(base * base, (power - 1) / 2);
+  return -1.0f;
 }
-int64_t ExponentiationSquaringRecursiveWithPrime(int64_t base, int64_t power) {
+int64_t exponentiationSquaringRecursiveWithPrime(int64_t base, int64_t power) {
   if (power == 0)
     return 1;
   else if (power == 1)
     return base % PRIME_NUMBER;
-  int64_t next = ExponentiationSquaringRecursive(base, power / 2);
+  int64_t next = exponentiationSquaringRecursive(base, power / 2);
   next = (next * next) % PRIME_NUMBER;
   if (power % 2 == 0)
     return next;
   else
     return ((base % PRIME_NUMBER) * next) % PRIME_NUMBER;
 }
-int64_t ExponentiationSquaringIterative(int64_t base, int64_t power) {
-  int64_t y;
+
+long double exponentiationSquaringIterative(long double base, int64_t power) {
+  long double y;
   if (power < 0) {
-    base = 1 / base;
+    base = 1.0f / base;
     power = -power;
   }
   if (power == 0)
-    return 1;
+    return 1.0f;
   y = 1;
   while (power > 1) {
     if (power % 2 == 0) {
@@ -74,7 +90,7 @@ int64_t ExponentiationSquaringIterative(int64_t base, int64_t power) {
   }
   return base * y;
 }
-int64_t ExponentiationSquaringIterativeWithPrime(int64_t base, int64_t power) {
+int64_t exponentiationSquaringIterativeWithPrime(int64_t base, int64_t power) {
   int64_t y = 1L;
   while (power > 0) {
     if (power % 2 != 0)
