@@ -1,6 +1,6 @@
 // substrsearch_demo.h
 // use only for testing of the program's work
-// for version 1.2
+// for version 1.3
 #pragma once
 
 #include <chrono>
