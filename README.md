@@ -54,6 +54,7 @@ Currently available algorithms:
 * <b><em>Naive summation algorithm</em></b>, sum of all the elements in the sequence. O(n)
 ---
 * <b><em>Gauss–Legendre algorithm</em></b> is an algorithm to compute the digits of π. It is notable for being rapidly convergent, with only 25 iterations producing 45 million correct digits of π. However, it has some drawbacks (for example, it is computer memory-intensive) and therefore all record-breaking calculations for many years have used other methods, almost always the Chudnovsky algorithm.
+* <b><em>Borwein algorithm</em></b> In mathematics, Borwein's algorithm is an algorithm devised by Jonathan and Peter Borwein to calculate the value of 1/π. They devised several other algorithms. They published the book Pi and the AGM – A Study in Analytic Number Theory and Computational Complexity.
 
 https://en.wikipedia.org/wiki \
 https://www.geeksforgeeks.org \

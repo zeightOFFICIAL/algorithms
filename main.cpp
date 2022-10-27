@@ -1,5 +1,6 @@
 #include "elementary/ExponentiationNaive.h"
 #include "elementary/ExponentiationSquaring.h"
+#include "elementary/PiBorwein.h"
 #include "elementary/PiGaussLegendre.h"
 #include "elementary/SummationKahan.h"
 #include "elementary/SummationNaive.h"
@@ -17,7 +18,11 @@
 #include <vector>
 
 int main() {
-  // std::cout << piGaussLegendre(5);
+  // std::cout << std::setprecision(25);
+  // std::cout << piBorweinCubic(15) << "\n";
+  // std::cout << piBorweinQuadratic(15) << "\n";
+  // std::cout << piBorweinQuartic(15) << "\n";
+  // std::cout << piGaussLegendre(15);
   // std::cout << exponentiationNaiveIterative(15, -5) << "\n";
   // std::cout << exponentiationNaiveRecursive(15, -5) << "\n";
   // std::cout << exponentiationSquaringIterative(15, -5) << "\n";
