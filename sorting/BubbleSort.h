@@ -17,8 +17,11 @@ static void sortBubble(T *array, unsigned long length, bool order) {
   if (length == 0) {
     return;
   }
+
+  bool swapped;
+
   for (unsigned long element = 0; element < length - 1; element++) {
-    bool swapped = 0;
+    swapped = 0;
     for (unsigned long i = 0; i < length - element - 1; i++) {
       if (array[i] > array[i + 1]) {
         swap(array[i], array[i + 1]);

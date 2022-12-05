@@ -44,11 +44,12 @@ template <typename T> void PrintArray(T *array, unsigned long length) {
 
 // -------------------------------------------------------------------------------------------------------------------------
 void sorting_test() {
-  long long *arr = GenerateRandomArray(0, 10000, -10000);
-  sortCocktail(arr, 0, false);
-  for (int i = 0; i < 0; i++) {
+  long long *arr = GenerateRandomArray(5, 10000, -10000);
+  sortCocktail(arr, 5, false);
+  for (int i = 0; i < 5; i++) {
     std::cout << arr[i] << "\n";
   }
+  delete[] arr;
 }
 
 void sorting_demo(int tries, unsigned int maxSize, unsigned int step,
@@ -147,6 +148,12 @@ void sorting_demo(int tries, unsigned int maxSize, unsigned int step,
     std::cout << "Total tries: " << tries << "\n";
     std::cout << "\n";
   }
+  delete[] arr1;
+  delete[] arr2;
+  delete[] arr3;
+  delete[] arr4;
+  delete[] arr5;
+  delete[] arr6;
 }
 void sorting_demo_silly(int tries) {
   long long *arr;
@@ -174,4 +181,5 @@ void sorting_demo_silly(int tries) {
     std::cout << "Total tries: " << tries << "\n";
     std::cout << "\n";
   }
+  delete[] arr;
 }

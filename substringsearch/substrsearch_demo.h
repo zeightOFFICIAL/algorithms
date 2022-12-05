@@ -1,6 +1,6 @@
 // substrsearch_demo.h
 // use only for testing of the program's work
-// for version 1.3
+// for version 1.31
 #pragma once
 
 #include <chrono>
@@ -82,7 +82,7 @@ void substrsearch_demo(int tries) {
       std::string strarray = array;
 
       start1 = std::chrono::steady_clock::now();
-      occurrences = substrBoyerMoore(strarray, "ga");
+      occurrences = searchBoyerMoore(strarray, "ga");
       end1 = std::chrono::steady_clock::now();
       alltime1 =
           alltime1 +
@@ -93,7 +93,7 @@ void substrsearch_demo(int tries) {
         std::cout << "BoyerMoore found: " << occurrences.size() << "\n";
 
       start5 = std::chrono::steady_clock::now();
-      occurrences = substrKnuthMorrisPratt(array, "ga");
+      occurrences = searchKMP(array, "ga");
       end5 = std::chrono::steady_clock::now();
       alltime5 =
           alltime5 +
@@ -104,7 +104,7 @@ void substrsearch_demo(int tries) {
         std::cout << "Knuth-Morris-Pratt found: " << occurrences.size() << "\n";
 
       start2 = std::chrono::steady_clock::now();
-      occurrences = substrRabinKarp(strarray, "ga", 64);
+      occurrences = searchRabinKarp(strarray, "ga", 64);
       end2 = std::chrono::steady_clock::now();
       alltime2 =
           alltime2 +
@@ -115,7 +115,7 @@ void substrsearch_demo(int tries) {
         std::cout << "RabinKarp found: " << occurrences.size() << "\n";
 
       start3 = std::chrono::steady_clock::now();
-      occurrences = substrNaive(strarray, "ga");
+      occurrences = searchNaive(strarray, "ga");
       end3 = std::chrono::steady_clock::now();
       alltime3 =
           alltime3 +
@@ -126,7 +126,7 @@ void substrsearch_demo(int tries) {
         std::cout << "Naive found: " << occurrences.size() << "\n";
 
       start4 = std::chrono::steady_clock::now();
-      occurrences = substrBitap(array, "ga");
+      occurrences = searchBitap(array, "ga");
       end4 = std::chrono::steady_clock::now();
       alltime4 =
           alltime4 +

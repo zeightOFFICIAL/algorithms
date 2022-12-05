@@ -18,8 +18,7 @@ the ascending order if D - true and descending if C - false,
 using stooge sorting. Changes A, returns nothing.
 */
 template <typename T>
-static void sortRangedStooge(T *array, unsigned long startPoint,
-                             unsigned long endPoint, bool order);
+static void sortRangedStooge(T *array, unsigned long startPoint, unsigned long endPoint, bool order);
 
 template <typename T>
 static void sortStooge(T *array, unsigned long length, bool order) {
@@ -28,8 +27,7 @@ static void sortStooge(T *array, unsigned long length, bool order) {
 }
 
 template <typename T>
-static void sortRangedStooge(T *array, unsigned long startPoint,
-                             unsigned long endPoint, bool order) {
+static void sortRangedStooge(T *array, unsigned long startPoint, unsigned long endPoint, bool order) {
   if (startPoint >= endPoint)
     return;
 

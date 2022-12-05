@@ -36,10 +36,10 @@ int main() {
   // std::cout << KahanSummation<long>(x) << "\n";
 
   // sorting_test();
-  // sorting_demo(5, 100000, 25000);
+  // sorting_demo(5, 1000, 1000);
   // sorting_demo_silly(1);
 
-  // substrsearch_demo(1);
+  substrsearch_demo(1);
 
   // std::cout << gcdEuclideanIterative(1002, 3) << "\n";
   // std::cout << gcdEuclideanRecursive(1002, 3) << "\n";
