@@ -19,11 +19,11 @@ https://en.wikipedia.org/wiki/Chudnovsky_algorithm
 #include "math.h" // sqrt
 
 /*
-  (unsigned int A) -> (long double B)
+  (long double A) -> (long double B)
   Finds 1/pi number B with precision of A.
   -Returns 1/pi number B.
 */
-long double piChudnovsky(unsigned int precision);
+long double piChudnovsky(long double precision);
 /*
   (long double A) -> (long double B)
   Finds factorial B of number A.
@@ -37,9 +37,10 @@ long double factorial(long double number) {
   return number * factorial(number - 1.0f);
 }
 
-long double piChudnovsky(unsigned int precisionRequired) {
+long double piChudnovsky(long double precisionRequired) {
   long double result = 0.0f;
-  for (unsigned int precision = 0; precision < precisionRequired; precision++) {
+  for (long double precision = 0.0f; precision < precisionRequired;
+       precision++) {
     result += (pow(-1.0f, precision) * factorial(6.0f * precision) *
                (13591409.0f + (545140134.0f * precision))) /
               (factorial(3.0f * precision) * pow(factorial(precision), 3.0f) *

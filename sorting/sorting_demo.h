@@ -1,6 +1,6 @@
 // sorting_demo.h
 // use only for testing of the program's work
-// for version 1.3
+// for version 1.31
 #pragma once
 
 #include <chrono>
@@ -10,6 +10,7 @@
 #include <string>
 
 #include "BubbleSort.h"
+#include "CocktailSort.h"
 #include "CombSort.h"
 #include "GnomeSort.h"
 #include "HeapSort.h"
@@ -42,19 +43,29 @@ template <typename T> void PrintArray(T *array, unsigned long length) {
 }
 
 // -------------------------------------------------------------------------------------------------------------------------
-void sorting_demo(int tries) {
-  long long *arr1, *arr2, *arr3, *arr4, *arr5;
+void sorting_test() {
+  long long *arr = GenerateRandomArray(0, 10000, -10000);
+  sortCocktail(arr, 0, false);
+  for (int i = 0; i < 0; i++) {
+    std::cout << arr[i] << "\n";
+  }
+}
+
+void sorting_demo(int tries, unsigned int maxSize, unsigned int step,
+                  int maxValue = 15000, int minValue = -15000) {
+  long long *arr1, *arr2, *arr3, *arr4, *arr5, *arr6;
   long double alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0,
-              alltime5 = 0;
-  int min_value = -15000, max_value = 15000;
+              alltime5 = 0, alltime6 = 0;
   int local_length;
+
   std::chrono::steady_clock::time_point start1, end1, start2, end2, start3,
-      end3, start4, end4, start5, end5;
-  for (local_length = 5000; local_length <= 100000; local_length += 5000) {
+      end3, start4, end4, start5, end5, start6, end6;
+
+  for (local_length = 0; local_length <= maxSize; local_length += step) {
     std::cout << local_length << "\n";
     alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, alltime5 = 0;
     for (int local_tries = 0; local_tries < tries; local_tries++) {
-      arr1 = GenerateRandomArray(local_length, max_value, min_value);
+      arr1 = GenerateRandomArray(local_length, maxValue, minValue);
       start1 = std::chrono::steady_clock::now();
       sortBubble(arr1, local_length, false);
       end1 = std::chrono::steady_clock::now();
@@ -64,7 +75,7 @@ void sorting_demo(int tries) {
                   .count() /
               1000000.0;
 
-      arr2 = GenerateRandomArray(local_length, max_value, min_value);
+      arr2 = GenerateRandomArray(local_length, maxValue, minValue);
       start2 = std::chrono::steady_clock::now();
       sortHeap(arr2, local_length, false);
       end2 = std::chrono::steady_clock::now();
@@ -74,7 +85,7 @@ void sorting_demo(int tries) {
                   .count() /
               1000000.0;
 
-      arr3 = GenerateRandomArray(local_length, max_value, min_value);
+      arr3 = GenerateRandomArray(local_length, maxValue, minValue);
       start3 = std::chrono::steady_clock::now();
       sortInsertion(arr3, local_length, false);
       end3 = std::chrono::steady_clock::now();
@@ -84,7 +95,7 @@ void sorting_demo(int tries) {
                   .count() /
               1000000.0;
 
-      arr4 = GenerateRandomArray(local_length, max_value, min_value);
+      arr4 = GenerateRandomArray(local_length, maxValue, minValue);
       start4 = std::chrono::steady_clock::now();
       sortGnome(arr4, local_length, false);
       end4 = std::chrono::steady_clock::now();
@@ -94,13 +105,23 @@ void sorting_demo(int tries) {
                   .count() /
               1000000.0;
 
-      arr5 = GenerateRandomArray(local_length, max_value, min_value);
+      arr5 = GenerateRandomArray(local_length, maxValue, minValue);
       start5 = std::chrono::steady_clock::now();
       sortComb(arr5, local_length, false);
       end5 = std::chrono::steady_clock::now();
       alltime5 =
           alltime5 +
           std::chrono::duration_cast<std::chrono::microseconds>(end5 - start5)
+                  .count() /
+              1000000.0;
+
+      arr6 = GenerateRandomArray(local_length, maxValue, minValue);
+      start6 = std::chrono::steady_clock::now();
+      sortCocktail(arr6, local_length, false);
+      end6 = std::chrono::steady_clock::now();
+      alltime6 =
+          alltime6 +
+          std::chrono::duration_cast<std::chrono::microseconds>(end6 - start6)
                   .count() /
               1000000.0;
     }
@@ -118,6 +139,9 @@ void sorting_demo(int tries) {
               << "\n";
     std::cout << "Comb sort: Average time: " << std::setprecision(9)
               << (alltime5 / tries) << " seconds"
+              << "\n";
+    std::cout << "Cocktail sort: Average time: " << std::setprecision(9)
+              << (alltime6 / tries) << " seconds"
               << "\n";
     std::cout << "Total elements: " << local_length << "\n";
     std::cout << "Total tries: " << tries << "\n";

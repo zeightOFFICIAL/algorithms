@@ -5,8 +5,11 @@
 #include "elementary/PiGaussLegendre.h"
 #include "elementary/SummationKahan.h"
 #include "elementary/SummationNaive.h"
+
 #include "sorting/sorting_demo.h"
+
 #include "substringsearch/substrsearch_demo.h"
+
 #include "theoryofnumbers/Factorial.h"
 #include "theoryofnumbers/Fibonacci.h"
 #include "theoryofnumbers/GCDEuclidean.h"
@@ -15,16 +18,15 @@
 #include "theoryofnumbers/SieveSundaram.h"
 
 #include <iostream>
-#include <limits>
 #include <vector>
 
 int main() {
-  // std::cout << std::setprecision(25);
-  // std::cout << piBorweinCubic(15) << "\n";
-  // std::cout << piBorweinQuadratic(15) << "\n";
-  // std::cout << piBorweinQuartic(15) << "\n";
+  // std::cout << std::setprecision(15);
+  // std::cout << 1.0f / piBorweinCubic(35.0f) << "\n";
+  // std::cout << piBorweinQuadratic(35.0f) << "\n";
+  // std::cout << 1.0f / piBorweinQuartic(35.0f) << "\n";
   // std::cout << piGaussLegendre(15) << "\n";
-  // std::cout << piChudnovsky(15);
+  // std::cout << 1.0f / piChudnovsky(15.0f);
   // std::cout << exponentiationNaiveIterative(15, -5) << "\n";
   // std::cout << exponentiationNaiveRecursive(15, -5) << "\n";
   // std::cout << exponentiationSquaringIterative(15, -5) << "\n";
@@ -33,7 +35,8 @@ int main() {
   // std::cout << NaiveSumRecursive<long>(x) << "\n";
   // std::cout << KahanSummation<long>(x) << "\n";
 
-  // sorting_demo(1);
+  // sorting_test();
+  // sorting_demo(5, 100000, 25000);
   // sorting_demo_silly(1);
 
   // substrsearch_demo(1);

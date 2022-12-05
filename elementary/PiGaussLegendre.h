@@ -11,17 +11,17 @@ https://en.wikipedia.org/wiki/Gauss%E2%80%93Legendre_algorithm
 #include "math.h" // sqrt
 
 /*
-  (unsigned int A) -> (long double B)
+  (long double A) -> (long double B)
   Finds pi number B with precision of A.
   -Returns pi number B.
 */
-long double piGaussLegendre(unsigned int precisionRequired);
+long double piGaussLegendre(long double precisionRequired);
 
-long double piGaussLegendre(unsigned int precisionRequired) {
+long double piGaussLegendre(long double precisionRequired) {
   long double result = 0.0f;
   long double an = 1.0f, bn = 1.0f / sqrt(2), tn = 1.0f / 4.0f, pn = 1.0f;
   long double an_, bn_, tn_, pn_;
-  for (unsigned int precision = 0; precision < precisionRequired; precision++) {
+  for (long double precision = 0.0f; precision < precisionRequired; precision++) {
     an_ = (an + bn) / 2.0f;
     bn_ = sqrt(an * bn);
     tn_ = tn - (pn * (an - an_) * (an - an_));
