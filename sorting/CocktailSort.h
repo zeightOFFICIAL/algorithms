@@ -10,24 +10,24 @@ the ascending order if C - true and descending if C - false,
 using cocktail sorting. Changes A, returns nothing.
 */
 template <typename T>
-static void sortCocktail(T *array, unsigned int length, bool order = true);
+static void sortCocktail(T *array, u_long length, bool order = true);
 
 template <typename T>
-static void sortCocktail(T *array, unsigned int length, bool order) {
-  unsigned int left = 0, right = length, split = length;
+static void sortCocktail(T *array, u_long length, bool order) {
+  u_long left = 0, right = length, split = length;
 
   while (left < right) {
-    for (unsigned int i = left; i < right; i++) {
-      if (array[i] > array[i + 1]) {
-        swap(array[i], array[i + 1]);
-        split = i;
+    for (u_long fromLeft = left; fromLeft < right; fromLeft++) {
+      if (array[fromLeft] > array[fromLeft + 1]) {
+        swap(array[fromLeft], array[fromLeft + 1]);
+        split = fromLeft;
       }
     }
     right = split;
-    for (unsigned int i = right; i > left; i--) {
-      if (array[i] < array[i - 1]) {
-        swap(array[i], array[i - 1]);
-        split = i;
+    for (u_long fromRight = right; fromRight > left; fromRight--) {
+      if (array[fromRight] < array[fromRight - 1]) {
+        swap(array[fromRight], array[fromRight - 1]);
+        split = fromRight;
       }
     }
     left = split;

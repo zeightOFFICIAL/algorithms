@@ -5,6 +5,8 @@
 #pragma once
 
 namespace sorting {
+typedef unsigned long u_long;
+typedef unsigned short u_short;
 template <typename T> void static swap(T &first, T &second) {
   T temp = second;
   second = first;

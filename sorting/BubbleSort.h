@@ -10,25 +10,24 @@ the ascending order if C - true and descending if C - false,
 using bubble sorting. Changes A, returns nothing.
 */
 template <typename T>
-static void sortBubble(T *array, unsigned long length, bool order = true);
+static void sortBubble(T *array, u_long length, bool order = true);
 
 template <typename T>
-static void sortBubble(T *array, unsigned long length, bool order) {
+static void sortBubble(T *array, u_long length, bool order) {
   if (length == 0) {
     return;
   }
+  bool isSwapped;
 
-  bool swapped;
-
-  for (unsigned long element = 0; element < length - 1; element++) {
-    swapped = 0;
-    for (unsigned long i = 0; i < length - element - 1; i++) {
-      if (array[i] > array[i + 1]) {
-        swap(array[i], array[i + 1]);
-        swapped = 1;
+  for (u_long elemIndex = 0; elemIndex < length - 1; elemIndex++) {
+    isSwapped = false;
+    for (u_long nextElemIndex = 0; nextElemIndex < length - elemIndex - 1; nextElemIndex++) {
+      if (array[nextElemIndex] > array[nextElemIndex + 1]) {
+        swap(array[nextElemIndex], array[nextElemIndex + 1]);
+        isSwapped = true;
       }
     }
-    if (swapped == 0) {
+    if (isSwapped == false) {
       break;
     }
   }

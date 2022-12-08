@@ -10,15 +10,15 @@ the ascending order if C - true and descending if C - false,
 using comb sorting. Changes A, returns nothing.
 */
 template <typename T>
-static void sortComb(T *array, unsigned long length, bool order = true);
+static void sortComb(T *array, u_long length, bool order = true);
 
 template <typename T>
-static void sortComb(T *array, unsigned long length, bool order) {
+static void sortComb(T *array, u_long length, bool order) {
   long double decreaseFactor = 1.247330950103979f;
-  unsigned long gap = length;
+  u_long gap = length;
 
   while (gap >= 1) {
-    for (unsigned long element = 0; element + gap < length; element++) {
+    for (u_long element = 0; element + gap < length; element++) {
       if (array[element] > array[element + gap]) {
         swap(array[element], array[element + gap]);
       }

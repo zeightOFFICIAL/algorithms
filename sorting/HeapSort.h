@@ -10,7 +10,7 @@ the ascending order if C - true and descending if C - false,
 using heap sorting. Changes A, returns nothing.
 */
 template <typename T>
-static void sortHeap(T *array, unsigned long length, bool order = true);
+static void sortHeap(T *array, u_long length, bool order = true);
 /*
 (T* A, long long B, long long C) -> ()
 Takes an array A (type T) with length of B which start with
@@ -20,7 +20,7 @@ template <typename T>
 void arrayHeapify(T *array, long long length, long long i);
 
 template <typename T>
-static void sortHeap(T *array, unsigned long length, bool order) {
+static void sortHeap(T *array, u_long length, bool order) {
   long long node;
 
   for (node = length / 2 - 1; node >= 0; node--)
@@ -35,8 +35,8 @@ static void sortHeap(T *array, unsigned long length, bool order) {
 }
 
 template <typename T>
-void arrayHeapify(T *array, long long length, long long i) {
-  long long primeParent = i, left = 2 * i + 1, right = 2 * i + 2;
+void arrayHeapify(T *array, long long length, long long summit) {
+  long long primeParent = summit, left = 2 * summit + 1, right = 2 * summit + 2;
 
   if (left < length && array[left] > array[primeParent]) {
     primeParent = left;
@@ -44,8 +44,8 @@ void arrayHeapify(T *array, long long length, long long i) {
   if (right < length && array[right] > array[primeParent]) {
     primeParent = right;
   }
-  if (primeParent != i) {
-    swap(array[i], array[primeParent]);
+  if (primeParent != summit) {
+    swap(array[summit], array[primeParent]);
     arrayHeapify<T>(array, length, primeParent);
   }
 }

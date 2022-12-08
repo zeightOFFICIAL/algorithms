@@ -10,14 +10,14 @@ the ascending order if C - true and descending if C - false,
 using insertion sorting. Changes A, returns nothing.
 */
 template <typename T>
-static void sortInsertion(T *array, unsigned long length, bool order = true);
+static void sortInsertion(T *array, u_long length, bool order = true);
 
 template <typename T>
-static void sortInsertion(T *array, unsigned long length, bool order) {
+static void sortInsertion(T *array, u_long length, bool order) {
   T selectedElement;
   long long nextPosition;
 
-  for (unsigned int position = 1; position < length; position++) {
+  for (u_long position = 1; position < length; position++) {
     selectedElement = array[position];
     nextPosition = position - 1;
     while (nextPosition >= 0 && array[nextPosition] > selectedElement) {

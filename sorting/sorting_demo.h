@@ -15,6 +15,7 @@
 #include "GnomeSort.h"
 #include "HeapSort.h"
 #include "InsertionSort.h"
+#include "ShellSort.h"
 #include "StoogeSort.h"
 
 const unsigned long EXTREME_SIZE = 429496;
@@ -44,9 +45,9 @@ template <typename T> void PrintArray(T *array, unsigned long length) {
 
 // -------------------------------------------------------------------------------------------------------------------------
 void sorting_test() {
-  long long *arr = GenerateRandomArray(5, 10000, -10000);
-  sortCocktail(arr, 5, false);
-  for (int i = 0; i < 5; i++) {
+  long long *arr = GenerateRandomArray(500, 10000, -10000);
+  sortStooge(arr, 500, false);
+  for (int i = 0; i < 500; i++) {
     std::cout << arr[i] << "\n";
   }
   delete[] arr;
@@ -54,13 +55,13 @@ void sorting_test() {
 
 void sorting_demo(int tries, unsigned int maxSize, unsigned int step,
                   int maxValue = 15000, int minValue = -15000) {
-  long long *arr1, *arr2, *arr3, *arr4, *arr5, *arr6;
+  long long *arr1, *arr2, *arr3, *arr4, *arr5, *arr6, *arr7;
   long double alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0,
-              alltime5 = 0, alltime6 = 0;
+              alltime5 = 0, alltime6 = 0, alltime7 = 0;
   int local_length;
 
   std::chrono::steady_clock::time_point start1, end1, start2, end2, start3,
-      end3, start4, end4, start5, end5, start6, end6;
+      end3, start4, end4, start5, end5, start6, end6, start7, end7;
 
   for (local_length = 0; local_length <= maxSize; local_length += step) {
     std::cout << local_length << "\n";
@@ -125,6 +126,16 @@ void sorting_demo(int tries, unsigned int maxSize, unsigned int step,
           std::chrono::duration_cast<std::chrono::microseconds>(end6 - start6)
                   .count() /
               1000000.0;
+
+      arr7 = GenerateRandomArray(local_length, maxValue, minValue);
+      start7 = std::chrono::steady_clock::now();
+      sortShell(arr7, local_length, false);
+      end7 = std::chrono::steady_clock::now();
+      alltime7 =
+          alltime7 +
+          std::chrono::duration_cast<std::chrono::microseconds>(end7 - start7)
+                  .count() /
+              1000000.0;
     }
     std::cout << "Bubble sort: Average time: " << std::setprecision(9)
               << (alltime1 / tries) << " seconds"
@@ -144,6 +155,9 @@ void sorting_demo(int tries, unsigned int maxSize, unsigned int step,
     std::cout << "Cocktail sort: Average time: " << std::setprecision(9)
               << (alltime6 / tries) << " seconds"
               << "\n";
+    std::cout << "Shell sort: Average time: " << std::setprecision(9)
+              << (alltime7 / tries) << " seconds"
+              << "\n";
     std::cout << "Total elements: " << local_length << "\n";
     std::cout << "Total tries: " << tries << "\n";
     std::cout << "\n";
@@ -155,6 +169,7 @@ void sorting_demo(int tries, unsigned int maxSize, unsigned int step,
   delete[] arr5;
   delete[] arr6;
 }
+
 void sorting_demo_silly(int tries) {
   long long *arr;
   long double alltime = 0;

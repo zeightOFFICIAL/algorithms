@@ -10,11 +10,11 @@ the ascending order if C - true and descending if C - false,
 using gnome sorting. Changes A, returns nothing.
 */
 template <typename T>
-static void sortGnome(T *array, unsigned long length, bool order = true);
+static void sortGnome(T *array, u_long length, bool order = true);
 
 template <typename T>
-static void sortGnome(T *array, unsigned long length, bool order) {
-  unsigned long index = 1, lastPosition = 2;
+static void sortGnome(T *array, u_long length, bool order) {
+  u_long index = 1, lastPosition = 2;
 
   while (index < length) {
     if (array[index - 1] < array[index]) {
