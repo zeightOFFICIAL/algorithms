@@ -31,6 +31,7 @@
 *.out
 *.app
 
+<<<<<<< HEAD
 # ---------------
 *.txt
 /.vs
@@ -44,3 +45,16 @@
 .replit
 replit.nix
 main.cpp
+=======
+# Replit original
+*.replit
+*.nix
+*.ccls-cache
+
+# vscode original
+/.vscode
+*.json
+
+# ---------------
+*.txt
+>>>>>>> repob/main
