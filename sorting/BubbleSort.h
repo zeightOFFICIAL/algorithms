@@ -1,6 +1,6 @@
 // BubbleSort.h
 
-#include "Utils.h"
+#include "_Utils.h"
 using namespace sorting;
 
 /*
@@ -17,18 +17,13 @@ static void sortBubble(T *array, u_long length, bool order) {
   if (length == 0) {
     return;
   }
-  bool isSwapped;
+  u_long each, compare;
 
-  for (u_long elemIndex = 0; elemIndex < length - 1; elemIndex++) {
-    isSwapped = false;
-    for (u_long nextElemIndex = 0; nextElemIndex < length - elemIndex - 1; nextElemIndex++) {
-      if (array[nextElemIndex] > array[nextElemIndex + 1]) {
-        swap(array[nextElemIndex], array[nextElemIndex + 1]);
-        isSwapped = true;
+  for (each = 0; each < length - 1; each++) {
+    for (compare = 0; compare < length - each - 1; compare++) {
+      if (array[compare] > array[compare + 1]) {
+        swap(array[compare], array[compare + 1]);
       }
-    }
-    if (isSwapped == false) {
-      break;
     }
   }
   if (!order) {

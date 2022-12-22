@@ -1,6 +1,6 @@
 // GnomeSort.h
 
-#include "Utils.h"
+#include "_Utils.h"
 using namespace sorting;
 
 /*
@@ -14,17 +14,20 @@ static void sortGnome(T *array, u_long length, bool order = true);
 
 template <typename T>
 static void sortGnome(T *array, u_long length, bool order) {
-  u_long index = 1, lastPosition = 2;
+  if (length == 0) {
+    return;
+  }
+  u_long each = 1, lastPosition = 2;
 
-  while (index < length) {
-    if (array[index - 1] < array[index]) {
-      index = lastPosition;
+  while (each < length) {
+    if (array[each - 1] < array[each]) {
+      each = lastPosition;
       lastPosition++;
     } else {
-      swap(array[index - 1], array[index]);
-      index--;
-      if (index == 0) {
-        index = lastPosition;
+      swap(array[each - 1], array[each]);
+      each--;
+      if (each == 0) {
+        each = lastPosition;
         lastPosition++;
       }
     }

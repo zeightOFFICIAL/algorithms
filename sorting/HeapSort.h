@@ -1,6 +1,6 @@
 // HeapSort.h
 
-#include "Utils.h"
+#include "_Utils.h"
 using namespace sorting;
 
 /*
@@ -17,26 +17,29 @@ Takes an array A (type T) with length of B which start with
 C and builds maxheap. Changes A, returns nothing.
 */
 template <typename T>
-void arrayHeapify(T *array, long long length, long long i);
+void arrayHeapify(T *array, long64 length, long64 i);
 
 template <typename T>
 static void sortHeap(T *array, u_long length, bool order) {
-  long long node;
+  if (length == 0) {
+    return;
+  }  
+  long64 each;
 
-  for (node = length / 2 - 1; node >= 0; node--)
-    arrayHeapify(array, length, node);
-  for (node = length - 1; node > 0; node--) {
-    swap(array[0], array[node]);
-    arrayHeapify(array, node, 0);
-  }
+  for (each = length / 2 - 1; each >= 0; each--)
+    arrayHeapify(array, length, each);
+  for (each = length - 1; each > 0; each--) {
+    swap(array[0], array[each]);
+    arrayHeapify(array, each, 0);
+  }  
   if (!order) {
     reverse(array, length);
   }
 }
 
 template <typename T>
-void arrayHeapify(T *array, long long length, long long summit) {
-  long long primeParent = summit, left = 2 * summit + 1, right = 2 * summit + 2;
+void arrayHeapify(T *array, long64 length, long64 summit) {
+  long64 primeParent = summit, left = 2 * summit + 1, right = 2 * summit + 2;
 
   if (left < length && array[left] > array[primeParent]) {
     primeParent = left;

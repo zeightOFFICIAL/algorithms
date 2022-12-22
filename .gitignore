@@ -31,47 +31,8 @@
 *.out
 *.app
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-# ---------------
-*.txt
-/.vs
-/.vscode
-/Debug
-=======
-# Replit original
-*.replit
-*.nix
-
-# VS original
-/.vs
-/Debug
-/.vscode
->>>>>>> repoc/main
-*.sln
-*.vcxproj
-*.filters
-*.user
-<<<<<<< HEAD
-.ccls-cache
-.replit
-replit.nix
-main.cpp
-=======
-# Replit original
+# Replit
 *.replit
 *.nix
 *.ccls-cache
-
-# vscode original
-/.vscode
-*.json
-
-# ---------------
-*.txt
->>>>>>> repob/main
-=======
-
-# ---------------
-*.txt
->>>>>>> repoc/main
+main.cpp

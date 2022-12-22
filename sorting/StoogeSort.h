@@ -1,6 +1,6 @@
 // StoogeSort.h
 
-#include "Utils.h"
+#include "_Utils.h"
 using namespace sorting;
 
 /*
@@ -22,22 +22,29 @@ static void sortRangedStooge(T *array, u_long startPoint, u_long endPoint, bool 
 
 template <typename T>
 static void sortStooge(T *array, u_long length, bool order) {
+  if (length == 0) {
+    return;
+  }
+
   length--;
   sortRangedStooge(array, 0, length, order);
 }
 
 template <typename T>
 static void sortRangedStooge(T *array, u_long startPoint, u_long endPoint, bool order) {
-  if (startPoint >= endPoint)
+  if (startPoint >= endPoint) {
     return;
-  
-  if (order == true)
-    if (array[startPoint] > array[endPoint])
+  }
+  if (order == true) {
+    if (array[startPoint] > array[endPoint]) {
       swap(array[startPoint], array[endPoint]);
-  if (order == false)
-    if (array[startPoint] < array[endPoint])
+    }
+  }
+  if (order == false) {
+    if (array[startPoint] < array[endPoint]) {
       swap(array[startPoint], array[endPoint]);
-
+    }
+  }
   if (endPoint - startPoint + 1 > 2) {
     u_long cutIndex = (endPoint - startPoint + 1) / 3;
     sortRangedStooge(array, startPoint, endPoint - cutIndex, order);

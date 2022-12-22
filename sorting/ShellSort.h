@@ -1,6 +1,6 @@
 // ShellSort.h
 
-#include "Utils.h"
+#include "_Utils.h"
 using namespace sorting;
 
 static u_short A102549[] = {1, 4, 10, 23, 57, 132, 301, 701};
@@ -24,14 +24,19 @@ static void sortShell(T *array, u_long length, bool order = true, Y &seq = A1025
 
 template <typename T, typename Y>
 static void sortShell(T *array, u_long length, bool order, Y &seq) {
+  if (length == 0) {
+    return;
+  }
+  u_long index, nextIndex;
+  u_short gap;
+
   for (u_short gap : seq) {
-    for (u_long index = gap; index < length; index++) {
-      T temp = array[index];
-      u_long j;
-      for (j = index; (j >= gap) && (array[j - gap] > temp); j -= gap) {
-        array[j] = array[j - gap];
+    for (index = gap; index < length; index++) {
+      T selectedElement = array[index];
+      for (nextIndex = index; (nextIndex >= gap) && (array[nextIndex - gap] > selectedElement); nextIndex -= gap) {
+        array[nextIndex] = array[nextIndex - gap];
       }
-      array[j] = temp;
+      array[nextIndex] = selectedElement;
     }
   }
   if (!order) {

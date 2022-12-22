@@ -2,7 +2,7 @@
 #pragma once
 
 #include <vector>
-#include "../graph/graph.h"
+#include "../graph.h"
 
 class Spg: public Graph
 {

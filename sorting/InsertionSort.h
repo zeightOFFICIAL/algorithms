@@ -1,6 +1,6 @@
 // InsertionSort.h
 
-#include "Utils.h"
+#include "_Utils.h"
 using namespace sorting;
 
 /*
@@ -14,18 +14,22 @@ static void sortInsertion(T *array, u_long length, bool order = true);
 
 template <typename T>
 static void sortInsertion(T *array, u_long length, bool order) {
+  if (length == 0) {
+    return;
+  }  
   T selectedElement;
-  long long nextPosition;
+  long64 compare;
+  u_long each;
 
-  for (u_long position = 1; position < length; position++) {
-    selectedElement = array[position];
-    nextPosition = position - 1;
-    while (nextPosition >= 0 && array[nextPosition] > selectedElement) {
-      array[nextPosition + 1] = array[nextPosition];
-      nextPosition = nextPosition - 1;
+  for (each = 1; each < length; each++) {
+    selectedElement = array[each];
+    compare = each - 1;
+    while (compare >= 0 && array[compare] > selectedElement) {
+      array[compare + 1] = array[compare];
+      compare = compare - 1;
     }
-    array[nextPosition + 1] = selectedElement;
-  }
+    array[compare + 1] = selectedElement;
+  }  
   if (!order) {
     reverse(array, length);
   }

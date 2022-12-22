@@ -1,6 +1,6 @@
 // CocktailSort.h
 
-#include "Utils.h"
+#include "_Utils.h"
 using namespace sorting;
 
 /*
@@ -14,23 +14,32 @@ static void sortCocktail(T *array, u_long length, bool order = true);
 
 template <typename T>
 static void sortCocktail(T *array, u_long length, bool order) {
-  u_long left = 0, right = length, split = length;
+  if (length == 0) {
+    return;
+  }
+  long64 begin = 0, end = length - 1, rightCompare, leftCompare;
+  bool isSwapped = true;
 
-  while (left < right) {
-    for (u_long fromLeft = left; fromLeft < right; fromLeft++) {
-      if (array[fromLeft] > array[fromLeft + 1]) {
-        swap(array[fromLeft], array[fromLeft + 1]);
-        split = fromLeft;
+  while (isSwapped) {
+    isSwapped = false;
+    for (rightCompare = begin; rightCompare < end; rightCompare++) {
+      if (array[rightCompare] > array[rightCompare + 1]) {
+        swap(array[rightCompare], array[rightCompare + 1]);
+        isSwapped = true;
       }
     }
-    right = split;
-    for (u_long fromRight = right; fromRight > left; fromRight--) {
-      if (array[fromRight] < array[fromRight - 1]) {
-        swap(array[fromRight], array[fromRight - 1]);
-        split = fromRight;
+    if (!isSwapped) {
+      break;
+    }
+    isSwapped = false;
+    --end;
+    for (leftCompare = end - 1; leftCompare >= begin; --leftCompare) {
+      if (array[leftCompare] > array[leftCompare + 1]) {
+        swap(array[leftCompare], array[leftCompare + 1]);
+        isSwapped = true;
       }
     }
-    left = split;
+    ++begin;
   }
   if (!order) {
     reverse(array, length);
