@@ -42,5 +42,6 @@
 ---
 * Stein GCD
 * Euclidean GCD
+---
 * Eratosthenes Primes Sieve
 * Sundaram Primes Sieve

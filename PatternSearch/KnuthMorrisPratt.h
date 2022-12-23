@@ -1,7 +1,7 @@
 // KnuthMorrisPratt.h
 
-#include "Utils.h"
-using namespace substrsearch;
+#include "_Utils.h"
+using namespace patternsearch;
 
 /*
 (string A, string B) -> (vector<unsigned long> C)
@@ -24,52 +24,55 @@ indicates longest proper prefix which is also a suffix.
 A proper prefix is a prefix with wholestring not allowed.
 Returns nothing, changes C.
 */
-void longestPrefixSufix(string pattern, unsigned long patternLength,
-                        unsigned long *table, unsigned long textLength);
+void longestPrefixSufix(string pattern, u_long patternLength, u_long *table, u_long textLength);
 
 vector searchKMP(string text, string pattern) {
-  unsigned long patternLength = pattern.length(), textLength = text.length();
-  unsigned long *prefixTable = new unsigned long[patternLength];
+  if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length()) {
+    return vector{0};
+  }  
+  u_long patternLength = pattern.length(), textLength = text.length();
+  u_long *prefixTable = new u_long[patternLength];
+  u_long each = 0, inRow = 0;
   vector occurancePoints;
 
-  if (patternLength == 0 || textLength == 0 || patternLength > textLength) {
-    return occurancePoints;
-  }
   longestPrefixSufix(pattern, patternLength, prefixTable, textLength);
-  unsigned long index = 0, through = 0;
-  while (index < textLength) {
-    if (pattern[through] == text[index]) {
-      index++;
-      through++;
+  while (each < textLength) {
+    if (pattern[inRow] == text[each]) {
+      each++;
+      inRow++;
     }
-    if (through == patternLength) {
-      occurancePoints.push_back(index - through);
-      through = prefixTable[through - 1];
-    } else if (index < textLength && pattern[through] != text[index]) {
-      if (through != 0)
-        through = prefixTable[through - 1];
-      else
-        index++;
+    if (inRow == patternLength) {
+      occurancePoints.push_back(each - inRow);
+      inRow = prefixTable[inRow - 1];
+    } else if (each < textLength && pattern[inRow] != text[each]) {
+      if (inRow != 0) {
+        inRow = prefixTable[inRow - 1];
+      }
+      else {
+        each++;
+      }
     }
   }
   delete[] prefixTable;
+  
   return occurancePoints;
 }
 
-void longestPrefixSufix(string pattern, unsigned long patternLength, unsigned long *table, unsigned long textLength) {
+void longestPrefixSufix(string pattern, u_long patternLength, u_long *table, u_long textLength) {
   table[0] = 0;
-  unsigned long index = 1, prefixLength = 0;
-  while (index < patternLength) {
-    if (pattern[index] == pattern[prefixLength]) {
+  u_long each = 1, prefixLength = 0;
+  
+  while (each < patternLength) {
+    if (pattern[each] == pattern[prefixLength]) {
       prefixLength++;
-      table[index] = prefixLength;
-      index++;
-    } else if (pattern[index] != pattern[prefixLength]) {
+      table[each] = prefixLength;
+      each++;
+    } else if (pattern[each] != pattern[prefixLength]) {
       if (prefixLength != 0)
         prefixLength = table[prefixLength - 1];
       else {
-        table[index] = 0;
-        index++;
+        table[each] = 0;
+        each++;
       }
     }
   }

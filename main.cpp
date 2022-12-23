@@ -1,10 +1,13 @@
 #include <iostream>
 
 #include "Sorting/_Demo.h"
+#include "PatternSearch/_Demo.h"
 
 int main() {
-  // testOne(&sortCocktail, 500, false);
-  testFull(1, 100000, 10000);
-  // testSilly(1);
+  // testSorting(&sortCocktail, 500, false);
+  // testAllSortings(1, 10000, 5000);
+  // testSillySortings(1);
+
+  testSearchFull(5, "aaa");
   return 0;
 }

@@ -65,7 +65,7 @@ bool checkCorrect(long64 * array, unsigned int length, bool order = true) {
 }
 
 // -------------------------------------------------------------------------------------------------------------------------
-void testOne(void (*sorting)(long64 *, u_long, bool), unsigned int length, bool order = true, 
+void testSorting(void (*sorting)(long64 *, u_long, bool), unsigned int length, bool order = true, 
              int maxValue = 15000, int minValue = -15000) {
   long64 *arr = GenerateRandomArray(length, maxValue, minValue);
   
@@ -78,61 +78,60 @@ void testOne(void (*sorting)(long64 *, u_long, bool), unsigned int length, bool 
   delete[] arr;
 }
 
-void testFull(int tries, unsigned int maxSize, unsigned int step, 
-              int maxValue = 15000, int minValue = -15000) {
+void testAllSortings(int tries, unsigned int maxSize, unsigned int step, int maxValue = 15000, int minValue = -15000) {
   long64 *arr1, *arr2, *arr3, *arr4, *arr5, *arr6, *arr7;
   long double alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, 
               alltime5 = 0, alltime6 = 0, alltime7 = 0;
-  int local_length;
+  int localLength;
   bool allequal = true;
   std::chrono::steady_clock::time_point start1, end1, start2, end2, start3, end3, 
                                         start4, end4, start5, end5, start6, end6, 
                                         start7, end7;
 
-  for (local_length = 0; local_length <= maxSize; local_length += step) {
-    std::cout << local_length << "\n";
+  for (localLength = 0; localLength <= maxSize; localLength += step) {
+    std::cout << localLength << "\n";
     alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, alltime5 = 0;
-    for (int local_tries = 0; local_tries < tries; local_tries++) {
+    for (int localTries = 0; localTries < tries; localTries++) {
       
-      arr1 = GenerateRandomArray(local_length, maxValue, minValue);
+      arr1 = GenerateRandomArray(localLength, maxValue, minValue);
       start1 = std::chrono::steady_clock::now();
-      sortBubble(arr1, local_length);
+      sortBubble(arr1, localLength);
       end1 = std::chrono::steady_clock::now();
       alltime1 = alltime1 + std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1).count() /1000000.0;
 
-      arr2 = GenerateRandomArray(local_length, maxValue, minValue);
+      arr2 = GenerateRandomArray(localLength, maxValue, minValue);
       start2 = std::chrono::steady_clock::now();
-      sortHeap(arr2, local_length);
+      sortHeap(arr2, localLength);
       end2 = std::chrono::steady_clock::now();
       alltime2 = alltime2 + std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2).count() /1000000.0;
 
-      arr3 = GenerateRandomArray(local_length, maxValue, minValue);
+      arr3 = GenerateRandomArray(localLength, maxValue, minValue);
       start3 = std::chrono::steady_clock::now();
-      sortInsertion(arr3, local_length);
+      sortInsertion(arr3, localLength);
       end3 = std::chrono::steady_clock::now();
       alltime3 = alltime3 + std::chrono::duration_cast<std::chrono::microseconds>(end3 - start3).count() /1000000.0;
 
-      arr4 = GenerateRandomArray(local_length, maxValue, minValue);
+      arr4 = GenerateRandomArray(localLength, maxValue, minValue);
       start4 = std::chrono::steady_clock::now();
-      sortGnome(arr4, local_length);
+      sortGnome(arr4, localLength);
       end4 = std::chrono::steady_clock::now();
       alltime4 = alltime4 + std::chrono::duration_cast<std::chrono::microseconds>(end4 - start4).count() /1000000.0;
 
-      arr5 = GenerateRandomArray(local_length, maxValue, minValue);
+      arr5 = GenerateRandomArray(localLength, maxValue, minValue);
       start5 = std::chrono::steady_clock::now();
-      sortComb(arr5, local_length);
+      sortComb(arr5, localLength);
       end5 = std::chrono::steady_clock::now();
       alltime5 = alltime5 + std::chrono::duration_cast<std::chrono::microseconds>(end5 - start5).count() /1000000.0;
 
-      arr6 = GenerateRandomArray(local_length, maxValue, minValue);
+      arr6 = GenerateRandomArray(localLength, maxValue, minValue);
       start6 = std::chrono::steady_clock::now();
-      sortCocktail(arr6, local_length);
+      sortCocktail(arr6, localLength);
       end6 = std::chrono::steady_clock::now();
       alltime6 = alltime6 + std::chrono::duration_cast<std::chrono::microseconds>(end6 - start6).count() /1000000.0;
 
-      arr7 = GenerateRandomArray(local_length, maxValue, minValue);
+      arr7 = GenerateRandomArray(localLength, maxValue, minValue);
       start7 = std::chrono::steady_clock::now();
-      sortShell(arr7, local_length);
+      sortShell(arr7, localLength);
       end7 = std::chrono::steady_clock::now();
       alltime7 = alltime7 + std::chrono::duration_cast<std::chrono::microseconds>(end7 - start7).count() /1000000.0;
     }
@@ -150,13 +149,13 @@ void testFull(int tries, unsigned int maxSize, unsigned int step,
               << (alltime6 / tries) << " seconds" << "\n";
     std::cout << "Shell sort: Average time: " << std::setprecision(9)
               << (alltime7 / tries) << " seconds" << "\n";
-    std::cout << "Total elements: " << local_length << "\n";
+    std::cout << "Total elements: " << localLength << "\n";
     std::cout << "Total tries: " << tries << "\n";
 
-    allequal = checkCorrect(arr1, local_length) && checkCorrect(arr2, local_length) &&
-               checkCorrect(arr3, local_length) && checkCorrect(arr4, local_length) &&
-               checkCorrect(arr5, local_length) && checkCorrect(arr6, local_length) &&
-               checkCorrect(arr7, local_length);
+    allequal = checkCorrect(arr1, localLength) && checkCorrect(arr2, localLength) &&
+               checkCorrect(arr3, localLength) && checkCorrect(arr4, localLength) &&
+               checkCorrect(arr5, localLength) && checkCorrect(arr6, localLength) &&
+               checkCorrect(arr7, localLength);
     
     std::cout << "Is correct: " << allequal << "\n";
     std::cout << "\n";
@@ -170,29 +169,29 @@ void testFull(int tries, unsigned int maxSize, unsigned int step,
   delete[] arr7;
 }
 
-void testSilly(int tries) {
+void testSillySortings(int tries) {
   long64 *arr;
   long double alltime = 0;
-  int local_length;
+  int localLength;
   int min_value = -15000, max_value = 15000;
   std::chrono::steady_clock::time_point start, end;
   
-  for (local_length = 500; local_length <= 2500; local_length += 500) {
-    std::cout << local_length << "\n";
+  for (localLength = 500; localLength <= 2500; localLength += 500) {
+    std::cout << localLength << "\n";
     alltime = 0;
-    for (int local_tries = 0; local_tries < tries; local_tries++) {
+    for (int localTries = 0; localTries < tries; localTries++) {
       
-      arr = GenerateRandomArray(local_length, max_value, min_value);
+      arr = GenerateRandomArray(localLength, max_value, min_value);
       start = std::chrono::steady_clock::now();
-      sortStooge(arr, local_length);
+      sortStooge(arr, localLength);
       end = std::chrono::steady_clock::now();
       alltime = alltime + std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() /1000000.0;
     }
     std::cout << "Stooge sort: Average time: " << std::setprecision(9)
               << (alltime / tries) << " seconds" << "\n";
-    std::cout << "Total elements: " << local_length << "\n";
+    std::cout << "Total elements: " << localLength << "\n";
     std::cout << "Total tries: " << tries << "\n";
-    std::cout << "Is correct: " << checkCorrect(arr, local_length) << "\n";
+    std::cout << "Is correct: " << checkCorrect(arr, localLength) << "\n";
     std::cout << "\n";
   }
   delete[] arr;

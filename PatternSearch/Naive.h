@@ -1,7 +1,7 @@
 // Naive.h
 
-#include "Utils.h"
-using namespace substrsearch;
+#include "_Utils.h"
+using namespace patternsearch;
 
 /*
 (string A, string B) -> (vector<unsigned long> C)
@@ -15,19 +15,24 @@ in text.
 vector searchNaive(string text, string pattern);
 
 vector searchNaive(string text, string pattern) {
-  unsigned long patternLength = pattern.length(), textLength = text.length();
-  unsigned long start, next;
+  if (pattern.length() == 0 || text.length() == 0 ||
+      pattern.length() > text.length()) {
+    return vector{0};
+  }
+  u_long patternLength = pattern.length(), textLength = text.length();
+  u_long start, next;
   vector occurancePoints;
 
-  if (patternLength == 0 || textLength == 0 || patternLength > textLength) {
-    return occurancePoints;
-  }
   for (start = 0; start <= textLength - patternLength; start++) {
-    for (next = 0; next < patternLength; next++)
-      if (text[start + next] != pattern[next])
+    for (next = 0; next < patternLength; next++) {
+      if (text[start + next] != pattern[next]) {
         break;
-    if (next == patternLength)
+      }
+    }
+    if (next == patternLength) {
       occurancePoints.push_back(start);
+    }
   }
+  
   return occurancePoints;
 }

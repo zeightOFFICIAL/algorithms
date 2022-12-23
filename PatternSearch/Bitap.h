@@ -1,7 +1,7 @@
 // Bitap.h
 
-#include "Utils.h"
-using namespace substrsearch;
+#include "_Utils.h"
+using namespace patternsearch;
 
 /*
 (string A, string B) -> (vector<unsigned long> C)
@@ -16,24 +16,25 @@ in text.
 vector searchBitap(string text, string pattern);
 
 vector searchBitap(string text, string pattern) {
-  unsigned long patternLength = pattern.length(), textLength = text.length();
-  unsigned long R = ~1;
-  vector occurancePoints, patternBitmask;
+  if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length() || pattern.length() > 31) {
+    return vector{0};
+  }
+  u_long patternLength = pattern.length(), textLength = text.length();
+  u_long R = ~1, byteInPattern, textIndex;
+  vector occurancePoints, bitmaskIndex;
 
-  if (patternLength == 0 || textLength == 0 || patternLength > textLength || patternLength > 31) {
-    return occurancePoints;
-  }
   for (int throughBitmask = 0; throughBitmask <= CHAR_MAX; ++throughBitmask) {
-    patternBitmask.push_back(~0);
+    bitmaskIndex.push_back(~0);
   }
-  for (unsigned long byteInPattern = 0; byteInPattern < patternLength; ++byteInPattern) {
-    patternBitmask[pattern[byteInPattern]] &= ~(1 << byteInPattern);
+  for (byteInPattern = 0; byteInPattern < patternLength; ++byteInPattern) {
+    bitmaskIndex[pattern[byteInPattern]] &= ~(1 << byteInPattern);
   }
-  for (unsigned long throughText = 0; throughText < textLength; ++throughText) {
-    R |= patternBitmask[text[throughText]];
+  for (textIndex = 0; textIndex < textLength; ++textIndex) {
+    R |= bitmaskIndex[text[textIndex]];
     R <<= 1;
     if (0 == (R & (1 << patternLength)))
-      occurancePoints.push_back(throughText + 1);
+      occurancePoints.push_back(textIndex + 1);
   }
+
   return occurancePoints;
 }
