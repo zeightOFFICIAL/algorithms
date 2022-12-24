@@ -1,4 +1,8 @@
-// adler32.h 1008
-#pragma once
+// adler32.h
 
-std::uint32_t adler32(const std::string data);
+#include "_Utils.h"
+
+namespace hashing {
+  const u_long ADLER32_MOD = 65521;
+  string adler32(const string data);
+} // namespace hashing

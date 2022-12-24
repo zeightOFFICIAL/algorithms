@@ -1,16 +1,15 @@
-#include <sstream>
 #include "adler32.h"
 
-const uint32_t MOD_ADLER = 65521;
-
-std::uint32_t adler32(const std::string data)
-{
-    int length = data.length();
-    uint32_t a = 1, b = 0;
-    for (size_t index = 0; index < length; ++index)
-    {
-        a = (a + data[index]) % MOD_ADLER;
-        b = (b + a) % MOD_ADLER;
+namespace hashing {
+  string adler32(const string data) {
+    u_long length = data.length();
+    uint32 a = 1, b = 0;
+  
+    for (u_long index = 0; index < length; ++index) {
+      a = (a + data[index]) % ADLER32_MOD;
+      b = (b + a) % ADLER32_MOD;
     }
-    return (b << 16) | a;
-}
+  
+    return intToHex((b << 16) | a);
+  }
+} // namespace hashing

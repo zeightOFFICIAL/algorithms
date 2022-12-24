@@ -1,12 +1,12 @@
-#include "fnv132.h"
+#include "fnv164.h"
 
 namespace hashing {
-  string fnv132(const string data) {
+  string fnv164(const string data) {
     u_long length = data.length();
-    uint32 hash = FNV32_OFFSET;
+    uint64 hash = FNV64_OFFSET;
     
     for (u_long index = 0; index < length; index++) {
-      hash *= FNV32_PRIME;
+      hash *= FNV64_PRIME;
       hash ^= (data[index]);
     }
     

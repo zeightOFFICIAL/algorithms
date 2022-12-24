@@ -1,5 +1,5 @@
 // Demo.h
-// use only for testing of the program's work
+// use !ONLY! for testing of the program's work
 // for version 1.32
 #pragma once
 
@@ -19,24 +19,24 @@
 #include "ShellSort.h"
 #include "StoogeSort.h"
 
-const u_long EXTREME_SIZE = 429496;
+const unsigned long EXTREME_SIZE = 429496;
 
-long64 *GenerateRandomArray(u_long length, long64 maxValue, long64 minValue) {
-  long64 *array = new long64[EXTREME_SIZE];
+long long *GenerateRandomArray(unsigned long length, long long maxValue, long long minValue) {
+  long long *array = new long long[EXTREME_SIZE];
   
   srand((int)time(0));
-  for (u_long index = 0; index < length; index++) {
+  for (unsigned long index = 0; index < length; index++) {
     array[index] = (rand() % (maxValue - minValue) + minValue);
   }
   
   return array;
 }
 
-long64 *GenerateCustomArray(u_long length) {
-  long64 *array = new long64[EXTREME_SIZE];
-  long64 thisElement = 0;
+long long *GenerateCustomArray(unsigned long length) {
+  long long *array = new long long[EXTREME_SIZE];
+  long long thisElement = 0;
   
-  for (u_long index = 0; index < length; index++) {
+  for (unsigned long index = 0; index < length; index++) {
     std::cout << "Input element with index " << index << ": ";
     std::cin >> thisElement;
     array[index] = thisElement;
@@ -45,14 +45,14 @@ long64 *GenerateCustomArray(u_long length) {
   return array;
 }
 
-template <typename T> void PrintArray(T *array, u_long length) {
-  for (u_long index = 0; index < length; index++) {
+template <typename T> void PrintArray(T *array, unsigned long length) {
+  for (unsigned long index = 0; index < length; index++) {
     std::cout << "i: " << index << " value: " << array[index] << "\n";
   }
 }
 
-bool checkCorrect(long64 * array, unsigned int length, bool order = true) {
-  for (u_long index = 0; index < length - 1; index++) {
+bool checkCorrect(long long * array, unsigned int length, bool order = true) {
+  for (unsigned long index = 0; index < length - 1; index++) {
     if (array[index] > array[index+1] && order == true) {
       return false;
     }
@@ -65,9 +65,9 @@ bool checkCorrect(long64 * array, unsigned int length, bool order = true) {
 }
 
 // -------------------------------------------------------------------------------------------------------------------------
-void testSorting(void (*sorting)(long64 *, u_long, bool), unsigned int length, bool order = true, 
+void testSorting(void (*sorting)(long long *, unsigned long, bool), unsigned int length, bool order = true, 
              int maxValue = 15000, int minValue = -15000) {
-  long64 *arr = GenerateRandomArray(length, maxValue, minValue);
+  long long *arr = GenerateRandomArray(length, maxValue, minValue);
   
   sorting(arr, length, order);
   for (int i = 0; i < length; i++) {
@@ -79,7 +79,7 @@ void testSorting(void (*sorting)(long64 *, u_long, bool), unsigned int length, b
 }
 
 void testAllSortings(int tries, unsigned int maxSize, unsigned int step, int maxValue = 15000, int minValue = -15000) {
-  long64 *arr1, *arr2, *arr3, *arr4, *arr5, *arr6, *arr7;
+  long long *arr1, *arr2, *arr3, *arr4, *arr5, *arr6, *arr7;
   long double alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, 
               alltime5 = 0, alltime6 = 0, alltime7 = 0;
   int localLength;
@@ -95,43 +95,43 @@ void testAllSortings(int tries, unsigned int maxSize, unsigned int step, int max
       
       arr1 = GenerateRandomArray(localLength, maxValue, minValue);
       start1 = std::chrono::steady_clock::now();
-      sortBubble(arr1, localLength);
+      sorting::sortBubble(arr1, localLength);
       end1 = std::chrono::steady_clock::now();
       alltime1 = alltime1 + std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1).count() /1000000.0;
 
       arr2 = GenerateRandomArray(localLength, maxValue, minValue);
       start2 = std::chrono::steady_clock::now();
-      sortHeap(arr2, localLength);
+      sorting::sortHeap(arr2, localLength);
       end2 = std::chrono::steady_clock::now();
       alltime2 = alltime2 + std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2).count() /1000000.0;
 
       arr3 = GenerateRandomArray(localLength, maxValue, minValue);
       start3 = std::chrono::steady_clock::now();
-      sortInsertion(arr3, localLength);
+      sorting::sortInsertion(arr3, localLength);
       end3 = std::chrono::steady_clock::now();
       alltime3 = alltime3 + std::chrono::duration_cast<std::chrono::microseconds>(end3 - start3).count() /1000000.0;
 
       arr4 = GenerateRandomArray(localLength, maxValue, minValue);
       start4 = std::chrono::steady_clock::now();
-      sortGnome(arr4, localLength);
+      sorting::sortGnome(arr4, localLength);
       end4 = std::chrono::steady_clock::now();
       alltime4 = alltime4 + std::chrono::duration_cast<std::chrono::microseconds>(end4 - start4).count() /1000000.0;
 
       arr5 = GenerateRandomArray(localLength, maxValue, minValue);
       start5 = std::chrono::steady_clock::now();
-      sortComb(arr5, localLength);
+      sorting::sortComb(arr5, localLength);
       end5 = std::chrono::steady_clock::now();
       alltime5 = alltime5 + std::chrono::duration_cast<std::chrono::microseconds>(end5 - start5).count() /1000000.0;
 
       arr6 = GenerateRandomArray(localLength, maxValue, minValue);
       start6 = std::chrono::steady_clock::now();
-      sortCocktail(arr6, localLength);
+      sorting::sortCocktail(arr6, localLength);
       end6 = std::chrono::steady_clock::now();
       alltime6 = alltime6 + std::chrono::duration_cast<std::chrono::microseconds>(end6 - start6).count() /1000000.0;
 
       arr7 = GenerateRandomArray(localLength, maxValue, minValue);
       start7 = std::chrono::steady_clock::now();
-      sortShell(arr7, localLength);
+      sorting::sortShell(arr7, localLength);
       end7 = std::chrono::steady_clock::now();
       alltime7 = alltime7 + std::chrono::duration_cast<std::chrono::microseconds>(end7 - start7).count() /1000000.0;
     }
@@ -170,7 +170,7 @@ void testAllSortings(int tries, unsigned int maxSize, unsigned int step, int max
 }
 
 void testSillySortings(int tries) {
-  long64 *arr;
+  long long *arr;
   long double alltime = 0;
   int localLength;
   int min_value = -15000, max_value = 15000;
@@ -183,7 +183,7 @@ void testSillySortings(int tries) {
       
       arr = GenerateRandomArray(localLength, max_value, min_value);
       start = std::chrono::steady_clock::now();
-      sortStooge(arr, localLength);
+      sorting::sortStooge(arr, localLength);
       end = std::chrono::steady_clock::now();
       alltime = alltime + std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() /1000000.0;
     }

@@ -1,7 +1,7 @@
 // sha256.h 1009
 #pragma once
 
-#include <vector>
+#include "_Utils.h"
 
 class SHA256
 {

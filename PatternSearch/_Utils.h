@@ -1,12 +1,12 @@
 // Utils.h
-// must be included and used in each sorting header file
+// must be included and used in each patternsearch header file
 // for ver 1.32
+
+#pragma once
 
 #include <climits>
 #include <string>
 #include <vector>
-
-#pragma once
 
 namespace patternsearch {
   typedef std::vector<unsigned long> vector;
@@ -14,5 +14,5 @@ namespace patternsearch {
   typedef unsigned long u_long;
   typedef long long long64;
 
-  long64 maxByValue(long64 a, long64 b) { return a >= b ? a : b; }
+  static long64 maxByValue(long64 a, long64 b) { return a >= b ? a : b; }
 } // namespace substrsearch
