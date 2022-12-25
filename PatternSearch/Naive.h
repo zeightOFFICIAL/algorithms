@@ -19,8 +19,8 @@ namespace patternsearch {
         pattern.length() > text.length()) {
       return vector{0};
     }
-    u_long patternLength = pattern.length(), textLength = text.length();
-    u_long start, next;
+    ulong patternLength = pattern.length(), textLength = text.length();
+    ulong start, next;
     vector occurancePoints;
   
     for (start = 0; start <= textLength - patternLength; start++) {

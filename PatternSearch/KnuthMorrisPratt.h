@@ -24,15 +24,15 @@ namespace patternsearch {
   A proper prefix is a prefix with wholestring not allowed.
   Returns nothing, changes C.
   */
-  static void longestPrefixSufix(string pattern, u_long patternLength, u_long *table, u_long textLength);
+  static void longestPrefixSufix(string pattern, ulong patternLength, ulong *table, ulong textLength);
   
   static vector searchKMP(string text, string pattern) {
     if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length()) {
       return vector{0};
     }  
-    u_long patternLength = pattern.length(), textLength = text.length();
-    u_long *prefixTable = new u_long[patternLength];
-    u_long each = 0, inRow = 0;
+    ulong patternLength = pattern.length(), textLength = text.length();
+    ulong *prefixTable = new ulong[patternLength];
+    ulong each = 0, inRow = 0;
     vector occurancePoints;
   
     longestPrefixSufix(pattern, patternLength, prefixTable, textLength);
@@ -58,9 +58,9 @@ namespace patternsearch {
     return occurancePoints;
   }
   
-  static void longestPrefixSufix(string pattern, u_long patternLength, u_long *table, u_long textLength) {
+  static void longestPrefixSufix(string pattern, ulong patternLength, ulong *table, ulong textLength) {
     table[0] = 0;
-    u_long each = 1, prefixLength = 0;
+    ulong each = 1, prefixLength = 0;
     
     while (each < patternLength) {
       if (pattern[each] == pattern[prefixLength]) {

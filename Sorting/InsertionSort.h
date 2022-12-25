@@ -10,16 +10,16 @@ namespace sorting {
   using insertion sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void sortInsertion(T *array, u_long length, bool order = true);
+  static void sortInsertion(T *array, ulong length, bool order = true);
   
   template <typename T>
-  static void sortInsertion(T *array, u_long length, bool order) {
+  static void sortInsertion(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }  
     T selectedElement;
     long64 compare;
-    u_long each;
+    ulong each;
   
     for (each = 1; each < length; each++) {
       selectedElement = array[each];

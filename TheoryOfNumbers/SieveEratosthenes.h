@@ -1,27 +1,44 @@
-// sieve_of_eratosthenes.h
+// SieveEratosthenes.h
 
-#include <vector> // vector
+#include <cstdint>
+#include <vector>
 
-/*
-  (u_long A) -> (vector<u_long> B)
-  Finds prime numbers within range of 0..A
-  with a help of Eratosthenes' sieve.
-  -Returns vector which stores every prime number.
-*/
-std::vector<unsigned long> primesEratosthenes(unsigned long n);
-
-std::vector<unsigned long> primesEratosthenes(unsigned long n) {
-  std::vector<unsigned long> primes;
-  bool sieve[n + 1];
-  for (unsigned long i = 0; i <= n; i++)
-    sieve[i] = true;
-  for (unsigned long i = 2; i * i <= n; i++) {
-    if (sieve[i] == true)
-      for (unsigned long j = i * i; j <= n; j += i)
-        sieve[j] = false;
+namespace sieve {
+  typedef uint64_t uint64;
+  typedef unsigned long ulong;
+  typedef std::vector<uint64> vector;
+  
+  /**
+    (unsigned long A) -> (vector<uint64_t> B)
+    Finds prime numbers within range of 0..A
+    with a help of Eratosthenes' sieve.
+    Returns vector which stores every prime number.
+  */
+  static vector eratosthenesSieve(ulong size);
+  
+  static vector eratosthenesSieve(ulong size) {
+    if (size == 0) {
+      return vector{0};
+    }
+    vector primes;
+    bool sieve[size + 1];
+  
+    for (ulong fill = 0; fill <= size; fill++) {
+      sieve[fill] = true;
+    }
+    for (ulong number = 2; number * number <= size; number++) {
+      if (sieve[number] == true) {
+        for (ulong notPrime = number * number; notPrime <= size; notPrime += number) {
+          sieve[notPrime] = false;
+        }
+      }
+    }
+    for (unsigned long each = 2; each <= size; each++) {
+      if (sieve[each]) {
+        primes.push_back(each);
+      }
+    }
+    
+    return primes;
   }
-  for (unsigned long i = 2; i <= n; i++)
-    if (sieve[i])
-      primes.push_back(i);
-  return primes;
-}
+} // namespace sieve

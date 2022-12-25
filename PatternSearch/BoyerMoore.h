@@ -20,15 +20,15 @@ namespace patternsearch {
   of letter from alphabet in A within range of (0...length of B - 1)
   The remained alphabet symbols are set to -1. Returns nothing, changes C
   */
-  static void heuristicsBadChar(string pattern, u_long patternLength, int *heuristicsUnsigned, u_long textLength);
+  static void heuristicsBadChar(string pattern, ulong patternLength, int *heuristicsUnsigned, ulong textLength);
   
   static vector searchBoyerMoore(string text, string pattern) {
     if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length()) {
       return vector{0};
     }
-    u_long patternLength = pattern.length(), textLength = text.length();
+    ulong patternLength = pattern.length(), textLength = text.length();
     int *heuristics = new int[256];
-    long64 textIndex = 0, patternIndex;
+    int64 textIndex = 0, patternIndex;
     vector occurancePoints;
   
     heuristicsBadChar(pattern, patternLength, heuristics, textLength);
@@ -48,11 +48,11 @@ namespace patternsearch {
     return occurancePoints;
   }
   
-  static void heuristicsBadChar(string pattern, u_long patternLength, int *table, u_long textLength) {
-    for (u_long alphabetIndex = 0; alphabetIndex < 256; alphabetIndex++) {
+  static void heuristicsBadChar(string pattern, ulong patternLength, int *table, ulong textLength) {
+    for (ulong alphabetIndex = 0; alphabetIndex < 256; alphabetIndex++) {
       table[alphabetIndex] = -1;
     }
-    for (u_long patternIndex = 0; patternIndex < patternLength; patternIndex++) {
+    for (ulong patternIndex = 0; patternIndex < patternLength; patternIndex++) {
       table[(int)pattern[patternIndex]] = patternIndex;
     }
   }

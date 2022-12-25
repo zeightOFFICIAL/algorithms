@@ -11,15 +11,15 @@ namespace sorting {
   using comb sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void sortComb(T *array, u_long length, bool order = true);
+  static void sortComb(T *array, ulong length, bool order = true);
   
   template <typename T>
-  static void sortComb(T *array, u_long length, bool order) {
+  static void sortComb(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }
     double gap = length;
-    u_long nextIndex, index;
+    ulong nextIndex, index;
     bool isSwapped = true;
   
     while (gap > 1 || isSwapped) {

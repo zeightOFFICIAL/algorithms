@@ -19,8 +19,8 @@ namespace patternsearch {
     if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length() || pattern.length() > 31) {
       return vector{0};
     }
-    u_long patternLength = pattern.length(), textLength = text.length();
-    u_long R = ~1, byteInPattern, textIndex;
+    ulong patternLength = pattern.length(), textLength = text.length();
+    ulong R = ~1, byteInPattern, textIndex;
     vector occurancePoints, bitmaskIndex;
   
     for (int throughBitmask = 0; throughBitmask <= CHAR_MAX; ++throughBitmask) {

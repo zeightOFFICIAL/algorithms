@@ -3,7 +3,7 @@
 #include "_Utils.h"
 
 namespace hashing {
-  const u_long ADLER32_MOD = 65521;
+  static const ulong ADLER32_MOD = 65521;
 
   /**
   (string A) -> (string B)
@@ -12,10 +12,10 @@ namespace hashing {
   Return string B - checksum.
   */
   static string adler32(const string data) {
-    u_long length = data.length();
+    ulong length = data.length();
     uint32 a = 1, b = 0;
   
-    for (u_long index = 0; index < length; ++index) {
+    for (ulong index = 0; index < length; ++index) {
       a = (a + data[index]) % ADLER32_MOD;
       b = (b + a) % ADLER32_MOD;
     }

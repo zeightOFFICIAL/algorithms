@@ -13,7 +13,7 @@
 
 namespace hashing {
   typedef std::string string;
-  typedef unsigned long u_long;
+  typedef unsigned long ulong;
   typedef uint64_t uint64;
   typedef uint32_t uint32;
   typedef std::stringstream strstream;

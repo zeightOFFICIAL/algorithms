@@ -10,10 +10,10 @@ namespace sorting {
   using cocktail sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void sortCocktail(T *array, u_long length, bool order = true);
+  static void sortCocktail(T *array, ulong length, bool order = true);
   
   template <typename T>
-  static void sortCocktail(T *array, u_long length, bool order) {
+  static void sortCocktail(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }

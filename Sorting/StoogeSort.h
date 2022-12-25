@@ -10,7 +10,7 @@ namespace sorting {
   using stooge sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void sortStooge(T *array, u_long length, bool order = true);
+  static void sortStooge(T *array, ulong length, bool order = true);
   /**
   (T* A, unsigned long B, unsigned long C, bool D) -> ()
   Takes an array A (type T) within range of B..C and sorts it in
@@ -18,10 +18,10 @@ namespace sorting {
   using stooge sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void sortRangedStooge(T *array, u_long startPoint, u_long endPoint, bool order);
+  static void sortRangedStooge(T *array, ulong startPoint, ulong endPoint, bool order);
   
   template <typename T>
-  static void sortStooge(T *array, u_long length, bool order) {
+  static void sortStooge(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }
@@ -31,7 +31,7 @@ namespace sorting {
   }
   
   template <typename T>
-  static void sortRangedStooge(T *array, u_long startPoint, u_long endPoint, bool order) {
+  static void sortRangedStooge(T *array, ulong startPoint, ulong endPoint, bool order) {
     if (startPoint >= endPoint) {
       return;
     }
@@ -46,7 +46,7 @@ namespace sorting {
       }
     }
     if (endPoint - startPoint + 1 > 2) {
-      u_long cutIndex = (endPoint - startPoint + 1) / 3;
+      ulong cutIndex = (endPoint - startPoint + 1) / 3;
       sortRangedStooge(array, startPoint, endPoint - cutIndex, order);
       sortRangedStooge(array, startPoint + cutIndex, endPoint, order);
       sortRangedStooge(array, startPoint, endPoint - cutIndex, order);

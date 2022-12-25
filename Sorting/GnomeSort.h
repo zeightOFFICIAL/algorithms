@@ -10,14 +10,14 @@ namespace sorting {
   using gnome sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void sortGnome(T *array, u_long length, bool order = true);
+  static void sortGnome(T *array, ulong length, bool order = true);
   
   template <typename T>
-  static void sortGnome(T *array, u_long length, bool order) {
+  static void sortGnome(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }
-    u_long each = 1, lastPosition = 2;
+    ulong each = 1, lastPosition = 2;
   
     while (each < length) {
       if (array[each - 1] < array[each]) {

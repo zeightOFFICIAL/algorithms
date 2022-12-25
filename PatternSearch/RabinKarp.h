@@ -18,16 +18,16 @@ namespace patternsearch {
     if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length()) {
       return vector{0};
     }  
-    u_long textLength = text.length(), patternLength = pattern.length();
-    u_long patternIndex, textIndex;
+    ulong textLength = text.length(), patternLength = pattern.length();
+    ulong patternIndex, textIndex;
     int capacity = alphabetPower, prime = 7;
-    long64 patternHash = 1, textHash = 1, hashValue = 1;
+    int64 patternHash = 1, textHash = 1, hashValue = 1;
     vector occurancePoints;
   
-    for (u_long eachInPattern = 0; eachInPattern < patternLength - 1; eachInPattern++) {
+    for (ulong eachInPattern = 0; eachInPattern < patternLength - 1; eachInPattern++) {
       hashValue = (hashValue * capacity) % prime;
     }
-    for (u_long eachInPattern = 0; eachInPattern < patternLength; eachInPattern++) {
+    for (ulong eachInPattern = 0; eachInPattern < patternLength; eachInPattern++) {
       patternHash = (capacity * patternHash + pattern[eachInPattern]) % prime;
       textHash = (capacity * textHash + text[eachInPattern]) % prime;
     }

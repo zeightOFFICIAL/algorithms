@@ -23,7 +23,7 @@
 * Dijkstra
 * Floyd-Warshall
 * Johnson
-## Minimum spanning tree
+## Minimum spanning tree on graph
 * Kruskal
 * Prim
 * Reverse-Delete
