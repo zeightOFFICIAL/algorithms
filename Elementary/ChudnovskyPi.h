@@ -8,7 +8,7 @@ namespace picalc {
     Finds 1/pi number B with precision of A.
     Returns 1/pi number B.
   */
-  double chudnovskyPi(double precision);
+  double ChudnovskyPi(double precision);
   /*
     (double A) -> (double B)
     Finds factorial B of number A.
@@ -23,7 +23,7 @@ namespace picalc {
     return number * factorial(number - 1.0);
   }
   
-  double chudnovskyPi(double precisionRequired) {
+  double ChudnovskyPi(double precisionRequired) {
     double result = 0.0;
     for (double precision = 0.0; precision < precisionRequired; precision++) {
       result += (pow(-1.0, precision) * factorial(6.0 * precision) *

@@ -1,9 +1,8 @@
 #include <iostream>
-#include "math.h"
 
 #include "Sorting/_Demo.h"
-
 #include "PatternSearch/_Demo.h"
+#include "Elementary/_Demo.h"
 
 #include "Hashing/adler32.h"
 #include "Hashing/fnv132.h"
@@ -18,15 +17,10 @@
 #include "TheoryOfNumbers/SieveEratosthenes.h"
 #include "TheoryOfNumbers/SieveSundaram.h"
 
-#include "Elementary/ExponentiationNaive.h"
-#include "Elementary/ExponentiationSquaring.h"
-#include "Elementary/SummationKahan.h"
-#include "Elementary/SummationNaive.h"
-#include "Elementary/PiGaussLegendre.h"
-#include "Elementary/PiBorwein.h"
-#include "Elementary/PiChudnovsky.h"
 
 int main() {
+  testPi();
+  
   // testSorting(&sorting::sortComb, 500, false);
   // testAllSortings(1, 10000, 5000);
   // testSillySortings(1);
@@ -62,22 +56,7 @@ int main() {
   //   std::cout << an2[i] << "\n";
   // }
 
-  // std::cout << exponentiation::naiveIterativeExponentiation(35, -75) << "\n";
-  // std::cout << exponentiation::naiveRecursiveExponentiation(35, -75) << "\n";
-  // std::cout << exponentiation::squaringIterativeExponentiation(35, -75) << "\n";
-  // std::cout << exponentiation::squaringRecursiveExponentiation(35, -75) << "\n";
-
-  // std::cout << summation::naiveIterativeSummation(std::vector<double>{5.00001, 25, 250.999, -1000.9998}) << "\n";
-  // std::cout << summation::naiveRecursiveSummation(std::vector<double>{5.00001, 25, 250.999, -1000.9998}) << "\n";
-  // std::cout << summation::kahanSummation(std::vector<double>{5.00001, 25, 250.999, -1000.9998}) << "\n";
-
-  // std::cout << std::setprecision(50) << picalc::gaussLegendrePi(4) << "\n";
-  // std::cout << std::setprecision(50) << picalc::chudnovskyPi(4) << "\n";
-  // std::cout << std::setprecision(50) << picalc::BorweinCubic(4) << "\n";
-  // std::cout << std::setprecision(50) << picalc::BorweinQuartic(4) << "\n";
-  // std::cout << std::setprecision(50) << picalc::BorweinQuadratic(4) << "\n";
-  // std::cout << M_PI << "\n";
-  // std::cout << 1.0/M_PI << "\n";
+  
     
   return 0;
 }

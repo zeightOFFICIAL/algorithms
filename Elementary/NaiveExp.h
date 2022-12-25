@@ -4,20 +4,21 @@
 
 namespace exponentiation {
   typedef int64_t int64;
+
   /**
     (double A, int64 B) -> (double C)
     Finds C of the A**B=C equation. Uses naive iteration.
     Returns the C.
   */
-  static double naiveIterativeExponentiation(double base, int64 power);
+  static double NaiveExpIterative(double base, int64 power);
   /**
     (double A, int64 B) -> (double C)
     Finds C of the A**B=C equation. Uses naive recursion.
     Returns the C.
   */
-  static double naiveRecursiveExponentiation(double base, int64 power);
+  static double NaiveExpRecursive(double base, int64 power);
   
-  static double naiveIterativeExponentiation(double base, int64 power) {
+  static double NaiveExpIterative(double base, int64 power) {
     if (power == 0) {
       return 1.0;
     }
@@ -40,7 +41,7 @@ namespace exponentiation {
   
     return resultBase;
   }
-  static double naiveRecursiveExponentiation(double base, int64 power) {
+  static double NaiveExpRecursive(double base, int64 power) {
     if (power == 0) {
       return 1.0;
     }
@@ -50,9 +51,9 @@ namespace exponentiation {
     long double startBase = base, resultBase;
     
     if (power > 0) {
-      return naiveRecursiveExponentiation(base, power - 1) * base;
+      return NaiveExpRecursive(base, power - 1) * base;
     } else if (power < 0) {
-      return naiveRecursiveExponentiation(base, power + 1) * 1.0 / base;
+      return NaiveExpRecursive(base, power + 1) * 1.0 / base;
     }
   
     return -1.0f;

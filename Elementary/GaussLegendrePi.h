@@ -8,15 +8,9 @@ namespace picalc {
     Finds pi number B with precision of A.
     Returns pi number B.
   */
-  double gaussLegendrePi(double precisionRequired);
+  double GaussLegendrePi(double precisionRequired);
   
-  double gaussLegendrePi(double precisionRequired) {
-    if (precisionRequired == 0) {
-      return 0;
-    }
-    else if (precisionRequired == 1) {
-      return 3;
-    }
+  double GaussLegendrePi(double precisionRequired) {
     double result = 0.0;
     double an = 1.0, bn = 1.0 / sqrt(2), tn = 1.0 / 4.0, pn = 1.0;
     double an_, bn_, tn_, pn_;
