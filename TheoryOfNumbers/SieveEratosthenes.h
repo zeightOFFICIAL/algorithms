@@ -1,12 +1,5 @@
 // sieve_of_eratosthenes.h
 
-/*
-In mathematics, the sieve of Eratosthenes is an ancient algorithm
-for finding all prime numbers up to any given limit.
-
-https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-*/
-
 #include <vector> // vector
 
 /*

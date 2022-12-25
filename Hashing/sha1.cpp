@@ -13,18 +13,18 @@ namespace hashing {
   SHA1::~SHA1() {}
   
   void SHA1::update(const string data) {
-    int message_length = data.length();
-    string message_bin = "";
-    string message_length_bin = bitset8(message_length * 8).to_string();
-    for (size_t letter = 0; letter < message_length; letter++) {
-      bitset8 letter_bin = std::bitset<8>(data[letter]);
-      message_bin = message_bin + letter_bin.to_string();
+    u_long dataLength = data.length();
+    string binaryData = "";
+    string binaryDataLen = bitset8(dataLength * 8).to_string();
+    for (u_long letter = 0; letter < dataLength; letter++) {
+      bitset8 binaryLetter = std::bitset<8>(data[letter]);
+      binaryData = binaryData + binaryLetter.to_string();
     }
-    message_bin = message_bin + "1";
-    message_bin = messagePadding(message_bin);
-    message_length_bin = binaryLenPadding(message_length_bin);
-    message_bin = message_bin + message_length_bin;
-    splitToChunks(message_bin);
+    binaryData = binaryData + "1";
+    binaryData = messagePadding(binaryData);
+    binaryDataLen = binaryLenPadding(binaryDataLen);
+    binaryData = binaryData + binaryDataLen;
+    splitToChunks(binaryData);
     extendChunks();
   }
   
@@ -34,33 +34,33 @@ namespace hashing {
     uint32 c = digest[2];
     uint32 d = digest[3];
     uint32 e = digest[4];
-    for (short this_rotation = 0; this_rotation < 80; this_rotation++) {
+    
+    for (char thisRotation = 0; thisRotation < 80; thisRotation++) {
       uint32 f, k;
-      if (this_rotation < 20) {
-        const uint32 b_and_c = (b & c);
-        const uint32 not_b = (~(b)&d);
-        f = (b_and_c | not_b);
+      if (thisRotation < 20) {
+        const uint32 BandC = (b & c);
+        const uint32 notB = (~(b)&d);
+        f = (BandC | notB);
         k = 0x5A827999;
-      } else if (this_rotation < 40) {
-        const uint32 b_xor_c = (b ^ c);
-        f = (b_xor_c ^ d);
+      } else if (thisRotation < 40) {
+        const uint32 BxorC = (b ^ c);
+        f = (BxorC ^ d);
         k = 0x6ED9EBA1;
-      } else if (this_rotation < 60) {
-        const uint32 b_and_c = (b & c);
-        const uint32 b_and_d = (b & d);
-        const uint32 c_and_d = (c & d);
-        const uint32 bandc_or_bandd = (b_and_c | b_and_d);
-        f = (bandc_or_bandd | c_and_d);
+      } else if (thisRotation < 60) {
+        const uint32 BandC = (b & c);
+        const uint32 BandD = (b & d);
+        const uint32 CandD = (c & d);
+        const uint32 BandCorBandD = (BandC | BandD);
+        f = (BandCorBandD | CandD);
         k = 0x8F1BBCDC;
-      } else if (this_rotation < 80) {
-        const uint32 b_xor_c = (b ^ c);
-        f = (b_xor_c ^ d);
+      } else if (thisRotation < 80) {
+        const uint32 BxorC = (b ^ c);
+        f = (BxorC ^ d);
         k = 0xCA62C1D6;
       }
-      const uint32 chunk = chunks[this_rotation];
-      const uint32 temp_a = bit32wiseRotate(a, 5);
-      const uint32 temp = temp_a + f + e + k + chunk;
-  
+      const uint32 chunk = chunks[thisRotation];
+      const uint32 tempA = bit32wiseRotate(a, 5);
+      const uint32 temp = tempA + f + e + k + chunk;  
       e = d;
       d = c;
       c = bit32wiseRotate(b, 30);
@@ -73,65 +73,65 @@ namespace hashing {
     digest[3] = digest[3] + d;
     digest[4] = digest[4] + e;
   
-    std::string hash = "";
-    for (int this_string = 0; this_string < 5; this_string++) {
-      std::stringstream binary_chunk;
-      std::bitset<32> set(digest[this_string]);
-      binary_chunk << std::hex << set.to_ulong();
-      hash = hash + binary_chunk.str();
+    string hash = "";
+    for (char hexIndex = 0; hexIndex < 5; hexIndex++) {
+      strstream binaryChunk;
+      bitset32 set(digest[hexIndex]);
+      binaryChunk << std::hex << set.to_ulong();
+      hash = hash + binaryChunk.str();
     }
     return hash;
   }
   
-  std::string SHA1::messagePadding(std::string message_bin) {
-    while (message_bin.length() % 512 != 448)
-      message_bin = message_bin + '0';
-    return message_bin;
+  string SHA1::messagePadding(string binaryData) {
+    while (binaryData.length() % 512 != 448)
+      binaryData = binaryData + '0';
+    return binaryData;
   }
   
-  std::string SHA1::binaryLenPadding(std::string length_bin) {
-    while (length_bin.length() != 64)
-      length_bin = '0' + length_bin;
-    return length_bin;
+  string SHA1::binaryLenPadding(string binaryLen) {
+    while (binaryLen.length() != 64)
+      binaryLen = '0' + binaryLen;
+    return binaryLen;
   }
   
-  void SHA1::splitToChunks(const std::string message_bin) {
-    int small_chunk_length = 32;
-    std::bitset<32> this_chunk;
-    for (size_t chunk_index = 0; chunk_index < 16; chunk_index++) {
-      this_chunk = std::bitset<32>(
-          message_bin.substr(chunk_index * small_chunk_length, 32));
-      chunks.push_back(this_chunk.to_ullong());
+  void SHA1::splitToChunks(const string binaryData) {
+    int chunkSize = 32;
+    bitset32 chunk;
+    
+    for (u_long index = 0; index < 16; index++) {
+      chunk = bitset32(binaryData.substr(index * chunkSize, 32));
+      chunks.push_back(chunk.to_ullong());
     }
   }
   
   void SHA1::extendChunks() {
-    for (size_t chunk_number = 16; chunk_number <= 80; chunk_number++) {
-      const uint32_t word_a = chunks[chunk_number - 3];
-      const uint32_t word_b = chunks[chunk_number - 8];
-      const uint32_t word_c = chunks[chunk_number - 14];
-      const uint32_t word_d = chunks[chunk_number - 16];
+    for (u_long indexChunk = 16; indexChunk <= 80; indexChunk++) {
+      const uint32 wordA = chunks[indexChunk - 3];
+      const uint32 wordB = chunks[indexChunk - 8];
+      const uint32 wordC = chunks[indexChunk - 14];
+      const uint32 wordD = chunks[indexChunk - 16];
   
-      const uint32_t xor_a = (word_a ^ word_b);
-      const uint32_t xor_b = (xor_a ^ word_c);
-      const uint32_t xor_c = (xor_b ^ word_d);
+      const uint32 xorA = (wordA ^ wordB);
+      const uint32 xorB = (xorA ^ wordC);
+      const uint32 xorC = (xorB ^ wordD);
   
-      uint32_t new_chunk = bit32wiseRotate(xor_c, 1);
-      chunks.push_back(new_chunk);
+      uint32 newChunk = bit32wiseRotate(xorC, 1);
+      chunks.push_back(newChunk);
     }
   }
   
-  uint32 SHA1::bit32wiseRotate(uint32_t first, unsigned size_of_rotate) {
-    return (first << size_of_rotate) | (first >> (32 - size_of_rotate));
+  uint32 SHA1::bit32wiseRotate(uint32 first, u_long sizeToRotate) {
+    return (first << sizeToRotate) | (first >> (32 - sizeToRotate));
   }
   
-  std::string SHA1::binToHex(std::string bin) {
-    std::bitset<32> set(bin);
-    std::stringstream res;
+  string SHA1::binToHex(string bin) {
+    bitset32 set(bin);
+    strstream res;
     res << std::hex << set.to_ulong();
     return res.str();
   }
-  
+
   std::string sha1(const std::string data) {
     SHA1 hash;
     hash.update(data);

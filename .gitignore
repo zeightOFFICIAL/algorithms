@@ -35,4 +35,3 @@
 *.replit
 *.nix
 *.ccls-cache
-main.cpp

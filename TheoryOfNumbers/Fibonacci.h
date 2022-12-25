@@ -1,14 +1,6 @@
 // Fibonacci.h
 
-/*
-The Fibonacci numbers are the numbers in the following integer sequence.
-0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144...
-F(n) = F(n-1) + F(n-2)
-
-https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
-*/
-
-#include <cstdint> // uint64_t
+#include <cstdint>
 
 /*
   (uint64 A) -> (uint64 B)

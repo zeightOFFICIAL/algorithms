@@ -1,13 +1,5 @@
 // sieve_of_sundaram.h
 
-/*
-In mathematics, the sieve of Sundaram is a variant of the sieve of
-Eratosthenes, a simple deterministic algorithm for finding all the
-prime numbers up to a specified integer. It was discovered by
-Indian student S. P. Sundaram in 1934.
-
-https://en.wikipedia.org/wiki/Sieve_of_Sundaram
-*/
 
 #include <vector> // vector
 

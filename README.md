@@ -10,6 +10,7 @@
 ## Hashing
 * adler32
 * fnv132
+* fnv164
 * sha1
 * sha256
 ## Pattern search

@@ -14,7 +14,7 @@ namespace hashing {
       void splitToChunks(const string binaryMessage);
       void extendChunks();
       uint32 bit32wiseRotate(uint32 first, u_long sizeToRotate);
-      vector binToHex(string bin);
+      string binToHex(string bin);
   
   public:
       SHA1();
@@ -22,6 +22,12 @@ namespace hashing {
       void update(const string data);
       string final();
   };
-  
+
+  /**
+  (string A) -> (string B)
+  Creates hash B of string A, using
+  SHA1 hashing function. 
+  Return string B - hash.
+  */
   string sha1(const string data);
 }

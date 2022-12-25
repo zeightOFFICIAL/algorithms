@@ -19,6 +19,7 @@ namespace hashing {
   typedef std::stringstream strstream;
   typedef std::vector<uint32_t> vector;
   typedef std::bitset<8> bitset8;
+  typedef std::bitset<32> bitset32;
 
   template <typename T>
   static string intToHex(T number) {
