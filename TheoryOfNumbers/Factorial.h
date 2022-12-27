@@ -8,7 +8,7 @@ namespace factorial {
   typedef unsigned long ulong;
   typedef std::string string;
   
-  static const uint64 generatedFactorial20[21] = {
+  static const uint64 PreGenFactorial20[21] = {
     1,
     1,
     2,
@@ -30,7 +30,8 @@ namespace factorial {
     6402373705728000,
     121645100408832000,
     2432902008176640000};
-  static const string generatedFactorial50[51] = {
+
+  static const string PreGenFactorial50[51] = {
     "1",
     "1",
     "2",
@@ -88,15 +89,15 @@ namespace factorial {
     Finds factorial of number A. Uses recursion.
     Returns B.
   */
-  static uint64 recursiveFactorial(uint64 x);
+  static uint64 RecursiveFactorial(uint64 x);
   /**
     (unsigned long A) -> (uint64_t B)
     Finds factorial of number A. Uses iteration.
     Returns B.
   */
-  static uint64 iterativeFactorial(ulong x);
+  static uint64 IterativeFactorial(ulong x);
   
-  static uint64 recursiveFactorial(uint64 x) {
+  static uint64 RecursiveFactorial(uint64 x) {
     if (x > 20) {
       return 0;
     }
@@ -105,9 +106,10 @@ namespace factorial {
       return 1;
     }
   
-    return x * recursiveFactorial(x - 1);
+    return x * RecursiveFactorial(x - 1);
   }
-  static uint64 iterativeFactorial(ulong x) {
+
+  static uint64 IterativeFactorial(ulong x) {
     if (x > 20) {
       return 0;
     } else if (x == 0) {

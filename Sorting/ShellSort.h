@@ -20,10 +20,10 @@ namespace sorting {
   using shell sorting with sequence D. Changes A, returns nothing.
   */
   template <typename T, typename Y = ushort[8]>
-  static void sortShell(T *array, ulong length, bool order = true, Y &seq = A102549);
+  static void ShellSort(T *array, ulong length, bool order = true, Y &seq = A102549);
   
   template <typename T, typename Y>
-  static void sortShell(T *array, ulong length, bool order, Y &seq) {
+  static void ShellSort(T *array, ulong length, bool order, Y &seq) {
     if (length == 0) {
       return;
     }

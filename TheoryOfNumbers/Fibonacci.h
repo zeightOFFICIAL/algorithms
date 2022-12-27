@@ -6,7 +6,7 @@ namespace fibonacci {
   typedef uint64_t uint64;
   typedef unsigned long ulong;
   
-  static const uint64 generatedFibonacci90[91] = {
+  static const uint64 PreGenFibonacci90[91] = {
    0,
    1,
    1,
@@ -104,21 +104,21 @@ namespace fibonacci {
     Finds A-x element of fibonacci sequence.
     Uses recursion. Returns B.
   */
-  static uint64 recursiveFibonacci(uint64 term);
+  static uint64 RecursiveFibonacci(uint64 term);
   /**
     (uint64_t A) -> (uint64_t B)
     Finds A-x element of fibonacci sequence.
     Uses pure recursion. Returns B.
   */
-  static uint64 pureRecursiveFibonacci(uint64 term, uint64 a = 0, uint64 b = 1);
+  static uint64 PureRecursiveFibonacci(uint64 term, uint64 a = 0, uint64 b = 1);
   /**
     (uint64_t A) -> (uint64_t B)
     Finds A-x element of fibonacci sequence.
     Uses iteration. Returns B.
   */
-  static uint64 iterativeFibonacci(ulong term);
+  static uint64 IterativeFibonacci(ulong term);
   
-  static uint64 recursiveFibonacci(uint64 term) {
+  static uint64 RecursiveFibonacci(uint64 term) {
     if (term > 90) {
       return 0;
     }
@@ -127,9 +127,10 @@ namespace fibonacci {
       return (term);
     }
     
-    return (recursiveFibonacci(term - 1) + recursiveFibonacci(term - 2));
+    return (RecursiveFibonacci(term - 1) + RecursiveFibonacci(term - 2));
   }
-  static uint64 pureRecursiveFibonacci(uint64 term, uint64 a, uint64 b) {
+
+  static uint64 PureRecursiveFibonacci(uint64 term, uint64 a, uint64 b) {
     if (term > 90) {
       return 0;
     }
@@ -141,9 +142,10 @@ namespace fibonacci {
       return b;
     }
     
-    return pureRecursiveFibonacci(term - 1, b, a + b);
+    return PureRecursiveFibonacci(term - 1, b, a + b);
   }
-  static uint64 iterativeFibonacci(ulong term) {
+
+  static uint64 IterativeFibonacci(ulong term) {
     if (term > 90) {
       return 0;
     }
@@ -155,6 +157,7 @@ namespace fibonacci {
       result = x;
       x = y;
     }
+    
     return result;
   }
 } // namespace fibonacci

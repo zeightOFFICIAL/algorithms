@@ -14,9 +14,9 @@ namespace sieve {
     with a help of Sundaram's sieve.
     Returns vector which stores every prime number.
   */
-  static vector sundaramSieve(ulong size);
+  static vector SundaramSieve(ulong size);
   
-  static vector sundaramSieve(ulong size) {
+  static vector SundaramSieve(ulong size) {
     if (size == 0) {
       return vector{0};
     }

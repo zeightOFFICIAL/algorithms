@@ -4,22 +4,23 @@
 
 namespace gcd {
   typedef uint64_t uint64;
+
   /**
     (uint64_t A, uint64_t B) -> (uint64_t C)
     Finds GCD of numbers A and B and returns
     its value - C. Uses euclidean method with recursion.
     Returns C.
   */
-  static uint64 recursiveEuclideanGCD(uint64 x, uint64 y);
+  static uint64 RecursiveEuclideanGCD(uint64 x, uint64 y);
   /**
     (uint64_t A, uint64_t B) -> (uint64_t C)
     Finds GCD of numbers A and B and returns
     its value - C. Uses euclidean method with iteration.
     Returns C.
   */
-  static uint64 iterativeEuclideanGCD(uint64 x, uint64 y);
+  static uint64 IterativeEuclideanGCD(uint64 x, uint64 y);
   
-  static uint64 recursiveEuclideanGCD(uint64 x, uint64 y) {
+  static uint64 RecursiveEuclideanGCD(uint64 x, uint64 y) {
     if (x == 0) {
       return x;
     }
@@ -28,14 +29,15 @@ namespace gcd {
       return x;
     }
   
-    return recursiveEuclideanGCD(y, x % y);
+    return RecursiveEuclideanGCD(y, x % y);
   }
-  static uint64 iterativeEuclideanGCD(uint64 x, uint64 y) {
+
+  static uint64 IterativeEuclideanGCD(uint64 x, uint64 y) {
     if (x == 0) {
-      return x;
+      return y;
     }    
     if (y == 0) {
-      return y;
+      return x;
     }    
     
     while (x != y) {

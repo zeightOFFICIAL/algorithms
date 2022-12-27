@@ -11,10 +11,10 @@ namespace sorting {
   using comb sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void sortComb(T *array, ulong length, bool order = true);
+  static void CombSort(T *array, ulong length, bool order = true);
   
   template <typename T>
-  static void sortComb(T *array, ulong length, bool order) {
+  static void CombSort(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }

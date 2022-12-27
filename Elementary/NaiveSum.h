@@ -5,18 +5,18 @@
 namespace summation {
   /*
     (vector T A) -> (T B)
-    Finds the sum of elements in vector A. Uses recursion.
-    Returns B.
+    Finds the sum of elements in vector A. 
+    Uses recursion. Returns B.
   */
-  template <typename T> static T naiveRecursiveSummation(std::vector<T> elements);
+  template <typename T> static T NaiveRecursiveSummation(std::vector<T> elements);
   /*
     (vector T A) -> (T B)
-    Finds the sum of elements in vector A. Uses iteration.
-    Returns B.
+    Finds the sum of elements in vector A. 
+    Uses iteration. Returns B.
   */
-  template <typename T> static T naiveIterativeSummation(std::vector<T> elements);
+  template <typename T> static T NaiveIterativeSummation(std::vector<T> elements);
   
-  template <typename T> static T naiveRecursiveSummation(std::vector<T> elements) {
+  template <typename T> static T NaiveRecursiveSummation(std::vector<T> elements) {
     if (elements.size() == 1) {
       return elements[0];
     }
@@ -24,9 +24,10 @@ namespace summation {
     T value = elements[elements.size() - 1];
     elements.pop_back();
   
-    return value + naiveRecursiveSummation(elements);
+    return value + NaiveRecursiveSummation(elements);
   }
-  template <typename T> static T naiveIterativeSummation(std::vector<T> elements) {
+
+  template <typename T> static T NaiveIterativeSummation(std::vector<T> elements) {
     if (elements.size() == 1) {
       return elements[0];
     }

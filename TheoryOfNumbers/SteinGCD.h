@@ -4,22 +4,28 @@
 
 namespace gcd {
   typedef uint64_t uint64;
+  template <typename T> static void swap(T &first, T &second) {
+    T temp = second;
+    second = first;
+    first = temp;
+  }
+
   /**
     (uint64_t A, uint64_t B) -> (uint64_t C)
     Finds GCD of numbers A and B and returns
     its value - C. Uses stein method with recursion.
     Returns C.
   */
-  static uint64 recursiveSteinRecursiveGCD(uint64 x, uint64 y);
+  static uint64 RecursiveSteinGCD(uint64 x, uint64 y);
   /**
     (uint64_t A, uint64_t B) -> (uint64_t C)
     Finds GCD of numbers A and B and returns
     its value - C. Uses stein method with iteration.
     Returns C.
   */
-  static uint64 iterativeSteinGCD(uint64 x, uint64 y);
+  static uint64 IterativeSteinGCD(uint64 x, uint64 y);
   
-  static uint64 recursiveSteinRecursiveGCD(uint64 x, uint64 y) {
+  static uint64 RecursiveSteinGCD(uint64 x, uint64 y) {
     if (x == y) {
       return x;
     }
@@ -32,29 +38,29 @@ namespace gcd {
   
     if (~x & 1) {
       if (y & 1) {
-        return recursiveSteinRecursiveGCD(x >> 1, y);
+        return RecursiveSteinGCD(x >> 1, y);
       } else {
-        return recursiveSteinRecursiveGCD(x >> 1, y >> 1) << 1;
+        return RecursiveSteinGCD(x >> 1, y >> 1) << 1;
       }
     }
     if (~y & 1) {
-      return recursiveSteinRecursiveGCD(x, y >> 1);
+      return RecursiveSteinGCD(x, y >> 1);
     }
     if (x > y) {
-      return recursiveSteinRecursiveGCD((x - y) >> 1, y);
+      return RecursiveSteinGCD((x - y) >> 1, y);
     }
   
-    return recursiveSteinRecursiveGCD((y - x) >> 1, x);
+    return RecursiveSteinGCD((y - x) >> 1, x);
   }
-  uint64 iterativeSteinGCD(uint64 x, uint64 y) {
+  uint64 IterativeSteinGCD(uint64 x, uint64 y) {
     if (x == y) {
       return x;
     }
     if (x == 0) {
-      return x;
+      return y;
     }
     if (y == 0) {
-      return y;
+      return x;
     }
     uint64 k;
   
@@ -70,7 +76,7 @@ namespace gcd {
         y >>= 1;
       }
       if (x > y) {
-        std::swap(x, y);
+        swap(x, y);
       }
       y = (y - x);
     } while (y != 0);

@@ -14,9 +14,9 @@ namespace sieve {
     with a help of Eratosthenes' sieve.
     Returns vector which stores every prime number.
   */
-  static vector eratosthenesSieve(ulong size);
+  static vector EratosthenesSieve(ulong size);
   
-  static vector eratosthenesSieve(ulong size) {
+  static vector EratosthenesSieve(ulong size) {
     if (size == 0) {
       return vector{0};
     }

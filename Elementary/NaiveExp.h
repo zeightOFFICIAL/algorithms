@@ -8,13 +8,13 @@ namespace exponentiation {
   /**
     (double A, int64 B) -> (double C)
     Finds C of the A**B=C equation. Uses naive iteration.
-    Returns the C.
+    Returns C.
   */
   static double NaiveExpIterative(double base, int64 power);
   /**
     (double A, int64 B) -> (double C)
     Finds C of the A**B=C equation. Uses naive recursion.
-    Returns the C.
+    Returns C.
   */
   static double NaiveExpRecursive(double base, int64 power);
   
@@ -41,6 +41,7 @@ namespace exponentiation {
   
     return resultBase;
   }
+
   static double NaiveExpRecursive(double base, int64 power) {
     if (power == 0) {
       return 1.0;
@@ -48,7 +49,7 @@ namespace exponentiation {
     if (base == 0) {
       return 0.0;
     }  
-    long double startBase = base, resultBase;
+    double startBase = base, resultBase;
     
     if (power > 0) {
       return NaiveExpRecursive(base, power - 1) * base;

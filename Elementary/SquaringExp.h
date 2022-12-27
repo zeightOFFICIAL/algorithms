@@ -7,18 +7,18 @@ namespace exponentiation {
 
   /*
     (double A, int64 B) -> (double C)
-    Finds C of the A**B=C equation. Uses squaring iteration.
-    Returns the C.
+    Finds C of the A**B=C equation. Uses squaring recursion.
+    Returns C.
   */
-  static double squaringRecursiveExponentiation(double base, int64 power);
+  static double SquaringRecursiveExp(double base, int64 power);
   /*
     (double A, int64 B) -> (double C)
     Finds C of the A**B=C equation. Uses squaring iteration.
-    Returns the C.
+    Returns C.
   */
-  static double squaringIterativeExponentiation(double base, int64 power);
+  static double SquaringIterativeExp(double base, int64 power);
   
-  static double squaringRecursiveExponentiation(double base, int64 power) {
+  static double SquaringRecursiveExp(double base, int64 power) {
     if (power == 0) {
       return 1.0;
     }
@@ -27,18 +27,18 @@ namespace exponentiation {
     }
   
     if (power < 0) {
-      return squaringRecursiveExponentiation(1.0 / base, -power);
+      return SquaringRecursiveExp(1.0 / base, -power);
     } else if (power == 0) {
       return 1.0;
     } else if (power % 2 == 0) {
-      return squaringRecursiveExponentiation(base * base, power / 2);
+      return SquaringRecursiveExp(base * base, power / 2);
     } else if (power % 2 != 0) {
-      return base * squaringRecursiveExponentiation(base * base, (power - 1) / 2);
+      return base * SquaringRecursiveExp(base * base, (power - 1) / 2);
     }
   
     return -1.0;
   }
-  static double squaringIterativeExponentiation(double base, int64 power) {
+  static double SquaringIterativeExp(double base, int64 power) {
     if (power == 0) {
       return 1.0;
     }

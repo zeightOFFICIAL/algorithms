@@ -10,10 +10,10 @@ namespace sorting {
   using insertion sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void sortInsertion(T *array, ulong length, bool order = true);
+  static void InsertionSort(T *array, ulong length, bool order = true);
   
   template <typename T>
-  static void sortInsertion(T *array, ulong length, bool order) {
+  static void InsertionSort(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }  

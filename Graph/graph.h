@@ -9,8 +9,8 @@
 class Graph
 {
 protected:
-    std::vector<std::vector<int>> adjacency_matrix;
-    std::vector<std::vector<int>> distances_matrix;
+    std::vector<std::vector<int>> AdjacencyMatrix;
+    std::vector<std::vector<int>> DistancesMatrix;
     void ClearGraph();
 public:
     explicit Graph();
@@ -34,33 +34,33 @@ public:
 Graph::Graph() {}
 Graph::Graph(Graph &grph)
 {
-    adjacency_matrix = grph.GetAdjacencyMatrix();
-    distances_matrix = grph.GetDistancesMatrix();
+    AdjacencyMatrix = grph.GetAdjacencyMatrix();
+    DistancesMatrix = grph.GetDistancesMatrix();
 }
 Graph::~Graph() {}
 
 void Graph::GenerateGraph(int number_of_vertices, int number_of_edges, int power)
 {
     Graph::ClearGraph();
-    adjacency_matrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
-    distances_matrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
+    AdjacencyMatrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
+    DistancesMatrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
     int each_edge = 0, summer_for_distance = 1, start_point, end_point;
     srand((int)time(0));
     while (each_edge < number_of_edges) {
-        start_point = rand() % (adjacency_matrix.size());
-        end_point = rand() % (adjacency_matrix.size());
-        if ((adjacency_matrix[start_point][end_point] != 1) && (start_point != end_point)) {
-            adjacency_matrix[start_point][end_point] = 1;
-            adjacency_matrix[end_point][start_point] = 1;
+        start_point = rand() % (AdjacencyMatrix.size());
+        end_point = rand() % (AdjacencyMatrix.size());
+        if ((AdjacencyMatrix[start_point][end_point] != 1) && (start_point != end_point)) {
+            AdjacencyMatrix[start_point][end_point] = 1;
+            AdjacencyMatrix[end_point][start_point] = 1;
             each_edge++;
         }
     }
     srand((int)time(0));
-    for (int row = 0; row < distances_matrix.size(); row++) {
-        for (int col = 0; col < distances_matrix.size(); col++) {
+    for (int row = 0; row < DistancesMatrix.size(); row++) {
+        for (int col = 0; col < DistancesMatrix.size(); col++) {
             summer_for_distance = rand() % power + 1;
-            distances_matrix[row][col] = adjacency_matrix[row][col] * summer_for_distance;
-            distances_matrix[col][row] = adjacency_matrix[row][col] * summer_for_distance;
+            DistancesMatrix[row][col] = AdjacencyMatrix[row][col] * summer_for_distance;
+            DistancesMatrix[col][row] = AdjacencyMatrix[row][col] * summer_for_distance;
         }
     }
 }
@@ -74,13 +74,13 @@ void Graph::LoadGraph(std::string filename)
         std::cout << "no such file";
     else {
         file >> number_of_vertices;
-        adjacency_matrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
-        distances_matrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
+        AdjacencyMatrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
+        DistancesMatrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
         for (int row = 0; row < number_of_vertices; row++) {
             for (int col = 0; col < number_of_vertices; col++) {
-                file >> distances_matrix[row][col];
-                adjacency_matrix[row][col] = static_cast<bool>(distances_matrix[row][col]);
-                count_edges += static_cast<bool>(distances_matrix[row][col]);
+                file >> DistancesMatrix[row][col];
+                AdjacencyMatrix[row][col] = static_cast<bool>(DistancesMatrix[row][col]);
+                count_edges += static_cast<bool>(DistancesMatrix[row][col]);
             }
         }
     }
@@ -89,18 +89,18 @@ void Graph::LoadGraph(std::string filename)
 void Graph::CustomGraph(int number_of_vertices)
 {
     Graph::ClearGraph();
-    adjacency_matrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
-    distances_matrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
+    AdjacencyMatrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
+    DistancesMatrix.resize(number_of_vertices, std::vector<int>(number_of_vertices, 0));
     int count_edge = 0, this_edge = 0;
     for (int row = 0; row < number_of_vertices; row++) {
         for (int col = row + 1; col < number_of_vertices; col++) {
             std::cout << "Input value of edge " << row << " -> " << col << ":";
             std::cin >> this_edge;
             if (this_edge != 0) {
-                distances_matrix[row][col] = this_edge;
-                distances_matrix[col][row] = this_edge;
-                adjacency_matrix[row][col] = static_cast<bool>(distances_matrix[row][col]);
-                adjacency_matrix[col][row] = static_cast<bool>(distances_matrix[col][row]);
+                DistancesMatrix[row][col] = this_edge;
+                DistancesMatrix[col][row] = this_edge;
+                AdjacencyMatrix[row][col] = static_cast<bool>(DistancesMatrix[row][col]);
+                AdjacencyMatrix[col][row] = static_cast<bool>(DistancesMatrix[col][row]);
                 count_edge++;
             }
         }
@@ -113,10 +113,10 @@ void Graph::SaveGraph(std::string filename)
 	if (!file)
         std::cout << "no such file";
     else {
-        file << distances_matrix.size() << "\n";
-        for (int row = 0; row < distances_matrix.size(); row++) {
-            for (int col = 0; col < distances_matrix.size(); col++) {
-                file << distances_matrix[row][col] << " ";
+        file << DistancesMatrix.size() << "\n";
+        for (int row = 0; row < DistancesMatrix.size(); row++) {
+            for (int col = 0; col < DistancesMatrix.size(); col++) {
+                file << DistancesMatrix[row][col] << " ";
             }
             file << "\n";
         }
@@ -125,16 +125,16 @@ void Graph::SaveGraph(std::string filename)
 }
 
 void Graph::ClearGraph() {
-    distances_matrix.clear();
-    adjacency_matrix.clear();
+    DistancesMatrix.clear();
+    AdjacencyMatrix.clear();
 }
 
 void Graph::PrintAdjacencyMatrix()
 {
     std::cout<<"Adjacency matrix:\n";
-    for (int row = 0; row < adjacency_matrix.size(); row++) {
+    for (int row = 0; row < AdjacencyMatrix.size(); row++) {
         std::cout << "\t";
-        for (int col = 0; col < adjacency_matrix[row].size(); col++) {
+        for (int col = 0; col < AdjacencyMatrix[row].size(); col++) {
             std::cout << std::setw(3) << std::left << adjacency_matrix[row][col];
         }
         std::cout << "\n";
@@ -143,9 +143,9 @@ void Graph::PrintAdjacencyMatrix()
 void Graph::PrintDistancesMatrix()
 {
     std::cout<<"Distances matrix:\n";
-    for (int row = 0; row < distances_matrix.size(); row++) {
+    for (int row = 0; row < DistancesMatrix.size(); row++) {
         std::cout << "\t";
-        for (int col = 0; col < distances_matrix.size(); col++) {
+        for (int col = 0; col < DistancesMatrix.size(); col++) {
             std::cout << std::setw(3) << std::left << distances_matrix[row][col];
         }
         std::cout << "\n";
@@ -164,12 +164,12 @@ void Graph::PrintEdgesList()
 std::vector<std::vector<int>> Graph::GetEdgesList()
 {
     std::vector<std::vector<int>> edges_list;
-    for (int row = 0; row < distances_matrix.size(); row++)
-        for (int col = row; col < distances_matrix.size(); col++)
-            if (distances_matrix[row][col] != 0) {
-                edges_list.push_back({ distances_matrix[row][col],row,col });
+    for (int row = 0; row < DistancesMatrix.size(); row++)
+        for (int col = row; col < DistancesMatrix.size(); col++)
+            if (DistancesMatrix[row][col] != 0) {
+                edges_list.push_back({ DistancesMatrix[row][col],row,col });
             }
     return edges_list;
 }
-std::vector<std::vector<int>> Graph::GetAdjacencyMatrix() {return adjacency_matrix;}
-std::vector<std::vector<int>> Graph::GetDistancesMatrix() {return distances_matrix;}
+std::vector<std::vector<int>> Graph::GetAdjacencyMatrix() {return AdjacencyMatrix;}
+std::vector<std::vector<int>> Graph::GetDistancesMatrix() {return DistancesMatrix;}

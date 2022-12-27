@@ -1,34 +1,53 @@
-// PiChudnovsky.h
+// ChudnovskyPi.h
 
-#include "math.h" // sqrt
+#include "math.h"
 
 namespace picalc {
+  typedef unsigned short ushort;
+
   /*
-    (double A) -> (double B)
+    (unsigned short A) -> (double B)
     Finds 1/pi number B with precision of A.
+    Uses Chudnovsky formula.
     Returns 1/pi number B.
   */
-  double ChudnovskyPi(double precision);
+  static double ChudnovskyPi(ushort precision);
   /*
     (double A) -> (double B)
-    Finds factorial B of number A.
+    Finds factorial B of number A. Uses iteration.
     Returns factorial number B.
   */
-  double factorial(double number);
+  static double IterativeFactorial(double x);
   
-  double factorial(double number) {
-    if ((number == 1.0) || (number == 0.0)) {
-      return 1.0;
+  static double IterativeFactorial(double x) {
+    if (x > 20) {
+      return 0;
+    } else if (x == 0) {
+      return 1;
     }
-    return number * factorial(number - 1.0);
-  }
+    double result = 1;
+    ulong index;
   
-  double ChudnovskyPi(double precisionRequired) {
+    for (index = 2; index <= x; index++) {
+      result *= index;
+    }
+  
+    return result;
+  }
+
+  static double ChudnovskyPi(ushort precisionRequired) {
     double result = 0.0;
-    for (double precision = 0.0; precision < precisionRequired; precision++) {
-      result += (pow(-1.0, precision) * factorial(6.0 * precision) *
+
+    if (precisionRequired == 0) {
+      result += ((13591409.0)) /
+                (pow(640320.0, 3.0 * 0 + 3.0f / 2.0));
+      result *= 12.0;
+      return result;
+    }    
+    for (ushort precision = 0; precision < precisionRequired; precision++) {
+      result += (pow(-1.0, precision) * IterativeFactorial(6.0 * precision) *
                  (13591409.0 + (545140134.0 * precision))) /
-                (factorial(3.0 * precision) * pow(factorial(precision), 3.0) *
+                (IterativeFactorial(3.0 * precision) * pow(IterativeFactorial(precision), 3.0) *
                  pow(640320.0, 3.0 * precision + 3.0f / 2.0));
     }
     result *= 12.0;

@@ -10,27 +10,27 @@ namespace sorting {
   using heap sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void sortHeap(T *array, ulong length, bool order = true);
+  static void HeapSort(T *array, ulong length, bool order = true);
   /**
   (T* A, long long B, long long C) -> ()
   Takes an array A (type T) with length of B which start with
   C and builds maxheap. Changes A, returns nothing.
   */
   template <typename T>
-  static void arrayHeapify(T *array, long64 length, long64 i);
+  static void Heapify(T *array, long64 length, long64 i);
   
   template <typename T>
-  static void sortHeap(T *array, ulong length, bool order) {
+  static void HeapSort(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }  
     long64 each;
   
     for (each = length / 2 - 1; each >= 0; each--)
-      arrayHeapify(array, length, each);
+      Heapify(array, length, each);
     for (each = length - 1; each > 0; each--) {
       swap(array[0], array[each]);
-      arrayHeapify(array, each, 0);
+      Heapify(array, each, 0);
     }  
     if (!order) {
       reverse(array, length);
@@ -38,7 +38,7 @@ namespace sorting {
   }
   
   template <typename T>
-  static void arrayHeapify(T *array, long64 length, long64 summit) {
+  static void Heapify(T *array, long64 length, long64 summit) {
     long64 primeParent = summit, left = 2 * summit + 1, right = 2 * summit + 2;
   
     if (left < length && array[left] > array[primeParent]) {
@@ -49,7 +49,7 @@ namespace sorting {
     }
     if (primeParent != summit) {
       swap(array[summit], array[primeParent]);
-      arrayHeapify<T>(array, length, primeParent);
+      Heapify<T>(array, length, primeParent);
     }
   }
 }

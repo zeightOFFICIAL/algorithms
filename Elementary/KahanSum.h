@@ -5,12 +5,12 @@
 namespace summation {
   /*
     (vector T A) -> (T B)
-    Finds the sum of elements B in vector A. Uses Kahan copmensation
-    Returns B.
+    Finds the sum of elements B in vector A. 
+    Uses Kahan compensation. Returns B.
   */
-  template <typename T> static T kahanSummation(std::vector<T> elements);
+  template <typename T> static T KahanSummation(std::vector<T> elements);
   
-  template <typename T> static T kahanSummation(std::vector<T> elements) {
+  template <typename T> static T KahanSummation(std::vector<T> elements) {
     if (elements.size() == 1) {
       return elements[0];
     }
