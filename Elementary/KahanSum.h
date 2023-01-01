@@ -3,7 +3,7 @@
 #include <vector>
 
 namespace summation {
-  /*
+  /**
     (vector T A) -> (T B)
     Finds the sum of elements B in vector A. 
     Uses Kahan compensation. Returns B.

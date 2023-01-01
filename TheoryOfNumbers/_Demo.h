@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <random>
 #include <numeric>
+#include <chrono>
 
 //-------------------------------------
 
@@ -24,11 +25,16 @@
 #include "EratosthenesSieve.h"
 #include "SundaramSieve.h"
 
+#include "BorweinPi.h"
+#include "ChudnovskyPi.h"
+#include "GaussLegendrePi.h"
+
 typedef std::numeric_limits< double > dbl;
+typedef uint64_t uint64;
+typedef std::chrono::steady_clock::time_point timePt;
 
 void testFactorial() {
-  std::string tempValue1, tempValue2, tempValue3,
-         tempValue4, tempValue5, tempValue6;
+  std::string tempValue1, tempValue2, tempValue3, tempValue4;  
   
   for (int i = 0; i < 51; i++) {
     std::cout << "TERM: " << i << "\n";
@@ -50,9 +56,9 @@ void testFactorial() {
   }
 }
 
-void testGCD(uint64_t x = 360, uint64_t y = 210)
+void testGCD(uint64 x = 360, uint64 y = 210)
 {
-  uint64_t tempValue1, tempValue2, tempValue3, tempValue4,
+  uint64 tempValue1, tempValue2, tempValue3, tempValue4,
   tempValue5;
 
   tempValue1 = gcd::IterativeEuclideanGCD(x, y);
@@ -83,7 +89,7 @@ void testFibonacci()
     
     std::cout << "Pre-generated Fibonacci 90: " << tempValue1 << "\n";
     std::cout << "Fibonacci pure recursive:   " << tempValue2 << "\n";
-    std::cout << "Fibonacci recursive:        " << tempValue3 << "\n";
+    std::cout << "Fibonacci recursive:        " << tempValue3 << " (worst time)"<< "\n";
     std::cout << "Fibonacci iterative:        " << tempValue3 << "\n";
 
     std::cout << "Are equal:                  " << (tempValue1 == tempValue2 & tempValue3 == tempValue4 & tempValue1 == tempValue4) << "\n\n";
@@ -106,4 +112,28 @@ void testSieves(int size = 50)
     }
   }
   std::cout << "Are equal: " << areEqual << "\n\n";
+}
+
+void testPi() {
+  double tempValue1, tempValue2, tempValue3,
+         tempValue4, tempValue5, tempValue6;
+  int localPrec;
+
+  for (int localPrec = 0; localPrec < 4; localPrec++) {
+    std::cout << localPrec << "\n";
+
+    tempValue1 = picalc::ChudnovskyPi(localPrec);
+    tempValue2 = picalc::BorweinQuadraticPi(localPrec);
+    tempValue3 = picalc::GaussLegendrePi(localPrec);
+    tempValue4 = picalc::BorweinCubicPi(localPrec);
+    tempValue5 = picalc::BorweinQuarticPi(localPrec);
+
+    std::cout << std::setprecision(dbl::max_digits10+2) << "Math.h PI:        " << M_PI << "\n";
+    std::cout << std::setprecision(dbl::max_digits10+2) << "BorweinQuadratic: " << tempValue2 << "\n";
+    std::cout << std::setprecision(dbl::max_digits10+2) << "GaussLegendre:    " << tempValue3 << "\n";
+    std::cout << std::setprecision(dbl::max_digits10+2) << "Math.h 1/PI:      " << 1.0/M_PI << "\n";
+    std::cout << std::setprecision(dbl::max_digits10+2) << "Chudnovsky:       " << tempValue1 << "\n";
+    std::cout << std::setprecision(dbl::max_digits10+2) << "BorweinCubic:     " << tempValue4 << "\n";
+    std::cout << std::setprecision(dbl::max_digits10+2) << "BorweinQuartic:   " << tempValue5 << "\n";
+  }
 }

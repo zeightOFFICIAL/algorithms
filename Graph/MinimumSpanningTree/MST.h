@@ -1,4 +1,5 @@
-//mst.h 1128
+//mst.h
+
 #pragma once
 
 #include <vector>
