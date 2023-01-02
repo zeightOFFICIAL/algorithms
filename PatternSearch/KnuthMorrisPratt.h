@@ -12,7 +12,7 @@ namespace patternsearch {
   stores every point of occurrence of the pattern
   in text.
   */
-  static vector searchKMP(string text, string pattern);
+  static vector KMPSearch(string text, string pattern);
   /**
   (string A, unsigned long B, unsigned long* C, unsigned long D) -> ()
   Takes pattern A, its length B, unsigned long table C
@@ -24,9 +24,9 @@ namespace patternsearch {
   A proper prefix is a prefix with wholestring not allowed.
   Returns nothing, changes C.
   */
-  static void longestPrefixSufix(string pattern, ulong patternLength, ulong *table, ulong textLength);
+  static void Heuristics(string pattern, ulong patternLength, ulong *table, ulong textLength);
   
-  static vector searchKMP(string text, string pattern) {
+  static vector KMPSearch(string text, string pattern) {
     if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length()) {
       return vector{0};
     }  
@@ -35,7 +35,7 @@ namespace patternsearch {
     ulong each = 0, inRow = 0;
     vector occurancePoints;
   
-    longestPrefixSufix(pattern, patternLength, prefixTable, textLength);
+    Heuristics(pattern, patternLength, prefixTable, textLength);
     while (each < textLength) {
       if (pattern[inRow] == text[each]) {
         each++;
@@ -58,7 +58,7 @@ namespace patternsearch {
     return occurancePoints;
   }
   
-  static void longestPrefixSufix(string pattern, ulong patternLength, ulong *table, ulong textLength) {
+  static void Heuristics(string pattern, ulong patternLength, ulong *table, ulong textLength) {
     table[0] = 0;
     ulong each = 1, prefixLength = 0;
     

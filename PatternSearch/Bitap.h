@@ -13,9 +13,9 @@ namespace patternsearch {
   in text.
   * Pattern B MUST be SHORTER than 32 bytes
   */
-  static vector searchBitap(string text, string pattern);
+  static vector BitapSearch(string text, string pattern);
   
-  static vector searchBitap(string text, string pattern) {
+  static vector BitapSearch(string text, string pattern) {
     if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length() || pattern.length() > 31) {
       return vector{0};
     }

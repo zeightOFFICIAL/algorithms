@@ -84,35 +84,35 @@ void testSearchFull(int tries, patternsearch::string pattern = "ga") {
       patternsearch::string strarray = array;
 
       start1 = std::chrono::steady_clock::now();
-      occurrences = patternsearch::searchBoyerMoore(strarray, pattern);
+      occurrences = patternsearch::BoyerMooreSearch(strarray, pattern);
       end1 = std::chrono::steady_clock::now();
       alltime1 = alltime1 + std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1).count() / 1000000.0;
       if (localTries == tries)
         std::cout << "BoyerMoore found: " << occurrences.size() << "\n";
 
       start5 = std::chrono::steady_clock::now();
-      occurrences = patternsearch::searchKMP(array, pattern);
+      occurrences = patternsearch::KMPSearch(array, pattern);
       end5 = std::chrono::steady_clock::now();
       alltime5 =alltime5 + std::chrono::duration_cast<std::chrono::microseconds>(end5 - start5).count() / 1000000.0;
       if (localTries == tries)
         std::cout << "Knuth-Morris-Pratt found: " << occurrences.size() << "\n";
 
       start2 = std::chrono::steady_clock::now();
-      occurrences = patternsearch::searchRabinKarp(strarray, pattern, 64);
+      occurrences = patternsearch::RabinKarpSearch(strarray, pattern, 64);
       end2 = std::chrono::steady_clock::now();
       alltime2 =alltime2 + std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2).count() / 1000000.0;
       if (localTries == tries)
         std::cout << "RabinKarp found: " << occurrences.size() << "\n";
 
       start3 = std::chrono::steady_clock::now();
-      occurrences = patternsearch::searchNaive(strarray, pattern);
+      occurrences = patternsearch::NaiveSearch(strarray, pattern);
       end3 = std::chrono::steady_clock::now();
       alltime3 =alltime3 + std::chrono::duration_cast<std::chrono::microseconds>(end3 - start3).count() / 1000000.0;
       if (localTries == tries)
         std::cout << "Naive found: " << occurrences.size() << "\n";
 
       start4 = std::chrono::steady_clock::now();
-      occurrences = patternsearch::searchBitap(array, pattern);
+      occurrences = patternsearch::BitapSearch(array, pattern);
       end4 = std::chrono::steady_clock::now();
       alltime4 =alltime4 + std::chrono::duration_cast<std::chrono::microseconds>(end4 - start4).count() / 1000000.0;
       if (localTries == tries)

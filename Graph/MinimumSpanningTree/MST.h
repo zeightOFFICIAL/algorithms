@@ -5,7 +5,6 @@
 #include "../Graph.h"
 #include "Kruskal.h"
 #include "Prim.h"
-#include "ReverseDelete.h"
 #include <vector>
 
 class MST : public Graph {
@@ -20,7 +19,6 @@ public:
 
   vector MstKruskall();
   vector MstPrim();
-  vector MstRedelete();
 
   void MstPrintTable();
   vector GetVector();
@@ -51,17 +49,6 @@ std::vector<std::vector<int>> MST::MstPrim() {
     std::cout << "The matrix is undefined" << "\n";
   else {
     mstTable = mst::MSTPrim(DistancesMatrix);
-    return mstTable;
-  }
-
-  return {{0}};
-}
-
-std::vector<std::vector<int>> MST::MstRedelete() {
-  if (DistancesMatrix.size() <= 0)
-    std::cout << "The matrix is undefined" << "\n";
-  else {
-    mstTable = mst::MSTReverseDelete(GetEdgesList(), AdjacencyMatrix.size());
     return mstTable;
   }
 

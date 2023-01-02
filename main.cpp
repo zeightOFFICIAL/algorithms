@@ -6,6 +6,7 @@
 #include "PatternSearch/_Demo.h"
 #include "Hashing/_Demo.h"
 #include "Graph/_Demo.h"
+#include "Applied/ZellerCongruence.h"
 
 
 int main() {
@@ -24,10 +25,12 @@ int main() {
 
   // testSearchFull(5, "aa");
 
-   // testHashing();
+  // testHashing();
 
-  testSPG();
+  // testSPG();
   // testMST();
+  
+  // std::cout << applied::ZellerCongruence(1,1,2023) << "\n";
     
   return 0;
 }

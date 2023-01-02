@@ -12,7 +12,7 @@ namespace patternsearch {
   stores every point of occurrence of the pattern
   in text.
   */
-  static vector searchBoyerMoore(string text, string pattern);
+  static vector BoyerMooreSearch(string text, string pattern);
   /**
   (string A, unsigned long B, int* C, unsigned long D) -> ()
   Takes pattern string A, its length B, int table C, text length D.
@@ -20,9 +20,9 @@ namespace patternsearch {
   of letter from alphabet in A within range of (0...length of B - 1)
   The remained alphabet symbols are set to -1. Returns nothing, changes C
   */
-  static void heuristicsBadChar(string pattern, ulong patternLength, int *heuristicsUnsigned, ulong textLength);
+  static void Heuristics(string pattern, ulong patternLength, int *heuristicsUnsigned, ulong textLength);
   
-  static vector searchBoyerMoore(string text, string pattern) {
+  static vector BoyerMooreSearch(string text, string pattern) {
     if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length()) {
       return vector{0};
     }
@@ -31,7 +31,7 @@ namespace patternsearch {
     int64 textIndex = 0, patternIndex;
     vector occurancePoints;
   
-    heuristicsBadChar(pattern, patternLength, heuristics, textLength);
+    heuristics(pattern, patternLength, heuristics, textLength);
     while (textIndex <= (textLength - patternLength)) {
       patternIndex = patternLength - 1;
       while (patternIndex >= 0 && pattern[patternIndex] == text[textIndex + patternIndex]) {
@@ -48,7 +48,7 @@ namespace patternsearch {
     return occurancePoints;
   }
   
-  static void heuristicsBadChar(string pattern, ulong patternLength, int *table, ulong textLength) {
+  static void Heuristics(string pattern, ulong patternLength, int *table, ulong textLength) {
     for (ulong alphabetIndex = 0; alphabetIndex < 256; alphabetIndex++) {
       table[alphabetIndex] = -1;
     }

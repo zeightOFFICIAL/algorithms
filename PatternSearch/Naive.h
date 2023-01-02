@@ -12,9 +12,9 @@ namespace patternsearch {
   stores every point of occurrence of the pattern
   in text.
   */
-  static vector searchNaive(string text, string pattern);
+  static vector NaiveSearch(string text, string pattern);
   
-  static vector searchNaive(string text, string pattern) {
+  static vector NaiveSearch(string text, string pattern) {
     if (pattern.length() == 0 || text.length() == 0 ||
         pattern.length() > text.length()) {
       return vector{0};

@@ -46,9 +46,5 @@ void testMST() {
   std::cout << "Kruskall's\n";
   mstGraph.MstPrintTable();
 
-  vec3 = mstGraph.MstRedelete();
-  std::cout << "Reverse delete\n";
-  mstGraph.MstPrintTable();  
-
   std::cout << "MST cost equality indicates (but does not guarantee) the equality of each MST." << "\n";
 }

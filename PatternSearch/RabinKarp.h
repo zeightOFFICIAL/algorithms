@@ -12,9 +12,9 @@ namespace patternsearch {
   C which stores every point of occurrence of the
   pattern in text.
   */
-  static vector searchRabinKarp(string text, string pattern, int alphabet_power = 256);
+  static vector RabinKarpSearch(string text, string pattern, int alphabet_power = 256);
   
-  static vector searchRabinKarp(string text, string pattern, int alphabetPower) {
+  static vector RabinKarpSearch(string text, string pattern, int alphabetPower) {
     if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length()) {
       return vector{0};
     }  
