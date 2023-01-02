@@ -1,9 +1,11 @@
 #include <iostream>
 
-#include "Sorting/_Demo.h"
-#include "PatternSearch/_Demo.h"
 #include "Elementary/_Demo.h"
 #include "TheoryOfNumbers/_Demo.h"
+#include "Sorting/_Demo.h"
+#include "PatternSearch/_Demo.h"
+#include "Hashing/_Demo.h"
+#include "Graph/_Demo.h"
 
 
 int main() {
@@ -21,6 +23,11 @@ int main() {
   // testSillySortings(1);
 
   // testSearchFull(5, "aa");
+
+   // testHashing();
+
+  testSPG();
+  // testMST();
     
   return 0;
 }

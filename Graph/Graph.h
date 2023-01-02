@@ -47,7 +47,7 @@ Graph::Graph(Graph &grph) {
 Graph::~Graph() {}
 
 void Graph::GenerateGraph(int vertices, int edges, int power) {
-  this->ClearGraph();
+  ClearGraph();
   AdjacencyMatrix.resize(vertices, vector1d(vertices, 0));
   DistancesMatrix.resize(vertices, vector1d(vertices, 0));
   int eachEdge = 0, summerDistance = 1, src, dst;

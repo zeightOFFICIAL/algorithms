@@ -11,7 +11,6 @@
 #include <algorithm>
 #include <random>
 #include <numeric>
-#include <chrono>
 
 //-------------------------------------
 
@@ -31,7 +30,6 @@
 
 typedef std::numeric_limits< double > dbl;
 typedef uint64_t uint64;
-typedef std::chrono::steady_clock::time_point timePt;
 
 void testFactorial() {
   std::string tempValue1, tempValue2, tempValue3, tempValue4;  

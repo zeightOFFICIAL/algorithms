@@ -40,7 +40,7 @@ std::vector<std::vector<int>> SPG::SpgDijstra() {
   if (DistancesMatrix.size() <= 0)
     std::cout << "the matrix is undefined" << "\n";
   else {
-    SPGTable = SPGDijkstraTable(DistancesMatrix);
+    SPGTable = spg::DijkstraTable(DistancesMatrix);
     return SPGTable;
   }
   return {{0}};
@@ -50,7 +50,7 @@ std::vector<std::vector<int>> SPG::SpgFloyd() {
   if (DistancesMatrix.size() <= 0)
     std::cout << "The matrix is undefined" << "\n";
   else {
-    SPGTable = SPGFloydTable(DistancesMatrix);
+    SPGTable = spg::FloydTable(DistancesMatrix);
     return SPGTable;
   }
   return {{0}};
@@ -60,7 +60,7 @@ std::vector<std::vector<int>> SPG::SpgJohnson() {
   if (DistancesMatrix.size() <= 0)
     std::cout << "The matrix is undefined" << "\n";
   else {
-    SPGTable = SPGJohnsonTable(DistancesMatrix);
+    SPGTable = spg::JohnsonTable(DistancesMatrix);
     return SPGTable;
   }
   return {{0}};

@@ -1,49 +1,57 @@
-//prim.h 1128
-#pragma once
+// Prim.h
 
-#include <vector>
 #include "limits.h"
+#include <vector>
 
-std::vector<std::vector<int>> MSTPrim(std::vector<std::vector<int>> DistancesMatrix);
-int MinKey(int key[], bool visited[], int NoVertex);
-
-int MinKey(int key[], bool visited[], int number_of_vertex)  
-{ 
-    int min = INT_MAX, min_index;
-    for (int v = 0; v < number_of_vertex; v++) { 
-        if (visited[v] == false && key[v] < min) { 
-            min = key[v];
-			min_index = v;  
-        }
+namespace mst {
+  #define INF 999999
+  typedef std::vector<std::vector<int>> vector;  
+  vector MSTPrim(vector DistancesMatrix);
+  int MinKey(int key[], bool visited[], int NoVertex);
+  
+  int MinKey(int key[], bool visited[], int vertices) {
+    int min = INT_MAX, minIndex;
+    
+    for (int v = 0; v < vertices; v++) {
+      if (visited[v] == false && key[v] < min) {
+        min = key[v];
+        minIndex = v;
+      }
     }
-    return min_index;  
-}  
-
-std::vector<std::vector<int>> MSTPrim(std::vector<std::vector<int>> distances_matrix)
-{
-    int number_of_vertex = distances_matrix.size();
-    int* parent = new int[number_of_vertex];
-    int* key = new int[number_of_vertex];
-    bool* visited = new bool[number_of_vertex];
-    std::vector<std::vector<int>> mst_prim_table;
-    for (int each_vertex = 0; each_vertex< number_of_vertex; each_vertex++) { 
-        key[each_vertex] = 999; 
-        visited[each_vertex] = false;
-        parent[each_vertex]=-1;
+    
+    return minIndex;
+  }
+  
+  vector MSTPrim(vector DistancesMatrix) {
+    int vertices = DistancesMatrix.size();
+    int *parent = new int[vertices];
+    int *key = new int[vertices];
+    bool *visited = new bool[vertices];
+    vector table;
+    
+    for (int each = 0; each < vertices; each++) {
+      key[each] = INF;
+      visited[each] = false;
+      parent[each] = -1;
     }
     key[0] = 0;
     parent[0] = -1;
-    for (int src_vertex = 0; src_vertex < number_of_vertex - 1; src_vertex++)  {  
-        int u = MinKey(key, visited, number_of_vertex);
-        visited[u] = true; 
-        for (int dst_vertex = 0; dst_vertex < number_of_vertex; dst_vertex++)  {
-            if (distances_matrix[u][dst_vertex]!=0 && visited[dst_vertex] == false && distances_matrix[u][dst_vertex] < key[dst_vertex])  {  
-                parent[dst_vertex] = u;
-                key[dst_vertex] = distances_matrix[u][dst_vertex];  
-            }        
+    for (int source = 0; source < vertices - 1; source++) {
+      int u = MinKey(key, visited, vertices);
+      visited[u] = true;
+      for (int destination = 0; destination < vertices; destination++) {
+        if (DistancesMatrix[u][destination] != 0 &&
+            visited[destination] == false &&
+            DistancesMatrix[u][destination] < key[destination]) {
+          parent[destination] = u;
+          key[destination] = DistancesMatrix[u][destination];
         }
+      }
     }
-    for (int i = 1; i< number_of_vertex; i++)
-        mst_prim_table.push_back({ parent[i],i, distances_matrix[i][parent[i]] }); 
-    return mst_prim_table;
-}
+    for (int i = 1; i < vertices; i++)
+      table.push_back({parent[i], i, DistancesMatrix[i][parent[i]]});
+    
+    return table;
+  }
+  #undef INF
+} // namespace mst

@@ -1,78 +1,83 @@
-//mst.h
+// MST.h
 
 #pragma once
 
+#include "../Graph.h"
+#include "Kruskal.h"
+#include "Prim.h"
+#include "ReverseDelete.h"
 #include <vector>
-#include "../graph.h"
-#include "mst.h"
-#include "kruskal.h"
-#include "prim.h"
-#include "reverse_delete.h"
 
-class Mst: public Graph
-{
+class MST : public Graph {
+typedef std::vector<std::vector<int>> vector;
 private:
-    std::vector<std::vector<int>> mst_table;
+  vector mstTable;
+
 public:
-    explicit Mst();
-    explicit Mst(Graph &grph);
-    virtual ~Mst();
+  explicit MST();
+  explicit MST(Graph &grph);
+  virtual ~MST();
 
-    std::vector<std::vector<int>> MstKruskall();
-    std::vector<std::vector<int>> MstPrim();
-    std::vector<std::vector<int>> MstRedelete();
+  vector MstKruskall();
+  vector MstPrim();
+  vector MstRedelete();
 
-    void MstPrintTable();
-    std::vector<std::vector<int>> GetVector();
+  void MstPrintTable();
+  vector GetVector();
 };
 
-Mst::Mst() { }
-Mst::Mst(Graph &grph) 
-{
-    distances_matrix = grph.GetDistancesMatrix();
-    adjacency_matrix = grph.GetAdjacencyMatrix();
-}
-Mst::~Mst() { }
+MST::MST() {}
 
-std::vector<std::vector<int>> Mst::MstKruskall()
-{
-    if (distances_matrix.size() <= 0)
-        std::cout << "the matrix is undefined" << "\n";
-    else
-    {
-        mst_table = MSTKruskal(GetEdgesList(), adjacency_matrix.size());
-        return mst_table;
-    }
-}
-std::vector<std::vector<int>> Mst::MstPrim()
-{
-    if (distances_matrix.size() <= 0)
-        std::cout << "the matrix is undefined" << "\n";
-    else
-    {
-        mst_table = MSTPrim(distances_matrix);
-        return mst_table;
-    }
-}
-std::vector<std::vector<int>> Mst::MstRedelete()
-{
-    if (distances_matrix.size() <= 0)
-        std::cout << "the matrix is undefined" << "\n";
-    else
-    {
-        mst_table = MSTReverseDelete(GetEdgesList(), adjacency_matrix.size());
-        return mst_table;
-    }
+MST::MST(Graph &grph) {
+  DistancesMatrix = grph.GetDistancesMatrix();
+  AdjacencyMatrix = grph.GetAdjacencyMatrix();
 }
 
-void Mst::MstPrintTable()
-{
-    int number_of_vertices = distances_matrix.size();
-    std::cout<<"Minimum spanning tree matrix:\n";
-    int min_cost = 0;
-    for (int l = 0; l < mst_table.size(); l++) {
-        std::cout << "\t" << std::setw(2) << std::left << mst_table[l][0] << "- " << std::left << std::setw(2) << mst_table[l][1] << std::setw(3) << " weight " << mst_table[l][2] << "\n";
-        min_cost += mst_table[l][2];
-    }
-    std::cout << "MST cost: " << min_cost << "\n";
+MST::~MST() {}
+
+std::vector<std::vector<int>> MST::MstKruskall() {
+  if (DistancesMatrix.size() <= 0)
+    std::cout << "The matrix is undefined" << "\n";
+  else {
+    mstTable = mst::MSTKruskal(GetEdgesList(), AdjacencyMatrix.size());
+    return mstTable;
+  }
+
+  return {{0}};
+}
+
+std::vector<std::vector<int>> MST::MstPrim() {
+  if (DistancesMatrix.size() <= 0)
+    std::cout << "The matrix is undefined" << "\n";
+  else {
+    mstTable = mst::MSTPrim(DistancesMatrix);
+    return mstTable;
+  }
+
+  return {{0}};
+}
+
+std::vector<std::vector<int>> MST::MstRedelete() {
+  if (DistancesMatrix.size() <= 0)
+    std::cout << "The matrix is undefined" << "\n";
+  else {
+    mstTable = mst::MSTReverseDelete(GetEdgesList(), AdjacencyMatrix.size());
+    return mstTable;
+  }
+
+  return {{0}};
+}
+
+void MST::MstPrintTable() {
+  int vertices = DistancesMatrix.size();
+  int minCost = 0;
+  
+  std::cout << "Minimum spanning tree matrix:\n";
+  for (int l = 0; l < mstTable.size(); l++) {
+    std::cout << "\t" << std::setw(2) << std::left << mstTable[l][0] << "- "
+              << std::left << std::setw(2) << mstTable[l][1] << std::setw(3)
+              << " weight " << mstTable[l][2] << "\n";
+    minCost += mstTable[l][2];
+  }
+  std::cout << "MST cost: " << minCost << "\n";
 }
