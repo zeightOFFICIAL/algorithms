@@ -20,7 +20,7 @@ namespace patternsearch {
   of letter from alphabet in A within range of (0...length of B - 1)
   The remained alphabet symbols are set to -1. Returns nothing, changes C
   */
-  static void Heuristics(string pattern, ulong patternLength, int *heuristicsUnsigned, ulong textLength);
+  static void heuristicsBadChar(string pattern, ulong patternLength, int *heuristicsUnsigned, ulong textLength);
   
   static vector BoyerMooreSearch(string text, string pattern) {
     if (pattern.length() == 0 || text.length() == 0 || pattern.length() > text.length()) {
@@ -31,7 +31,7 @@ namespace patternsearch {
     int64 textIndex = 0, patternIndex;
     vector occurancePoints;
   
-    heuristics(pattern, patternLength, heuristics, textLength);
+    heuristicsBadChar(pattern, patternLength, heuristics, textLength);
     while (textIndex <= (textLength - patternLength)) {
       patternIndex = patternLength - 1;
       while (patternIndex >= 0 && pattern[patternIndex] == text[textIndex + patternIndex]) {
@@ -48,7 +48,7 @@ namespace patternsearch {
     return occurancePoints;
   }
   
-  static void Heuristics(string pattern, ulong patternLength, int *table, ulong textLength) {
+  static void heuristicsBadChar(string pattern, ulong patternLength, int *table, ulong textLength) {
     for (ulong alphabetIndex = 0; alphabetIndex < 256; alphabetIndex++) {
       table[alphabetIndex] = -1;
     }
