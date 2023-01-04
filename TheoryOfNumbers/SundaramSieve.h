@@ -7,7 +7,6 @@ namespace sieve {
   typedef uint64_t uint64;
   typedef unsigned long ulong;
   typedef std::vector<uint64> vector;
-  
   /**
     (unsigned long A) -> (vector<uint64_t> B)
     Finds prime numbers within range of 0..A

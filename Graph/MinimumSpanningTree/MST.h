@@ -1,4 +1,7 @@
 // MST.h
+// Helping class for Graph algorithms.
+// Might be removed. If so, use algorihtms directly, without Graph and inherited classes.
+// for version 1.32
 
 #pragma once
 

@@ -5,6 +5,11 @@
 
 namespace spg {
   typedef std::vector<std::vector<int>> vector;
+  /**
+  (vector<vector<int>> A) -> (vector<vector<int>> B)
+  Finds shortest path matrix B of distances matrix A.
+  Uses Floyd-Warshall algorithm. Returns SP matrix B.
+  */
   vector FloydTable(vector DistanceMatrix);
   
   vector FloydTable(vector DistancesMatrix) {

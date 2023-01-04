@@ -4,7 +4,6 @@
 
 namespace gcd {
   typedef uint64_t uint64;
-
   /**
     (uint64_t A, uint64_t B) -> (uint64_t C)
     Finds GCD of numbers A and B and returns

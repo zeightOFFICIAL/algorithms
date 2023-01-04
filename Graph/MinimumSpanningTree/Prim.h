@@ -5,7 +5,12 @@
 
 namespace mst {
   #define INF 999999
-  typedef std::vector<std::vector<int>> vector;  
+  typedef std::vector<std::vector<int>> vector; 
+  /**
+  (vector<vector<int>> A) -> (vector<vector<int>> B)
+  Finds minimum spanning tree list B of distances matrix A.
+  Uses Prim's algorithm. Returns MST list B.
+  */
   vector MSTPrim(vector DistancesMatrix);
   int MinKey(int key[], bool visited[], int NoVertex);
   

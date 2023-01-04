@@ -2,21 +2,21 @@
 
 #include <string>
 
-namespace applied {
+namespace daycalling {
   typedef std::string string;
   typedef unsigned long ulong;
+  /**
+  (unsigned long A, unsigned long B, unsigned long C) -> (string D)
+  Finds day (calling) D of the date A.B.C (where
+  A - day, B - month, C - year). Uses Zeller
+  congruence. Returns day calling D.
+  */
   static string ZellerDayOfDate(ulong day, ulong month, ulong year);
   
   static const string callings[7] = {
       "Saturday",  "Sunday",   "Monday", "Tuesday",
       "Wednesday", "Thursday", "Friday"};
   
-  /**
-  (ulong A, ulong B, ulong C) -> (string D)
-  Finds day (calling) D of the date A.B.C (where
-  A - day, B - month, C - year). Uses Zeller
-  congruence. Returns day calling D.
-  */
   static string ZellerDayOfDate(ulong day, ulong month, ulong year) {
     if (month == 1) {
       month = 13;

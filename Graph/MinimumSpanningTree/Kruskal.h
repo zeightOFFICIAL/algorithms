@@ -15,7 +15,13 @@ namespace mst {
     void Unite(int x, int y);
     int Set(int i);
   };
-  
+
+  /**
+  (vector<vector<int>> A, int C) -> (vector<vector<int>> D)
+  Finds minimum spanning tree list D of edges list A.
+  With total number of vertices C. Uses Kruskal's algorithm. 
+  Returns MST list D.
+  */
   vector MSTKruskal(vector EdgeList, int NoVertex);
   
   DSU::DSU(int size) {

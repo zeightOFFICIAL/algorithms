@@ -7,7 +7,6 @@ namespace factorial {
   typedef uint64_t uint64;
   typedef unsigned long ulong;
   typedef std::string string;
-  
   static const uint64 PreGenFactorial20[21] = {
     1,
     1,
@@ -30,7 +29,6 @@ namespace factorial {
     6402373705728000,
     121645100408832000,
     2432902008176640000};
-
   static const string PreGenFactorial50[51] = {
     "1",
     "1",
@@ -83,7 +81,6 @@ namespace factorial {
     "12413915592536072670862289047373375038521486354677760000000000",
     "608281864034267560872252163321295376887552831379210240000000000",
     "30414093201713378043612608166064768844377641568960512000000000000"};
-  
   /**
     (uint64_t A) -> (uint64_t B)
     Finds factorial of number A. Uses recursion.

@@ -45,7 +45,7 @@ namespace hashing {
   SHA256 hashing function. 
   Return string B - hash.
   */
-  string sha256(const string data);
+  static string sha256(const string data);
 } // namespace hashing
 
 namespace hashing {
@@ -184,7 +184,7 @@ namespace hashing {
     return (a & (b | c)) | (b & c);
   }
   
-  string sha256(const string data) {
+  static string sha256(const string data) {
     SHA256 hash;
     hash.update(data);
     return hash.final();

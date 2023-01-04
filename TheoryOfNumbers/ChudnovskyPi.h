@@ -4,7 +4,6 @@
 
 namespace picalc {
   typedef unsigned short ushort;
-
   /*
     (unsigned short A) -> (double B)
     Finds 1/pi number B with precision of A.

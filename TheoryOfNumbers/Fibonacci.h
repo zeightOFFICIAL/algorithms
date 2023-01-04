@@ -5,7 +5,6 @@
 namespace fibonacci {
   typedef uint64_t uint64;
   typedef unsigned long ulong;
-  
   static const uint64 PreGenFibonacci90[91] = {
    0,
    1,
@@ -98,7 +97,6 @@ namespace fibonacci {
    1100087778366101931,
    1779979416004714189,
    2880067194370816120};
-  
   /**
     (uint64_t A) -> (uint64_t B)
     Finds A-x element of fibonacci sequence.

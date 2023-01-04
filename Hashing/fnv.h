@@ -5,14 +5,24 @@
 namespace hashing {
   static const uint32 FNV32_PRIME = 0x01000193;
   static const uint32 FNV32_OFFSET = 0x811c9dc5;
-
+  static const uint64 FNV64_PRIME = 0x00000100000001B3;
+  static const uint64 FNV64_OFFSET = 0xcbf29ce484222325;
   /**
   (string A) -> (string B)
   Creates checksum B of string A, using
   fnv132 hashing function. 
   Return string B - checksum.
   */
-  string fnv132(const string data) {
+  static string fnv132(const string data);
+  /**
+  (string A) -> (string B)
+  Creates checksum B of string A, using
+  fnv164 hashing function. 
+  Return string B - checksum.
+  */
+  static string fnv164(const string data);
+
+  static string fnv132(const string data) {
     ulong length = data.length();
     uint32 hash = FNV32_OFFSET;
     
@@ -24,16 +34,7 @@ namespace hashing {
     return intToHex(hash);
   }
 
-  static const uint64 FNV64_PRIME = 0x00000100000001B3;
-  static const uint64 FNV64_OFFSET = 0xcbf29ce484222325;
-
-  /**
-  (string A) -> (string B)
-  Creates checksum B of string A, using
-  fnv164 hashing function. 
-  Return string B - checksum.
-  */
-  string fnv164(const string data) {
+  static string fnv164(const string data) {
     ulong length = data.length();
     uint64 hash = FNV64_OFFSET;
     

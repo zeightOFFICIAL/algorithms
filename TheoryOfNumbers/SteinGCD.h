@@ -9,7 +9,6 @@ namespace gcd {
     second = first;
     first = temp;
   }
-
   /**
     (uint64_t A, uint64_t B) -> (uint64_t C)
     Finds GCD of numbers A and B and returns

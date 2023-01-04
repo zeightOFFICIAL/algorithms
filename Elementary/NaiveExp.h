@@ -4,7 +4,6 @@
 
 namespace exponentiation {
   typedef int64_t int64;
-
   /**
     (double A, int64 B) -> (double C)
     Finds C of the A**B=C equation. Uses naive iteration.

@@ -8,7 +8,6 @@
 #include "Graph/_Demo.h"
 #include "Applied/ZellerCongruence.h"
 #include "Applied/Meeus.h"
-#include "Applied/GaussEaster.h"
 
 
 int main() {
@@ -32,9 +31,10 @@ int main() {
   // testSPG();
   // testMST();
   
-  // std::cout << applied::ZellerCongruence(1,1,2023) << "\n";
-  // std::cout << easterday::MeeusJulianEaster(1961) << "\n";
-  std::cout << easterday::GaussGregorianEaster(2022) << "\n";
-    
+  // std::cout << daycalling::ZellerCongruence(1,1,2023) << "\n";
+  std::cout << easterday::MeeusJulianEaster(2099) << "\n";  
+  std::cout << easterday::MeeusGregorianEaster(2099) << "\n";  
+
+  
   return 0;
 }

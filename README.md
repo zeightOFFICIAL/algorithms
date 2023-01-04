@@ -56,4 +56,5 @@
 <br>https://en.wikipedia.org/
 ## Applied
 * <strong>Zeller Congruence</strong> - is an algorithm devised by Christian Zeller in the 19th century to calculate the day of the week for any Julian or Gregorian calendar date. It can be considered to be based on the conversion between Julian day and the calendar date.
+* <strong>Meeus</strong> - is an algorithm for calculating the Julian Orthodox Easter day and Gregorian Orthodox Easter day (in between 1901..2099).
 <br><br>https://en.wikipedia.org/

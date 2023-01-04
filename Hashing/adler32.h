@@ -4,13 +4,14 @@
 
 namespace hashing {
   static const ulong ADLER32_MOD = 65521;
-
   /**
   (string A) -> (string B)
   Creates checksum B of string A, using
   adler32 hashing function. 
   Return string B - checksum.
   */
+  static string adler32(const string data);
+
   static string adler32(const string data) {
     ulong length = data.length();
     uint32 a = 1, b = 0;

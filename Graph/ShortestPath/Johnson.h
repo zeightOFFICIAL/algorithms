@@ -5,6 +5,11 @@
 namespace spg {
   #define INF 999999
   typedef std::vector<std::vector<int>> vector;
+  /**
+  (vector<vector<int>> A) -> (vector<vector<int>> B)
+  Finds shortest path matrix B of distances matrix A.
+  Uses Johnson algorithm. Returns SP matrix B.
+  */
   vector JohnsonTable(vector DistancesMatrix);
   
   vector JohnsonTable(vector DistancesMatrix) {

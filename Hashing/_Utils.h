@@ -21,6 +21,11 @@ namespace hashing {
   typedef std::bitset<8> bitset8;
   typedef std::bitset<32> bitset32;
 
+  /**
+  (T A) -> (string B)
+  Converts A to hexadecimal contained in string B.
+  Return string B.
+  */
   template <typename T>
   static string intToHex(T number) {
     strstream stream;

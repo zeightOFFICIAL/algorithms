@@ -29,8 +29,8 @@ namespace hashing {
   SHA1 hashing function. 
   Return string B - hash.
   */
-  string sha1(const string data);
-}
+  static string sha1(const string data);
+} // namespace hashing
 
 namespace hashing {
   SHA1::SHA1() {
@@ -164,7 +164,7 @@ namespace hashing {
     return res.str();
   }
 
-  std::string sha1(const std::string data) {
+  static std::string sha1(const std::string data) {
     SHA1 hash;
     hash.update(data);
     return hash.final();
