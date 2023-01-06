@@ -8,6 +8,7 @@
 #include "Graph/_Demo.h"
 #include "Applied/ZellerCongruence.h"
 #include "Applied/Meeus.h"
+#include "Applied/MeeusJonesButcher.h"
 
 
 int main() {
@@ -32,8 +33,9 @@ int main() {
   // testMST();
   
   // std::cout << daycalling::ZellerCongruence(1,1,2023) << "\n";
-  std::cout << easterday::MeeusJulianEaster(2099) << "\n";  
-  std::cout << easterday::MeeusGregorianEaster(2099) << "\n";  
+  std::cout << easterday::MeeusOrthodoxEaster(2099) << "\n";  
+  std::cout << easterday::MeeusOrthodoxJulianEaster(2099) << "\n"; 
+  std::cout << easterday::MJBCatholicEaster(2299) << "\n";
 
   
   return 0;

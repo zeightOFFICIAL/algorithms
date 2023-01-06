@@ -1,6 +1,6 @@
 // Utils.h
 // must be included and used in Meeus.h header file
-// for ver 1.32
+// for ver 1.32.X
 
 #pragma once
 

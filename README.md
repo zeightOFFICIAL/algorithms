@@ -29,7 +29,6 @@
 ## Minimum spanning tree on graph
 * <strong>Kruskal</strong> - is algorithm which finds a minimum spanning forest of an undirected edge-weighted graph. If the graph is connected, it finds a minimum spanning tree. (A minimum spanning tree of a connected graph is a subset of the edges that forms a tree that includes every vertex, where the sum of the weights of all the edges in the tree is minimized. For a disconnected graph, a minimum spanning forest is composed of a minimum spanning tree for each connected component.) It is a greedy algorithm in graph theory as in each step it adds the next lowest-weight edge that will not form a cycle to the minimum spanning forest.
 * <strong>Prim</strong> - is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. The algorithm operates by building this tree one vertex at a time, from an arbitrary starting vertex, at each step adding the cheapest possible connection from the tree to another vertex.
-* <strong>Reverse-Delete</strong> - is an algorithm in graph theory used to obtain a minimum spanning tree from a given connected, edge-weighted graph. It first appeared in Kruskal (1956), but it should not be confused with Kruskal's algorithm which appears in the same paper. If the graph is disconnected, this algorithm will find a minimum spanning tree for each disconnected part of the graph. The set of these minimum spanning trees is called a minimum spanning forest, which contains every vertex in the graph.
 <br><br>https://en.wikipedia.org/
 ## Elementary
 * <strong>Naive exponentiation</strong> - is a simple method to calculate the first number (base) to the power of the second number (power). It multiples the base and current result step by step, eventually approaching the solution.
@@ -56,5 +55,6 @@
 <br>https://en.wikipedia.org/
 ## Applied
 * <strong>Zeller Congruence</strong> - is an algorithm devised by Christian Zeller in the 19th century to calculate the day of the week for any Julian or Gregorian calendar date. It can be considered to be based on the conversion between Julian day and the calendar date.
-* <strong>Meeus</strong> - is an algorithm for calculating the Julian Orthodox Easter day and Gregorian Orthodox Easter day (in between 1901..2099).
+* <strong>Meeus</strong> - is an algorithm for calculating the Orthodox Julian Easter day and Orthodox Gregorian Easter day (in between 1901..2099).
+* <strong>Meeus-Jones-Butcher</strong> - is an algorithm for calculating Catholic Gregorain Easter day.
 <br><br>https://en.wikipedia.org/
