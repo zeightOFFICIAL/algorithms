@@ -6,9 +6,7 @@
 #include "PatternSearch/_Demo.h"
 #include "Hashing/_Demo.h"
 #include "Graph/_Demo.h"
-#include "Applied/ZellerCongruence.h"
-#include "Applied/Meeus.h"
-#include "Applied/MeeusJonesButcher.h"
+#include "Applied/_Demo.h"
 
 
 int main() {
@@ -31,12 +29,11 @@ int main() {
 
   // testSPG();
   // testMST();
-  
-  // std::cout << daycalling::ZellerCongruence(1,1,2023) << "\n";
-  std::cout << easterday::MeeusOrthodoxEaster(2099) << "\n";  
-  std::cout << easterday::MeeusOrthodoxJulianEaster(2099) << "\n"; 
-  std::cout << easterday::MJBCatholicEaster(2299) << "\n";
 
+  testDays(2000);
+  testDate(6,1,2023);
+
+  
   
   return 0;
 }

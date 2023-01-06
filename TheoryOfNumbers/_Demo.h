@@ -18,15 +18,15 @@
 
 #include "Fibonacci.h"
 
-#include "EuclideanGCD.h"
-#include "SteinGCD.h"
+#include "Euclidean.h"
+#include "Stein.h"
 
-#include "EratosthenesSieve.h"
-#include "SundaramSieve.h"
+#include "Eratosthenes.h"
+#include "Sundaram.h"
 
-#include "BorweinPi.h"
-#include "ChudnovskyPi.h"
-#include "GaussLegendrePi.h"
+#include "Borwein.h"
+#include "Chudnovsky.h"
+#include "GaussLegendre.h"
 
 typedef std::numeric_limits< double > dbl;
 typedef uint64_t uint64;

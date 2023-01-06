@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace summation {
+namespace elementary {
   /**
     (vector T A) -> (T B)
     Finds the sum of elements B in vector A. 

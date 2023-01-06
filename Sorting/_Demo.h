@@ -10,14 +10,14 @@
 #include <string>
 #include <vector>
 
-#include "BubbleSort.h"
-#include "CocktailSort.h"
-#include "CombSort.h"
-#include "GnomeSort.h"
-#include "HeapSort.h"
-#include "InsertionSort.h"
-#include "ShellSort.h"
-#include "StoogeSort.h"
+#include "Bubble.h"
+#include "Cocktail.h"
+#include "Comb.h"
+#include "Gnome.h"
+#include "Heap.h"
+#include "Insertion.h"
+#include "Shell.h"
+#include "Stooge.h"
 
 const unsigned long EXTREME_SIZE = 429496;
 

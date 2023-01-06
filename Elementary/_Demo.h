@@ -1,6 +1,6 @@
 // Demo.h
 // use !ONLY! for testing of the program's work
-// for version 1.32
+// for version 1.32.X
 #pragma once
 
 #include "math.h"
@@ -10,7 +10,7 @@
 
 //-------------------------------------
 
-#include "KahanSum.h"
+#include "Kahan.h"
 #include "NaiveSum.h"
 
 #include "NaiveExp.h"
@@ -25,10 +25,10 @@ void testExp(int startBase, int endBase, int startPow, int endPow) {
     for (int power = startPow; power < endPow; power++) {
       std::cout << "BASE = " << base << " POWER = " << power << "\n";
 
-      double tempValue1 = exponentiation::NaiveExpIterative(base, power);
-      double tempValue2 = exponentiation::NaiveExpRecursive(base, power);
-      double tempValue3 = exponentiation::SquaringIterativeExp(base, power);
-      double tempValue4 = exponentiation::SquaringRecursiveExp(base, power);
+      double tempValue1 = elementary::NaiveExpIterative(base, power);
+      double tempValue2 = elementary::NaiveExpRecursive(base, power);
+      double tempValue3 = elementary::SquaringIterativeExp(base, power);
+      double tempValue4 = elementary::SquaringRecursiveExp(base, power);
 
       std::cout << "Math.h POW:         " << pow(base, power) << "\n";
       std::cout << "Naive iterative:    " << tempValue1 << "\n";
@@ -42,10 +42,10 @@ void testExp(int startBase, int endBase, int startPow, int endPow) {
 void testExp(int base = 2, int power = 5) {
   std::cout << "BASE = " << base << " POWER = " << power << "\n";
 
-  double tempValue1 = exponentiation::NaiveExpIterative(base, power);
-  double tempValue2 = exponentiation::NaiveExpRecursive(base, power);
-  double tempValue3 = exponentiation::SquaringIterativeExp(base, power);
-  double tempValue4 = exponentiation::SquaringRecursiveExp(base, power);
+  double tempValue1 = elementary::NaiveExpIterative(base, power);
+  double tempValue2 = elementary::NaiveExpRecursive(base, power);
+  double tempValue3 = elementary::SquaringIterativeExp(base, power);
+  double tempValue4 = elementary::SquaringRecursiveExp(base, power);
 
   std::cout << "Math.h POW:         " << pow(base, power) << "\n";
   std::cout << "Naive iterative:    " << tempValue1 << "\n";
@@ -61,9 +61,9 @@ void testSum(std::vector<double> seq) {
     value = value + seq[i];
   }
 
-  double tempValue1 = summation::NaiveIterativeSummation(seq);
-  double tempValue2 = summation::NaiveRecursiveSummation(seq);
-  double tempValue3 = summation::KahanSummation(seq);
+  double tempValue1 = elementary::NaiveIterativeSummation(seq);
+  double tempValue2 = elementary::NaiveRecursiveSummation(seq);
+  double tempValue3 = elementary::KahanSummation(seq);
 
   std::cout << "Vector accumulate:            "
             << std::accumulate(seq.begin(), seq.end(), 0.0) << "\n";
@@ -87,9 +87,9 @@ void testSum(int size = 1000) {
     seq[i] = newValue;
   }
 
-  double tempValue1 = summation::NaiveIterativeSummation(seq);
-  double tempValue2 = summation::NaiveRecursiveSummation(seq);
-  double tempValue3 = summation::KahanSummation(seq);
+  double tempValue1 = elementary::NaiveIterativeSummation(seq);
+  double tempValue2 = elementary::NaiveRecursiveSummation(seq);
+  double tempValue3 = elementary::KahanSummation(seq);
 
   std::cout << "Vector accumulate:            " << std::accumulate(seq.begin(), seq.end(), 0.0) << "\n";
   std::cout << "Inline summation:             " << value << "\n";

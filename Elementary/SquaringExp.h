@@ -2,7 +2,7 @@
 
 #include "math.h"
 
-namespace exponentiation {
+namespace elementary {
   typedef int64_t int64;
   /*
     (double A, int64 B) -> (double C)

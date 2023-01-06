@@ -1,25 +1,35 @@
 // Meeus.h
 
-#include "_Utils.h"
-
-namespace easterday {
+namespace applied {
+  typedef unsigned long ulong;
   /**
-  (unsigned long A) -> (string B)
+  (unsigned long A) -> (unsigned long[3] B)
   Finds date B of the Easter day in year A.
   Uses Meeus algorithm to find Orthodox
   day of Easter. Returns day B.
+  B = [
+        unsigned long DAY, 
+        unsigned long MONTH, 
+        unsigned long YEAR
+      ]
   */
-  static string MeeusOrthodoxEaster(ulong year);
+  static ulong* MeeusOrthodoxEaster(ulong year);
   /**
-  (unsigned long A) -> (string B)
+  (unsigned long A) -> (unsigned long[3] B)
   Finds date B of the Easter day in year A.
-  Uses Meeus algorithm to find Gregorian Orthodox
+  Uses Meeus algorithm to find Orthodox Gregorian
   day of Easter. Returns day B.
+  B = [
+        unsigned long DAY, 
+        unsigned long MONTH, 
+        unsigned long YEAR
+      ]
   ! WORKS ONLY WITHIN 1901..2099 !
   */
-  static string MeeusOrthodoxJulianEaster(ulong year);
+  static ulong* MeeusOrthodoxJulianEaster(ulong year);
 
-  static string MeeusOrthodoxEaster(ulong year) {
+  static ulong* MeeusOrthodoxEaster(ulong year) {
+    ulong D, M;
     ulong a = year % 4, 
     b = year % 7, 
     c = year % 19,
@@ -27,36 +37,35 @@ namespace easterday {
     e = (2 * a + 4 * b - d + 34) % 7;  
     
     e = d + e + 114;    
-    ulong newMonth = (e / 31), 
-          newDay = ((e % 31) + 1);
+    M = (e / 31);
+    D = ((e % 31) + 1);
   
-    return std::to_string(newDay) + " " + monthCalling[newMonth - 1] + " " + std::to_string(year);
+    static ulong date[3] = {D, M, year};
+    return date;
   }
 
-  static string MeeusOrthodoxJulianEaster(ulong year) {   
-    ulong newYear4 = year % 4, 
-          newYear7 = year % 7, 
-          newYear19 = year % 19;
-    ulong d = (19 * newYear19 + 15) % 30,
-          e = (2 * newYear4 + 4 * newYear7 - d + 34) % 7;
+  static ulong* MeeusOrthodoxJulianEaster(ulong year) {
+    ulong D, M;
+    ulong a = year % 4, 
+    b = year % 7, 
+    c = year % 19,
+    d = (19 * c + 15) % 30,
+    e = (2 * a + 4 * b - d + 34) % 7;    
+    
     e = d + e + 114;
-    ulong newMonth = (e / 31), 
-          newDay = ((e % 31) + 1);
-    newDay = newDay + 13;
-    if (newDay > 31 && newMonth == 3) {
-      newDay = newDay - 31;
-      newMonth = newMonth + 1;
+    M = (e / 31);
+    D = ((e % 31) + 1);
+    D = D + 13;    
+    if (D > 31 && M == 3) {
+      D = D - 31;
+      M = M + 1;
     }
-    else if (newDay > 30 && newMonth == 4){
-      newDay = newDay - 30;
-      newMonth = newMonth + 1;
+    else if (D > 30 && M == 4){
+      D = D - 30;
+      M = M + 1;
     }
 
-    if (year < 1900 || year > 2099) {
-      return "RATHER INCORRECT! " + std::to_string(newDay) + " " + monthCalling[newMonth - 1] + " " + std::to_string(year);
-    }
-    else {
-      return std::to_string(newDay) + " " + monthCalling[newMonth - 1] + " " + std::to_string(year);
-    }  
+    static ulong date[3] = {D, M, year};
+    return date;
   }
 } // namespace applied
