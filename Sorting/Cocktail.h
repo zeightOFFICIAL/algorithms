@@ -1,4 +1,4 @@
-// CocktailSort.h
+// Cocktail.h
 
 #include "_Utils.h"
 

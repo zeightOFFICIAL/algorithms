@@ -1,4 +1,4 @@
-// GnomeSort.h
+// Gnome.h
 
 #include "_Utils.h"
 

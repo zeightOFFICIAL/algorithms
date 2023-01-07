@@ -1,4 +1,4 @@
-// HeapSort.h
+// Heap.h
 
 #include "_Utils.h"
 

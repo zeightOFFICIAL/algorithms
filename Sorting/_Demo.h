@@ -18,6 +18,7 @@
 #include "Insertion.h"
 #include "Shell.h"
 #include "Stooge.h"
+#include "Cycle.h"
 
 const unsigned long EXTREME_SIZE = 429496;
 
@@ -79,14 +80,14 @@ void testSorting(void (*sorting)(long long *, unsigned long, bool), unsigned int
 }
 
 void testAllSortings(int tries, unsigned int maxSize, unsigned int step, int maxValue = 15000, int minValue = -15000) {
-  long long *arr1, *arr2, *arr3, *arr4, *arr5, *arr6, *arr7;
+  long long *arr1, *arr2, *arr3, *arr4, *arr5, *arr6, *arr7, *arr8;
   long double alltime1 = 0, alltime2 = 0, alltime3 = 0, alltime4 = 0, 
-              alltime5 = 0, alltime6 = 0, alltime7 = 0;
+              alltime5 = 0, alltime6 = 0, alltime7 = 0, alltime8 = 0;
   int localLength;
   bool allequal = true;
   std::chrono::steady_clock::time_point start1, end1, start2, end2, start3, end3, 
                                         start4, end4, start5, end5, start6, end6, 
-                                        start7, end7;
+                                        start7, end7, start8, end8;
 
   for (localLength = 0; localLength <= maxSize; localLength += step) {
     std::cout << localLength << "\n";
@@ -134,6 +135,12 @@ void testAllSortings(int tries, unsigned int maxSize, unsigned int step, int max
       sorting::ShellSort(arr7, localLength);
       end7 = std::chrono::steady_clock::now();
       alltime7 = alltime7 + std::chrono::duration_cast<std::chrono::microseconds>(end7 - start7).count() /1000000.0;
+
+      arr8 = GenerateRandomArray(localLength, maxValue, minValue);
+      start8 = std::chrono::steady_clock::now();
+      sorting::CycleSort(arr8, localLength);
+      end8 = std::chrono::steady_clock::now();
+      alltime8 = alltime8 + std::chrono::duration_cast<std::chrono::microseconds>(end8 - start8).count() /1000000.0;
     }
     std::cout << "Bubble sort: Average time: " << std::setprecision(9)
               << (alltime1 / tries) << " seconds" << "\n";
@@ -149,13 +156,15 @@ void testAllSortings(int tries, unsigned int maxSize, unsigned int step, int max
               << (alltime6 / tries) << " seconds" << "\n";
     std::cout << "Shell sort: Average time: " << std::setprecision(9)
               << (alltime7 / tries) << " seconds" << "\n";
+    std::cout << "Cycle sort: Average time: " << std::setprecision(9)
+              << (alltime8 / tries) << " seconds" << "\n";
     std::cout << "Total elements: " << localLength << "\n";
     std::cout << "Total tries: " << tries << "\n";
 
     allequal = checkCorrect(arr1, localLength) && checkCorrect(arr2, localLength) &&
                checkCorrect(arr3, localLength) && checkCorrect(arr4, localLength) &&
                checkCorrect(arr5, localLength) && checkCorrect(arr6, localLength) &&
-               checkCorrect(arr7, localLength);
+               checkCorrect(arr7, localLength) && checkCorrect(arr8, localLength);
     
     std::cout << "Is correct: " << allequal << "\n";
     std::cout << "\n";

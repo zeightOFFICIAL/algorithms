@@ -1,4 +1,4 @@
-// BubbleSort.h
+// Bubble.h
 #include "_Utils.h"
 
 namespace sorting {  

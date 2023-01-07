@@ -8,7 +8,6 @@
 #include "Graph/_Demo.h"
 #include "Applied/_Demo.h"
 
-
 int main() {
   // testExp();
   // testSum();
@@ -20,7 +19,7 @@ int main() {
   // testSieves();
   
   // testSorting(&sorting::sortComb, 500, false);
-  // testAllSortings(10, 100000, 10000);
+  testAllSortings(10, 100000, 10000);
   // testSillySortings(1);
 
   // testSearchFull(5, "aa");
@@ -30,10 +29,8 @@ int main() {
   // testSPG();
   // testMST();
 
-  testDays(2000);
-  testDate(6,1,2023);
-
-  
+  // testDays(2000);
+  // testDate(6,1,2023);  
   
   return 0;
 }

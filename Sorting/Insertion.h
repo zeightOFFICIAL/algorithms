@@ -1,4 +1,4 @@
-// InsertionSort.h
+// Insertion.h
 
 #include "_Utils.h"
 

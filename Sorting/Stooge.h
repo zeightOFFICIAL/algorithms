@@ -1,4 +1,4 @@
-// StoogeSort.h
+// Stooge.h
 
 #include "_Utils.h"
 

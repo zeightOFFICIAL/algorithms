@@ -1,4 +1,4 @@
-// CombSort.h
+// Comb.h
 
 #include "_Utils.h"
 

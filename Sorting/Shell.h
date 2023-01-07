@@ -1,4 +1,4 @@
-// ShellSort.h
+// Shell.h
 
 #include "_Utils.h"
 
