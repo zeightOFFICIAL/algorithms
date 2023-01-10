@@ -1,3 +1,8 @@
+/*
+Zeight Algorithms: Implementations of some algorithms in C++
+Copyright (C) 2023  Artemii Saganenko
+*/
+
 // Graph.h
 // Helping class for Graph algorithms.
 // Might be removed. If so, use algorihtms directly, without Graph and inherited classes.

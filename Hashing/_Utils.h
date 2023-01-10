@@ -1,3 +1,8 @@
+/*
+Zeight Algorithms: Implementations of some algorithms in C++
+Copyright (C) 2023  Artemii Saganenko
+*/
+
 // Utils.h
 // must be included and used in each hashing header file
 // for ver 1.32

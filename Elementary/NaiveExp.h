@@ -1,3 +1,8 @@
+/*
+Zeight Algorithms: Implementations of some algorithms in C++
+Copyright (C) 2023  Artemii Saganenko
+*/
+
 // ExponentiationNaive.h
 
 #include "math.h"
