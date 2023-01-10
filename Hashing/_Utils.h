@@ -1,5 +1,5 @@
 /*
-Zeight Algorithms: Implementations of some algorithms in C++
+Algorithms: Implementations of some algorithms in C++
 Copyright (C) 2023  Artemii Saganenko
 */
 
