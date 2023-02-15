@@ -35,3 +35,9 @@
 *.replit
 *.nix
 *.ccls-cache
+/.vs
+/x64/Debug
+*.sln
+*.vcxproj
+*.filters
+*.user
