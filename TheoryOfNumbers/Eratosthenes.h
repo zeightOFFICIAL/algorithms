@@ -12,6 +12,7 @@ namespace sieve {
   typedef uint64_t uint64;
   typedef unsigned long ulong;
   typedef std::vector<uint64> vector;
+  typedef std::vector<bool> vectorbool;
   /**
     (unsigned long A) -> (vector<uint64_t> B)
     Finds prime numbers within range of 0..A
@@ -25,11 +26,9 @@ namespace sieve {
       return vector{0};
     }
     vector primes;
-    bool sieve[size + 1];
+    vectorbool sieve;
+    sieve.resize(size + 1, true);
   
-    for (ulong fill = 0; fill <= size; fill++) {
-      sieve[fill] = true;
-    }
     for (ulong number = 2; number * number <= size; number++) {
       if (sieve[number] == true) {
         for (ulong notPrime = number * number; notPrime <= size; notPrime += number) {
