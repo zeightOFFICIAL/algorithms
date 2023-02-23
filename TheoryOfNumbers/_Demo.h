@@ -28,6 +28,8 @@
 #include "Chudnovsky.h"
 #include "GaussLegendre.h"
 
+#define M_PI (3.14159265358979323846264338327950288)
+
 typedef std::numeric_limits< double > dbl;
 typedef uint64_t uint64;
 
@@ -63,13 +65,13 @@ void testGCD(uint64 x = 360, uint64 y = 210)
   tempValue2 = gcd::RecursiveEuclideanGCD(x, y);
   tempValue3 = gcd::IterativeSteinGCD(x, y);
   tempValue4 = gcd::RecursiveSteinGCD(x, y);
-  tempValue5 = std::__gcd(x, y);
+  //tempValue5 = std::__gcd(x, y); C++17 and more
 
   std::cout << "Euclidean iterative GCD: " << tempValue1 << "\n";
   std::cout << "Euclidean recursive GCD: " << tempValue2 << "\n";
   std::cout << "Stein iterative GCD:     " << tempValue3 << "\n";
   std::cout << "Stein recursive GCD:     " << tempValue4 << "\n";
-  std::cout << "Inline C++:              " << tempValue5 << "\n";
+  //std::cout << "Inline C++:              " << tempValue5 << "\n"; C++17 and more
   std::cout << "Are equal:               " << (tempValue1 == tempValue2 & tempValue3 == tempValue4 & tempValue1 == tempValue4 & tempValue5 == tempValue2) << "\n\n";
 }
 

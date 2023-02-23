@@ -25,12 +25,10 @@ namespace sieve {
       return vector{0};
     }
     vector primes;
-    ulong newSize = (size - 1) / 2;
-    bool sieve[newSize + 1];
+    static ulong newSize = (size - 1) / 2;
+    vector sieve;
+    sieve.resize(size + 1, false);
   
-    for (ulong fill = 0; fill < newSize + 1; fill++) {
-      sieve[fill] = false;
-    }
     for (ulong each = 1; each <= newSize; each++) {
       for (ulong yesPrime = each; (each + yesPrime + 2 * each * yesPrime) <= newSize; yesPrime++) {
         sieve[each + yesPrime + 2 * each * yesPrime] = true;

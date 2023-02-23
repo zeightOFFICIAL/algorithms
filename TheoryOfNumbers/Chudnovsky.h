@@ -9,6 +9,7 @@ Copyright (C) 2023  Artemii Saganenko
 
 namespace picalc {
   typedef unsigned short ushort;
+  typedef unsigned long ulong;
   /*
     (unsigned short A) -> (double B)
     Finds 1/pi number B with precision of A.
