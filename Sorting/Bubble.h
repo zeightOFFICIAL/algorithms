@@ -14,10 +14,10 @@ namespace sorting {
   using bubble sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void BubbleSort(T *array, ulong length, bool order = true);
+  static void Bubble(T *array, ulong length, bool order = true);
   
   template <typename T>
-  static void BubbleSort(T *array, ulong length, bool order) {
+  static void Bubble(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }

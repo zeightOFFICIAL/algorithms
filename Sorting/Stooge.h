@@ -15,7 +15,7 @@ namespace sorting {
   using stooge sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void StoogeSort(T *array, ulong length, bool order = true);
+  static void Stooge(T *array, ulong length, bool order = true);
   /**
   (T* A, unsigned long B, unsigned long C, bool D) -> ()
   Takes an array A (type T) within range of B..C and sorts it in
@@ -23,20 +23,20 @@ namespace sorting {
   using stooge sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void StoogeRangedSort(T *array, ulong startPoint, ulong endPoint, bool order);
+  static void StoogeRanged(T *array, ulong startPoint, ulong endPoint, bool order);
   
   template <typename T>
-  static void StoogeSort(T *array, ulong length, bool order) {
+  static void Stooge(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }
   
     length--;
-    StoogeRangedSort(array, 0, length, order);
+    StoogeRanged(array, 0, length, order);
   }
   
   template <typename T>
-  static void StoogeRangedSort(T *array, ulong startPoint, ulong endPoint, bool order) {
+  static void StoogeRanged(T *array, ulong startPoint, ulong endPoint, bool order) {
     if (startPoint >= endPoint) {
       return;
     }
@@ -52,9 +52,9 @@ namespace sorting {
     }
     if (endPoint - startPoint + 1 > 2) {
       ulong cutIndex = (endPoint - startPoint + 1) / 3;
-      StoogeRangedSort(array, startPoint, endPoint - cutIndex, order);
-      StoogeRangedSort(array, startPoint + cutIndex, endPoint, order);
-      StoogeRangedSort(array, startPoint, endPoint - cutIndex, order);
+      StoogeRanged(array, startPoint, endPoint - cutIndex, order);
+      StoogeRanged(array, startPoint + cutIndex, endPoint, order);
+      StoogeRanged(array, startPoint, endPoint - cutIndex, order);
     }
   }
 }

@@ -15,7 +15,7 @@ namespace sorting {
   using heap sorting. Changes A, returns nothing.
   */
   template <typename T>
-  static void HeapSort(T *array, ulong length, bool order = true);
+  static void Heap(T *array, ulong length, bool order = true);
   /**
   (T* A, long long B, long long C) -> ()
   Takes an array A (type T) with length of B which start with
@@ -25,7 +25,7 @@ namespace sorting {
   static void Heapify(T *array, long64 length, long64 i);
   
   template <typename T>
-  static void HeapSort(T *array, ulong length, bool order) {
+  static void Heap(T *array, ulong length, bool order) {
     if (length == 0) {
       return;
     }  
