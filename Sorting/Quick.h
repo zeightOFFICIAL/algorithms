@@ -16,12 +16,17 @@ using quick sorting. Changes A, returns nothing.
 */
 template <typename T>
 static void QuickSort(T *array, ulong length, bool order = true);
+/**
+(T* A, long long B, long long C) -> ()
+Takes an array A (type T) within range of B..C and sorts it in
+the ascending order if D - true and descending if C - false,
+using quick sorting. Changes A, returns nothing.
+*/
+template <typename T>
+static void QuickSortRanged(T *array, ulong low, ulong high);
 
 template <typename T>
-static void QuickSortRanged(T *array, long64 low, long64 high);
-
-template <typename T>
-static long64 QuickSortPartition(T *array, long64 low, long64 high);
+static long64 QuickSortPartition(T *array, ulong low, ulong high);
 
 template <typename T>
 static void QuickSort(T *array, ulong length, bool order) {
@@ -37,25 +42,27 @@ static void QuickSort(T *array, ulong length, bool order) {
 }
 
 template <typename T>
-static void QuickSortRanged(T *array, long64 low, long64 high) {
-  if (low < high) {
-    long64 pi = QuickSortPartition(array, low, high);
-    QuickSortRanged(array, low, pi - 1);
-    QuickSortRanged(array, pi + 1, high);
+static void QuickSortRanged(T *array, ulong leftmost, ulong rightmost) {
+  if (leftmost < rightmost) {
+    long64 partitionIndex = QuickSortPartition(array, leftmost, rightmost);
+    QuickSortRanged(array, leftmost, partitionIndex - 1);
+    QuickSortRanged(array, partitionIndex + 1, rightmost);
   }
 }
 
 template <typename T>
-static long64 QuickSortPartition(T *array, long64 low, long64 high) {
-  long64 pivot = array[high];
-  long64 i = (low - 1);
-  for (long64 j = low; j <= high - 1; j++) {
-    if (array[j] < pivot) {
-      i++;
-      swap(array[i], array[j]);
+static long64 QuickSortPartition(T *array, ulong leftmost, ulong rightmost) {
+  long64 anchor = array[rightmost];
+  long64 index = (leftmost - 1);
+  
+  for (long64 next = leftmost; next <= rightmost - 1; next++) {
+    if (array[next] < anchor) {
+      index++;
+      swap(array[index], array[next]);
     }
   }
-  swap(array[i+1], array[high]);
-  return (i + 1);
+  swap(array[index + 1], array[rightmost]);
+  
+  return (index + 1);
 }
 } // namespace sorting
