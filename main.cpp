@@ -37,8 +37,8 @@ int main() {
   // testGCD();
   // testSieves();
   
-  // testSorting(&sorting::Comb, 500, false);
-  // testAllSortings(10, 100000, 10000);
+  // testSorting(&sorting::QuickSort, 500, false);
+  testAllSortings(10, 100000, 10000);
   // testSillySortings(1);
 
   // testSearchFull(5, "aa");

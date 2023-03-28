@@ -5,12 +5,13 @@ Copyright (C) 2023  Artemii Saganenko
 
 // Utils.h
 // must be included and used in each sorting header file
-// for ver 1.32
+// for ver 1.32-1.33
 
 #pragma once
 
 namespace sorting {  
   typedef unsigned long ulong;
+  typedef unsigned long long ulong64;
   typedef unsigned short ushort;
   typedef long long long64;
 
