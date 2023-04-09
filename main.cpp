@@ -29,7 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 int main() {
   // TestSorting(&sorting::SlowSort, 10, false);
-  // TestAllSortings(10, 100000, 10000);
+  TestAllSortings(10, 100000, 10000);
   // TestSillySortings(1);
   
   // testExp();

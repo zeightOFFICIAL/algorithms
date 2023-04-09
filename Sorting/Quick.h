@@ -34,7 +34,7 @@ static void QuickSort(T *array, ulong length, bool order) {
     return;
   }
 
-  QuickSortRanged(array, 0, length);
+  QuickSortRanged(array, 0, length-1);
 
   if (!order) {
     reverse(array, length);
