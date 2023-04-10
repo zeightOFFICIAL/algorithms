@@ -20,4 +20,4 @@ namespace patternsearch {
   typedef int64_t int64;
 
   static int64 maxByValue(int64 a, int64 b) { return a >= b ? a : b; }
-} // namespace substrsearch
+} // namespace patternsearch

@@ -78,7 +78,7 @@ void testSearchFull(int tries, patternsearch::string pattern = "ga") {
   std::chrono::steady_clock::time_point start1, end1, start2, end2, start3,
                                         end3, start4, end4, start5, end5;
   
-  for (length = 10000; length <= 250000; length += 10000) {
+  for (length = 0; length <= 200000; length += 5000) {
     for (int localTries = 0; localTries <= tries; localTries++) {
       array = GenerateRandomString(length, 1);
       patternsearch::string strarray = array;
