@@ -9,7 +9,12 @@ FNV (Fowler–Noll–Vo) Hash Function is a non-cryptographic hash function that
 
 The FNV Hash Function uses a multiplication and XOR operation to produce a hash value. It has a tunable parameter, which allows users to choose the size of the hash output. FNV hash function is known for its good distribution and low collision rate, which makes it suitable for hash table implementations.
 
-# Adler32
+# Adler32 (Adler32)
 Adler-32 is a checksum algorithm that computes a 32-bit checksum value from a block of data of any length. The algorithm is named after its creator, Mark Adler, and was published in 1995.
 
 Adler-32 is a fast checksum algorithm that is widely used in network protocols and file formats, such as zlib and gzip. It is also used in some versions of the BitTorrent protocol to verify the integrity of downloaded files. However, it is not considered to be a secure cryptographic hash function, as it can be easily compromised by an attacker who has access to the data being checksummed.
+
+# Fletcher (Fletcher 8bit, Fletcher 16bit, Fletcher 32bit)
+Fletcher's checksum algorithm is a type of cyclic redundancy check (CRC) algorithm that was developed by John G. Fletcher in the 1980s. It is used to detect errors in data transmission by adding a checksum value to the data that can be used to verify the integrity of the data.
+
+Fletcher's checksum algorithm is simple and efficient, and can detect a wide range of errors in data transmission, including single-bit errors, transposition errors, and many common types of burst errors. However, it is not as robust as some other CRC algorithms, and may not be suitable for applications that require very high levels of error detection.

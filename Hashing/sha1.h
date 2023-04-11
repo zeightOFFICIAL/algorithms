@@ -169,7 +169,7 @@ namespace hashing {
     return res.str();
   }
 
-  static std::string sha1(const std::string data) {
+  static string sha1(const string data) {
     SHA1 hash;
     hash.update(data);
     return hash.final();

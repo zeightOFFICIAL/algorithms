@@ -41,9 +41,9 @@ int main() {
   // testGCD();
   // testSieves();
 
-  testSearchFull(1, "aa");
+  // testSearchFull(1, "aa");
 
-  // testHashing();
+  testHashing();
 
   // testSPG();
   // testMST();
